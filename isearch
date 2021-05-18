@@ -1,0 +1,57 @@
+#! /bin/bash
+
+# isearch v3
+
+# find out what sort of search to perform
+search_flag=0
+while getopts bcirtvw: name
+do
+	case $name in 
+		b) search_flag=7 # books
+		   shift;;
+		c) search_flag=4 # 4chan
+		   shift;;
+		i) search_flag=2 # images
+		   shift;;
+		r) search_flag=5 # reddit
+		   shift;;
+		t) search_flag=6 # rutracker
+		   shift;;
+		v) search_flag=1 # videos
+		   shift;;
+		w) search_flag=3 # wikipedia
+		   shift;;
+
+	esac
+done
+
+# collect the search term
+number=$#
+if (( search_flag == 7 ))
+then
+	for ((; $# > 0; number=number-1)) ; 
+		do if [[ $term == '' ]] ; then term=$1; else term=$term$"%20"$1; fi ; shift ; 
+		done
+elif (( search_flag == 3))
+then
+	for ((; $# > 0; number=number-1)) ; 
+		do if [[ $term == '' ]] ; then term=$1; else term=$term$"_"$1; fi ; shift ; 
+		done
+else
+	for ((; $# > 0; number=number-1)) ; 
+		do if [[ $term == '' ]] ; then term=$1; else term=$term$"+"$1; fi ; shift ; 
+		done
+fi
+
+# apply the search term
+if (( search_flag == 0 )) ; then search=$"https://duckduckgo.com/?t=ffab&q="$term$"&ia=web"; fi
+if (( search_flag == 1 )) ; then search=$"https://www.google.com/search?tbm=vid&q="$term; fi
+if (( search_flag == 2 )) ; then search=$"https://www.google.com/search?tbm=isch&q="$term; fi
+if (( search_flag == 3 )) ; then search=$"https://en.wikipedia.org/wiki/"$term; fi
+if (( search_flag == 4 )) ; then search=$"https://boards.4chan.org/"$term$"/"; fi
+if (( search_flag == 5 )) ; then search=$"https://reddit.com/r/"$term$"/"; fi
+if (( search_flag == 6 )) ; then search=$"https://rutracker.org/forum/tracker.php?nm="$term$"/"; fi
+if (( search_flag == 7 )) ; then search=$"https://b-ok.cc/s/"$term$"/"; fi
+
+# search the internet, sometimes using firefox
+if (( search_flag > 3 )) ; then firefox $search ; else w3m $search ; fi
