@@ -9,6 +9,9 @@ let b:did_my_nroff_plugin = 1
 
 " some useful mappings - note that they exit out of insert mode so that they
 " will still work at any point in the line
+" add author
+noremap <buffer> <localleader>a o.AU<CR>
+inoremap <buffer> <localleader>a <esc>o.AU<CR>
 " new paragraph
 noremap <buffer> <localleader>p o.PP<CR>
 inoremap <buffer> <localleader>p <esc>o.PP<CR>
@@ -58,8 +61,8 @@ inoremap <buffer> <localleader>m <esc>o\*[-]<CR>
 " some sensible opening lines
 inoremap <buffer> <localleader>x i.nr PS 12<CR>.nr PO 1.5i<CR>.nr LL 5.2i<CR>.nr PI 3n<CR>.nr PSINCR 2p<CR>.nr GROWPS 3<CR>.nr PD 0.3v<CR>.fam  T<CR>.ls 0
 " compile pdf
-noremap <buffer> <localleader>j :write<bar>execute '!groff -T ps -m ms % >> %:r.ps'<CR>
-inoremap <buffer> <localleader>j <esc>:write<bar>execute '!groff -T ps -m ms % >> %:r.ps'<CR>
+noremap <buffer> <localleader>j :write<bar>execute '!groff -T pdf -m ms % >> %:r.pdf'<CR>
+inoremap <buffer> <localleader>j <esc>:write<bar>execute '!groff -T pdf -m ms % >> %:r.pdf'<CR>
 " open pdf
-noremap <buffer> <localleader>k :execute '!okular %:r.ps &'<CR>
-inoremap <buffer> <localleader>k <esc>:execute '!okular %:r.ps'<CR>
+noremap <buffer> <localleader>k :execute '!okular %:r.pdf &'<CR>
+inoremap <buffer> <localleader>k <esc>:execute '!okular %:r.pdf'<CR>
