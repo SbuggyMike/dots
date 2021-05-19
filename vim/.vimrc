@@ -68,6 +68,7 @@ iabbrev hte the
 iabbrev teh the
 iabbrev htey they
 iabbrev taht that
+iabbrev atht that
 iabbrev owuld would
 iabbrev oculd could
 iabbrev ie i.e.,
