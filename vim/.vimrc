@@ -66,6 +66,7 @@ iabbrev waht what
 iabbrev tehn then
 iabbrev hte the
 iabbrev teh the
+iabbrev THe The
 iabbrev htey they
 iabbrev taht that
 iabbrev atht that
