@@ -64,5 +64,5 @@ inoremap <buffer> <localleader>x i.nr PS 12<CR>.nr PO 1.5i<CR>.nr LL 5.2i<CR>.nr
 noremap <buffer> <localleader>j :write<bar>execute '!groff -T pdf -m ms % >> %:r.pdf'<CR>
 inoremap <buffer> <localleader>j <esc>:write<bar>execute '!groff -T pdf -m ms % >> %:r.pdf'<CR>
 " open pdf
-noremap <buffer> <localleader>k :execute '!okular %:r.pdf &'<CR>
-inoremap <buffer> <localleader>k <esc>:execute '!okular %:r.pdf'<CR>
+noremap <buffer> <localleader>k :execute '!zathura %:r.pdf &'<CR>
+inoremap <buffer> <localleader>k <esc>:execute '!zathura %:r.pdf'<CR>
