@@ -51,5 +51,5 @@ noremap <buffer> <localleader>x i\documentclass[12 pt, a4paper, notitlepage]{art
 noremap <buffer> <localleader>j :write<bar>execute "!pdflatex %"<CR>
 inoremap <buffer> <localleader>j <esc>:write<bar>execute "!pdflatex %"<CR>
 " open pdf
-noremap <buffer> <localleader>k :execute '!okular %:r.pdf &'<CR>
-inoremap <buffer> <localleader>k <esc>:execute '!okular %:r.pdf'<CR>
+noremap <buffer> <localleader>k :execute '!zathura %:r.pdf &'<CR>
+inoremap <buffer> <localleader>k <esc>:execute '!zathura %:r.pdf'<CR>
