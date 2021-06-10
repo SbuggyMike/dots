@@ -40,7 +40,7 @@ inoremap <buffer> <localleader>u <esc>o\textsuperscript{}<esc>i
 noremap <buffer> <localleader>. o\ldots
 inoremap <buffer> <localleader>. \ldots{}
 " (auto)cite
-noremap <buffer> <localleader>a i\autocite[]{}<esc>i
+noremap <buffer> <localleader>a a\autocite[]{}<esc>i
 inoremap <buffer> <localleader>a \autocite[]{}<esc>i
 " textcite
 noremap <buffer> <localleader>t \textcite{}<esc>i
