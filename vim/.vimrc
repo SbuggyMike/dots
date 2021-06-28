@@ -6,18 +6,14 @@
 " everytime an upgrade of the vim packages is performed.  It is recommended to
 " make changes after sourcing archlinux.vim since it alters the value of the
 " 'compatible' option.
-
 " This line should not be removed as it ensures that various options are
 " properly set to work with the Vim-related packages.
 runtime! archlinux.vim
-
 " If you prefer the old-style vim functionalty, add 'runtime! vimrc_example.vim'
 " Or better yet, read /usr/share/vim/vim80/vimrc_example.vim or the vim manual
 " and configure vim to your own liking!
-
 " do not load defaults if ~/.vimrc is missing
 "let skip_defaults_vim=1
-
 set number
 set relativenumber
 set spell
@@ -27,7 +23,6 @@ set guifont=Inconsolata\ 23
 colorscheme koehler
 filetype plugin on
 syntax enable
-
 " write before leaving buffer
 autocmd BufLeave *.ms write
 " from learn vimscript the hard way
@@ -60,7 +55,6 @@ nnoremap <leader># :w<bar>bwipeout<cr>
 " move to next and previous buffers
 noremap <leader>> :w<bar>bnext<cr>
 noremap <leader>< :w<bar>bprevious<cr>
-
 " correct typos - particularly law words and names
 iabbrev waht what
 iabbrev tehn then
@@ -77,7 +71,6 @@ iabbrev eg e.g.,
 iabbrev nb n.b.
 iabbrev Nb N.b.
 iabbrev wrt with regard to
-
 " citations
 iabbrev ewhc EWHC
 iabbrev ewca EWCA
@@ -90,18 +83,24 @@ iabbrev ukhl UKHL
 iabbrev lj LJ
 iabbrev vc V-C
 iabbrev j J
-
 " general law vocabulary
 iabbrev c0n contract
 iabbrev C0n Contract
 iabbrev c0ns contracts
 iabbrev C0ns Contracts
+iabbrev c0l contractual
+iabbrev C0l Contractual
+iabbrev 3st estoppel
+iabbrev 3St Estoppel
 iabbrev r3g regulation
 iabbrev r3gs regulations
 iabbrev R3g Regulation
 iabbrev R3gs Regulations
-
 " trust words
+iabbrev d3 duty
+iabbrev D3 Duty
+iabbrev d3s duties
+iabbrev D3s Duties
 iabbrev t3 trustee
 iabbrev T3 Trustee
 iabbrev t3s trustees
@@ -121,7 +120,6 @@ iabbrev F1d Fiduciary
 iabbrev f1ds fiduciaries
 iabbrev F1ds Fiduciaries
 iabbrev bfpfvwn bona fide purchaser for value without notice
-
 " pension words
 iabbrev p3 pension
 iabbrev P3 Pension
@@ -155,7 +153,6 @@ iabbrev tpo the Pensions Ombudsman
 iabbrev Tpo The Pensions Ombudsman
 iabbrev ppf PPF
 iabbrev Ppf Pension Protection Fund
-
 " admin words
 iabbrev steph Stephen
 iabbrev sjh SJH
