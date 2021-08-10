@@ -10,3 +10,4 @@
 (toggle-scroll-bar 0)
 (tool-bar-mode 0)
 (load-theme 'wombat t)
+(setq visible-bell t)
