@@ -32,6 +32,7 @@
 ; org mode clocking time
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
+(setq org-clock-idle-time 20) ; to be asked where I've been if I disappear
 
 ; text mode customisation
 (add-hook 'text-mode-hook 'flyspell-mode)
