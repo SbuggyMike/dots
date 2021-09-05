@@ -34,6 +34,13 @@
 (org-clock-persistence-insinuate)
 (setq org-clock-idle-time 20) ; to be asked where I've been if I disappear
 
+; org mode exporting pdfs via latex
+(setq org-latex-pdf-process
+      '("pdflatex -interaction nonstopmode -output-directory %o %f"
+        "biber %b"
+        "pdflatex -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -interaction nonstopmode -output-directory %o %f"))
+
 ; text mode customisation
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'abbrev-mode)
@@ -47,6 +54,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files '("~/Nextcloud/life_org/todo.org"))
  '(package-selected-packages '(slime evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
