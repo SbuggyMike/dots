@@ -22,12 +22,16 @@
 (setq visible-bell t)
 (setq display-line-numbers 'relative)
 
-; org mode customisation
+;; org mode customisation
 (add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'visual-line-mode)
 (add-hook 'org-mode-hook 'abbrev-mode)
 (add-hook 'org-mode-hook 'display-line-numbers-mode)
 (setq org-log-done 'time) ; timestamps for todo items
+
+; org mode clocking time
+(setq org-clock-persist 'history)
+(org-clock-persistence-insinuate)
 
 ; text mode customisation
 (add-hook 'text-mode-hook 'flyspell-mode)
