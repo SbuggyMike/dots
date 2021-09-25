@@ -1,0 +1,163 @@
+;; -*- mode: emacs-lisp; lexical-binding:t; coding: utf-8-emacs; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Thu Sep 23 10:24:41 2021
+;; Desktop file format version 208
+;; Emacs version 27.2
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (24908 18393 424009 122000) (desktop . "208") "ajax@ithaca" nil nil ((((minibuffer . t) (undecorated) (override-redirect) (font . "-ADBO-Source Code Pro-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1") (font-parameter . "Source Code Pro 10") (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#f6f3e8") (background-color . "#242424") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 0) (tab-bar-lines . 0) (height . 61) (tool-bar-lines . 0) (title) (wait-for-wm . t) (tool-bar-position . top) (inhibit-double-buffering) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 16) (scroll-bar-height . 16) (alpha) (no-focus-on-map) (no-accept-focus) (fullscreen) (visibility . t) (skip-taskbar) (z-group) (display-type . color) (background-mode . dark) (cursor-color . "#656565") (sticky) (environment) (last-focus-update . t) (tabs (current-tab (name . "*terminal*") (explicit-name))) (frameset--id . "29D9-F31F-24C2-C2A1") (frameset--mini t . t) (width . 237) (modeline . t) (unsplittable) (left . 0) (top . 16) (icon-name) (display . ":0") (explicit-name)) ((min-height . 8) (min-width . 10) (min-height-ignore . 4) (min-width-ignore . 4) (min-height-safe . 2) (min-width-safe . 2) (min-pixel-height . 136) (min-pixel-width . 80) (min-pixel-height-ignore . 68) (min-pixel-width-ignore . 32) (min-pixel-height-safe . 34) (min-pixel-width-safe . 16)) vc (pixel-width . 1916) (pixel-height . 1028) (total-width . 240) (total-height . 60) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 1916) (pixel-height . 518) (total-width . 240) (total-height . 30) (normal-height . 0.5) (normal-width . 1.0) (buffer "answering_common_pupillage_application_questions.pdf" (selected . t) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 0 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 1) (start . 1)) (prev-buffers ("answering_common_pupillage_application_questions.pdf" 1 1) ("application_notes.org" 1 1) ("todo.org" 18556 21477) ("*terminal*" 75 2971) ("*eww*" 1895 1895) ("root" 18712 19535) ("pensions_act_2004.org" 3547 3963) ("outline.org" 1 752) ("reading.org" 1 22) ("exercise.org" 932 2098) ("lewin_on_trusts.org" 86 681))) (leaf (last . t) (pixel-width . 1916) (pixel-height . 510) (total-width . 240) (total-height . 30) (normal-height . 0.5) (normal-width . 1.0) (buffer "application_notes.org" (selected) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 0 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 1) (start . 1)) (prev-buffers ("application_notes.org" 1 1)))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '(#("Part 3" 0 6 (isearch-regexp-function nil isearch-case-fold-search nil))))
+(setq regexp-search-ring '(#("alex" 0 4 (isearch-case-fold-search t)) #("Alex" 0 4 (isearch-case-fold-search nil)) #("2004hbbb" 0 8 (isearch-case-fold-search t)) #("227" 0 3 (isearch-case-fold-search t)) #("2004" 0 4 (isearch-case-fold-search t)) #("whole" 0 5 (isearch-case-fold-search t)) #("MU" 0 2 (isearch-case-fold-search nil)) #("Finc" 0 4 (isearch-case-fold-search nil)) #("Pty" 0 3 (isearch-case-fold-search nil)) #("pdf" 0 3 (isearch-case-fold-search t)) #("Lewin" 0 5 (isearch-case-fold-search nil)) #("book" 0 4 (isearch-case-fold-search t)) #("Mista" 0 5 (isearch-case-fold-search nil)) #("S3" 0 2 (isearch-case-fold-search nil)) #("8" 0 1 (isearch-case-fold-search t)) #("FRU" 0 3 (isearch-case-fold-search nil))))
+(setq register-alist '((48 . "227Schedule of contributionsE+W+S\n\n(1)The trustees or managers must prepare, and from time to time review and if necessary revise, a schedule of contributions. \n\n(2)A “schedule of contributions” means a statement showing— \n\n(a)the rates of contributions payable towards the scheme by or on behalf of the employer and the active members of the scheme, and \n\n(b)the dates on or before which such contributions are to be paid. \n\n")))
+(setq file-name-history '("~/.emacs.d/" "~/Nextcloud/life_org/answering_common_pupillage_application_questions.pdf" "~/Nextcloud/life_org/application_notes.org" "/mnt/musix/metal/Iron_Maiden/The_Number_Of_The_Beast_(1982)/" "/mnt/musix/metal/Iron_Maiden/Somewhere_In_Time_(1986)/" "~/Nextcloud/law_phd/trustees/trustee_powers/outline.org" "~/Nextcloud/law_phd/trustees/trustee_powers/pensions_act_2004.org" "~/Nextcloud/life_org/todo.org" "~/Nextcloud/life_org/reading.org" "~/Nextcloud/life_org/exercise.org" "/mnt/musix/rock/Joni_Mitchell/Blue_(1971)/" "~/Nextcloud/law_phd/trustees/trustee_powers/pollard.org" "~/pensions_reading.png" "~/" "~/.emacs" "~/Nextcloud/law_phd/trustees/trustee_powers/lewin_on_trusts.org" "~/Nextcloud/law_phd/admin/phd_bibliographyv2.bib" "~/Nextcloud/life_org/packing_list.org" "/mnt/musix/metal/Burzum/01-Burzum+Aske [1992-1993] (2010)/" "~/Nextcloud/law_phd/trustees/trustee_powers/outline.org" "~/Nextcloud/law_phd/general/Pensions-Law_Policy_and_Practice/Hudson_and_Mitchell_Legal_Consequences_of_the_Flawed_Exercise" "~/Nextcloud/life_org/todo.org" "~/Nextcloud/computer/fresh_install.org" "~/ucl_card_front.jpg" "~/ucl_card_back.jpg" "~/" "/mnt/musix/metal/Witchfinder_General/Death_Penalty_(1982_1990_Reissue)/" "~/Nextcloud/life_org/packing_list.org" "~/.emacs" "~/Nextcloud/life_org/todo.org" "/mnt/musix/metal/Slayer/Reign_In_Blood_(1986)/" "/mnt/musix/rock/David_Bowie/Aladdin_Sane_(1973)/"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/life_org/answering_common_pupillage_application_questions.pdf"
+  "answering_common_pupillage_application_questions.pdf"
+  'pdf-view-mode
+  '(override-global-mode)
+  1
+  '(nil nil)
+  t
+  nil
+  '((buffer-display-time 24908 18389 597366 41000) (buffer-file-coding-system . no-conversion))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/life_org/application_notes.org"
+  "application_notes.org"
+  'org-mode
+  '(abbrev-mode visual-line-mode override-global-mode flyspell-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time 24908 18389 597366 894000) (buffer-file-coding-system . undecided-unix) (overwrite-mode) (truncate-lines))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/life_org/todo.org"
+  "todo.org"
+  'org-mode
+  '(abbrev-mode visual-line-mode override-global-mode flyspell-mode)
+  21477
+  '(90 nil)
+  nil
+  nil
+  '((buffer-display-time 24908 16995 357569 37000) (buffer-file-coding-system . undecided-unix) (overwrite-mode) (truncate-lines))
+  '((mark-ring (90 21881 21881 21881 16 16 18644 20813 20813 20811 21038 20813 1 1 1 21985))))
+
+(desktop-create-buffer 208
+  nil
+  "*eww*"
+  'eww-mode
+  '(override-global-mode)
+  1895
+  '(1895 nil)
+  t
+  '(:history ((:point 1 :url "https://html.duckduckgo.com/html/?q=df" :title "df at DuckDuckGo") (:point 31513 :url "https://www.legislation.gov.uk/ukpga/2004/35/part/3" :title "Pensions Act 2004") (:point 15409 :url "https://www.legislation.gov.uk/ukpga/2004/35/contents" :title "Pensions Act 2004") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.legislation.gov.uk%2Fukpga%2F2004%2F35%2Fcontents&rut=76e954c7cd3a630c1068f5df39ce200a60def9bc3869f0ebca7e314e6b398b67" :title "") (:point 370 :url "https://html.duckduckgo.com/html/?q=pensions+act+2004+part+3" :title "pensions act 2004 part 3 at DuckDuckGo") (:point 1342 :url "https://www.reddit.com/r/Metal/comments/xmqej/essential_heavy_metal_albums_as_selected_by_you/" :title "Essential Heavy Metal Albums: As Selected by YOU! : Metal") (:point 1 :url "https://html.duckduckgo.com/html/?q=ff" :title "ff at DuckDuckGo") (:point 3863 :url "https://emacs.stackexchange.com/questions/27885/how-to-get-the-same-emacs-environment-on-a-different-computer" :title "init file - How to get the same Emacs environment on a different computer? - Emacs Stack Exchange") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Femacs.stackexchange.com%2Fquestions%2F27885%2Fhow%2Dto%2Dget%2Dthe%2Dsame%2Demacs%2Denvironment%2Don%2Da%2Ddifferent%2Dcomputer&rut=0d627293bb7d91002c2f4f4f8c9bd76e7d4366bde442b64066f4aaaa2a70759b" :title "") (:point 733 :url "https://html.duckduckgo.com/html/?q=moving+emacs+to+another+computer" :title "moving emacs to another computer at DuckDuckGo")))
+  '((buffer-display-time 24908 14829 42086 376000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t) (eww-history-position . 0))
+  '((mark-ring (1 1 1 1 1 1 1 1))))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/pensions_act_2004.org"
+  "pensions_act_2004.org"
+  'org-mode
+  '(abbrev-mode visual-line-mode override-global-mode flyspell-mode)
+  3963
+  '(3963 nil)
+  nil
+  nil
+  '((buffer-display-time 24907 42829 182864 878000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines))
+  '((mark-ring (42 3747 3747 3387 3376 3170 3170 3167 2316 2314 1737 941 937))))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/outline.org"
+  "outline.org"
+  'org-mode
+  '(abbrev-mode visual-line-mode override-global-mode flyspell-mode)
+  752
+  '(752 nil)
+  nil
+  nil
+  '((buffer-display-time 24907 42572 90582 52000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines))
+  '((mark-ring (10856 10856 536 10860 10860 10857 10130 10130 10130 6235 2029 9105 10994 5493 5493 10945))))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/life_org/reading.org"
+  "reading.org"
+  'org-mode
+  '(abbrev-mode visual-line-mode override-global-mode flyspell-mode)
+  22
+  '(22 nil)
+  nil
+  nil
+  '((buffer-display-time 24907 36537 310944 970000) (buffer-file-coding-system . undecided-unix) (overwrite-mode) (truncate-lines))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/life_org/exercise.org"
+  "exercise.org"
+  'org-mode
+  '(abbrev-mode visual-line-mode override-global-mode flyspell-mode)
+  2098
+  '(2098 nil)
+  nil
+  nil
+  '((buffer-display-time 24907 30568 291311 570000) (buffer-file-coding-system . undecided-dos) (overwrite-mode) (truncate-lines))
+  '((mark-ring (6910 6873 6873 6874 3501 3501))))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/pollard.org"
+  "pollard.org"
+  'org-mode
+  '(abbrev-mode visual-line-mode override-global-mode flyspell-mode)
+  861
+  '(861 nil)
+  nil
+  nil
+  '((buffer-display-time 24907 16706 679828 996000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines))
+  '((mark-ring (861 956 635 441 39 956))))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/lewin_on_trusts.org"
+  "lewin_on_trusts.org"
+  'org-mode
+  '(abbrev-mode visual-line-mode override-global-mode flyspell-mode)
+  681
+  '(681 nil)
+  nil
+  nil
+  '((buffer-display-time 24907 13938 13731 129000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines))
+  '((mark-ring (681 694 459 2227 2228 2228 1310 696 545 527 458))))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/law_phd/admin/phd_bibliographyv2.bib"
+  "phd_bibliographyv2.bib"
+  'bibtex-mode
+  '(override-global-mode)
+  12411
+  '(12411 nil)
+  nil
+  nil
+  '((buffer-display-time 24907 10892 453674 548000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
+  '((mark-ring (12208 12206 1))))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/law_phd/general/Pensions-Law_Policy_and_Practice/Hudson_and_Mitchell_Legal_Consequences_of_the_Flawed_Exercise"
+  "Hudson_and_Mitchell_Legal_Consequences_of_the_Flawed_Exercise"
+  'fundamental-mode
+  '(override-global-mode)
+  1939
+  '(1939 nil)
+  nil
+  nil
+  '((buffer-display-time 24907 4601 441152 722000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (888))))
+

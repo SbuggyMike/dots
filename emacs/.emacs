@@ -45,26 +45,30 @@
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'abbrev-mode)
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
+
+; add emms
+(require 'emms-setup)
+(emms-all)
+(emms-default-players)
+(require 'emms-cue)
+(add-to-list 'emms-info-functions 'emms-info-cueinfo)
+
 ; make org evaluate 
 (org-babel-do-load-languages
  'org-babel-load-languages '((C . t)))
 (custom-set-variables
-
-; pdf tools
-(pdf-tools-install)
-
-; open links in eww
-(setq browse-url-browser-function 'eww-open-in-new-buffer)
-
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files '("~/Nextcloud/life_org/todo.org"))
- '(package-selected-packages '(pdf-tools slime evil)))
+ '(nil nil t)
+ '(org-agenda-files
+   '("~/Nextcloud/life_org/reading.org" "~/Nextcloud/life_org/exercise.org" "~/Nextcloud/life_org/todo.org"))
+ '(package-selected-packages '(magit emms pdf-tools slime evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(pdf-tools-install)
