@@ -53,6 +53,9 @@
 (require 'emms-cue)
 (add-to-list 'emms-info-functions 'emms-info-cueinfo)
 
+; load my own keybindings
+(load-file "~/keybindings.el")
+
 ; make org evaluate 
 (org-babel-do-load-languages
  'org-babel-load-languages '((C . t)))
