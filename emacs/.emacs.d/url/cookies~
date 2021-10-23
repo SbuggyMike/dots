@@ -4,6 +4,18 @@
 (setq url-cookie-storage
  '(("nationalarchives.gov.uk"
   [url-cookie "cookies_policy" "%7b%22usage%22%3afalse%2c%22settings%22%3afalse%2c%22essential%22%3atrue%7d" "Mon, 22-Nov-2021 16:29:42 GMT" "/" "nationalarchives.gov.uk" nil])
+ ("philpapers.org"
+  [url-cookie "s" "jY4MjEtMTYzNDU2MjgxNy4zNzE5MjE" "Wed, 27-Jun-2035 13:14:18 GMT" "/" "philpapers.org" nil])
+ ("www.coursehero.com"
+  [url-cookie "visid_incap_987752" "k6+1RFdIQuuohsNtB44RbCibaWEAAAAAQUIPAAAAAAAKh2stAhcDZtdhjfNJ1W9o" "Sat, 15 Oct 2022 08:12:01 GMT" "/" "www.coursehero.com" nil]
+  [url-cookie "qualaroo_register_visited" "false" "Tue Nov 16 15:16:06 2021 GMT" "/" "www.coursehero.com" nil]
+  [url-cookie "qualaroo_loggedin" "false" "Tue Nov 16 15:16:45 2021 GMT" "/" "www.coursehero.com" nil]
+  [url-cookie "qualaroo_doc_visited" "true" "Tue Nov 16 15:16:45 2021 GMT" "/" "www.coursehero.com" nil]
+  [url-cookie "recently_viewed_docs" "93603649%2C108657851%2C" "Sun Nov 14 15:16:45 2021 GMT" "/" "www.coursehero.com" nil]
+  [url-cookie "growth_restrict_views_v5" "%7B%2210%2021%22%3A%7B%227vk3uf4%22%3A1%2C%223tulp4k3%22%3A1%7D%7D" "Tue Nov 16 15:16:45 2021 GMT" "/" "www.coursehero.com" nil]
+  [url-cookie "device_view" "full" "Mon Nov 15 16:16:06 2021 GMT" "/" "www.coursehero.com" nil])
+ (".teamrankings.com"
+  [url-cookie "trv3" "c2Fmc2QyNDNhZHNmamwzMTRhc2RmamwxMzI0c2RmMTAzNGFzZGYxMzc5ODIzNDM5NSMxNjM0MjQ3NjQ4IzE3OTE5Mjc2NDg%3D" "Tue Oct 13 21:41:00 2026 GMT" "/" ".teamrankings.com" nil])
  ("latex-tutorial.com"
   [url-cookie "ezCMPCCS" "false" "Sun, 02 Oct 2022 08:24:39 GMT" "/" "latex-tutorial.com" nil])
  (".stackexchange.com"
@@ -15,16 +27,16 @@
  (".askubuntu.com"
   [url-cookie "prov" "5fd789c8-6c38-14ac-f505-51a947c6bb6a" "Fri, 01-Jan-2055 00:00:00 GMT" "/" ".askubuntu.com" nil])
  (".latex.org"
-  [url-cookie "phpbb3_ltx_u" "1" "Sat, 24-Sep-2022 21:06:27 GMT" "/" ".latex.org" nil]
-  [url-cookie "phpbb3_ltx_k" "" "Sat, 24-Sep-2022 21:06:27 GMT" "/" ".latex.org" nil]
-  [url-cookie "phpbb3_ltx_sid" "d655cc337eacd0eb964da5087b2d6fb8" "Sat, 24-Sep-2022 21:06:27 GMT" "/" ".latex.org" nil])
+  [url-cookie "phpbb3_ltx_u" "1" "Sat, 15-Oct-2022 08:46:25 GMT" "/" ".latex.org" nil]
+  [url-cookie "phpbb3_ltx_k" "" "Sat, 15-Oct-2022 08:46:25 GMT" "/" ".latex.org" nil]
+  [url-cookie "phpbb3_ltx_sid" "6c445f6c669163786b57493d0821b2d1" "Sat, 15-Oct-2022 08:46:25 GMT" "/" ".latex.org" nil])
  ("www.linuxquestions.org"
   [url-cookie "bblastvisit" "1632784238" "Tue, 27-Sep-2022 23:10:38 GMT" "/" "www.linuxquestions.org" nil]
   [url-cookie "bblastactivity" "0" "Tue, 27-Sep-2022 23:10:38 GMT" "/" "www.linuxquestions.org" nil])
  (".ssrn.com"
   [url-cookie "SITEID" "en" "Fri, 22-Sep-2051 17:07:16 GMT" "/" ".ssrn.com" nil])
- ("www.which.co.uk"
-  [url-cookie "AWSALB" "ZvAIrGjsSGQWo7YCA3cJE/TojcA+UUJxhQLNkVbwMAjw+aBbOAVJ7nJbnoHAcz/HsePIIc8oS3B+iY69+/gxUZmQSWNTApJkO0CyH8ua7gU2qgOtpbwDdNwSzTWt" "Mon, 11 Oct 2021 14:31:25 GMT" "/" "www.which.co.uk" nil])
+ ("espn.com"
+  [url-cookie "SWID" "C7D3FA46-AB40-4CC5-CC31-DA9C2FF54F54" "Thu, 10 Oct 2041 14:30:53 GMT" "/" "espn.com" nil])
  ("defkey.com"
   [url-cookie "ezCMPCCS" "false" "Tue, 23 Aug 2022 20:13:47 GMT" "/" "defkey.com" nil]))
 )
@@ -45,9 +57,9 @@
   [url-cookie "logged_in" "no" "Fri, 26 Aug 2022 06:38:07 GMT" "/" "github.com" t]
   [url-cookie "_octo" "GH1.1.1605789232.1629959887" "Fri, 26 Aug 2022 06:38:07 GMT" "/" "github.com" t])
  (".wikipedia.org"
-  [url-cookie "WMF-Last-Access-Global" "08-Oct-2021" "Tue, 09 Nov 2021 00:00:00 GMT" "/" ".wikipedia.org" t])
+  [url-cookie "WMF-Last-Access-Global" "20-Oct-2021" "Sun, 21 Nov 2021 00:00:00 GMT" "/" ".wikipedia.org" t])
  ("en.wikipedia.org"
-  [url-cookie "WMF-Last-Access" "08-Oct-2021" "Tue, 09 Nov 2021 00:00:00 GMT" "/" "en.wikipedia.org" t])
+  [url-cookie "WMF-Last-Access" "20-Oct-2021" "Sun, 21 Nov 2021 00:00:00 GMT" "/" "en.wikipedia.org" t])
  ("www.simpsonmillar.co.uk"
   [url-cookie "personalisationGroupsNumberOfVisits" "7936" "Sun, 19-Dec-2021 09:54:24 GMT" "/" "www.simpsonmillar.co.uk" t])
  (".youtube.com"
@@ -58,8 +70,6 @@
   [url-cookie "CFID" "Zy3rymi4mfx7eqn0ushsc14ki96nyf982a2rr2mow485b4v5rg-144739777" "Fri, 22-Sep-2051 17:07:16 GMT" "/" ".ssrn.com" t]
   [url-cookie "CFTOKEN" "Zy3rymi4mfx7eqn0ushsc14ki96nyf982a2rr2mow485b4v5rg-17957010" "Fri, 22-Sep-2051 17:07:16 GMT" "/" ".ssrn.com" t]
   [url-cookie "CFGLOBALS" "urltoken%3DCFID%23%3D144739777%26CFTOKEN%23%3D17957010%23lastvisit%3D%7Bts%20%272021%2D09%2D29%2017%3A07%3A16%27%7D%23hitcount%3D2%23timecreated%3D%7Bts%20%272021%2D09%2D29%2017%3A07%3A16%27%7D%23cftoken%3D17957010%23cfid%3D144739777%23" "Fri, 22-Sep-2051 17:07:16 GMT" "/" ".ssrn.com" t])
- ("www.which.co.uk"
-  [url-cookie "AWSALBCORS" "ZvAIrGjsSGQWo7YCA3cJE/TojcA+UUJxhQLNkVbwMAjw+aBbOAVJ7nJbnoHAcz/HsePIIc8oS3B+iY69+/gxUZmQSWNTApJkO0CyH8ua7gU2qgOtpbwDdNwSzTWt" "Mon, 11 Oct 2021 14:31:25 GMT" "/" "www.which.co.uk" t])
  (".www.nationalarchives.gov.uk"
   [url-cookie "cookies_policy" "%7B%22usage%22%3Afalse%2C%22settings%22%3Afalse%2C%22essential%22%3Atrue%7D" "Sun Nov 21 18:26:30 2021 GMT" "/" ".www.nationalarchives.gov.uk" t]))
 )

@@ -1,0 +1,22 @@
+HTTP/1.1 200 OK
+Date: Fri, 15 Oct 2021 17:21:54 GMT
+Content-Type: image/svg+xml
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept-Encoding
+Server: BunnyCDN-UK1-656
+CDN-PullZone: 229212
+CDN-Uid: c995d1bd-f954-491b-b33d-bb7a37fe268b
+CDN-RequestCountryCode: GB
+CDN-EdgeStorageId: 656
+CDN-StorageServer: DE-51
+Cache-Control: public, max-age=86400
+Last-Modified: Mon, 11 Jan 2021 18:10:11 GMT
+CDN-CachedAt: 2021-06-17 16:08:33
+CDN-RequestPullSuccess: True
+CDN-RequestPullCode: 206
+CDN-RequestId: e58c0743d414feaa947e7e6f254e52d0
+CDN-Status: 200
+CDN-Cache: HIT
+
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
