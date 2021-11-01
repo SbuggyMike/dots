@@ -63,7 +63,7 @@
   :group 'pomodoro
   :type 'string)
 
-(defcustom pomodoro-play-sounds f
+(defcustom pomodoro-play-sounds t
   "Should pomodoro play sounds when starting a new time period"
   :group 'pomodoro
   :type 'boolean)

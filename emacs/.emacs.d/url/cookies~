@@ -2,76 +2,76 @@
 ;; Automatically generated file!!! DO NOT EDIT!!!
 
 (setq url-cookie-storage
- '(("nationalarchives.gov.uk"
-  [url-cookie "cookies_policy" "%7b%22usage%22%3afalse%2c%22settings%22%3afalse%2c%22essential%22%3atrue%7d" "Mon, 22-Nov-2021 16:29:42 GMT" "/" "nationalarchives.gov.uk" nil])
- ("philpapers.org"
-  [url-cookie "s" "jY4MjEtMTYzNDU2MjgxNy4zNzE5MjE" "Wed, 27-Jun-2035 13:14:18 GMT" "/" "philpapers.org" nil])
- ("www.coursehero.com"
-  [url-cookie "visid_incap_987752" "k6+1RFdIQuuohsNtB44RbCibaWEAAAAAQUIPAAAAAAAKh2stAhcDZtdhjfNJ1W9o" "Sat, 15 Oct 2022 08:12:01 GMT" "/" "www.coursehero.com" nil]
-  [url-cookie "qualaroo_register_visited" "false" "Tue Nov 16 15:16:06 2021 GMT" "/" "www.coursehero.com" nil]
-  [url-cookie "qualaroo_loggedin" "false" "Tue Nov 16 15:16:45 2021 GMT" "/" "www.coursehero.com" nil]
-  [url-cookie "qualaroo_doc_visited" "true" "Tue Nov 16 15:16:45 2021 GMT" "/" "www.coursehero.com" nil]
-  [url-cookie "recently_viewed_docs" "93603649%2C108657851%2C" "Sun Nov 14 15:16:45 2021 GMT" "/" "www.coursehero.com" nil]
-  [url-cookie "growth_restrict_views_v5" "%7B%2210%2021%22%3A%7B%227vk3uf4%22%3A1%2C%223tulp4k3%22%3A1%7D%7D" "Tue Nov 16 15:16:45 2021 GMT" "/" "www.coursehero.com" nil]
-  [url-cookie "device_view" "full" "Mon Nov 15 16:16:06 2021 GMT" "/" "www.coursehero.com" nil])
- (".teamrankings.com"
-  [url-cookie "trv3" "c2Fmc2QyNDNhZHNmamwzMTRhc2RmamwxMzI0c2RmMTAzNGFzZGYxMzc5ODIzNDM5NSMxNjM0MjQ3NjQ4IzE3OTE5Mjc2NDg%3D" "Tue Oct 13 21:41:00 2026 GMT" "/" ".teamrankings.com" nil])
- ("latex-tutorial.com"
-  [url-cookie "ezCMPCCS" "false" "Sun, 02 Oct 2022 08:24:39 GMT" "/" "latex-tutorial.com" nil])
- (".stackexchange.com"
-  [url-cookie "prov" "3ad823eb-6461-a91b-75ff-db776adbfcdb" "Fri, 01-Jan-2055 00:00:00 GMT" "/" ".stackexchange.com" nil])
- (".stackoverflow.com"
-  [url-cookie "prov" "5b008236-bc31-847e-91bc-2f6f7ab40655" "Fri, 01-Jan-2055 00:00:00 GMT" "/" ".stackoverflow.com" nil])
- (".lawgazette.co.uk"
-  [url-cookie "AnonUserCookie" "c7016d8e-3295-48ed-b319-6dc58869a27c" "Tue, 06-Sep-2022 23:00:00 GMT" "/" ".lawgazette.co.uk" nil])
- (".askubuntu.com"
-  [url-cookie "prov" "5fd789c8-6c38-14ac-f505-51a947c6bb6a" "Fri, 01-Jan-2055 00:00:00 GMT" "/" ".askubuntu.com" nil])
- (".latex.org"
-  [url-cookie "phpbb3_ltx_u" "1" "Sat, 15-Oct-2022 08:46:25 GMT" "/" ".latex.org" nil]
-  [url-cookie "phpbb3_ltx_k" "" "Sat, 15-Oct-2022 08:46:25 GMT" "/" ".latex.org" nil]
-  [url-cookie "phpbb3_ltx_sid" "6c445f6c669163786b57493d0821b2d1" "Sat, 15-Oct-2022 08:46:25 GMT" "/" ".latex.org" nil])
- ("www.linuxquestions.org"
-  [url-cookie "bblastvisit" "1632784238" "Tue, 27-Sep-2022 23:10:38 GMT" "/" "www.linuxquestions.org" nil]
-  [url-cookie "bblastactivity" "0" "Tue, 27-Sep-2022 23:10:38 GMT" "/" "www.linuxquestions.org" nil])
- (".ssrn.com"
-  [url-cookie "SITEID" "en" "Fri, 22-Sep-2051 17:07:16 GMT" "/" ".ssrn.com" nil])
+ '(("defkey.com"
+  [url-cookie "ezCMPCCS" "false" "Tue, 23 Aug 2022 20:13:47 GMT" "/" "defkey.com" nil])
  ("espn.com"
   [url-cookie "SWID" "C7D3FA46-AB40-4CC5-CC31-DA9C2FF54F54" "Thu, 10 Oct 2041 14:30:53 GMT" "/" "espn.com" nil])
- ("defkey.com"
-  [url-cookie "ezCMPCCS" "false" "Tue, 23 Aug 2022 20:13:47 GMT" "/" "defkey.com" nil]))
+ (".ssrn.com"
+  [url-cookie "SITEID" "en" "Fri, 22-Sep-2051 17:07:16 GMT" "/" ".ssrn.com" nil])
+ ("www.linuxquestions.org"
+  [url-cookie "bblastactivity" "0" "Tue, 27-Sep-2022 23:10:38 GMT" "/" "www.linuxquestions.org" nil]
+  [url-cookie "bblastvisit" "1632784238" "Tue, 27-Sep-2022 23:10:38 GMT" "/" "www.linuxquestions.org" nil])
+ (".latex.org"
+  [url-cookie "phpbb3_ltx_sid" "6c445f6c669163786b57493d0821b2d1" "Sat, 15-Oct-2022 08:46:25 GMT" "/" ".latex.org" nil]
+  [url-cookie "phpbb3_ltx_k" "" "Sat, 15-Oct-2022 08:46:25 GMT" "/" ".latex.org" nil]
+  [url-cookie "phpbb3_ltx_u" "1" "Sat, 15-Oct-2022 08:46:25 GMT" "/" ".latex.org" nil])
+ (".askubuntu.com"
+  [url-cookie "prov" "5fd789c8-6c38-14ac-f505-51a947c6bb6a" "Fri, 01-Jan-2055 00:00:00 GMT" "/" ".askubuntu.com" nil])
+ (".lawgazette.co.uk"
+  [url-cookie "AnonUserCookie" "c7016d8e-3295-48ed-b319-6dc58869a27c" "Tue, 06-Sep-2022 23:00:00 GMT" "/" ".lawgazette.co.uk" nil])
+ (".stackoverflow.com"
+  [url-cookie "prov" "5b008236-bc31-847e-91bc-2f6f7ab40655" "Fri, 01-Jan-2055 00:00:00 GMT" "/" ".stackoverflow.com" nil])
+ (".stackexchange.com"
+  [url-cookie "prov" "3ad823eb-6461-a91b-75ff-db776adbfcdb" "Fri, 01-Jan-2055 00:00:00 GMT" "/" ".stackexchange.com" nil])
+ ("latex-tutorial.com"
+  [url-cookie "ezCMPCCS" "false" "Sun, 02 Oct 2022 08:24:39 GMT" "/" "latex-tutorial.com" nil])
+ (".teamrankings.com"
+  [url-cookie "trv3" "c2Fmc2QyNDNhZHNmamwzMTRhc2RmamwxMzI0c2RmMTAzNGFzZGYxMzc5ODIzNDM5NSMxNjM0MjQ3NjQ4IzE3OTE5Mjc2NDg%3D" "Tue Oct 13 21:41:00 2026 GMT" "/" ".teamrankings.com" nil])
+ ("www.coursehero.com"
+  [url-cookie "device_view" "full" "Mon Nov 15 16:16:06 2021 GMT" "/" "www.coursehero.com" nil]
+  [url-cookie "growth_restrict_views_v5" "%7B%2210%2021%22%3A%7B%227vk3uf4%22%3A1%2C%223tulp4k3%22%3A1%7D%7D" "Tue Nov 16 15:16:45 2021 GMT" "/" "www.coursehero.com" nil]
+  [url-cookie "recently_viewed_docs" "93603649%2C108657851%2C" "Sun Nov 14 15:16:45 2021 GMT" "/" "www.coursehero.com" nil]
+  [url-cookie "qualaroo_doc_visited" "true" "Tue Nov 16 15:16:45 2021 GMT" "/" "www.coursehero.com" nil]
+  [url-cookie "qualaroo_loggedin" "false" "Tue Nov 16 15:16:45 2021 GMT" "/" "www.coursehero.com" nil]
+  [url-cookie "qualaroo_register_visited" "false" "Tue Nov 16 15:16:06 2021 GMT" "/" "www.coursehero.com" nil]
+  [url-cookie "visid_incap_987752" "k6+1RFdIQuuohsNtB44RbCibaWEAAAAAQUIPAAAAAAAKh2stAhcDZtdhjfNJ1W9o" "Sat, 15 Oct 2022 08:12:01 GMT" "/" "www.coursehero.com" nil])
+ ("philpapers.org"
+  [url-cookie "s" "jY4MjEtMTYzNDU2MjgxNy4zNzE5MjE" "Wed, 27-Jun-2035 13:14:18 GMT" "/" "philpapers.org" nil])
+ ("nationalarchives.gov.uk"
+  [url-cookie "cookies_policy" "%7b%22usage%22%3afalse%2c%22settings%22%3afalse%2c%22essential%22%3atrue%7d" "Mon, 22-Nov-2021 16:29:42 GMT" "/" "nationalarchives.gov.uk" nil]))
 )
 (setq url-cookie-secure-storage
- '(("reddit.com"
-  [url-cookie "edgebucket" "HrptVbQHbyRk9vacRh" "Wed Sep 20 09:59:09 2023 GMT" "/" "reddit.com" t]
-  [url-cookie "token_v2" "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzI3NTYwOTIsInN1YiI6Ii1OakN5U1ZJcHQ0bmpnd2VKWjdZYWN0ZGtja1UiLCJsb2dnZWRJbiI6ZmFsc2UsInNjb3BlcyI6WyIqIiwiZW1haWwiLCJwaWkiXX0.7_jmBK2_poXMXb8WobvKppI6X9qQIlflcTlXQd1g_6E" "Wed, 27 Sep 2023 14:23:32 GMT" "/" "reddit.com" t])
- ("sourceforge.net"
-  [url-cookie "VISITOR" "3523b3ab-20ff-458b-aa97-b04afa6e781d" "Thu Sep 25 17:24:51 2031 GMT" "/" "sourceforge.net" t])
- ("forum.zdoom.org"
-  [url-cookie "phpbb3_awm8v_sid" "b58c4d2aa42445383e0d0b22b97038fd" "Wed, 27-Sep-2023 14:14:54 GMT" "/" "forum.zdoom.org" t]
-  [url-cookie "phpbb3_awm8v_k" "" "Wed, 27-Sep-2023 14:14:54 GMT" "/" "forum.zdoom.org" t]
-  [url-cookie "phpbb3_awm8v_u" "1" "Wed, 27-Sep-2023 14:14:54 GMT" "/" "forum.zdoom.org" t])
- (".reddit.com"
-  [url-cookie "csv" "1" "Wed Sep 20 09:59:10 2023 GMT" "/" ".reddit.com" t]
-  [url-cookie "loid" "0000000000enf8vic0.2.1632131942000.Z0FBQUFBQmhTRnRtaUFEZklpdmF0dlp2c3NDeElCTnQzQXlnLXE1eUJab1B6bGU0S3dNN09wUE1hUXdta3NXaXU2YXc0aGtCWmw3Sk1GMzNhVmhUUVdiT2ZXUGVpdXByZVV5dEZWZ2o0N2hnVVdYU2lWTTM5RHl5UzBWNWVkcjR6SmpiQUUzOTRlRkE" "Wed, 20 Sep 2023 09:59:02 GMT" "/" ".reddit.com" t])
- ("github.com"
-  [url-cookie "logged_in" "no" "Fri, 26 Aug 2022 06:38:07 GMT" "/" "github.com" t]
-  [url-cookie "_octo" "GH1.1.1605789232.1629959887" "Fri, 26 Aug 2022 06:38:07 GMT" "/" "github.com" t])
- (".wikipedia.org"
-  [url-cookie "WMF-Last-Access-Global" "20-Oct-2021" "Sun, 21 Nov 2021 00:00:00 GMT" "/" ".wikipedia.org" t])
- ("en.wikipedia.org"
-  [url-cookie "WMF-Last-Access" "20-Oct-2021" "Sun, 21 Nov 2021 00:00:00 GMT" "/" "en.wikipedia.org" t])
- ("www.simpsonmillar.co.uk"
-  [url-cookie "personalisationGroupsNumberOfVisits" "7936" "Sun, 19-Dec-2021 09:54:24 GMT" "/" "www.simpsonmillar.co.uk" t])
- (".youtube.com"
-  [url-cookie "CONSENT" "PENDING+450" "Fri, 01-Jan-2038 00:00:00 GMT" "/" ".youtube.com" t])
+ '((".www.nationalarchives.gov.uk"
+  [url-cookie "cookies_policy" "%7B%22usage%22%3Afalse%2C%22settings%22%3Afalse%2C%22essential%22%3Atrue%7D" "Sun Nov 21 18:26:30 2021 GMT" "/" ".www.nationalarchives.gov.uk" t])
+ (".ssrn.com"
+  [url-cookie "CFGLOBALS" "urltoken%3DCFID%23%3D144739777%26CFTOKEN%23%3D17957010%23lastvisit%3D%7Bts%20%272021%2D09%2D29%2017%3A07%3A16%27%7D%23hitcount%3D2%23timecreated%3D%7Bts%20%272021%2D09%2D29%2017%3A07%3A16%27%7D%23cftoken%3D17957010%23cfid%3D144739777%23" "Fri, 22-Sep-2051 17:07:16 GMT" "/" ".ssrn.com" t]
+  [url-cookie "CFTOKEN" "Zy3rymi4mfx7eqn0ushsc14ki96nyf982a2rr2mow485b4v5rg-17957010" "Fri, 22-Sep-2051 17:07:16 GMT" "/" ".ssrn.com" t]
+  [url-cookie "CFID" "Zy3rymi4mfx7eqn0ushsc14ki96nyf982a2rr2mow485b4v5rg-144739777" "Fri, 22-Sep-2051 17:07:16 GMT" "/" ".ssrn.com" t])
  ("rev.linuxquestions.org"
   [url-cookie "OAID" "948564bf5c1f08bf63ce32b55d07d83d" "Tue Sep 27 23:10:46 2022 GMT" "/" "rev.linuxquestions.org" t])
- (".ssrn.com"
-  [url-cookie "CFID" "Zy3rymi4mfx7eqn0ushsc14ki96nyf982a2rr2mow485b4v5rg-144739777" "Fri, 22-Sep-2051 17:07:16 GMT" "/" ".ssrn.com" t]
-  [url-cookie "CFTOKEN" "Zy3rymi4mfx7eqn0ushsc14ki96nyf982a2rr2mow485b4v5rg-17957010" "Fri, 22-Sep-2051 17:07:16 GMT" "/" ".ssrn.com" t]
-  [url-cookie "CFGLOBALS" "urltoken%3DCFID%23%3D144739777%26CFTOKEN%23%3D17957010%23lastvisit%3D%7Bts%20%272021%2D09%2D29%2017%3A07%3A16%27%7D%23hitcount%3D2%23timecreated%3D%7Bts%20%272021%2D09%2D29%2017%3A07%3A16%27%7D%23cftoken%3D17957010%23cfid%3D144739777%23" "Fri, 22-Sep-2051 17:07:16 GMT" "/" ".ssrn.com" t])
- (".www.nationalarchives.gov.uk"
-  [url-cookie "cookies_policy" "%7B%22usage%22%3Afalse%2C%22settings%22%3Afalse%2C%22essential%22%3Atrue%7D" "Sun Nov 21 18:26:30 2021 GMT" "/" ".www.nationalarchives.gov.uk" t]))
+ (".youtube.com"
+  [url-cookie "CONSENT" "PENDING+450" "Fri, 01-Jan-2038 00:00:00 GMT" "/" ".youtube.com" t])
+ ("www.simpsonmillar.co.uk"
+  [url-cookie "personalisationGroupsNumberOfVisits" "7936" "Sun, 19-Dec-2021 09:54:24 GMT" "/" "www.simpsonmillar.co.uk" t])
+ ("en.wikipedia.org"
+  [url-cookie "WMF-Last-Access" "20-Oct-2021" "Sun, 21 Nov 2021 00:00:00 GMT" "/" "en.wikipedia.org" t])
+ (".wikipedia.org"
+  [url-cookie "WMF-Last-Access-Global" "20-Oct-2021" "Sun, 21 Nov 2021 00:00:00 GMT" "/" ".wikipedia.org" t])
+ ("github.com"
+  [url-cookie "_octo" "GH1.1.1605789232.1629959887" "Fri, 26 Aug 2022 06:38:07 GMT" "/" "github.com" t]
+  [url-cookie "logged_in" "no" "Fri, 26 Aug 2022 06:38:07 GMT" "/" "github.com" t])
+ (".reddit.com"
+  [url-cookie "loid" "0000000000enf8vic0.2.1632131942000.Z0FBQUFBQmhTRnRtaUFEZklpdmF0dlp2c3NDeElCTnQzQXlnLXE1eUJab1B6bGU0S3dNN09wUE1hUXdta3NXaXU2YXc0aGtCWmw3Sk1GMzNhVmhUUVdiT2ZXUGVpdXByZVV5dEZWZ2o0N2hnVVdYU2lWTTM5RHl5UzBWNWVkcjR6SmpiQUUzOTRlRkE" "Wed, 20 Sep 2023 09:59:02 GMT" "/" ".reddit.com" t]
+  [url-cookie "csv" "1" "Wed Sep 20 09:59:10 2023 GMT" "/" ".reddit.com" t])
+ ("forum.zdoom.org"
+  [url-cookie "phpbb3_awm8v_u" "1" "Wed, 27-Sep-2023 14:14:54 GMT" "/" "forum.zdoom.org" t]
+  [url-cookie "phpbb3_awm8v_k" "" "Wed, 27-Sep-2023 14:14:54 GMT" "/" "forum.zdoom.org" t]
+  [url-cookie "phpbb3_awm8v_sid" "b58c4d2aa42445383e0d0b22b97038fd" "Wed, 27-Sep-2023 14:14:54 GMT" "/" "forum.zdoom.org" t])
+ ("sourceforge.net"
+  [url-cookie "VISITOR" "3523b3ab-20ff-458b-aa97-b04afa6e781d" "Thu Sep 25 17:24:51 2031 GMT" "/" "sourceforge.net" t])
+ ("reddit.com"
+  [url-cookie "token_v2" "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzI3NTYwOTIsInN1YiI6Ii1OakN5U1ZJcHQ0bmpnd2VKWjdZYWN0ZGtja1UiLCJsb2dnZWRJbiI6ZmFsc2UsInNjb3BlcyI6WyIqIiwiZW1haWwiLCJwaWkiXX0.7_jmBK2_poXMXb8WobvKppI6X9qQIlflcTlXQd1g_6E" "Wed, 27 Sep 2023 14:23:32 GMT" "/" "reddit.com" t]
+  [url-cookie "edgebucket" "HrptVbQHbyRk9vacRh" "Wed Sep 20 09:59:09 2023 GMT" "/" "reddit.com" t]))
 )
 
 ;; Local Variables:
