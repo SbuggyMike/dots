@@ -2,175 +2,67 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Fri Oct 15 17:24:13 2021
+;; Created Thu Dec  2 08:04:16 2021
 ;; Desktop file format version 208
 ;; Emacs version 27.2
 
 ;; Global section:
-(setq desktop-saved-frameset [frameset 1 (24937 43821 929238 701000) (desktop . "208") "ajax@ithaca" nil nil ((((minibuffer . t) (undecorated) (override-redirect) (font . "-ADBO-Source Code Pro-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1") (font-parameter . "Source Code Pro 10") (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#f6f3e8") (background-color . "#242424") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 0) (tab-bar-lines . 0) (height . 44) (tool-bar-lines . 0) (title) (wait-for-wm . t) (tool-bar-position . top) (inhibit-double-buffering) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 16) (scroll-bar-height . 16) (alpha) (no-focus-on-map) (no-accept-focus) (fullscreen . maximized) (visibility . t) (skip-taskbar) (z-group) (display-type . color) (background-mode . dark) (cursor-color . "#656565") (sticky) (environment) (last-focus-update . t) (frameset--id . "A270-99D6-8F56-3F58") (frameset--mini t . t) (modeline . t) (unsplittable) (icon-name) (display . ":0.0") (explicit-name) (tabs (current-tab (name . "*eww*") (explicit-name))) (width . 158) (left . 0) (top . 27)) ((min-height . 8) (min-width . 10) (min-height-ignore . 4) (min-width-ignore . 4) (min-height-safe . 2) (min-width-safe . 2) (min-pixel-height . 136) (min-pixel-width . 80) (min-pixel-height-ignore . 68) (min-pixel-width-ignore . 32) (min-pixel-height-safe . 34) (min-pixel-width-safe . 16)) vc (pixel-width . 1280) (pixel-height . 732) (total-width . 160) (total-height . 43) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 1280) (pixel-height . 358) (total-width . 160) (total-height . 21) (normal-height . 0.5) (normal-width . 1.0) (buffer "*root*" (selected) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 0 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 18466) (start . 18020)) (prev-buffers ("members_interests.org" 25146 26778) ("Stanley-The_OSCOLA_Biblatex_Style.pdf" 1 443427) ("members_interests.pdf" 1 132561) ("phd_bibliographyv2.bib" 26744 27393) ("*Org PDF LaTeX Output*" 1 36804) ("regulator_determinations.org" 48 171) ("*terminal*" 2549 3448) ("*root*" 17563 18348) ("trustee_toolkit_notes.org" 1 847) ("pensions_act_2004.org" 7780 8099) ("*eww*" 1 1) ("ukpga_19950026_310319_en.pdf" 1 168241) ("pensions_act_1995.org" 1111 1738) ("*2004 Act*" 220998 220998) ("outline.org" 24336 25436) ("*info*" 1 1) ("reasonable_expectations_third.tex" 1 1) ("*Shell Command Output*" 1 1) ("*Help*" 1 1) (".emacs" 1710 1927) ("Pollard-Application_of_the_Proper_Purpose_Test_to_Pension_Schemes.pdf" 1 1) ("football.org" 1 410) ("todo.org" 1 11041) ("test.org" 1 368) ("test2.org" 1 310) ("*GNU Emacs*" 1 77) ("*scratch*" 1 146))) (leaf (last . t) (pixel-width . 1280) (pixel-height . 374) (total-width . 160) (total-height . 22) (normal-height . 0.5) (normal-width . 1.0) (buffer "regulator_determinations.org" (selected . t) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 0 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 5990) (start . 5569)) (prev-buffers ("*eww*" 6200 6201) ("regulator_determinations.org" 1 353) ("*info*" 30123 30315) ("members_interests.org" 23274 25149)))))])
+(setq desktop-saved-frameset [frameset 1 (25000 32256 481447 265000) (desktop . "208") "ajax@ithaca" nil nil ((((minibuffer . t) (undecorated) (override-redirect) (font . "-ADBO-Source Code Pro-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1") (font-parameter . "Source Code Pro 10") (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#f6f3e8") (background-color . "#242424") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 0) (tab-bar-lines . 0) (height . 44) (tool-bar-lines . 0) (title) (wait-for-wm . t) (tool-bar-position . top) (inhibit-double-buffering) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 16) (scroll-bar-height . 16) (alpha) (no-focus-on-map) (no-accept-focus) (fullscreen . maximized) (visibility . t) (skip-taskbar) (z-group) (display-type . color) (background-mode . dark) (cursor-color . "#656565") (sticky) (environment) (last-focus-update . t) (frameset--id . "3CBE-C4CF-8405-FFDA") (frameset--mini t . t) (width . 158) (modeline . t) (unsplittable) (left . 0) (top . 27) (icon-name) (display . ":0.0") (explicit-name)) ((min-height . 8) (min-width . 10) (min-height-ignore . 4) (min-width-ignore . 4) (min-height-safe . 2) (min-width-safe . 2) (min-pixel-height . 136) (min-pixel-width . 80) (min-pixel-height-ignore . 68) (min-pixel-width-ignore . 32) (min-pixel-height-safe . 34) (min-pixel-width-safe . 16)) vc (pixel-width . 1280) (pixel-height . 732) (total-width . 160) (total-height . 43) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 1280) (pixel-height . 170) (total-width . 160) (total-height . 10) (normal-height . 0.23224043715846998) (normal-width . 1.0) (buffer "*Summary nnrss:Recent Additions (England and Wales Court of Appeal (Civil Division) Decisions)*" (selected) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 0 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 10) (start . 1)) (prev-buffers ("*Group*" 1 217) ("Grant-The_Pensions_Ombudsman.org" 22363 23911) ("Winners And How They Succeed by Alastair Campbell (z-lib.org).epub.pdf" 1 1) ("*Buffer List*" 1 1) ("todo.org" 50704 51199) ("law_as_service.org" 1 465) ("reading.org" 467 2984) ("The sham doctrine and intention addressing the bilateral nature of sham trusts.pdf" 1 1) ("*GNU Emacs*" 1 77) ("*scratch*" 1 146))) (leaf (last . t) (pixel-width . 1280) (pixel-height . 562) (total-width . 160) (total-height . 33) (normal-height . 0.76775956284153) (normal-width . 1.0) (buffer "*w3m*" (selected . t) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 0 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 9682) (start . 9682)) (prev-buffers ("*Article nnrss:Recent Additions (England and Wales Court of Appeal (Civil Division) Decisions)*" 1 324) ("*Summary nnrss:Recent Additions (England and Wales Court of Appeal (Civil Division) Decisions)*" 1 4)))))])
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name nil)
 (setq tags-table-list nil)
-(setq search-ring '(#("common" 0 6 (isearch-regexp-function nil isearch-case-fold-search t)) #("13" 0 2 (isearch-regexp-function nil isearch-case-fold-search t)) #("panel" 0 5 (isearch-regexp-function nil isearch-case-fold-search t)) #("found" 0 5 (isearch-regexp-function nil isearch-case-fold-search t)) #("url" 0 3 (isearch-regexp-function nil isearch-case-fold-search t)) #("yatel" 0 5 (isearch-regexp-function nil isearch-case-fold-search t)) #("Yateley" 0 7 (isearch-regexp-function nil isearch-case-fold-search nil)) #("motth" 0 5 (isearch-regexp-function nil isearch-case-fold-search t)) #("common law" 0 10 (isearch-regexp-function nil isearch-case-fold-search t)) #("loyu" 0 4 (isearch-regexp-function nil isearch-case-fold-search t)) #("jurisdiction{m" 0 14 (isearch-regexp-function nil isearch-case-fold-search t)) #("fiduciary" 0 9 (isearch-regexp-function nil isearch-case-fold-search t)) #("pensions1995" 0 12 (isearch-regexp-function nil isearch-case-fold-search t)) #("\"" 0 1 (isearch-regexp-function nil isearch-case-fold-search t)) #("'" 0 1 (isearch-regexp-function nil isearch-case-fold-search t)) #("e" 0 1 (isearch-regexp-function nil isearch-case-fold-search t))))
+(setq search-ring '(#("Westmin" 0 7 (isearch-regexp-function nil isearch-case-fold-search nil)) #("ombudsm" 0 7 (isearch-regexp-function nil isearch-case-fold-search t))))
 (setq regexp-search-ring nil)
 (setq register-alist nil)
-(setq file-name-history '("~/.emacs.d/" "~/Nextcloud/law_phd/trustees/trustee_powers/members_interests.pdf" "~/boox/Stanley-The_OSCOLA_Biblatex_Style.pdf" "~/Nextcloud/law_phd/trustees/trustee_powers/members_interests.pdf" "~/Nextcloud/law_phd/trustees/trustee_powers/regulator_determinations.org" "~/Nextcloud/law_phd/trustees/trustee_powers/members_interests.pdf" "~/boox/Stanley-The_OSCOLA_Biblatex_Style.pdf" "~/Nextcloud/law_phd/trustees/trustee_powers/trustee_toolkit_notes.org" "~/downloads/ukpga_19950026_310319_en.pdf" "~/Nextcloud/law_phd/trustees/trustee_powers/pensions_act_1995.org" "~/Nextcloud/law_phd/trustees/trustee_powers/members_interests.pdf" "~/Nextcloud/law_phd/admin/upgrade/upgrade_plan.org" "~/Nextcloud/law_phd/admin/upgrade/schedule.org" "~/Nextcloud/law_phd/employers/reasonable_expectations/reasonable_expectations_third.tex" "~/Nextcloud/law_phd/admin/upgrade/schedule.org" "~/Nextcloud/law_phd/trustees/trustee_powers/members_interests.pdf" "~/.emacs" "~/Nextcloud/law_phd/trustees/trustee_powers/members_interests.pdf" "~/.emacs.d/" "~/Nextcloud/law_phd/trustees/trustee_powers/members_interests.tex" "~/.emacs.d/" "~/.emacs" "~/Nextcloud/law_phd/employers/reasonable_expectations/reasonable_expectations_third.tex" "~/Nextcloud/law_phd/trustees/trustee_powers/members_interests.pdf" "~/Nextcloud/law_phd/employers/reasonable_expectations/test.org" "~/.emacs" "~/Nextcloud/law_phd/trustees/trustee_powers/members_interests.pdf" "~/Nextcloud/law_phd/employers/reasonable_expectations/test2.org" "~/Nextcloud/law_phd/trustees/trustee_powers/Pollard-Application_of_the_Proper_Purpose_Test_to_Pension_Schemes.pdf" "~/Nextcloud/life_org/football.org" "~/downloads/ukpga_19950026_310319_en.pdf" "~/Nextcloud/computer/fresh_install.org" "~/.emacs.d/elpa/pomodoro-20210225.2018/pomodoro.el" "~/Nextcloud/law_phd/trustees/trustee_powers/Smith-Pension_Schemes_Looking_After_Members_Best_Interests_Does_Anyone_Have_To.pdf" "~/Nextcloud/computer/fresh_install.org" "~/Nextcloud/law_phd/employers/reasonable_expectations/reasonable_expectations_third.tex" "~/.emacs.d/" "~/Nextcloud/law_phd/trustees/trustee_powers/pensions_act_2004.org" "~/Nextcloud/law_phd/trustees/trustee_powers/MNRPF_v_Stena_Line.pdf" "~/Nextcloud/law_phd/admin/phd_bibliographyv2.bib" "~/.emacs" "~/.emacs.d/" "~/.emacs" "~/.emacs.d/" "~/.emacs" "~/Nextcloud/law_phd/trustees/trustee_powers/members_interests.org" "~/Nextcloud/law_phd/trustees/trustee_powers/outline.org" "~/Nextcloud/law_misc/sc_cases.org"))
+(setq file-name-history '("~/.emacs.d/" "~/Nextcloud/law_misc/law_as_service.org" "~/Nextcloud/life_org/in_tray/Winners And How They Succeed by Alastair Campbell (z-lib.org).epub.pdf" "~/Nextcloud/law_phd/trustees/trustee_powers/Grant-The_Pensions_Ombudsman.org" "~/Nextcloud/life_org/reading.org" "~/Nextcloud/law_misc/articles/The sham doctrine and intention addressing the bilateral nature of sham trusts.pdf"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
 (desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/regulator_determinations.org"
-  "regulator_determinations.org"
+  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/Grant-The_Pensions_Ombudsman.org"
+  "Grant-The_Pensions_Ombudsman.org"
   'org-mode
   '(abbrev-mode visual-line-mode flyspell-mode)
-  5990
-  '(375 nil)
+  23911
+  '(21064 nil)
   nil
   nil
-  '((buffer-display-time 24937 43820 720667 670000) (buffer-file-coding-system . utf-8-unix) (truncate-lines))
-  '((mark-ring (2223 1951 1951 10937 10939 2644 365 175 175 84 1 13042 353 5990))))
+  '((buffer-display-time 24999 41120 832855 389000) (buffer-file-coding-system . undecided-unix) (truncate-lines))
+  '((mark-ring (9248 9188 9188 1 9123 9198 17233 17345 23893 21064 23911))))
 
 (desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/members_interests.org"
-  "members_interests.org"
-  'org-mode
-  '(abbrev-mode visual-line-mode flyspell-mode)
-  26778
-  '(25787 nil)
+  "/home/ajax/Nextcloud/life_org/in_tray/Winners And How They Succeed by Alastair Campbell (z-lib.org).epub.pdf"
+  "Winners And How They Succeed by Alastair Campbell (z-lib.org).epub.pdf"
+  'pdf-view-mode
   nil
-  nil
-  '((buffer-display-time 24937 43686 306217 247000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines))
-  '((mark-ring (25171 25498 25498 25498 25498 25205 25149 24272 23710 23710 23235 23545 20249 17578 20304 17473))))
-
-(desktop-create-buffer 208
-  nil
-  "*eww*"
-  'eww-mode
-  nil
-  6201
-  '(2723 nil)
-  t
-  '(:history ((:url "https://www.thepensionsregulator.gov.uk/en/document-library/enforcement-activity/determination-notices/the-yateley-industries--for-the-disabled-ltd--pension-and-assurance-scheme-final-notice#main" :title "The Yateley Industries for the Disabled Ltd Pension and Assurance Scheme - Final notice | The Pensions Regulator") (:point 10 :url "https://www.thepensionsregulator.gov.uk/en/document-library/enforcement-activity/determination-notices/the-yateley-industries--for-the-disabled-ltd--pension-and-assurance-scheme-final-notice" :title "The Yateley Industries for the Disabled Ltd Pension and Assurance Scheme - Final notice | The Pensions Regulator") (:point 158 :url "https://www.thepensionsregulator.gov.uk/-/media/thepensionsregulator/files/import/pdf/merchant-navy-ratings-pension-fund-determination-notice.ashx" :title "") (:point 4586 :url "https://www.coursehero.com/file/93603649/Equity-and-Trusts-Courseworkdocx/" :title "Equity and Trusts Coursework.docx - P2432112 1 Advise the beneficiaries whether they can take any action against Thomas or Bethany(you can assume that | Course Hero") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.coursehero.com%2Ffile%2F93603649%2FEquity%2Dand%2DTrusts%2DCourseworkdocx%2F&rut=d692366f2e61af7ad288c27c88bad22c6c079f87964200847f55ea7bf98c6e9e" :title "") (:point 1 :url "https://www.coursehero.com/file/p7vk3uf4/In-Bristol-and-West-BS-v-Motthew-1998-Lord-Millett-took-the-approach-of/" :title "In Bristol and West BS v Motthew 1998 Lord Millett took the approach of | Course Hero") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.coursehero.com%2Ffile%2Fp7vk3uf4%2FIn%2DBristol%2Dand%2DWest%2DBS%2Dv%2DMotthew%2D1998%2DLord%2DMillett%2Dtook%2Dthe%2Dapproach%2Dof%2F&rut=a60478b45b7d6ce45c10731cfe3c0ac5102dcdfd975b24d6b3d9d13e84b91b77" :title "") (:point 2963 :url "https://html.duckduckgo.com/html/?q=%22motthew%22%20fiduciary%20duty%20loyalty&norw=1" :title "\"motthew\" fiduciary duty loyalty at DuckDuckGo") (:point 198 :url "https://html.duckduckgo.com/html/?q=motthew+fiduciary+duty+loyalty" :title "motthew fiduciary duty loyalty at DuckDuckGo") (:point 13581 :url "https://en.wikipedia.org/wiki/Bristol_and_West_Building_Society_v_Mothew" :title "Mothew v Bristol & West Building Society - Wikipedia") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBristol_and_West_Building_Society_v_Mothew&rut=d18af449ac495ef1af1555ef633bfbe17b38094ec42daeaa31aba10166511a23" :title "") (:point 208 :url "https://html.duckduckgo.com/html/?q=motthew+fiduciary" :title "motthew fiduciary at DuckDuckGo") (:point 369 :url "https://linuxhandbook.com/check-cpu-info-linux/" :title "Check CPU Information in Linux [5 Simple Ways]") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Flinuxhandbook.com%2Fcheck%2Dcpu%2Dinfo%2Dlinux%2F&rut=3551da86d5881791820cfc80695d9e1a810f90e10319a1e53191e00606c9efac" :title "") (:point 127 :url "https://html.duckduckgo.com/html/?q=cpu+info+linux" :title "cpu info linux at DuckDuckGo") (:point 2617 :url "https://www.legislation.gov.uk/ukpga/2008/30/section/131" :title "Pensions Act 2008") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.legislation.gov.uk%2Fukpga%2F2008%2F30%2Fsection%2F131&rut=a35d78f5585f9ca16b4d9621b978500ba41e04fe45d7c38d04b557a9976d5caa" :title "") (:point 381 :url "https://html.duckduckgo.com/html/?q=s+131+pensions+act+2008" :title "s 131 pensions act 2008 at DuckDuckGo") (:point 10997 :url "https://www.legislation.gov.uk/ukpga/2008/30/contents#pageTitle" :title "Pensions Act 2008") (:point 3 :url "https://www.legislation.gov.uk/ukpga/2008/30/contents" :title "Pensions Act 2008") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.legislation.gov.uk%2Fukpga%2F2008%2F30%2Fcontents&rut=4511cef4d73dec30995256c3139316d8a20b2a9476a283e51ccde552c7d3f346" :title "") (:point 1146 :url "https://html.duckduckgo.com/html/?q=pensions+act+2008" :title "pensions act 2008 at DuckDuckGo") (:point 1509 :url "https://mg.readthedocs.io/latexmk.html" :title "Using Latexmk — homepage") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fmg.readthedocs.io%2Flatexmk.html&rut=ac84aea168842ebaaf02bfdb77c0e067ec927fb685f60699da48072ae1e68fae" :title "") (:point 1017 :url "https://html.duckduckgo.com/html/?q=latexmk" :title "latexmk at DuckDuckGo") (:point 1 :url "https://www.gnu.org/software/emacs/manual/html_node/eintr/See-variable-current-value.html" :title "") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.gnu.org%2Fsoftware%2Femacs%2Fmanual%2Fhtml_node%2Feintr%2FSee%2Dvariable%2Dcurrent%2Dvalue.html&rut=3a983732a6d985808e84351b894ee327afef17effa7eff22edd017315c607c23" :title "") (:point 159 :url "https://html.duckduckgo.com/html/?q=display+contents+of+variable+emacs" :title "display contents of variable emacs at DuckDuckGo") (:point 1 :title "#StackBounty: #org-mode #latex #bibtex How to generate cited references with biber and xelatex – TechUtils.in" :url "https://techutils.in/blog/2020/09/16/stackbounty-org-mode-latex-bibtex-how-to-generate-cited-references-with-biber-and-xelatex/#content") (:title "#StackBounty: #org-mode #latex #bibtex How to generate cited references with biber and xelatex – TechUtils.in" :url "https://techutils.in/blog/2020/09/16/stackbounty-org-mode-latex-bibtex-how-to-generate-cited-references-with-biber-and-xelatex/" :point 1) (:title "" :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Ftechutils.in%2Fblog%2F2020%2F09%2F16%2Fstackbounty%2Dorg%2Dmode%2Dlatex%2Dbibtex%2Dhow%2Dto%2Dgenerate%2Dcited%2Dreferences%2Dwith%2Dbiber%2Dand%2Dxelatex%2F&rut=576a244d8e6f83fbd14dd0826c074c110f69a9e764b28f291bd8210f78b28cc3" :point 1) (:title "org mode biber at DuckDuckGo" :url "https://html.duckduckgo.com/html/?q=org+mode+biber" :point 464) (:url "https://lists.gnu.org/archive/html/emacs-orgmode/2013-05/msg00791.html" :title "Re: [O] How to get BibTeX to work with Org mode LaTeX export?" :point 1) (:point 1 :url "https://html.duckduckgo.com/html/" :title "DuckDuckGo") (:point 1 :url "https://html.duckduckgo.com/html/?q=biber+latex" :title "biber latex at DuckDuckGo") (:point 1 :url "https://tex.stackexchange.com/questions/114864/how-to-get-bibtex-to-work-with-org-mode-latex-export" :title "emacs - How to get BibTeX to work with Org mode LaTeX export? - TeX - LaTeX Stack Exchange") (:point 841 :url "https://latex.org/forum/viewtopic.php?t=16176#start_here" :title "Warnings about undefined References") (:point 6705 :url "https://github.com/jkitchin/org-ref/issues/165" :title "Undefined links · Issue #165 · jkitchin/org-ref · GitHub") (:point 3580 :url "https://html.duckduckgo.com/html/" :title "undefined references org biber emacs at DuckDuckGo")))
-  '((buffer-display-time 24937 43600 549190 578000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t) (eww-history-position . 0))
-  '((mark-ring (2163 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1))))
-
-(desktop-create-buffer 208
-  nil
-  "*info*"
-  'Info-mode
-  nil
-  30315
+  1
   '(nil nil)
   t
-  '("/usr/share/info/bash" "Conditional Constructs" ((history ("/usr/share/info/bash" "Top" 970) ("dir" "Top" 1639) ("/usr/share/info/org" "Top" 2344) ("/usr/share/info/org" "Markup for Rich Contents" 391826) ("/usr/share/info/org" "Captions" 412416) ("/usr/share/info/org" "Images" 412166) ("/usr/share/info/org" "Literal Examples" 410173) ("/usr/share/info/org" "CDLaTeX mode" 404493) ("/usr/share/info/org" "Previewing LaTeX fragments" 402118) ("/usr/share/info/org" "LaTeX fragments" 399904) ("/usr/share/info/org" "Embedded LaTeX" 398117) ("/usr/share/info/org" "LaTeX fragments" 398502) ("/usr/share/info/org" "Previewing LaTeX fragments" 401505) ("/usr/share/info/org" "LaTeX fragments" 399904) ("/usr/share/info/org" "Top" 930) ("dir" "Top" 227))))
-  '((tab-width . 8) (buffer-display-time 24937 42669 724569 966000) (buffer-file-coding-system . utf-8-unix) (case-fold-search . t))
+  nil
+  '((buffer-display-time 24999 40327 588662 281000) (buffer-file-coding-system . no-conversion))
   '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/ajax/boox/Stanley-The_OSCOLA_Biblatex_Style.pdf"
-  "Stanley-The_OSCOLA_Biblatex_Style.pdf"
-  'pdf-view-mode
-  nil
-  443427
-  '(443431 nil)
-  t
-  nil
-  '((buffer-display-time 24937 42648 772835 916000) (buffer-file-coding-system . no-conversion))
-  '((mark-ring (443432 1))))
-
-(desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/members_interests.pdf"
-  "members_interests.pdf"
-  'pdf-view-mode
-  nil
-  132561
-  '(11 nil)
-  nil
-  nil
-  '((buffer-display-time 24937 42605 329761 720000) (buffer-file-coding-system . no-conversion))
-  '((mark-ring (11 265119 1))))
-
-(desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/admin/phd_bibliographyv2.bib"
-  "phd_bibliographyv2.bib"
-  'bibtex-mode
-  nil
-  27393
-  '(24249 nil)
-  nil
-  nil
-  '((buffer-display-time 24937 42551 861815 507000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
-  '((mark-ring (27596 27404 27229 27195 27625 27625 27625 24194 23956 23956 28428 23956 24798 19379 28462 28574))))
-
-(desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/trustee_toolkit_notes.org"
-  "trustee_toolkit_notes.org"
-  'org-mode
-  '(abbrev-mode visual-line-mode flyspell-mode)
-  457
-  '(294 nil)
-  nil
-  nil
-  '((buffer-display-time 24937 40654 637136 990000) (buffer-file-coding-system . undecided-unix) (truncate-lines))
-  '((mark-ring (294 734))))
-
-(desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/pensions_act_2004.org"
-  "pensions_act_2004.org"
-  'org-mode
-  '(abbrev-mode visual-line-mode flyspell-mode)
-  8099
-  '(4927 nil)
-  nil
-  nil
-  '((buffer-display-time 24937 35076 38302 971000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines))
-  '((mark-ring (147 1794))))
 
 (desktop-create-buffer 208
   "/home/ajax/Nextcloud/life_org/todo.org"
   "todo.org"
   'org-mode
   '(abbrev-mode visual-line-mode flyspell-mode)
-  37888
-  '(11041 nil)
+  51277
+  '(51476 nil)
   nil
   nil
-  '((buffer-display-time 24937 25494 8012 866000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines))
-  '((mark-ring (37889 37841 36533 35686))))
+  '((buffer-display-time 24999 38228 462761 973000) (buffer-file-coding-system . utf-8-unix) (truncate-lines))
+  '((mark-ring (51171 51095 1))))
 
 (desktop-create-buffer 208
-  "/home/ajax/downloads/ukpga_19950026_310319_en.pdf"
-  "ukpga_19950026_310319_en.pdf"
-  'pdf-view-mode
-  nil
-  168241
-  '(1 nil)
-  t
-  nil
-  '((buffer-display-time 24937 24585 579160 952000) (buffer-file-coding-system . no-conversion))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/pensions_act_1995.org"
-  "pensions_act_1995.org"
+  "/home/ajax/Nextcloud/law_misc/law_as_service.org"
+  "law_as_service.org"
   'org-mode
   '(abbrev-mode visual-line-mode flyspell-mode)
-  1738
-  '(1151 nil)
+  465
+  '(408 nil)
   nil
   nil
-  '((buffer-display-time 24937 24459 933492 474000) (buffer-file-coding-system . utf-8-unix) (truncate-lines))
-  '((mark-ring (1151))))
-
-(desktop-create-buffer 208
-  nil
-  "*2004 Act*"
-  'eww-mode
-  nil
-  220998
-  '(1 nil)
-  t
-  '(:history ((:point 1 :title "Pensions Act 2004" :url "https://www.legislation.gov.uk/ukpga/2004/35#pageTitle") (:title "Pensions Act 2004" :url "https://www.legislation.gov.uk/ukpga/2004/35" :point 3) (:title "Pensions Act 2004" :url "https://www.legislation.gov.uk/ukpga/2004/35/section/3#pageTitle" :point 22689) (:title "Pensions Act 2004" :url "https://www.legislation.gov.uk/ukpga/2004/35/section/3" :point 3) (:title "Pensions Act 2004" :url "https://www.legislation.gov.uk/ukpga/2004/35/section/2#pageTitle" :point 21177) (:title "Pensions Act 2004" :url "https://www.legislation.gov.uk/ukpga/2004/35/section/2" :point 3) (:title "Pensions Act 2004" :url "https://www.legislation.gov.uk/ukpga/2004/35/section/1#pageTitle" :point 20053) (:title "Pensions Act 2004" :url "https://www.legislation.gov.uk/ukpga/2004/35/section/1" :point 3) (:title "Pensions Act 2004" :url "https://www.legislation.gov.uk/ukpga/2004/35/contents#pageTitle" :point 2166) (:title "Pensions Act 2004" :url "https://www.legislation.gov.uk/ukpga/2004/35/contents" :point 3) (:title "" :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.legislation.gov.uk%2Fukpga%2F2004%2F35%2Fcontents&rut=dce06a013157bdea920179d964e7d39f84acb45df24df6335e94f22cdbe5f3cb" :point 1) (:title "Pensions Act 2004 - Wikipedia" :url "https://en.wikipedia.org/wiki/Pensions_Act_2004" :point 1) (:title "pensions act 2004 at DuckDuckGo" :url "https://html.duckduckgo.com/html/?q=pensions+act+2004" :point 893)))
-  '((buffer-display-time 24937 23854 533896 803000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t) (eww-history-position . 0))
+  '((buffer-display-time 24999 26229 70218 928000) (buffer-file-coding-system . utf-8-unix) (truncate-lines))
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
@@ -178,130 +70,94 @@
   "reading.org"
   'org-mode
   '(abbrev-mode visual-line-mode flyspell-mode)
-  1
+  2984
   '(nil nil)
   nil
   nil
-  '((buffer-display-time 24937 23141 612351 353000) (buffer-file-coding-system . undecided-unix) (truncate-lines))
+  '((buffer-display-time 24999 18682 341681 153000) (buffer-file-coding-system . undecided-unix) (truncate-lines))
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/outline.org"
-  "outline.org"
-  'org-mode
-  '(abbrev-mode visual-line-mode flyspell-mode)
-  25436
-  '(37038 nil)
-  nil
-  nil
-  '((buffer-display-time 24937 22601 597715 391000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines))
-  '((mark-ring (12345 13179 10782 10782 33310 10384 9759 9759 34979 9361 35168 8514 7325 9363 6823 6823))))
-
-(desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/employers/reasonable_expectations/reasonable_expectations_third.tex"
-  "reasonable_expectations_third.tex"
-  'latex-mode
-  '(abbrev-mode flyspell-mode)
-  1
-  '(70030 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-display-time 24937 22090 851031 189000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
-  '((mark-ring (70014 69640 69640 1))))
-
-(desktop-create-buffer 208
-  "/home/ajax/.emacs"
-  ".emacs"
-  'emacs-lisp-mode
-  '(eldoc-mode)
-  1159
-  '(1927 nil)
-  nil
-  nil
-  '((buffer-display-time 24937 18910 675521 71000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
-  '((mark-ring (1928 1 1386 1316 1928))))
-
-(desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/members_interests.tex"
-  "members_interests.tex"
-  'latex-mode
-  '(abbrev-mode flyspell-mode)
-  549
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-display-time 24937 18077 823091 51000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
-  '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/Pollard-Application_of_the_Proper_Purpose_Test_to_Pension_Schemes.pdf"
-  "Pollard-Application_of_the_Proper_Purpose_Test_to_Pension_Schemes.pdf"
+  "/home/ajax/Nextcloud/law_misc/articles/The sham doctrine and intention addressing the bilateral nature of sham trusts.pdf"
+  "The sham doctrine and intention addressing the bilateral nature of sham trusts.pdf"
   'pdf-view-mode
   nil
   1
   '(nil nil)
   t
   nil
-  '((buffer-display-time 24937 17949 908410 553000) (buffer-file-coding-system . no-conversion))
+  '((buffer-display-time 24998 46987 95335 767000) (buffer-file-coding-system . no-conversion))
   '((mark-ring nil)))
 
 (desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/employers/reasonable_expectations/test2.org"
-  "test2.org"
-  'org-mode
-  '(abbrev-mode visual-line-mode flyspell-mode)
-  310
-  '(305 nil)
   nil
+  "*info*"
+  'Info-mode
   nil
-  '((buffer-display-time 24937 17100 971369 658000) (buffer-file-coding-system . undecided-unix) (overwrite-mode) (truncate-lines))
-  '((mark-ring (619 2 2 2 1))))
-
-(desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/employers/reasonable_expectations/test.org"
-  "test.org"
-  'org-mode
-  '(abbrev-mode visual-line-mode flyspell-mode)
-  368
-  '(79 nil)
-  nil
-  nil
-  '((buffer-display-time 24937 16887 296156 554000) (buffer-file-coding-system . undecided-unix) (overwrite-mode) (truncate-lines))
-  '((mark-ring (79))))
-
-(desktop-create-buffer 208
-  nil
-  "*Open BSD*"
-  'eww-mode
-  nil
-  1
-  '(1 nil)
-  t
-  '(:history ((:url "https://ftp.openbsd.org/pub/OpenBSD/7.0/amd64/INSTALL.amd64" :title "") (:point 20147 :url "https://www.teamrankings.com/nfl/stat/completion-pct" :title "NFL Football Stats - NFL Team Completion Percentage | TeamRankings.com") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.teamrankings.com%2Fnfl%2Fstat%2Fcompletion%2Dpct&rut=0a3b78e98498840641e3a2268549fa58f70dd914520ff1b7753426dcd0e4d686" :title "") (:point 5903 :url "https://www.nfl.com/stats/player-stats/category/passing/2020/REG/all/passingcompletionpercentage/DESC#main-content" :title "2020 NFL passing stats - Players | NFL.com") (:point 1 :url "https://www.nfl.com/stats/player-stats/category/passing/2020/REG/all/passingcompletionpercentage/DESC" :title "2020 NFL passing stats - Players | NFL.com") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.nfl.com%2Fstats%2Fplayer%2Dstats%2Fcategory%2Fpassing%2F2020%2FREG%2Fall%2Fpassingcompletionpercentage%2FDESC&rut=d9b5f5b145aaa93a0b7fb6180f72d43c29ca9107033936cd2fafe36950503678" :title "") (:point 936 :url "https://html.duckduckgo.com/html/?q=average+percentage+completion+nfl+pass" :title "average percentage completion nfl pass at DuckDuckGo") (:point 19898 :url "https://www.teamrankings.com/nfl/stat/yards-per-completion" :title "NFL Football Stats - NFL Team Yards per Completion | TeamRankings.com") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.teamrankings.com%2Fnfl%2Fstat%2Fyards%2Dper%2Dcompletion&rut=f6b5a5fe3df040844d454ef9a64b2dbf0f4bdda9f18ca96c98f3c1480a432965" :title "") (:point 238 :url "https://html.duckduckgo.com/html/?q=avearge+yards+per+completion+nfl" :title "avearge yards per completion nfl at DuckDuckGo") (:point 769 :url "https://en.wikipedia.org/wiki/The_Matrix_Reloaded" :title "The Matrix Reloaded - Wikipedia") (:point 143 :url "https://html.duckduckgo.com/html/?q=matrix+reloaded" :title "matrix reloaded at DuckDuckGo") (:point 1 :url "https://www.legislation.gov.uk/ukpga/1995/26/pdfs/ukpga_19950026_310319_en.pdf" :title "") (:point 1627 :url "https://www.legislation.gov.uk/ukpga/1995/26" :title "Pensions Act 1995") (:point 763 :url "https://www.legislation.gov.uk/ukpga/1995/26/enacted" :title "Pensions Act 1995") (:point 1 :url "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fwww.legislation.gov.uk%2Fukpga%2F1995%2F26%2Fenacted&rut=45b36186b9029dd115fd0456f61a42d2f8202ac025dd36cd043eea6a4719fb02" :title "") (:point 127 :url "https://html.duckduckgo.com/html/?q=pensions+act+1995+whole+act" :title "pensions act 1995 whole act at DuckDuckGo") (:point 1 :url "https://en.wikipedia.org/wiki/Cowan_v_Scargill" :title "Cowan v Scargill - Wikipedia") (:point 127 :url "https://html.duckduckgo.com/html/?q=cowan+v+scargill" :title "cowan v scargill at DuckDuckGo")))
-  '((buffer-display-time 24937 16398 172347 709000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t) (eww-history-position . 0))
-  '((mark-ring (1 1 1))))
-
-(desktop-create-buffer 208
-  "/home/ajax/Nextcloud/life_org/football.org"
-  "football.org"
-  'org-mode
-  '(abbrev-mode visual-line-mode flyspell-mode)
-  410
-  '(693 nil)
-  nil
-  nil
-  '((buffer-display-time 24937 15515 517561 207000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines))
-  '((mark-ring (440 711))))
-
-(desktop-create-buffer 208
-  "/home/ajax/Nextcloud/law_phd/trustees/trustee_powers/MNRPF_v_Stena_Line.pdf"
-  "MNRPF_v_Stena_Line.pdf"
-  'doc-view-mode
-  nil
-  1
+  251264
   '(nil nil)
   t
-  '((page . 1) (slice))
-  '((buffer-display-time 24937 18313 656744 710000) (buffer-file-coding-system . no-conversion))
+  '("/usr/share/info/emacs" "Bookmarks" ((history ("/usr/share/info/emacs" "Top" 1138) ("dir" "Top" 227))))
+  '((tab-width . 8) (buffer-display-time 24998 44334 194362 229000) (buffer-file-coding-system . utf-8-unix) (case-fold-search . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/life_org/paid_work.org"
+  "paid_work.org"
+  'org-mode
+  '(abbrev-mode visual-line-mode flyspell-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time) (buffer-file-coding-system . undecided-unix) (truncate-lines))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/life_org/social.org"
+  "social.org"
+  'org-mode
+  '(abbrev-mode visual-line-mode flyspell-mode)
+  529
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time) (buffer-file-coding-system . undecided-unix) (truncate-lines))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/life_org/events.org"
+  "events.org"
+  'org-mode
+  '(abbrev-mode visual-line-mode flyspell-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time) (buffer-file-coding-system . undecided-unix) (truncate-lines))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/ajax/Nextcloud/life_org/exercise.org"
+  "exercise.org"
+  'org-mode
+  '(abbrev-mode visual-line-mode flyspell-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time) (buffer-file-coding-system . undecided-dos) (truncate-lines))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/ajax/.newsrc-dribble"
+  ".newsrc-dribble"
+  'fundamental-mode
+  nil
+  17452
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time))
   '((mark-ring nil)))
 

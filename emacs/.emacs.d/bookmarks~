@@ -1,0 +1,18 @@
+;;;; Emacs Bookmark Format Version 1 ;;;; -*- coding: utf-8-emacs -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("fiduciary"
+ (filename . "~/Nextcloud/law_phd/trustees/trustee_powers/outline.org")
+ (front-context-string . "e Fiduciary Duti")
+ (rear-context-string . "t.[fn:15]\n*** Ar")
+ (position . 15211))
+("16nov"
+ (filename . "~/downloads/Practical Programming for Strength Training by Mark Rippetoe, Lon Kilgore (z-lib.org).pdf")
+ (position . 1)
+ (page . 53)
+ (slice)
+ (size . fit-width)
+ (origin 0.0 . 0.0)
+ (handler . pdf-view-bookmark-jump-handler))
+)
