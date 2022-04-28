@@ -20,6 +20,7 @@ set spell
 set ignorecase
 set smartcase
 set guifont=Inconsolata\ 23
+set autoread " so that I can do edits on one laptop and they will load in another
 colorscheme koehler
 filetype plugin on
 syntax enable
