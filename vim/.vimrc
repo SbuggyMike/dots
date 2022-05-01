@@ -72,6 +72,7 @@ iabbrev eg e.g.,
 iabbrev nb n.b.
 iabbrev Nb N.b.
 iabbrev wrt with regard to
+iabbrev w/ with
 " citations
 iabbrev ewhc EWHC
 iabbrev ewca EWCA
@@ -97,6 +98,8 @@ iabbrev r3g regulation
 iabbrev r3gs regulations
 iabbrev R3g Regulation
 iabbrev R3gs Regulations
+iabbrev govt government
+iabbrev Govt Government
 " trust words
 iabbrev d3 duty
 iabbrev D3 Duty
