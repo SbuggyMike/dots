@@ -42,10 +42,12 @@
 - man-db
 - dhcpcd (enable as service)
 
-### Terminal
+### Terminal/Utilities
 
 - xfce4-terminal
 - tmux (config file)
+- htop
+- neofetch
 
 ### Graphics
 
