@@ -187,6 +187,4 @@ bar {
         status_command i3status
 }
 exec nextcloud
-exec emacs --daemon
-exec emacsclient -nc
 
