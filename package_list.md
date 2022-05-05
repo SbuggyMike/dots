@@ -2,15 +2,19 @@
 
 ## Installation
 
+### Install
+
 - loadkeys uk
 - iwctl --passphrase jack4jack station wlan0 connect chicken3
 - timedatectl set-ntp true
+- check if uefi or bios
 - formatting disks
-  check if uefi or bios
-  make filesystems
-- mount & swapon
+- make filesystems (remember fat 32 for boot)
+- mount & swapon 
 - edit /etc/pacman.d/mirrorlist 
-- pacstrap
+- pacman-keys --refresh-keys (if install is relatively old)
+> N.b. this takes fucking ages
+- pacstrap /mnt
 - genfstab -U /mnt >> /mnt/etc/fstab
 - arch-chroot /mnt /bin/bash
 - ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
@@ -18,10 +22,23 @@
 - vim /etc/locale.gen (en_GB)
 - locale-gen
 - echo "LANG=en_GB.UTF-8" >> /etc/locale.conf
-- echo "uk" >> /etc/vconsole.conf
+- echo "KEYMAP=uk" >> /etc/vconsole.conf
 - echo "ilium" >> /etc/hostname
 - vim /etc/hosts
+- passwd (root password)
+- grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB 
+- grub-mkconfig -o /boot/grub/grub.cfg
 - N.b. the fucking around you have to do with fstab &c if you mount /usr separately
+
+### Setup
+
+#### User
+
+- useradd -m -G wheel video telemachus (video for laptop)
+- passwd telemachus 
+- visudo
+
+
 
 ## Packages
 
@@ -33,14 +50,16 @@
 - linux-firmware (esp. for wifi drivers)
 - grub
 > os-prober (dual boot)
-- efibootmgr ?
+- efibootmgr (for uefi)
 - gvim (config file)
 - networkmanager
 > systemctl enable NetworkManager
 - network-manager-applet
 - intel-ucode
 - man-db
+- man-pages
 - dhcpcd (enable as service)
+- sudo
 
 ### Terminal/Utilities
 
@@ -58,13 +77,13 @@
 > systemctl enable lightdm
 - lightdm-gtk-greeter
 - nvidia (check graphics card via 'lspci -k | grep -A 2 -E "(VGA|3D)"')
+- xorg-xrandr
 
 #### i3
 
 - i3-wm (config)
 - i3status
 - dmenu
-- xorg-xrandr
 - light (to adjust brightness via keys - add user to 'video' group)
 
 ### Sound
@@ -90,12 +109,13 @@
 
 - nextcloud-client
 - git
+- yay
 
 ### File editing
 
 - texlive-most
-- latex-mk
-- ghostscript
+- latex-mk (for emacs?)
+- ghostscript (for groff?)
 - ispell
 - libreoffice-fresh
 - biber
@@ -120,6 +140,7 @@
 - zathura
 - zathura-pdf-mupdf
 - zathura-djvu
+- okular (alternative to zathura, perhaps preferable due to highlighting ability)
 
 ### Games
 
@@ -129,8 +150,8 @@
 
 ### Printing
 
-    - cups (enable service)
-    - hplip (hp printer drivers)
+- cups (enable service)
+- hplip (hp printer drivers)
 
 ### Multimedia
 
@@ -138,7 +159,6 @@
 - feh
 - yt-dt
 - python3-pip
-- gtkpod
 - spotify
 
 #### Dvds
@@ -159,6 +179,7 @@
 - firefox
 - w3m
 - qbittorrent
+- zoom (yay)
 
 ### Misc
 
