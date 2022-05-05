@@ -179,6 +179,7 @@
 - firefox
 - w3m
 - qbittorrent
+- thunderbird
 - zoom (yay)
 
 ### Misc
