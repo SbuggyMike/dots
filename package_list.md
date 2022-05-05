@@ -45,7 +45,7 @@
 ### Pacstrap
 
 - base
-- base-devel (probably not actually)
+- base-devel (fakeroot etc)
 - linux
 - linux-firmware (esp. for wifi drivers)
 - grub
@@ -109,7 +109,7 @@
 
 - nextcloud-client
 - git
-- yay
+- yay (clone from aur)
 
 ### File editing
 
