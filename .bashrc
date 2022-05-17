@@ -9,7 +9,7 @@
 setxkbmap -layout gb -option caps:swapescape
 
 # vim keybindings
-set -o vi
+set -o emacs
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
