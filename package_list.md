@@ -114,13 +114,14 @@
 ### File editing
 
 - texlive-most
-- latex-mk (for emacs?)
+- latex-mk (for emacs? not sure this is necessary)
 - ghostscript (for groff?)
 - ispell
 - libreoffice-fresh
 - biber
 - imagemagick
 - pandoc (for markdown)
+- ttf-ms-win10-auto (yay)
 
 ### emacs
 
