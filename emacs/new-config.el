@@ -20,6 +20,7 @@
 
 ;; emms
 (use-package emms
+  :config (emms-default-players)
   :bind
    (("s-m SPC" . 'emms-pause)
     ("s-m n" . 'emms-next)
@@ -70,6 +71,8 @@
 ;; pdf-reader
 (use-package pdf-tools
   :config (pdf-tools-install))
+
+(define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward-regexp)
 
 ;; projectile
 (use-package projectile
