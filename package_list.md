@@ -104,6 +104,7 @@
 
 - feh
 - gimp
+- scrot (screenshot programme)
 
 ### File syncing
 
