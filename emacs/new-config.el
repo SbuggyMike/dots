@@ -73,6 +73,7 @@
   :config (pdf-tools-install))
 
 (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward-regexp)
+(define-key pdf-view-mode-map (kbd "C-r") 'isearch-backward-regexp)
 
 ;; projectile
 (use-package projectile
