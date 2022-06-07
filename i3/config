@@ -186,5 +186,4 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
-exec nextcloud
 exec emacs --daemon
