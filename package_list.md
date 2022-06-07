@@ -111,6 +111,7 @@
 - nextcloud-client
 - git
 - yay (clone from aur)
+- rsync
 
 ### File editing
 
