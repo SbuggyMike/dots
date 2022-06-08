@@ -99,6 +99,7 @@
 - bluez
 - bluez-utils
 - enable bluetooth.service
+- pulseaudio-bluetooth
 
 ### Pictures
 
