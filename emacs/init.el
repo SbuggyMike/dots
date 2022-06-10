@@ -34,7 +34,6 @@
     ("s-m s" . 'emms-stop)
     ("s-m u" . 'emms-add-url)
     ("s-m e" . 'emms)))
-(use-package emms-setup)
 (emms-all)
 (emms-default-players)
 
