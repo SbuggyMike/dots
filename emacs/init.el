@@ -155,7 +155,7 @@
 	(add-hook mode (lambda () (setq display-line-numbers-mode 0))))
 
 ; MACROS
-(load-file "~/Nextcloud/computer/config/linux/emacs/macros.el")
+(load-file "~/repos/dots/emacs/macros.el")
 
 ; MODE-SPECIFIC SHIT
 ;; elisp
