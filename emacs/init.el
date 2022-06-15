@@ -65,7 +65,7 @@
 (use-package magit)
 
 (use-package org-journal
-  :init (setq org-journal-dir "~/Nextcloud/life_org/journal/"))
+  :init (setq org-journal-dir "~/private_writings/journal/"))
 
 ;; org
 (use-package org)
