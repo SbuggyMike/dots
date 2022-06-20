@@ -33,7 +33,6 @@
     ("s-m B" . 'emms-bookmarks-next)
     ("s-m s" . 'emms-stop)
     ("s-m u" . 'emms-add-url)
-    ("s-m x" . 'emms-add-playlist-file)
     ("s-m e" . 'emms)))
 (emms-all)
 (emms-default-players)
@@ -66,7 +65,7 @@
 (use-package magit)
 
 (use-package org-journal
-  :init (setq org-journal-dir "~/private_writings/journal/"))
+  :init (setq org-journal-dir "~/Nextcloud/life_org/journal/"))
 
 ;; org
 (use-package org)
@@ -211,7 +210,7 @@
 (setq ispell-dictionary "english")
 
 ;; update to the abbreviations list in Nextcloud
-(setq abbrev-file-name "~/repos/dots/emacs/abbreviations")
+(setq abbrev-file-name "~/Nextcloud/computer/config/linux/emacs/abbreviations")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
