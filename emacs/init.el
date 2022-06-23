@@ -133,7 +133,8 @@
 
 ;; eww
 (global-set-key (kbd "C-c e") 'eww)
-(setq eww-search-prefix "https://duckduckgo.com/html/?q=")
+;;; changing to google because I think it more reliable allows for advanced searching
+(setq eww-search-prefix "https://google.com/search?q=")
 
 ;; imenu
 (global-set-key (kbd "C-c i") 'imenu)
