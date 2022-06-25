@@ -5,9 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# english and swap escape
-setxkbmap -layout gb -option caps:swapescape
-
 # vim keybindings
 set -o emacs
 
