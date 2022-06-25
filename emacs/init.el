@@ -153,7 +153,7 @@
 
 ;; disable line numbers for various modes
 (dolist (mode '(eshell-mode-hook eww-mode-hook helpful-mode-hook info-mode-hook))
-	(add-hook mode (lambda () (setq display-line-numbers-mode 0))))
+	(add-hook mode (lambda () (display-line-numbers-mode -1))))
 
 ; MACROS
 (load-file "~/repos/dots/emacs/macros.el")
@@ -192,7 +192,7 @@
 (setq org-use-fast-todo-selection "auto")
 
 ;; footnotes
-(add-hook 'org-mode-hook (local-set-key (kbd "C-c f") 'org-footnote-new))
+(add-hook 'org-mode-hook (lambda () (local-set-key (kbd "C-c f") #'org-footnote-new)))
 
 ; PERSONAL INFO
 ;; calendar
@@ -225,8 +225,7 @@
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
    '("~/Nextcloud/life_org/paid_work.org" "~/Nextcloud/life_org/annual.org" "~/Nextcloud/life_org/cleaning.org" "~/Nextcloud/life_org/social.org" "~/Nextcloud/life_org/reading.org" "~/Nextcloud/life_org/exercise.org" "~/Nextcloud/life_org/todo.org" "~/Nextcloud/life_org/events.org" "~/Nextcloud/misc_law/fru/fru_todo.org"))
- '(package-selected-packages
-   '(writeroom-mode which-key try counsel-projectile projectile org-journal magit helpful ivy-rich counsel ivy emms diminish pdf-tools use-package)))
+ '(package-selected-packages '(magit pdf-tools use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
