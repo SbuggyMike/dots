@@ -212,8 +212,11 @@
 (flyspell-mode t)
 (setq ispell-dictionary "english")
 
-;; update to the abbreviations list in Nextcloud
+;; update to the abbreviations list in dots repo dir
 (setq abbrev-file-name "~/repos/dots/emacs/abbreviations")
+
+;; delete selected text when you start typing
+(delete-selection-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -222,7 +225,8 @@
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
    '("~/Nextcloud/life_org/paid_work.org" "~/Nextcloud/life_org/annual.org" "~/Nextcloud/life_org/cleaning.org" "~/Nextcloud/life_org/social.org" "~/Nextcloud/life_org/reading.org" "~/Nextcloud/life_org/exercise.org" "~/Nextcloud/life_org/todo.org" "~/Nextcloud/life_org/events.org" "~/Nextcloud/misc_law/fru/fru_todo.org"))
- '(package-selected-packages '(pdf-tools use-package)))
+ '(package-selected-packages
+   '(writeroom-mode which-key try counsel-projectile projectile org-journal magit helpful ivy-rich counsel ivy emms diminish pdf-tools use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
