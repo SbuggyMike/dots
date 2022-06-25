@@ -188,3 +188,4 @@ bar {
 }
 exec twmd
 exec emacs --daemon
+exec eamcsclient -nc
