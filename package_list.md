@@ -113,6 +113,7 @@
 
 - nextcloud-client
 - git
+  git config --global credential.helper store
 - yay (clone from aur)
 - rsync
 
