@@ -49,6 +49,10 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec xfce4-terminal
+# start a emacsclient
+bindsym $mod+c exec --no-startup-id emacsclient -nc
+
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -186,6 +190,8 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
-exec twmnd
-exec emacs --daemon
-exec eamcsclient -nc
+exec --no-startup-id twmnd
+exec --no-startup-id emacs --daemon
+exec --no-startup-id i3-msg 'workspace 3; exec thunderbird; workspace 4'
+exec --no-startup-id i3-msg 'workspace 4; exec firefox; workspace 5'
+exec --no-startup-id i3-msg 'workspace 5; exec pavucontrol; workspace 2'
