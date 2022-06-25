@@ -146,7 +146,7 @@
 
 ;; org capture
 (global-set-key (kbd "C-c c") 'counsel-org-capture)
-(setq org-default-notes-file "~/Nextcloud/life_org/todo.org")
+(setq org-default-notes-file "~/life_org/todo.org")
 
 ;; yes or no
 (fset 'yes-or-no-p 'y-or-n-p)
