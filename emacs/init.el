@@ -18,6 +18,8 @@
     (diminish 'abbrev-mode)
     (diminish 'visual-line-mode))
 
+(use-package elfeed)
+
 ;; emms
 (use-package emms
   :config (emms-default-players)
@@ -223,9 +225,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(elfeed-feeds
+   '("https://archlinux.org/feeds/news/"
+     ("https://archlinux.org/feeds/news/" arch)))
  '(org-agenda-files
    '("~/Nextcloud/life_org/paid_work.org" "~/Nextcloud/life_org/annual.org" "~/Nextcloud/life_org/cleaning.org" "~/Nextcloud/life_org/social.org" "~/Nextcloud/life_org/reading.org" "~/Nextcloud/life_org/exercise.org" "~/Nextcloud/life_org/todo.org" "~/Nextcloud/life_org/events.org" "~/Nextcloud/misc_law/fru/fru_todo.org"))
- '(package-selected-packages '(magit pdf-tools use-package)))
+ '(package-selected-packages '(elfeed magit pdf-tools use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
