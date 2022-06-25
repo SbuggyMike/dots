@@ -191,6 +191,8 @@
       '((sequence "TODO(t)" "STRT(s)" "WAIT(w)" "HOLD(h)" "|" "ASSIGN(a)" "DONE(d)" "KILL(k)")))
 (setq org-use-fast-todo-selection "auto")
 
+;; footnotes
+(add-hook 'org-mode-hook (local-set-key (kbd "C-c f") 'org-footnote-new))
 
 ; PERSONAL INFO
 ;; calendar
