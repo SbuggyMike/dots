@@ -20,6 +20,11 @@
 
 (use-package elfeed)
 
+(setq elfeed-feeds
+   '("https://archlinux.org/feeds/news"
+     "https://planet.emacslife.com/atom.xml"
+     "https://hnrss.org/frontpage"))
+
 ;; emms
 (use-package emms
   :config (emms-default-players)
@@ -136,6 +141,9 @@
 ;; eww
 (global-set-key (kbd "C-c e") 'eww)
 (setq eww-search-prefix "https://duckduckgo.com/")
+(setq browse-url-browser-function 'browse-url-firefox
+      browse-url-new-window-flag  t
+      browse-url-firefox-new-window-is-tab t)
 
 ;; imenu
 (global-set-key (kbd "C-c i") 'imenu)
@@ -148,7 +156,7 @@
 
 ;; org capture
 (global-set-key (kbd "C-c c") 'counsel-org-capture)
-(setq org-default-notes-file "~/life_org/todo.org")
+(setq org-default-notes-file "~/life_org/capture.org")
 
 ;; yes or no
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -225,9 +233,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(elfeed-feeds
-   '("https://archlinux.org/feeds/news/"
-     ("https://archlinux.org/feeds/news/" arch)))
  '(org-agenda-files
    '("~/Nextcloud/life_org/paid_work.org" "~/Nextcloud/life_org/annual.org" "~/Nextcloud/life_org/cleaning.org" "~/Nextcloud/life_org/social.org" "~/Nextcloud/life_org/reading.org" "~/Nextcloud/life_org/exercise.org" "~/Nextcloud/life_org/todo.org" "~/Nextcloud/life_org/events.org" "~/Nextcloud/misc_law/fru/fru_todo.org"))
  '(package-selected-packages '(elfeed magit pdf-tools use-package)))
@@ -237,3 +242,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+ 
