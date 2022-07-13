@@ -21,9 +21,13 @@
 (use-package elfeed)
 
 (setq elfeed-feeds
-   '("https://archlinux.org/feeds/news"
+     '("https://archlinux.org/feeds/news"
+     "https://www.reddit.com/r/archlinux.rss"
+     "https://www.reddit.com/r/linux.rss"
+     "https://www.reddit.com/r/emacs.rss"
      "https://planet.emacslife.com/atom.xml"
      "https://hnrss.org/frontpage"))
+     
 
 ;; emms
 (use-package emms
