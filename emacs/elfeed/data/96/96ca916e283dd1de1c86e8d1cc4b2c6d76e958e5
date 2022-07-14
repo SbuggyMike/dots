@@ -1,0 +1,107 @@
+<p>Sometimes I actually <em>do</em> wonder why the Emacs defaults are whatever they are.</p>
+
+<p>Someone somewhere decided that clicking with the left mouse button while holding shift should pop up an <em>appearance menu</em> where you can change font size and things like that.</p>
+
+<p>The behavior I expected from my personal history of 25 years or so of using computers is to extend the selection up to the clicked point.</p>
+
+<p>In text buffers, that means: select the text up to there; in a GUI file manager that means I expect to select files from the initial selection up to the clicked file. But not in Emacs, ha!</p>
+
+<p>The change is pretty simple. Luckily, by now I know what functions are usually named in Emacs; it’s nothing with “selection” in it, it has to be “mark” and “set”, and “mouse” as a prefix most likely. And yes, <code>mouse-set-mark</code> exists and works!</p>
+
+<p>So here’s the change I want:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"S-&lt;down-mouse-1&gt;"</span><span class="p">)</span> <span class="nf">#'</span><span class="nv">mouse-set-mark</span><span class="p">)</span>
+<span class="c1">;; was: mouse-appearance-menu</span>
+</code></pre></div></div>
+
+<p>Looking for functions that might change the selection, I also found that by default, <kbd>C-M-&lt;down-mouse-1&gt;</kbd> allows rectangular selection. Usually, that’s bound to option-dragging in macOS text editors that support this, so I remapped that as well since <kbd>A-&lt;down-mouse-1&gt;</kbd> is free:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"A-&lt;down-mouse-1&gt;"</span><span class="p">)</span> <span class="nf">#'</span><span class="nv">mouse-drag-region-rectangle</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>But as I wrote at the very beginning, I do wonder why the appearance menu is the default. Is that a recent addition? Or does this precede my birth? Everything’s possible in Emacs.</p>
+
+<p>The <code>mouse.el</code> copyright line says:</p>
+
+<pre><code>;; Copyright (C) 1993-1995, 1999-2022 Free Software Foundation, Inc.
+</code></pre>
+
+<p>So the addition of mouse input isn’t ancient, but it’s potentially old.</p>
+
+<p>Looking at the code from <a href="https://github.com/emacs-mirror/emacs">emacs-mirror on GitHub</a>, we can inspect when the binding was added.</p>
+
+<p>The <a href="https://github.com/emacs-mirror/emacs/blob/3af9e84ff59811734dcbb5d55e04e1fdb7051e77/lisp/mouse.el#L2892"><code>git blame</code></a> output of the key binding reveals quite a lot!</p>
+
+<ul>
+  <li><em>30 years ago</em>, JimB added a binding of <code>drag-mouse-1</code> to <code>mouse-set-region</code> in the vicinity of this line. So drag to select is there since the early days of <code>mouse.el</code>.</li>
+  <li><em>14 years ago</em>, then, Chong Yidong added <code>mouse-appearance-menu</code> to Emacs 23 and bound it to <code>[S-down-mouse-1]</code> <a href="https://github.com/emacs-mirror/emacs/commit/3db09e26fd1c332473cec81821a377c7fa53a067">in this single commit.</a></li>
+</ul>
+
+<p>Chong Yidong’s commit also does not reveal any deletion of a previous binding.<br />
+The decision to bind shift-click to the appearance menu is from Jun 15, 2008. I <em>guess</em> that this binding was free, so they just rolled with it.<br />
+So shift-click might just as well have been unbound for all of the 16 years that dragging to select was a thing, it seems. (We’ll see that this isn’t true in a minute.)</p>
+
+<p>But in 2008, shift-click to select was a “thing” for computer users for a decade at least. I’m pretty sure we used this in Windows 95. I never touched a Mac in the 1990’s, but I would imagine that Mac OS with the signature single button mice had this modifier, too.</p>
+
+<p>By 2008, you could easily install Linux distros on home computers, and chances were you already had a fast internet connection to download distros with a graphical desktop environment. <a href="https://en.wikipedia.org/wiki/K_Desktop_Environment_3">KDE 3 was around the corner</a>, <a href="https://en.wikipedia.org/wiki/GNOME_2">GNOME 2 was already 6 years old</a>, and I am somewhat certain that shift-click to select worked as expected, too. At least I don’t remember any surprises there.</p>
+
+<p>Yet the Emacs dev team shipped shift-click to pop up a selection menu to change visual settings. That’s curious.</p>
+
+<p>This binding is weird in 2022, and I argua that it was weird in 2008, too.</p>
+
+<p>It probably was and still is less weird for people using Emacs and their computer in general without mouse input: if it’s irrelevant to you, you don’t know about common conventions, and chances are even if you do know, you don’t care. You can find people who think mouse support in Emacs in 2022 is still unnecessary.</p>
+
+<p>Thanks to the <code>emacs-devel</code> mailing list archive, <a href="https://lists.gnu.org/archive/html/emacs-devel/2008-06/msg00826.html">we can check the discussion from back then</a> to find out more. Chong Yidong opened the discussion thus:</p>
+
+<blockquote>
+  <p>Currently, shift-down-mouse-1 pops up a menu that lets the user choose a<br />
+different font to apply to the current frame.</p>
+
+  <p>This doesn’t seem like a very useful operation for a mouse binding.</p>
+</blockquote>
+
+<p>I strongly agree! The supposed change, though, doesn’t make much sense to me, either :)</p>
+
+<blockquote>
+  <p>Now that the face-remapping code has been checked in, I’d suggest<br />
+changing this menu to a “buffer faces” menu.</p>
+</blockquote>
+
+<p>Nobody in the thread pointed out that shift-click selection exists; it wasn’t discarded because it wasn’t even brought up. Maybe nobody really cared? Or did people actually like the binding?</p>
+
+<p>In 2003, <a href="https://lists.gnu.org/archive/html/emacs-devel/2003-06/msg00080.html">it just occurred to Kai Großjohann “that the S-down-mouse-1 font menu should be available in the menu bar somewhere”</a>, which means Chong Yidong improved a binding that was at least 5 years old.</p>
+
+<p>Even in 2001, this already was a thing, <a href="https://lists.gnu.org/archive/html/emacs-devel/2001-10/msg00425.html">another mailing list thread indicates</a>.</p>
+
+<p>So there we are now, 21+ years later.</p>
+
+<p>In 2017, there’s been <a href="https://lists.gnu.org/archive/html/emacs-devel/2017-05/msg00809.html">a suggestion by Tak Kunihiro</a> to remap this to <code>mouse-save-then-kill</code> (which is also a bit weird because it copies the selection automatically), but <a href="https://lists.gnu.org/archive/html/emacs-devel/2017-05/msg00819.html">Eli Zaretskii didn’t like that</a> because it means retraining of muscle memory;</p>
+
+<blockquote>
+  <p>All that just to provide some kind of “consistency”?</p>
+</blockquote>
+
+<p>(Yes, exactly because of that! :))</p>
+
+<p>There’s not been a lot of discussion on the mailing list with regard to that binding. To cut to the source of things, Richard M. Stallman <a href="https://github.com/emacs-mirror/emacs/commit/8b34e79d82c83e47709504e9a00cef26971a8ad1">committed on Aug 31, 1992</a> a change that unbound shift-clicking in favor of dragging.</p>
+
+<p>It’s been RMS’s fault all along :)</p>
+
+<hr />
+
+<p>To me, this is a curious piece of Emacs history that makes me wonder who the people on <code>emacs-devel</code> were back then, <a href="https://lists.gnu.org/archive/html/emacs-devel/2017-05/msg00832.html">what the binding was based on</a> (“The current binding of S-mouse-1 was not taken out of thin air, it was modeled on other applications as well, AFAIR”), and what their stance on GUI and mouse input was.</p>
+
+<p>Is this new binding after RMS’s removal a silent rebellion against Windows and Mac and also Linux desktop environment conventions?</p>
+
+<p>Or is it merely an example that some folk simply do not put user experience of normies at the tippety top of their priority lists?</p>
+
+<p>We can only speculate. (Or read the mailing list until we get a feeling for the <em>dramatis personae</em>.)</p>
+
+<p>I don’t want to blame anyone here besides git-blame’ing their code. UX is especially hard to make consistent if there’s no guiding design principle; we see this in FOSS software projects a lot. <a href="https://en.wikipedia.org/wiki/Design_by_committee">“Design by committee”</a> is a well-known saying in our industry for a reason.</p>
+
+<p>In my interpretation, this merely reveals priorities. Improve an existing shift-click binding that was limited in its function with a better function. Make things incrementally better through tinkering.</p>
+
+<p>On a much more positive note: we can inspect the Emacs history to find out what was going on, who was involved, and what the reasoning was.</p>
+
+<p>Even if I, in 2022, find the shift-click binding to be weird, for almost 3 decades now people seemed to have a different vision. That’s a humbling revelation. Without the history, I wouldn’t have been able to figure this out, and my gut reaction would have remained – something along the lines of “this must’ve been some neckbeard without a mouse looking for a free key binding to satisfy a feature request on paper without thinking this through, gah!”</p>
+<hr /><p>Receive Christian’s <a href="https://christiantietze.de/newsletter/">new posts via email</a></p>

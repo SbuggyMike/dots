@@ -1,0 +1,73 @@
+<p>Fontaine lets the user specify presets of font configurations and switch
+between them on demand.  This makes it easy to optimise for different
+contexts, such as a “reading” preset with large, spacious fonts, and an
+“editing” preset with smaller, more compact fonts.</p>
+
+<p>Sources:</p>
+
+<ul>
+  <li>Package name (GNU ELPA): <code>fontaine</code></li>
+  <li>Official manual: <a href="https://protesilaos.com/emacs/fontaine">https://protesilaos.com/emacs/fontaine</a></li>
+  <li>Change log: <a href="https://protesilaos.com/emacs/fontaine-changelog">https://protesilaos.com/emacs/fontaine-changelog</a></li>
+  <li>Git repo on SourceHut: <a href="https://git.sr.ht/~protesilaos/fontaine">https://git.sr.ht/~protesilaos/fontaine</a>
+    <ul>
+      <li>Mirrors:
+        <ul>
+          <li>GitHub: <a href="https://github.com/protesilaos/fontaine">https://github.com/protesilaos/fontaine</a></li>
+          <li>GitLab: <a href="https://gitlab.com/protesilaos/fontaine">https://gitlab.com/protesilaos/fontaine</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Mailing list: <a href="https://lists.sr.ht/~protesilaos/fontaine">https://lists.sr.ht/~protesilaos/fontaine</a></li>
+</ul>
+
+<p>Below are the release notes.  Also make sure to check my [growing] list
+of Emacs packages: <a href="https://protesilaos.com/emacs">https://protesilaos.com/emacs</a>.</p>
+
+<hr />
+
+<p>This is a stability release that introduces minor tweaks while
+formalising point releases which were already available to users.</p>
+
+<ul>
+  <li>
+    <p>Fixed a bug where a nil minibuffer history would produce an error
+while trying to set a preset.</p>
+  </li>
+  <li>
+    <p>Required the <code>subr-x</code> library at compile time.  This is to avoid
+scenaria where <code>if-let</code> and friends are not known to the byte
+compiler.  Such a problem was reported by Ted Reed concerning their
+Emacs 27 build:
+<a href="https://lists.sr.ht/~protesilaos/fontaine/%3Cm27d6t3f7a.fsf@zenithia.net%3E#%3C87ee11w1j0.fsf@zenithia.net%3E">https://lists.sr.ht/~protesilaos/fontaine/%3Cm27d6t3f7a.fsf@zenithia.net%3E#%3C87ee11w1j0.fsf@zenithia.net%3E</a>.</p>
+  </li>
+  <li>
+    <p>Simplified the text of the minibuffer prompt for the <code>default</code> face.
+The <code>marginalia</code> package treats the candidates as faces when the word
+“face” occurs in the prompt.  Generally that should be okay, though we
+do not want it in our case.</p>
+  </li>
+  <li>
+    <p>Documented a reference to the “devel” variant of GNU ELPA.  This is
+for users who want to use a version of the package built from the
+latest commit instead of the last tagged release.  Read:
+<a href="https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/">https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/</a>.</p>
+  </li>
+  <li>
+    <p>Refrained from erroring out with <code>fontaine-set-preset</code> if Emacs is not
+in a graphical window (GUI) while the <code>emacs --daemon</code> is in use.  The
+<code>user-error</code> is now limited to the case where a standalone frame is
+non-graphial and the daemon is not running (the error is that you
+cannot change fonts inside of TUI Emacs).  Thanks to Florent Teissier
+for the patch!</p>
+  </li>
+  <li>
+    <p>Named the mailing list address as the <code>Maintainer:</code> of Denote.
+Together with the other package headers, they help the user find our
+primary sources and/or communication channels.  This change conforms
+with work being done upstream in package.el by Philip Kaludercic.  I
+was informed about it here:
+<a href="https://lists.sr.ht/~protesilaos/general-issues/%3C875ykl84yi.fsf%40posteo.net%3E">https://lists.sr.ht/~protesilaos/general-issues/%3C875ykl84yi.fsf%40posteo.net%3E</a>.</p>
+  </li>
+</ul>

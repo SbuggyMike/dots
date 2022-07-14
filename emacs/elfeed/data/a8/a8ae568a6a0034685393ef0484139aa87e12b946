@@ -1,0 +1,5 @@
+<p><a href="https://www.flickr.com/people/eichin/">Mark Eichin</a> posted a photo:</p>
+	
+<p><a href="https://www.flickr.com/photos/eichin/52204776107/" title="20220706_205245"><img alt="20220706_205245" height="180" src="https://live.staticflickr.com/65535/52204776107_e2477fd77a_m.jpg" width="240" /></a></p>
+
+<p>Was puttering around with streamdeck-ui on and off... and then finally got around to trying it under 22.04/jammy... and the packaged version Just Works (adding a udev-rules file helps though, which is in the docs but should be in the packaging.)  Now I have to figure out what *other* buttons it makes sense to set up, but the important one is done.</p>

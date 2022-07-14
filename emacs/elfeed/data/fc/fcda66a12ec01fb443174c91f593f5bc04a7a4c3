@@ -1,0 +1,75 @@
+<div class="content" id="content">
+
+ <div class="outline-2" id="outline-container-emacs-dwim-shell-command-multi-language">
+ <h2 id="emacs-dwim-shell-command-multi-language"> <span class="timestamp-wrapper"> <span class="timestamp">10 July 2022</span></span> Emacs: DWIM shell command (multi-language)</h2>
+ <div class="outline-text-2" id="text-emacs-dwim-shell-command-multi-language">
+
+ <div class="figure" id="org3f0a5e5">
+ <p> <img alt="csv.gif" height="70%" src="https://xenodium.com/images/emacs-dwim-shell-command-multi-language/csv.gif" width="70%" /></p>
+</div>
+
+ <p>
+I keep on  <a href="https://xenodium.com/png-to-icns-emacs-dwim-style/">goofying around</a> with  <a href="https://xenodium.com/emacs-dwim-shell-command/">dwim-shell-command</a> and it's sibling  <code>dwim-shell-command-on-marked-files</code> from  <a href="https://github.com/xenodium/dotsies/blob/main/emacs/ar/dwim-shell-command.el">dwim-shell-command.el</a>.
+</p>
+
+ <p>
+In addition to defaulting to  <a href="https://en.wikipedia.org/wiki/Z_shell">zsh</a>,  <code>dwim-shell-command-on-marked-files</code> now support other shells and languages. This comes in handy if you have snippets in different languages and would like to easily invoke them from Emacs. Multi-language support enables "using the best tool for the job" kinda thing. Or maybe you just happen to know how to solve a particular problem in a specific language.
+</p>
+
+ <p>
+Let's assume you have an existing Python snippet to convert files from csv to json. With  <code>dwim-shell-command-on-marked-files</code>, you can invoke the Python snippet to operate on either  <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html">dired</a> or buffer files.
+</p>
+
+ <div class="org-src-container">
+ <pre class="src src-emacs-lisp">(<span style="color: #a71d5d;">defun</span>  <span style="color: #795da3;">dwim-shell-command-csv-to-json-via-python</span> ()
+   <span style="color: #183691;">"Convert csv file to json (via Python)."</span>
+  (<span style="color: #a71d5d;">interactive</span>)
+  (dwim-shell-command-on-marked-files
+    <span style="color: #183691;">"Convert csv file to json (via Python)."</span>
+    <span style="color: #183691;">"</span>
+ <span style="color: #183691;">import csv</span>
+ <span style="color: #183691;">import json</span>
+ <span style="color: #183691;">text = json.dumps({ \"values\": list(csv.reader(open('</span> <span style="color: #0086b3;"><span></span> <span style="color: #183691;">')))})</span>
+ <span style="color: #183691;">fpath = '</span> <span style="color: #0086b3;"><span>.json</span> <span style="color: #183691;">'</span>
+ <span style="color: #183691;">with open(fpath , '</span> <span style="color: #0086b3;">w</span> <span style="color: #183691;">') as f:</span>
+ <span style="color: #183691;">  f.write(text)"</span>
+    <span style="color: #a71d5d;">:shell-util</span>  <span style="color: #183691;">"python"</span>
+    <span style="color: #a71d5d;">:shell-args</span>  <span style="color: #183691;">"-c"</span>))
+</span></span></pre>
+</div>
+
+ <p>
+Or, maybe you prefer Swift and already had a snippet for the same thing?
+</p>
+
+ <div class="org-src-container">
+ <pre class="src src-emacs-lisp">(<span style="color: #a71d5d;">defun</span>  <span style="color: #795da3;">dwim-shell-command-csv-to-json-via-swift</span> ()
+   <span style="color: #183691;">"Convert csv file to json (via Swift)."</span>
+  (<span style="color: #a71d5d;">interactive</span>)
+  (dwim-shell-command-on-marked-files
+    <span style="color: #183691;">"Convert csv file to json (via Swift)."</span>
+    <span style="color: #183691;">"</span>
+ <span style="color: #183691;">    import Foundation</span>
+ <span style="color: #183691;">    import TabularData</span>
+ <span style="color: #183691;">    let filePath = \"<span>\"</span>
+ <span style="color: #183691;">    print(\"reading </span> <span style="color: #969896;">\\</span> <span style="color: #a71d5d;">(</span> <span style="color: #183691;">filePath)\")</span>
+ <span style="color: #183691;">    let content = try String(contentsOfFile: filePath).trimmingCharacters(in: .whitespacesAndNewlines)</span>
+ <span style="color: #183691;">    let parsedCSV = content.components(separatedBy: CSVWritingOptions().newline).map{</span>
+ <span style="color: #183691;">      $0.components(separatedBy: \",\")</span>
+ <span style="color: #183691;">    }</span>
+ <span style="color: #183691;">    let jsonEncoder = JSONEncoder()</span>
+ <span style="color: #183691;">    let jsonData = try jsonEncoder.encode([\"value\": parsedCSV])</span>
+ <span style="color: #183691;">    let json = String(data: jsonData, encoding: String.Encoding.utf8)</span>
+ <span style="color: #183691;">    let outURL = URL(fileURLWithPath:\"<span>.json\")</span>
+ <span style="color: #183691;">    try json!.write(to: outURL, atomically: true, encoding: String.Encoding.utf8)</span>
+ <span style="color: #183691;">    print(\"wrote </span> <span style="color: #969896;">\\</span> <span style="color: #a71d5d;">(</span> <span style="color: #183691;">outURL)\")"</span>
+    <span style="color: #a71d5d;">:shell-pipe</span>  <span style="color: #183691;">"swift -"</span>))
+</span></span></pre>
+</div>
+
+ <p>
+You can surely solve the same problem in elisp, but hey it's nice to have options and flexibility.
+</p>
+</div>
+</div>
+</div>

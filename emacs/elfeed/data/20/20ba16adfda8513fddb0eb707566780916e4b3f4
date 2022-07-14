@@ -1,0 +1,42 @@
+<div class="content" id="content">
+
+ <div class="outline-2" id="outline-container-png-to-icns-emacs-dwim-style">
+ <h2 id="png-to-icns-emacs-dwim-style"> <span class="timestamp-wrapper"> <span class="timestamp">09 July 2022</span></span> png to icns (Emacs DWIM style)</h2>
+ <div class="outline-text-2" id="text-png-to-icns-emacs-dwim-style">
+
+ <div class="figure" id="org541c54b">
+ <p> <img alt="icns.gif" height="70%" src="https://xenodium.com/images/png-to-icns-emacs-dwim-style/icns.gif" width="70%" /></p>
+</div>
+
+ <p>
+Since  <a href="https://xenodium.com/emacs-dwim-shell-command/">writing a DWIM version of the shell-command</a>, I've been having a little fun  <a href="https://xenodium.com/emacs-password-protect-current-pdf-revisited/">revisiting command line utilities</a> I sometimes invoke from my beloved editor. In this instance, converting a png file to an icns icon. What's more interesting about this case is that it's not just a one-liner, but a short script in itself. Either way, it's just as easy to invoke from Emacs using  <code>dwim-shell-command--on-marked-files</code>.
+</p>
+
+ <div class="org-src-container">
+ <pre class="src src-emacs-lisp">(<span style="color: #a71d5d;">defun</span>  <span style="color: #795da3;">dwim-shell-command-convert-image-to-icns</span> ()
+   <span style="color: #183691;">"Convert png to icns icon."</span>
+  (<span style="color: #a71d5d;">interactive</span>)
+  (dwim-shell-command-on-marked-files
+    <span style="color: #183691;">"Convert png to icns icon"</span>
+    <span style="color: #183691;">"</span>
+ <span style="color: #183691;">    # Based on http://stackoverflow.com/questions/12306223/how-to-manually-create-icns-files-using-iconutil</span>
+ <span style="color: #183691;">    # Note: png must be 1024x1024</span>
+ <span style="color: #183691;">    mkdir <span>.iconset</span>
+ <span style="color: #183691;">    sips -z 16 16 '</span> <span style="color: #0086b3;"><span></span> <span style="color: #183691;">' --out '</span> <span style="color: #0086b3;"><span>.iconset/icon_16x16.png</span> <span style="color: #183691;">'</span>
+ <span style="color: #183691;">    sips -z 32 32 '</span> <span style="color: #0086b3;"><span></span> <span style="color: #183691;">' --out '</span> <span style="color: #0086b3;"><span>.iconset/icon_16x16@2x.png</span> <span style="color: #183691;">'</span>
+ <span style="color: #183691;">    sips -z 32 32 '</span> <span style="color: #0086b3;"><span></span> <span style="color: #183691;">' --out '</span> <span style="color: #0086b3;"><span>.iconset/icon_32x32.png</span> <span style="color: #183691;">'</span>
+ <span style="color: #183691;">    sips -z 64 64 '</span> <span style="color: #0086b3;"><span></span> <span style="color: #183691;">' --out '</span> <span style="color: #0086b3;"><span>.iconset/icon_32x32@2x.png</span> <span style="color: #183691;">'</span>
+ <span style="color: #183691;">    sips -z 128 128 '</span> <span style="color: #0086b3;"><span></span> <span style="color: #183691;">' --out '</span> <span style="color: #0086b3;"><span>.iconset/icon_128x128.png</span> <span style="color: #183691;">'</span>
+ <span style="color: #183691;">    sips -z 256 256 '</span> <span style="color: #0086b3;"><span></span> <span style="color: #183691;">' --out '</span> <span style="color: #0086b3;"><span>.iconset/icon_128x128@2x.png</span> <span style="color: #183691;">'</span>
+ <span style="color: #183691;">    sips -z 256 256 '</span> <span style="color: #0086b3;"><span></span> <span style="color: #183691;">' --out '</span> <span style="color: #0086b3;"><span>.iconset/icon_256x256@2x.png</span> <span style="color: #183691;">'</span>
+ <span style="color: #183691;">    sips -z 512 512 '</span> <span style="color: #0086b3;"><span></span> <span style="color: #183691;">' --out '</span> <span style="color: #0086b3;"><span>.iconset/icon_512x512.png</span> <span style="color: #183691;">'</span>
+ <span style="color: #183691;">    sips -z 512 512 '</span> <span style="color: #0086b3;"><span></span> <span style="color: #183691;">' --out '</span> <span style="color: #0086b3;"><span>.iconset/icon_256x256@2x.png</span> <span style="color: #183691;">'</span>
+ <span style="color: #183691;">    sips -z 1024 1024 '</span> <span style="color: #0086b3;"><span></span> <span style="color: #183691;">' --out '</span> <span style="color: #0086b3;"><span>.iconset/icon_512x512@2x.png</span> <span style="color: #183691;">'</span>
+ <span style="color: #183691;">    iconutil -c icns `</span> <span style="color: #0086b3;"><span>.iconset</span> <span style="color: #183691;">'"</span>
+    <span style="color: #a71d5d;">:utils</span> '(<span style="color: #183691;">"sips"</span>  <span style="color: #183691;">"iconutil"</span>)
+    <span style="color: #a71d5d;">:extensions</span>  <span style="color: #183691;">"png"</span>))
+</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+</div>
+</div>
+</div>
+</div>

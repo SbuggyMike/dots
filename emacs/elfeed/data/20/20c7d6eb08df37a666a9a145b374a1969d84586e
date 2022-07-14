@@ -1,0 +1,111 @@
+<h1 id="table-of-contents">Table of Contents</h1>
+
+<ul>
+  <li><a href="http://yitang.uk/atom.xml#org225f23b">Started Seeing</a></li>
+  <li><a href="http://yitang.uk/atom.xml#org37e639e">Ace-Window</a></li>
+  <li><a href="http://yitang.uk/atom.xml#org71d4c11">Windmove</a></li>
+  <li><a href="http://yitang.uk/atom.xml#org20d1569">Back to where it started</a></li>
+</ul>
+
+<p><a id="org225f23b"></a></p>
+
+<h1 id="started-seeing">Started Seeing</h1>
+
+<p>The good thing about Emacs is that you can always tweak it to suit
+your needs. For years I’ve been doing it for productivity reasons. Now
+for the first time, I’m doing it for health reasons.</p>
+
+<p>Life can be sht sometimes, when I was in my mid 20s, I was reshaping
+every aspects of my life for good. But optician told me my vision can
+only get worse. I wasn’t paying much attention, busy with my first
+job and learning.</p>
+
+<p>Last month, I was told my right eye’s vision got whole point worse,
+whatever that means. Now I’m wearing a new pair of glasses, seeing the
+world in 4K using both eyes, noticing so much details. It makes the
+world so vibrate and exciting. It comes with a price though, my eyes
+get tired quickly, and it become so easy to get annoyed by little
+things.</p>
+
+<p>One of them is switching windows in Emacs. Even though I am in the
+period of calibrating to the new glasses, I decided to take some
+actions.</p>
+
+<p><a id="org37e639e"></a></p>
+
+<h1 id="ace-window">Ace-Window</h1>
+
+<p>Depends on the complexity of the tasks, I usually have about 4-8
+windows laid on my 32 inch monitor. If that’s not enough, I would have
+an additional frame of similar windows layout, doubling the number of
+windows to 8-16.</p>
+
+<p>So I found myself switching between windows all the time. The action
+itself is straightforward with <code>ace-window</code>.</p>
+
+<p>The process can be breakdwon into five steps:</p>
+
+<ol>
+  <li>Invoke <code>ace-window</code> command by pressing F2 key,</li>
+  <li>The Emacs buffers fade-in,</li>
+  <li>A red number pops-up at the top left corner of each window,</li>
+  <li>I press the number key to switch the window it associates with,</li>
+  <li>After that, the content in each Emacs buffer are brought back.</li>
+</ol>
+
+<p>This <a href="http://oremacs.com/download/ace-window.gif">gif</a> from <a href="https://github.com/abo-abo/ace-window">ace-window git repo</a> demonstrates the process.
+<img alt="img" src="http://oremacs.com/download/ace-window.gif" /></p>
+
+<p>This approach depends on visual feedback - I have to look at the
+corner of the window to see the number. Also, the screen flashes
+twice during the process.</p>
+
+<p>I tried removing the background dimming, increase the font size of the
+number to make it easier to see, and bunch of other tweaks.</p>
+
+<p>In the end, my eyes were not satisfied.</p>
+
+<p><a id="org71d4c11"></a></p>
+
+<h1 id="windmove">Windmove</h1>
+
+<p>So I started looking for alternative approaches and found <code>windmove</code>
+which is built-in.</p>
+
+<p>The idea is simple - keep move to the adjacent window by move left,
+right, up, or down until it arrives at the window I want.</p>
+
+<p>So it uses the relative location between windows instead of assigning
+each window a unique number and then using the number for switching.</p>
+
+<p>Is it really better? Well with this approach, I use my eyes a lot less
+as I do not have to look for the number. Plus, I feel this is more
+nature as I do not need to work out the directions, somehow I just
+know I need to move right twice or whatever to get to the destination.</p>
+
+<p>The only issue I had so far is the conflicts with org-mode’s
+calendar. I like the keybinding in org-mode, so I disabled <code>windmove</code>
+in org-mode’s calendar with the help from <a href="https://emacs.stackexchange.com/questions/22286/shiftarrow-to-change-window-does-not-work-in-org-mode">this stackoverflow question</a>.</p>
+
+<p>The following five lines of code is all I need to use <code>windmove</code>.</p>
+
+<figure class="highlight"><pre><code class="language-emacs-lisp"><span class="p">(</span><span class="nv">windmove-default-keybindings</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">define-key</span> <span class="nv">org-read-date-minibuffer-local-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"&lt;left&gt;"</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span> <span class="p">(</span><span class="nv">org-eval-in-calendar</span> <span class="o">'</span><span class="p">(</span><span class="nv">calendar-backward-day</span> <span class="mi">1</span><span class="p">))))</span>
+<span class="p">(</span><span class="nv">define-key</span> <span class="nv">org-read-date-minibuffer-local-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"&lt;right&gt;"</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span> <span class="p">(</span><span class="nv">org-eval-in-calendar</span> <span class="o">'</span><span class="p">(</span><span class="nv">calendar-forward-day</span> <span class="mi">1</span><span class="p">))))</span>
+<span class="p">(</span><span class="nv">define-key</span> <span class="nv">org-read-date-minibuffer-local-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"&lt;up&gt;"</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span> <span class="p">(</span><span class="nv">org-eval-in-calendar</span> <span class="o">'</span><span class="p">(</span><span class="nv">calendar-backward-week</span> <span class="mi">1</span><span class="p">))))</span>
+<span class="p">(</span><span class="nv">define-key</span> <span class="nv">org-read-date-minibuffer-local-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"&lt;down&gt;"</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span> <span class="p">(</span><span class="nv">org-eval-in-calendar</span> <span class="o">'</span><span class="p">(</span><span class="nv">calendar-forward-week</span> <span class="mi">1</span><span class="p">))))</span></code></pre></figure>
+
+<p>I created an git branch for switching from <code>ace-window</code> to
+<code>windmove</code>. I would try it for a month before merge it into master
+branch.</p>
+
+<p><a id="org20d1569"></a></p>
+
+<h1 id="back-to-where-it-started">Back to where it started</h1>
+
+<p>After using it for few days, I realised this is the very package I
+used for switch windows back in 2014 when I started learning Emacs.  I
+later then switched to ace-window because it looks pretty cool.</p>
+
+<p>Life is changing, my perspectives are changing, so is my Emacs
+configuration. This time, it goes back to where I started 8 years ago.</p>

@@ -1,0 +1,138 @@
+<blockquote><em>Git Delta</em> is a command line utility that beautifies git diffs in the
+terminal. But did you know that it can do the same in Magit too?</blockquote><div class="ox-hugo-toc toc">
+<div class="heading">Table of Contents</div>
+<ul>
+<li><a href="https://scripter.co/categories/emacs/atom.xml#installing-delta">Installing <code>delta</code></a></li>
+<li><a href="https://scripter.co/categories/emacs/atom.xml#installing-magit-delta">Installing <code>magit-delta</code></a></li>
+<li><a href="https://scripter.co/categories/emacs/atom.xml#configuring-delta">Configuring <code>delta</code></a></li>
+</ul>
+</div>
+
+<p><a href="https://github.com/dandavison/delta">Delta</a> is a highly configurable
+<span class="sidenote-number"><small class="sidenote">
+I am not kidding. Check out the output of <a href="https://dandavison.github.io/delta/full---help-output.html"><code>delta --help</code></a>.
+</small></span>
+command line utility that makes the git diffs look better, while also
+syntax-highlighting
+<span class="sidenote-number"><small class="sidenote">
+<a href="https://github.com/Wilfred/difftastic/">Difftastic</a> is another popular diff tool which compares files based on
+their syntax. I like reviewing <em>git diffs</em> from within Emacs
+(Magit). But <em>difftastic</em> <a href="https://github.com/Wilfred/difftastic/issues/251">does not support Magit</a>.
+</small></span>
+the code in the diffs.</p>
+<p>When I first heard of “syntax highlighted diffs”, I wasn’t sure what
+that meant. If you are in the same boat, here’s a screenshot that
+shows that.</p>
+<p><a id="figure--git-delta-example"></a></p>
+
+
+
+<figure>
+    <a href="https://scripter.co/categories/emacs/delta-example.png">
+        <img alt="Figure 1: Example of how delta renders a git diff for an ox-hugo commit" src="https://scripter.co/using-git-delta-with-magit/delta-example.png" /> </a>
+                <p>
+                    <span class="figure-number">Figure 1: </span>Example of how <code>delta</code> renders a <em>git diff</em> for an <code>ox-hugo</code> commit
+                    
+                        
+                        </p>
+                
+            </figure>
+
+<p>But I do most of my git operations including viewing of diffs from
+within Emacs, using <a href="https://magit.vc">Magit</a>.</p>
+<div class="verse">
+<p>        .. and thankfully <em>delta</em> <a href="https://dandavison.github.io/delta/using-delta-with-magit.html">works with Magit</a>!<br /></p>
+</div>
+<p>Below screenshot shows how the same diff looks like in Magit.</p>
+<p><a id="figure--git-magit-delta-example"></a></p>
+
+
+
+<figure>
+    <a href="https://scripter.co/categories/emacs/magit-delta-example.png">
+        <img alt="Figure 2: Example of how magit-delta renders a git diff for an ox-hugo commit" src="https://scripter.co/using-git-delta-with-magit/magit-delta-example.png" /> </a>
+                <p>
+                    <span class="figure-number">Figure 2: </span>Example of how <code>magit-delta</code> renders a <em>git diff</em> for an <code>ox-hugo</code> commit
+                    
+                        
+                        </p>
+                
+            </figure>
+
+<p>The <a href="https://github.com/dandavison/magit-delta"><code>magit-delta</code></a> Emacs package makes this possible, which is also
+developed by the <code>delta</code> author Dan Davison.</p>
+<dl>
+<dt>Caveat</dt>
+<dd>If the line numbers are enabled in <code>delta</code>, they mess up
+the interactive expanding and collapsing of diffs in Magit. See
+<a href="https://github.com/dandavison/magit-delta/issues/13#issuecomment-949820122">Magit Delta Issue # 13</a> for more details.</dd>
+</dl>
+<p>Now, I am alright with not seeing the line numbers in Magit. But I
+really liked to see the line numbers in the side-by-side view in the
+terminal. Luckily, if disabled the <code>line-numbers</code> feature but enabled
+the <code>side-by-side</code> view, I got what I wanted!</p>
+<ol>
+<li>Line numbers are disabled in Magit and expanding/collapsing of
+diffs works correctly. <em>I am also really glad that I don’t see the
+side-by-side view in Magit diffs even when I enable that feature in
+<code>delta</code>, because I like to have my Emacs buffers only about 90
+characters wide.</em></li>
+<li>Line numbers <strong>and</strong> side-by-side view are enabled in the terminal.</li>
+</ol>
+<p>I’ll end this post with pointers to installing <code>delta</code> and
+<code>magit-delta</code> and how to configure them.</p>
+
+<h2 id="installing-delta">Installing <code>delta</code> <a class="headline-hash no-text-decoration" href="https://scripter.co/categories/emacs/atom.xml#installing-delta">#</a></h2>
+
+
+<p>You can install <code>delta</code> (it’s called <code>git-delta</code> in some package
+managers) using one of the methods listed <a href="https://dandavison.github.io/delta/installation.html">in its manual</a>, or you can
+download → extract its statically compiled binary for your OS from its
+<a href="https://github.com/dandavison/delta/releases">GitHub Releases</a> page.</p>
+
+<h2 id="installing-magit-delta">Installing <code>magit-delta</code> <a class="headline-hash no-text-decoration" href="https://scripter.co/categories/emacs/atom.xml#installing-magit-delta">#</a></h2>
+
+
+<p>Once you put this snippet in your Emacs config and evaluate it, it
+will install this package and enable the <code>magit-delta-mode</code> in the
+Magit buffers.</p>
+<p><a id="code-snippet--enabling-magit-delta"></a></p>
+<div class="highlight"><pre class="chroma" tabindex="0"><code class="language-emacs-lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">magit-delta</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">:hook</span> <span class="p">(</span><span class="nv">magit-mode</span> <span class="o">.</span> <span class="nv">magit-delta-mode</span><span class="p">))</span>
+</span></span></code></pre></div><div class="src-block-caption">
+  <span class="src-block-number"><a href="https://scripter.co/categories/emacs/atom.xml#code-snippet--enabling-magit-delta">Code Snippet 1</a>:</span>
+  Installing and enabling <code>magit-delta</code> using <code>use-package</code>
+</div>
+
+<h2 id="configuring-delta">Configuring <code>delta</code> <a class="headline-hash no-text-decoration" href="https://scripter.co/categories/emacs/atom.xml#configuring-delta">#</a></h2>
+
+
+<p>Here’s a snippet for <code>delta</code> configuration from my <code>.gitconfig</code>. It’s
+mostly the same as the one in <em>delta</em>’s the <a href="https://github.com/dandavison/delta#get-started">Getting Started</a> guide. The
+main difference in my workaround for the <code>magit-delta</code> issue.</p>
+<p><a id="code-snippet--delta-gitconfig"></a></p>
+<div class="highlight"><pre class="chroma" tabindex="0"><code class="language-sh"><span class="line"><span class="cl"><span class="o">[</span>core<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">pager</span> <span class="o">=</span> delta
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>interactive<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">diffFilter</span> <span class="o">=</span> delta --color-only
+</span></span><span class="line"><span class="cl"><span class="o">[</span>add.interactive<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">useBuiltin</span> <span class="o">=</span> <span class="nb">false</span> <span class="c1"># required for git 2.37.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>diff<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">colorMoved</span> <span class="o">=</span> default
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>delta<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># https://github.com/dandavison/magit-delta/issues/13</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># line-numbers = true    # Don't do this.. messes up diffs in magit</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#</span>
+</span></span><span class="line"><span class="cl">    side-by-side <span class="o">=</span> <span class="nb">true</span>      <span class="c1"># Display a side-by-side diff view instead of the traditional view</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># navigate = true          # Activate diff navigation: use n to jump forwards and N to jump backwards</span>
+</span></span><span class="line"><span class="cl">    relative-paths <span class="o">=</span> <span class="nb">true</span>    <span class="c1"># Output all file paths relative to the current directory</span>
+</span></span><span class="line"><span class="cl">    file-style <span class="o">=</span> yellow
+</span></span><span class="line"><span class="cl">    hunk-header-style <span class="o">=</span> line-number syntax
+</span></span></code></pre></div><div class="src-block-caption">
+  <span class="src-block-number"><a href="https://scripter.co/categories/emacs/atom.xml#code-snippet--delta-gitconfig">Code Snippet 2</a>:</span>
+  My configuration for <code>delta</code> in <code>.gitconfig</code>
+</div>

@@ -1,0 +1,3 @@
+This is what happens when you pause in Reaper:
+The snapping is me seeking with my mouse (I forgot to include the mouse cursor while recording). When starting playback again, it always starts from the same point.
+This is a reasonable default, but sometimes I might want it to not snap back to where I started playback, like the “After stopping keep position” mode in LMMS:

@@ -1,0 +1,28 @@
+<div class="content" id="content">
+
+ <div class="outline-2" id="outline-container-emacs-zones-to-lift-you-up">
+ <h2 id="emacs-zones-to-lift-you-up"> <span class="timestamp-wrapper"> <span class="timestamp">13 July 2022</span></span> Emacs zones to lift you up</h2>
+ <div class="outline-text-2" id="text-emacs-zones-to-lift-you-up">
+
+ <div class="figure" id="org8beb67f">
+ <p> <img alt="zone.gif" height="90%" src="https://xenodium.com/images/emacs-zoneb-tob-lift-you-up/zone.gif" width="90%" /></p>
+</div>
+
+ <p>
+As I prune my  <a href="https://github.com/xenodium/dotsies/">Emacs config</a> off, I came across a forgotten bit of elisp I wrote about 6 years ago. While it's not going to power up your Emacs fu, it may lift your spirits, or maybe just aid discovery of new words.
+</p>
+
+ <p>
+You see, I had forgotten about  <a href="https://github.com/emacs-mirror/emacs/blob/master/lisp/play/zone.el">zone.el</a> altogether: a fabulous package to tickle your heart. You can think of it as screensaver built into Emacs.
+</p>
+
+ <p>
+If the built-in zones don't do it for ya, check out the few on melpa ( <a href="https://depp.brause.cc/zone-nyan/">nyan</a>,  <a href="https://github.com/kawabata/zone-sl">sl</a>, and  <a href="https://xenodium.com/added-emacs-zone-rainbow/">rainbow</a>).
+</p>
+
+ <p>
+So, my nostalgic bit of elisp dates  <code>Jun 17 2016</code>: a basic but functional zone ( <a href="https://github.com/xenodium/dotsies/blob/main/emacs/ar/zone-words.el">zone-words</a>), displaying words from  <a href="http://wordnet.princeton.edu/">WordNet</a>. Surely the package can use plenty of improvements ( <a href="https://github.com/xenodium/dotsies/commit/00215e215be1413ea9d0085dd2de5123c635b8c0">here's one</a>), but hey this is Emacs and pretty much all existing code will run, no matter how old. In Emacs time, 2016 is practically yesterday!
+</p>
+</div>
+</div>
+</div>

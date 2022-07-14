@@ -1,0 +1,86 @@
+<p>“Iosevka Comfy” is the name of my collection of custom typefaces,
+derived <a href="https://github.com/be5invis/iosevka">from Iosevka</a>.  It
+addresses the pain points (however small) I have had with all other
+libre fonts, including Hack, Source Code Pro, Fira Mono/Code, and
+upstream Iosevka’s numerous stylistic variants.</p>
+
+<p>My project’s README, describes all the technicalities about the goal of
+Iosevka Comfy, its particularities, the multiple build files it
+provides, and the differences between them.  The very short description
+is:</p>
+
+<blockquote>
+  <p>[…] with a rounded style and open shapes, adjusted metrics, and
+overrides for almost all individual glyphs in both roman (upright) and
+italic (slanted) variants.</p>
+</blockquote>
+
+<ul>
+  <li>Git repo on SourceHut: <a href="https://git.sr.ht/~protesilaos/iosevka-comfy">https://git.sr.ht/~protesilaos/iosevka-comfy</a>
+    <ul>
+      <li>Mirrors:
+        <ul>
+          <li>GitHub: <a href="https://github.com/protesilaos/iosevka-comfy">https://github.com/protesilaos/iosevka-comfy</a></li>
+          <li>GitLab: <a href="https://gitlab.com/protesilaos/iosevka-comfy">https://gitlab.com/protesilaos/iosevka-comfy</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Mailing list: <a href="https://lists.sr.ht/~protesilaos/general-issues">https://lists.sr.ht/~protesilaos/general-issues</a></li>
+</ul>
+
+<p>While not specific to Emacs, Iosevka Comfy is an integral part of <em>my
+Emacs experience</em>: these are the only fonts I use as they complement my
+efforts to have highly legible interfaces that are consistent and devoid
+of exaggerations (per my <code>modus-themes</code>).</p>
+
+<p>Below are the release notes.</p>
+
+<hr />
+
+<ul>
+  <li>
+    <p>Updated the screenshots that compare Iosevka Comfy to regular Iosevka.
+They show how the former is more vertically compact than the latter,
+while also exhibiting the stylistic differences between the two.  Make
+sure to view the images in full screen mode, otherwise the characters
+may be distorted.</p>
+  </li>
+  <li>
+    <p>Iosevka Comfy comes in “narrow” and “wide” variants.  As the latter
+have different requirements, we optimise for them instead of enforcing
+a misguided one-size-fits-all.  Concretely, the README explains thus:</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Deviations from the regular style</p>
+
+  <p>The variants of Iosevka Comfy are subdivided into “narrow” and “wide”.
+The former consists of <code>iosevka-comfy</code> and <code>iosevka-comfy-fixed</code>.  The
+latter includes <code>iosevka-comfy-wide</code>, <code>iosevka-comfy-wide-fixed</code>, and
+the quasi-proportional <code>iosevka-comfy-duo</code>.</p>
+
+  <p>Due to the relaxed spacing requirements and concomitant legibility
+considerations, the wide variants have stylistic deviations from their
+counterparts.  In detail:</p>
+
+  <ul>
+    <li>
+      <p>The <code>m</code> character has three legs of equal length, insetad of a shorter
+middle leg.  The short middle leg in the narrow variants is necessary
+for legibility, especially at small point sizes (otherwise the
+character’s legs visually blend into what appears to be a solid
+block).</p>
+    </li>
+    <li>
+      <p>The <code>0</code> has a forward slash that cuts diagonally through the middle of
+the circle, connecting the bottom left part to the top right of the
+oval shape.  Whereas the narrow variants have a dashed forward slash
+which does not connect the two sides as it is positioned inside the
+oval shape.</p>
+    </li>
+  </ul>
+</blockquote>
+
+<p>Done using upstream version <code>v15.5.2</code>, commit <code>a0f82f14</code>.</p>

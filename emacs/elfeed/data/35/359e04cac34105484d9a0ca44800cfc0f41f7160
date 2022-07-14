@@ -1,0 +1,91 @@
+<p><img alt="Screenshot of stylized tab bar" src="http://www.gonsie.com/images/tab-bar.png" title="Tab Bar" /></p>
+
+<p>Emacs 27.1 introduced a tab bar and I finally got around to trying it out.
+I found it particularly useful for switching between a few buffers quickly, particularly because I have muscle memory for the Safari tab keybindings (which I set for Emacs tabs).</p>
+
+<p>I must say, the implementation is really nice.
+Ultimately customizable (a la everything Emacs).
+It also has some nice interactions with the mouse (if that’s your jam).
+You can use drag-and-drop to change tab ordering!</p>
+
+<h2 id="basic-key-bindings">Basic Key Bindings</h2>
+
+<p>This was the first thing I setup, especially since I knew exactly what I wanted.
+These mirror Safari’s tab keybindings.</p>
+
+<figure class="highlight"><pre><code class="language-elisp"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"s-{"</span><span class="p">)</span> <span class="ss">'tab-bar-switch-to-prev-tab</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"s-}"</span><span class="p">)</span> <span class="ss">'tab-bar-switch-to-next-tab</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"s-t"</span><span class="p">)</span> <span class="ss">'tab-bar-new-tab</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"s-w"</span><span class="p">)</span> <span class="ss">'tab-bar-close-tab</span><span class="p">)</span></code></pre></figure>
+
+<p>The <code class="language-plaintext highlighter-rouge">s-</code> prefix key is the “command ⌘” key on a Mac.</p>
+
+<p>I think <code class="language-plaintext highlighter-rouge">s-w</code> is set to <code class="language-plaintext highlighter-rouge">kill-emacs</code> or <code class="language-plaintext highlighter-rouge">delete-frame</code> something similar by default.
+I personally never want that to happen so I’ve had those functions and keybinding disabled for years now.
+I also had <code class="language-plaintext highlighter-rouge">s-{</code> and <code class="language-plaintext highlighter-rouge">s-}</code> bound to switch between frames (<code class="language-plaintext highlighter-rouge">other-frame</code>), but I usually use the Emacs GUI in full screen mode, so using these for tabs makes more sense.
+At least for right now.</p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Of course, the tab bar comes with a bunch of customizable settings.
+I’m using:</p>
+
+<figure class="highlight"><pre><code class="language-elisp"><span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">&lt;</span> <span class="mi">26</span> <span class="nv">emacs-major-version</span><span class="p">)</span>
+ <span class="p">(</span><span class="nv">tab-bar-mode</span> <span class="mi">1</span><span class="p">)</span>                           <span class="c1">;; enable tab bar</span>
+ <span class="p">(</span><span class="k">setq</span> <span class="nv">tab-bar-show</span> <span class="mi">1</span><span class="p">)</span>                      <span class="c1">;; hide bar if &lt;= 1 tabs open</span>
+ <span class="p">(</span><span class="k">setq</span> <span class="nv">tab-bar-close-button-show</span> <span class="no">nil</span><span class="p">)</span>       <span class="c1">;; hide tab close / X button</span>
+ <span class="p">(</span><span class="k">setq</span> <span class="nv">tab-bar-new-tab-choice</span> <span class="s">"*dashboard*"</span><span class="p">)</span><span class="c1">;; buffer to show in new tabs</span>
+ <span class="p">(</span><span class="k">setq</span> <span class="nv">tab-bar-tab-hints</span> <span class="no">t</span><span class="p">)</span>                 <span class="c1">;; show tab numbers</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">tab-bar-format</span> <span class="o">'</span><span class="p">(</span><span class="nv">tab-bar-format-tabs</span> <span class="nv">tab-bar-separator</span><span class="p">)))</span>
+                                            <span class="c1">;; elements to include in bar</span></code></pre></figure>
+
+<p>The <code class="language-plaintext highlighter-rouge">when</code> clause wrapping these settings ensures my configuration is maximally compatible with <a href="http://www.gonsie.com/blorg/feeds/emacs-v22.html">all modern Emacs versions</a>.
+I figured out these settings through a combination of looking at the <code class="language-plaintext highlighter-rouge">*Customize*</code> menu for Tab Bar and reading the help documentation for each variable.</p>
+
+<p>One setting I really like (but am not using right now), is the ability to have a “Menu” button in the tab bar.
+This is achieved by adding <code class="language-plaintext highlighter-rouge">tab-bar-format-menu-bar</code> at the beginning of the <code class="language-plaintext highlighter-rouge">tab-bar-format</code> value list.</p>
+
+<h2 id="theme">Theme</h2>
+
+<p>I worked really hard on my <a href="http://www.gonsie.com/blorg/feeds/modeline.html">modeline</a> and I can reuse all that styling!
+This is the snippet from my personal dusk theme<sup><a class="footref" href="http://www.gonsie.com/blorg/feeds/emacs.xml#fn.1" id="fnr.1">1</a></sup>:</p>
+
+<figure class="highlight"><pre><code class="language-elisp"><span class="c1">;; modeline settings</span>
+<span class="o">'</span><span class="p">(</span><span class="nv">mode-line</span> <span class="p">((</span><span class="no">t</span> <span class="p">(</span><span class="ss">:underline</span> <span class="no">nil</span> <span class="ss">:overline</span> <span class="no">nil</span> <span class="ss">:box</span> <span class="p">(</span><span class="ss">:line-width</span> <span class="mi">8</span> <span class="ss">:color</span> <span class="s">"#353644"</span> <span class="ss">:style</span> <span class="no">nil</span><span class="p">)</span> <span class="ss">:foreground</span> <span class="s">"white"</span> <span class="ss">:background</span> <span class="s">"#353644"</span><span class="p">))))</span>
+<span class="o">'</span><span class="p">(</span><span class="nv">mode-line-buffer-id</span> <span class="p">((</span><span class="no">t</span> <span class="p">(</span><span class="ss">:weight</span> <span class="nv">bold</span><span class="p">))))</span>
+<span class="o">'</span><span class="p">(</span><span class="nv">mode-line-emphasis</span> <span class="p">((</span><span class="no">t</span> <span class="p">(</span><span class="ss">:weight</span> <span class="nv">bold</span><span class="p">))))</span>
+<span class="o">'</span><span class="p">(</span><span class="nv">mode-line-highlight</span> <span class="p">((((</span><span class="nc">class</span> <span class="nv">color</span><span class="p">)</span> <span class="p">(</span><span class="nv">min-colors</span> <span class="mi">88</span><span class="p">))</span> <span class="p">(</span><span class="ss">:box</span> <span class="p">(</span><span class="ss">:line-width</span> <span class="mi">2</span> <span class="ss">:color</span> <span class="s">"grey40"</span> <span class="ss">:style</span> <span class="nv">released-button</span><span class="p">)))</span> <span class="p">(</span><span class="no">t</span> <span class="p">(</span><span class="ss">:inherit</span> <span class="p">(</span><span class="nv">highlight</span><span class="p">)))))</span>
+<span class="o">'</span><span class="p">(</span><span class="nv">mode-line-inactive</span> <span class="p">((</span><span class="no">t</span> <span class="p">(</span><span class="ss">:weight</span> <span class="nv">light</span> <span class="ss">:underline</span> <span class="no">nil</span> <span class="ss">:overline</span> <span class="no">nil</span> <span class="ss">:box</span> <span class="p">(</span><span class="ss">:line-width</span> <span class="mi">8</span> <span class="ss">:color</span> <span class="s">"#565063"</span> <span class="ss">:style</span> <span class="no">nil</span><span class="p">)</span> <span class="ss">:foreground</span> <span class="s">"white"</span> <span class="ss">:background</span> <span class="s">"#565063"</span> <span class="ss">:inherit</span> <span class="p">(</span><span class="nv">mode-line</span><span class="p">)))))</span>
+<span class="c1">;; tab bar settings</span>
+<span class="o">'</span><span class="p">(</span><span class="nv">tab-bar</span> <span class="p">((</span><span class="no">t</span> <span class="p">(</span><span class="ss">:inherit</span> <span class="nv">mode-line</span><span class="p">))))</span>
+<span class="o">'</span><span class="p">(</span><span class="nv">tab-bar-tab</span> <span class="p">((</span><span class="no">t</span> <span class="p">(</span><span class="ss">:inherit</span> <span class="nv">mode-line</span> <span class="ss">:foreground</span> <span class="s">"white"</span><span class="p">))))</span>
+<span class="o">'</span><span class="p">(</span><span class="nv">tab-bar-tab-inactive</span> <span class="p">((</span><span class="no">t</span> <span class="p">(</span><span class="ss">:inherit</span> <span class="nv">mode-line-inactive</span> <span class="ss">:foreground</span> <span class="s">"black"</span><span class="p">))))</span></code></pre></figure>
+
+<h2 id="binding-the-tab-hint-numbers">Binding the Tab Hint Numbers</h2>
+
+<p>I have a pretty wonky keybinding setup, where I create my own minor mode key map and use that by default (as recommended by this <a href="https://emacs.stackexchange.com/questions/352/how-to-override-major-mode-bindings/360#360">stackexchange post</a>).
+Here I use <code class="language-plaintext highlighter-rouge">(setq mac-command-modifier 'super)</code>.</p>
+
+<p>The tab bar documentation indicates that to enable pressing <code class="language-plaintext highlighter-rouge">⌘-1</code> (or <code class="language-plaintext highlighter-rouge">s-1</code> as Emacs sees it) to switch to tab number 1 I would need:</p>
+
+<figure class="highlight"><pre><code class="language-elisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">tab-bar-select-tab-modifiers</span> <span class="s">"super"</span><span class="p">)</span></code></pre></figure>
+
+<p>But this didn’t work for me.
+Instead, I bound each super-number combination (<code class="language-plaintext highlighter-rouge">s-1</code> through <code class="language-plaintext highlighter-rouge">s-0</code>) to <code class="language-plaintext highlighter-rouge">tab-bar-select-tab</code> and it works!</p>
+
+<h2 id="final-comments">Final Comments</h2>
+
+<p>As I mentioned above, the tab bar implementation is really nice.
+This reflects the high standards that the Emacs community and developers have, especially for anything that becomes built in.
+I was able to do all of this implementation and blogging while flying back from a semi-vacation in Greece (where I spent a lot of time improving my blog, if you didn’t notice).
+An editor with completely built-in documentation and an interface for configuring / customizing is really, really pleasant.
+Not needing the internet to do something productive feels increasingly rare.</p>
+
+<h2 id="footnotes">Footnotes</h2>
+
+<p><sup><a href="http://www.gonsie.com/blorg/feeds/emacs.xml#fnr.1" id="fn.1">1</a></sup> Back when I wrote about <a href="http://www.gonsie.com/blorg/feeds/cl-deprecated.html">package cl being deprecated</a>, I noted that the way I define my theme was outdated.
+I finally got around to modernizing it, but never wrote about the process.
+I’m not sure a blog post would be useful, since I’m guessing most readers use existing theme packages.
+I did start with the <code class="language-plaintext highlighter-rouge">customize-create-theme</code> function, which made the process of porting my old color-theme definition to the modern customize format trivial.</p>
+
+<p>You can view my theme in my <a href="https://github.com/gonsie/dotfiles/blob/master/emacs/dusk-theme.el">dotfiles GitHub repo</a>.</p>

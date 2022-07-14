@@ -1,0 +1,144 @@
+<p>As I get this question periodically, it is best to record my approach
+here.  That way I can provide a link instead of writing a full reply
+each time.</p>
+
+<p>On Arch we can build custom packages cleanly by writing a <code>PKGBUILD</code>.
+This is a shell script that fetches the source and prepares it for
+installation.  In the case of Emacs, we do not need to write the entire
+script ourselves: the community-driven Arch User Repository (AUR)
+already includes the <code>emacs-git</code> package.</p>
+
+<p>As we likely want to customise certain aspects of the build, <code>emacs-git</code>
+should not be installed as-is (and generally one ought to always inspect
+what they install from the AUR).  Instead, we must fetch the <code>PGBUILD</code>
+source, edit it, and build the package from there.  This requires the
+<code>base-devel</code> package group.  The resulting output is a regular package
+as far as the <code>pacman</code> is concerned.</p>
+
+<p>We get the build script:</p>
+
+<pre><code>git clone https://aur.archlinux.org/emacs-git.git/ path/to/emacs-git-aur
+</code></pre>
+
+<p>Then we change to the <code>emacs-git-aur</code> directory and visit the <code>PKGBUILD</code>
+file.  It is properly annotated so one must <strong>read all the comments
+carefully</strong> to understand what each variable pertains to.</p>
+
+<p>As of this writing, I am experimenting (again) with the PGTK build and
+am running various Wayland DEs/compositors, including GNOME 42, so I
+made this change:</p>
+
+<pre><code class="language-diff"> PKGBUILD | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/PKGBUILD b/PKGBUILD
+index a084fc0..0430a5b 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -45,9 +45,9 @@ GPM=              # Mouse support in Linux console using gpmd.
+ NOTKIT=           # Use no toolkit widgets. Like B&amp;W Twm (001d sk00l).
+                   # Bitmap fonts only, 1337!
+
+-PGTK=             # Use native GTK3 build. Supports Wayland, yay!
++PGTK="YES"        # Use native GTK3 build. Supports Wayland, yay!
+
+-GTK3="YES"        # GTK3 old windowing interface.
++GTK3=             # GTK3 old windowing interface.
+
+ LUCID=            # Use the lucid, a.k.a athena, toolkit. Like XEmacs, sorta.
+                   #
+</code></pre>
+
+<p>I already want native compilation, which the script already enables, so
+the above diff is enough.  The next step is to build the package
+outright (<code>$</code> refers to regular user privileges):</p>
+
+<pre><code>/path/to/emacs-git-aur $ makepkg -siC
+</code></pre>
+
+<p>Remember to check <code>makepkg --help</code> to understand what those flags do.
+Basically, the <code>-C</code> is not necessary here, but I added it just to be
+sure (it is required for clean builds).</p>
+
+<p>As a final step, <code>makepkg</code> will prompt to install the package and ask to
+escalate privileges.  In case we miss that part, we do not need to
+restart the whole process.  The easier way is to check the directory we
+are in for a file named <code>emacs-git-29.0.50.157962-1-x86_64.pkg.tar.zst</code>
+or something like that and run the following (<code>#</code> denotes superuser
+privileges):</p>
+
+<pre><code>/path/to/emacs-git-aur # pacman -U emacs-git-29.0.50.157962-1-x86_64.pkg.tar.zst
+</code></pre>
+
+<p><strong>The first build will take a long time</strong>, especially with native
+compilation enabled, but subsequent ones shall be faster (I wrote this
+blog post while waiting for it).</p>
+
+<p>Rebuilding a package automatically fetches the updates.  All we ever
+need is to re-run <code>makepkg -si</code> (occasionally with <code>-C</code> included).
+However, as time goes by, we might also have to check the <code>PKGBUILD</code> for
+updates, such as when new build options are added upstream.  No problem!
+We just <code>git pull</code> from the source we cloned earlier (the
+<code>https://aur.archlinux.org/emacs-git.git/</code>).  Again, the rest is all
+about scrutinising the <code>PKGBUILD</code> and running <code>makepkg</code>.</p>
+
+<h2>My unsophisticated approach to multiple builds of Emacs</h2>
+
+<p>The above are enough for my own usage.  As I maintain <a href="https://protesilaos.com/emacs">lots of package
+for Emacs</a>, I need to keep Emacs 27 and
+28 around to test things.  Rather than install the different binaries
+and handle the separate <code>.desktop</code> entries, I do the poor programmer’s
+trick of building but not installing anything.</p>
+
+<p>We download the tarball from a GNU mirror as explained on <a href="https://www.gnu.org/software/emacs/download.html">the official
+Emacs website</a>.  For
+this example I am using <code>emacs-26.3.tar.xz</code>.  We unpack it into a target
+directory and switch to it.  The <code>INSTALL</code> file which found at the root
+of that directory provides all the information we need.</p>
+
+<p>Assuming all the dependencies are satisfied, these shell invocations are
+enough:</p>
+
+<pre><code>path/to/emacs-26.3 $ ./configure
+path/to/emacs-26.3 $ make
+</code></pre>
+
+<p>Normally we would install the build artefacts, but since this executable
+is only needed for testing purposes, we can stop at the <code>make</code> step
+(plus, a generic <code>make install</code> does not produce a valid package for
+<code>pacman</code>).</p>
+
+<p>After <code>make</code>, the <code>emacs</code> executable is inside the <code>src</code> directory.  If
+we ever need to run it, we do:</p>
+
+<pre><code>path/to/emacs-26.3/src $ ./emacs
+</code></pre>
+
+<p>And because this is for testing purposes, the addition of the <code>-Q</code> flag
+is the norm:</p>
+
+<pre><code>path/to/emacs-26.3/src $ ./emacs -Q
+</code></pre>
+
+<h2>Learning about the Emacs build options</h2>
+
+<p>The above is a streamlined experienced that I have been using for more
+than a year now on a regular basis.  I have never had a need to delve
+into the minutia.  If, however, one wants to do that then the
+authoritative sources are the <code>INSTALL</code> and <code>INSTALL.REPO</code> files in the
+Emacs repository:</p>
+
+<pre><code>git clone https://git.savannah.gnu.org/git/emacs.git
+</code></pre>
+
+<p>The former is for tarballs, such as the above example with Emacs 26
+while the latter is for tracking the development version.</p>
+
+<p>For example, the <code>INSTALL.REPO</code> tells you how to list all the build
+instructions and relevant environment variables once the <code>configure</code>
+script has been produced:</p>
+
+<pre><code>path/to/emacs.git $ ./configure --help
+</code></pre>
+
+<p>Read the sources for the details.  Good luck!</p>

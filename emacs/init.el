@@ -160,6 +160,9 @@
 ;; org-agenda
 (global-set-key (kbd "C-c a") 'org-agenda)
 
+;;; go back to last clock
+(global-set-key (kbd "C-c ol") 'org-clock-in-last)
+
 ;; org capture
 (global-set-key (kbd "C-c c") 'counsel-org-capture)
 (setq org-default-notes-file "~/life_org/capture.org")

@@ -1,0 +1,61 @@
+<details class="toc-inpage d-print-none " open="open">
+Table of Contents
+<nav id="TableOfContents">
+<ul>
+<li><a href="https://francopasut.netlify.app/tag/emacs/index.xml#to-jump-between-matching-pairs-using-vimhttpswwwvimorg">To jump between matching pairs using </a><a href="https://www.vim.org/">Vim</a></li>
+<li><a href="https://francopasut.netlify.app/tag/emacs/index.xml#to-jump-between-matching-pairs-using-gnuemacshttpswwwgnuorgsoftwareemacs">To jump between matching pairs using </a><a href="https://www.gnu.org/software/emacs/">GNU/Emacs</a></li>
+<li><a href="https://francopasut.netlify.app/tag/emacs/index.xml#summary-for-vim-and-emacs">Summary for Vim and Emacs</a></li>
+</ul>
+</nav>
+</details>
+<p>It is very useful to jump through corresponding pairs of characters, such as parentheses or quotation marks or even tags, when coding or writing in a markup language such as HTML, Markdown or LaTeX.</p>
+<p>Both Vim and Emacs have dedicated commands for this purpose.</p>
+<h2 id="to-jump-between-matching-pairs-using-vimhttpswwwvimorg">To jump between matching pairs using <a href="https://www.vim.org/" rel="noopener" target="_blank">Vim</a></h2>
+<p>Vim uses a “single character” command to jump to the nearest pairs of corresponding characters and to place the cursor into the closing one: <code>%</code>.</p>
+<p>For instance: let’s assume that the cursor is placed at the beginning of the following sentence:</p>
+<blockquote>
+<p>If you want to write your own use the contents of [syntax-ppss (point)]</p>
+</blockquote>
+<p>When you press <code>%</code> your cursor jumps to the corresponding closing square bracket.</p>
+<p>If you press <code>%</code> another time the cursor jumps back to the opening corresponding square bracket.</p>
+<p>If you place the cursor everywhere inside the square brackets and press <code>%</code> it jumps to the closing round bracket.</p>
+<p>Naturally, if you press another time the <code>%</code> command the cursor jumps to the opening corresponding round bracket.</p>
+<p>The same behavior applies for environment tags in some markup languages, such the <code>quote</code> one in LaTeX with <a href="https://github.com/lervag/vimtex" rel="noopener" target="_blank">VimTeX</a> plugin (about the “quote” environment in LaTeX you can read <a href="https://francopasut-en.blogspot.com/2016/07/quote-quotation-quoting-in-latex.html" rel="noopener" target="_blank">this article of mine</a>):</p>
+<div class="highlight"><pre class="chroma" tabindex="0"><code class="language-mysql"><span class="line"><span class="cl"><span class="err">\</span><span class="n">begin</span><span class="err">{</span><span class="n">quote</span><span class="err">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Some</span><span class="w"> </span><span class="kt">text</span><span class="w"> </span><span class="n">inside</span><span class="w"> </span><span class="o">`</span><span class="n">quote</span><span class="o">`</span><span class="w"> </span><span class="n">environment</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">\</span><span class="n">end</span><span class="err">{</span><span class="n">quote</span><span class="err">}</span><span class="w">
+</span></span></span></code></pre></div><p>If you randomly place the cursor inside the <code>\begin{quote}</code> tag and press <code>%</code> the cursor jumps to the last character of the <code>\end{quote}</code> tag (i.e. the closing corresponding one).</p>
+<p>If you press another time the <code>%</code> or press it randomly inside the <code>\end{quote}</code> tag, the cursor jumps on the first character of the <code>\begin{quote}</code> tag.</p>
+<p>Therefore, Vim, uses a single character for various corresponding pairs.</p>
+<h2 id="to-jump-between-matching-pairs-using-gnuemacshttpswwwgnuorgsoftwareemacs">To jump between matching pairs using <a href="https://www.gnu.org/software/emacs/" rel="noopener" target="_blank">GNU/Emacs</a></h2>
+<p>GNU/Emacs uses a slighly different solution,</p>
+<p>Let’s assume that you’ve the cursor pointed in the beginning of the same previous sentence:</p>
+<blockquote>
+<p>If you want to write your own use the contents of [syntax-ppss (point)]</p>
+</blockquote>
+<p>With the cursor on the opening square bracket, you have to press <code>C-M-f</code> (which corresponds to the <code>forward-sexp</code> function) to jump to the closing corresponding square bracket.</p>
+<p>If you, now, press <code>C-M-b</code> (which corresponds to the function <code>backward-sexp </code>) the cursor jumps back the corresponding opening square bracket.</p>
+<p>The same happens with round brackets and other pairing characters.</p>
+<p>You have, however, place the cursor just above the corresponding opening or closing character.</p>
+<p>So: the standard keyboard shortcuts for jumping through corresponding pairs in Emacs are: <code>C-M-f</code> forward and <code>C-M-b</code> backward.</p>
+<p>But if you use <a href="https://www.gnu.org/software/auctex/" rel="noopener" target="_blank">AUCTeX</a>, a <em>Sophisticated document creation</em> for LaTeX documents, and you need to move between corresponding environment tags, you need to know two other shortcuts.</p>
+<p>The following sentence is from pag. 32 of the actual AUCTeX.pdf handbook:</p>
+<blockquote>
+<p>AUCTEX offers keyboard shortcuts for moving point to the beginning and to the end of the current environment.</p>
+</blockquote>
+<p>At page n. 28 you’ll find the shortcuts:</p>
+<blockquote>
+<p>[Command] LaTeX-find-matching-begin (C-M-a) Move point to the ‘\begin’ of the current environment.</p>
+</blockquote>
+<blockquote>
+<p>[Command] LaTeX-find-matching-end (C-M-e) Move point to the ‘\end’ of the current environment.</p>
+</blockquote>
+<p>But pay attention: you must place the cursor <strong>inside the environment tags</strong> to make the AucTeX shortcuts work. If the cursor is out of the tags or even on the backslash of the opening tag, the command <code>C-M-e</code> will give an unexpected result.</p>
+<p>Thus, in AucTeX you can use the standard shortcuts for parentheses and other coupling characters and other shortcuts for additional environments.</p>
+<h2 id="summary-for-vim-and-emacs">Summary for Vim and Emacs</h2>
+<p>We can report, therefore, a brief summary:</p>
+<ul>
+<li><strong>Vim</strong> uses, normally, only one command for every opening or closing pairing elements or tags.</li>
+<li><strong>GNU/Emacs</strong> uses two different standard shortcuts for opening and closing corresponding characters, as well as other shortcuts depending on the working environment.</li>
+</ul>
+<p>Than you for your attention.</p>

@@ -1,0 +1,40 @@
+<p><a class="cimage" href="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-1.png"><img alt="" class="alignnone size-full wp-image-92128" height="574" src="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-1.png" width="840" /></a></p>
+<p>Well, that was fast — less than a month.</p>
+<p><a class="cimage" href="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02.png"><img alt="" class="alignnone size-full wp-image-92125" height="146" src="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02.png" width="840" /></a></p>
+<p>But of course, each one of these er sprints are shorter than the previous one.  This time we started at 2140 open bugs, and we’re now down to 2022 open bugs, which is a reduction of…  Oh, that’s too much math for me.</p>
+<p>So the next stretch is just 202 bugs, and will hopefully finally tip us over into below 2K territory.  Magical numbers are still magical.</p>
+<p>Hopefully there won’t be a B2K problem.</p>
+<p>So what’s been going on this time?</p>
+<p>Emacs has an old, inefficient garbage collector, and over the years there’s been a number of discussions about swapping it out with something modern.  Hopefully that will happen at some point, but meanwhile discussion on emacs-devel recently touched on tuning what we have.  Our garbage limits haven’t really been determined by anything but intuition, so we started tinkering a bit — first of all in a batch oriented setting.  So why not use the Emacs build itself as the test?</p>
+<p>We compile the .el files into .elc files by starting up an Emacs for each .el file, letting it compile the .elc file, and then exit.  That’s not super efficient, but it makes the compilation more repeatable, since we don’t have to worry about ordering that much.  This also means that the garbage collection isn’t that important: The processes don’t grow that big, and it’s all released anyway when the Emacs process exits.</p>
+<p>On my build machine, a complete fresh build takes 1m29s.  Simply by upping the gc limits, that’s slashed to 1m4s.  Emacs does a lot of other stuff during the build, so byte compilation is really 2x as fast as with the old settings.</p>
+<p>On my laptop, a build typically takes around 4 minutes, and upping the gc brings that down to 2m40s.</p>
+<p>That’s a pretty massive win for virtually no work (except for Stefan Monnier who has been running a bunch of build processes with different settings to find an optimal one).</p>
+<p>I thought it might be nice to have some charts, so I’ve been running Emacs builds continuously for a week on a server out there in the world somewhere.  Behold!</p>
+<p><a class="cimage" href="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-2.png"><img alt="" class="alignnone size-full wp-image-92130" height="586" src="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-2.png" width="840" /></a></p>
+<p>Gregory Heytings have gone through the discontinuities in the chart and identified the major leaps (which have all been for good reasons, it turns out).  (Probably.)</p>
+<p>To zoom in on the gc tweaks:</p>
+<p><a class="cimage" href="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-3.png"><img alt="" class="alignnone size-full wp-image-92131" height="583" src="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-3.png" width="840" /></a></p>
+<p>So on this server, the gc tweaks brought down compilation time from about 125s to about 90s, which is nice.  Looking at the CPU usage chart, it’s even better:</p>
+<p><a class="cimage" href="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-4.png"><img alt="" class="alignnone size-full wp-image-92132" height="575" src="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-4.png" width="840" /></a></p>
+<p>From about 1000 CPU seconds to about 650 CPU seconds.  Think of all the electricity we’ll be saving, all over the world, from machines sweating less when building Emacs.</p>
+<p>It might be as much as half an NFT!  Globally!  Over several lifetimes!</p>
+<p>Finally, to zoom out again on the CPU chart:</p>
+<p><a class="cimage" href="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-5.png"><img alt="" class="alignnone size-full wp-image-92133" height="576" src="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-5.png" width="840" /></a></p>
+<p>We’re basically back to 2018 levels.  “Yay.”</p>
+<p>Anyway, other than that, I don’t think there’s any particularly noteworthy features this cycle — just a whole lot of bug fixin’ and tiny tweaks.  Let’s have a look at the <a href="http://quimby.gnus.org/s/18x10.txt">NEWS diff</a>…</p>
+<p>Oh, there’s a new command, <tt>C-x C-M-+</tt> to adjust the font size in all windows.  I think that’s going to be useful…  Oh, and Eli added <tt>max-redisplay-ticks</tt> — it’s an experimental feature to do estimates for “how much work” we’ve been doing in redisplay, and giving up if it seems like redisplay is hanging Emacs (for some values of “hanging”).  That’s going to be really helpful, but needs more tweaking.</p>
+<p>But I forgot the three major, major, major new features:</p>
+<p><a class="cimage" href="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-11.png"><img alt="" class="alignnone size-full wp-image-92146" height="876" src="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-11.png" width="840" /></a></p>
+<p>Emacs has had commands to rotate images for a long time:</p>
+<p><a class="cimage" href="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-12.png"><img alt="" class="alignnone size-full wp-image-92147" height="898" src="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-12.png" width="840" /></a></p>
+<p>But now you can also flip the images, courtesy of Timo Taipalus:</p>
+<p><a class="cimage" href="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-10.png"><img alt="" class="alignnone size-full wp-image-92144" height="937" src="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-10.png" width="840" /></a></p>
+<p>I know!</p>
+<p><a class="cimage" href="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-9.png"><img alt="" class="alignnone size-full wp-image-92137" height="960" src="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/2022-07-02-9.png" width="840" /></a></p>
+<p>And Tetris now has a new (optional) randomisation algorithm — it’s so annoying getting a lot of the same shapes in a row, so if <tt>tetris-allow-repetitions</tt> is customised to <tt>nil</tt>, it’ll use a “bag with no putback” algo (courtesy of Timothee Denizou).</p>
+<p>But most important of all:</p>
+<p><video controls="controls" loop="loop"><source src="https://lars.ingebrigtsen.no/wp-content/uploads/2022/07/zoom.mp4" type="video/mp4" /></video></p>
+<p>You can now zoom in on emojis (and, well, any other character) and see what they’re meant to depict.  (Which can be somewhat difficult with some of the more complicated emojis.)</p>
+<p>Fortunately, not all the new features are as momentous as these.</p>
+<p>Hm…  I should take a vacation soon.</p>

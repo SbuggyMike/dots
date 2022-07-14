@@ -1,0 +1,71 @@
+<div class="content" id="content">
+
+ <div class="outline-2" id="outline-container-emacs-password-protect-current-pdf-revisited">
+ <h2 id="emacs-password-protect-current-pdf-revisited"> <span class="timestamp-wrapper"> <span class="timestamp">09 July 2022</span></span> Emacs: Password-protect current pdf (revisited)</h2>
+ <div class="outline-text-2" id="text-emacs-password-protect-current-pdf-revisited">
+
+ <div class="figure" id="org68e2a67">
+ <p> <img alt="passprotect.gif" height="70%" src="https://xenodium.com/images/emacs-password-protect-current-pdf-revisited/passprotect.gif" width="70%" /></p>
+</div>
+
+ <p>
+With a recent look at writing  <a href="https://xenodium.com/emacs-dwim-shell-command/">DWIM shell commands</a>, I've been revisiting my custom Emacs functions invoking command line utilities.
+</p>
+
+ <p>
+Take this  <a href="https://xenodium.com/emacs-password-protect-current-pdf/">post</a>, for example, where I invoke  <a href="https://github.com/qpdf/qpdf">qpdf</a> via a elisp. Using the new  <code>dwim-shell-command--on-marked-files</code> in  <a href="https://github.com/xenodium/dotsies/blob/main/emacs/ar/dwim-shell-command.el">dwim-shell-command.el</a>, the code is stripped down to a bare minimum:
+</p>
+
+ <div class="org-src-container">
+ <pre class="src src-emacs-lisp">(<span style="color: #a71d5d;">defun</span>  <span style="color: #795da3;">dwim-shell-command-pdf-password-protect</span> ()
+   <span style="color: #183691;">"Speeds up gif(s)."</span>
+  (<span style="color: #a71d5d;">interactive</span>)
+  (dwim-shell-command-on-marked-files
+    <span style="color: #183691;">"Password protect pdf"</span>
+   (format  <span style="color: #183691;">"qpdf --verbose --encrypt '</span> <span style="color: #0086b3;">%s</span> <span style="color: #183691;">' '</span> <span style="color: #0086b3;">%s</span> <span style="color: #183691;">' 256 -- '</span> <span style="color: #0086b3;"><span></span> <span style="color: #183691;">' '</span> <span style="color: #0086b3;"><span>_enc.<span></span> <span style="color: #183691;">'"</span>
+           (read-passwd  <span style="color: #183691;">"user-password: "</span>)
+           (read-passwd  <span style="color: #183691;">"owner-password: "</span>))
+    <span style="color: #a71d5d;">:utils</span>  <span style="color: #183691;">"qpdf"</span>))
+</span></span></span></pre>
+</div>
+
+ <p>
+Compare the above  <code>dwim-shell-command--on-marked-files</code> usage to my  <a href="https://xenodium.com/emacs-password-protect-current-pdf/">previous implementation</a>:
+</p>
+
+ <div class="org-src-container">
+ <pre class="src src-emacs-lisp">(<span style="color: #a71d5d;">defun</span>  <span style="color: #795da3;">pdf-password-protect</span> ()
+   <span style="color: #183691;">"Password protect current pdf in buffer or `</span> <span style="color: #0086b3;">dired</span> <span style="color: #183691;">' file."</span>
+  (<span style="color: #a71d5d;">interactive</span>)
+  (<span style="color: #a71d5d;">unless</span> (executable-find  <span style="color: #183691;">"qpdf"</span>)
+    (<span style="color: #333333;">user-error</span>  <span style="color: #183691;">"qpdf not installed"</span>))
+  (<span style="color: #a71d5d;">unless</span> (equal  <span style="color: #183691;">"pdf"</span>
+                 (<span style="color: #a71d5d;">or</span> (<span style="color: #a71d5d;">when</span> (buffer-file-name)
+                       (downcase (file-name-extension (buffer-file-name))))
+                     (<span style="color: #a71d5d;">when</span> (dired-get-filename nil t)
+                       (downcase (file-name-extension (dired-get-filename nil t))))))
+    (<span style="color: #333333;">user-error</span>  <span style="color: #183691;">"no pdf to act on"</span>))
+  (<span style="color: #a71d5d;">let*</span> ((user-password (read-passwd  <span style="color: #183691;">"user-password: "</span>))
+         (owner-password (read-passwd  <span style="color: #183691;">"owner-password: "</span>))
+         (input (<span style="color: #a71d5d;">or</span> (buffer-file-name)
+                    (dired-get-filename nil t)))
+         (output (concat (file-name-sans-extension input)
+                          <span style="color: #183691;">"_enc.pdf"</span>)))
+    (message
+     (string-trim
+      (shell-command-to-string
+       (format  <span style="color: #183691;">"qpdf --verbose --encrypt '</span> <span style="color: #0086b3;">%s</span> <span style="color: #183691;">' '</span> <span style="color: #0086b3;">%s</span> <span style="color: #183691;">' 256 -- '</span> <span style="color: #0086b3;">%s</span> <span style="color: #183691;">' '</span> <span style="color: #0086b3;">%s</span> <span style="color: #183691;">'"</span>
+               user-password owner-password input output))))))
+</pre>
+</div>
+
+ <p>
+This really changes things for me. I'll be more inclined to add more of these tiny integrations to lots of great command line utilities. Take this recent  <a href="https://news.ycombinator.com/item?id=32028752">Hacker News post</a> on  <a href="https://github.com/ocrmypdf/OCRmyPDF">ocrmypdf</a> as an example. Their  <a href="https://ocrmypdf.readthedocs.io/en/latest/cookbook.html">cookbook</a> has lots of examples that can be easily used via   <code>dwim-shell-command--on-marked-files</code>.
+</p>
+
+ <p>
+What command line utils would you use?
+</p>
+</div>
+</div>
+</div>

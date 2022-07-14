@@ -1,0 +1,84 @@
+<p>I am using the built-in <code>project.el</code> in Emacs to find files in various git-backed projects. But I also have a shared folder of blog post drafts with Sascha at <a href="https://zettelkasten.de">zettelkasten.de</a> that does not have any version control backing. I couldn’t get that folder to show up in <code>project.el</code>’s list because of that.</p>
+
+<p>Until now.</p>
+
+<p>My own attempts to make something like this work came to a halt when I encountered the generic <code>project-root</code> function. That stuff goes over my head. Finding a project marker file worked okay, but that isn’t enough, apparently</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">;; This does not suffice!</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">ct/dir-contains-project-marker</span> <span class="p">(</span><span class="nv">dir</span><span class="p">)</span>
+  <span class="s">"Checks if `.project' file is present in directory at DIR path."</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">project-marker-path</span> <span class="p">(</span><span class="nv">file-name-concat</span> <span class="nv">dir</span> <span class="s">".project"</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="nv">project-marker-path</span><span class="p">)</span>
+       <span class="nv">dir</span><span class="p">)))</span>
+<span class="p">(</span><span class="nv">customize-set-variable</span> <span class="ss">'project-find-functions</span>
+                        <span class="p">(</span><span class="nb">list</span> <span class="nf">#'</span><span class="nv">project-try-vc</span>
+                              <span class="nf">#'</span><span class="nv">ct/dir-contains-project-marker</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><strong>Update 2022-07-13:</strong> Changed <code>(concat dir "/" ".project")</code> to <code>(file-name-concat dir ".project")</code>, thanks to a hint from <a href="https://christiantietze.de/posts/2022/03/mark-local-project.el-directories/#fast-comments-jt=seqB2P2UQA4">grtcdr</a>!</p>
+
+<p>With only that, the function correctly reports a directory path as being a project, but something fails in <code>project-root</code>:</p>
+
+<pre><code>cl-no-applicable-method: No applicable method: project-root, "~/path/to/drafts/"
+</code></pre>
+
+<p>Didn’t know how to fix that.</p>
+
+<p>From Karthik Chikmagalur’s (better known as @karthink) GPL’ed <a href="https://github.com/karthink/project-x/"><code>project-x</code> package</a>, I took the functions and variables that were used to mark a directory path at project-indexable by adding a <code>.project</code> file to the root. The rest, like window restoration, I left out. It’s quite simple, actually, and I am printing the source below:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">;; This file is free software; you can redistribute it and/or modify</span>
+<span class="c1">;; it under the terms of the GNU General Public License as published by</span>
+<span class="c1">;; the Free Software Foundation; either version 3, or (at your option)</span>
+<span class="c1">;; any later version.</span>
+<span class="c1">;;</span>
+<span class="c1">;; This program is distributed in the hope that it will be useful,</span>
+<span class="c1">;; but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1">;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1">;; GNU General Public License for more details.</span>
+<span class="c1">;;</span>
+<span class="c1">;; For a full copy of the GNU General Public License</span>
+<span class="c1">;; see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="p">(</span><span class="nv">defgroup</span> <span class="nv">project-local</span> <span class="no">nil</span>
+  <span class="s">"Local, non-VC-backed project.el root directories."</span>
+  <span class="ss">:group</span> <span class="ss">'project</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nv">defcustom</span> <span class="nv">project-local-identifier</span> <span class="s">".project"</span>
+
+<span class="nv">You</span> <span class="nv">can</span> <span class="nv">specify</span> <span class="nv">a</span> <span class="nv">single</span> <span class="nv">filename</span> <span class="nb">or</span> <span class="nv">a</span> <span class="nb">list</span> <span class="nv">of</span> <span class="nv">names.</span><span class="s">"
+  :type '(choice (string :tag "</span><span class="nv">Single</span> <span class="nv">file</span><span class="s">")
+                 (repeat (string :tag "</span><span class="nv">Filename</span><span class="s">")))
+  :group 'project-local)
+
+(cl-defmethod project-root ((project (head local)))
+  "</span><span class="nv">Return</span> <span class="nv">root</span> <span class="nb">directory</span> <span class="nv">of</span> <span class="nv">current</span> <span class="nv">PROJECT.</span><span class="s">"
+  (cdr project))
+
+(defun project-local-try-local (dir)
+  "</span><span class="nv">Determine</span> <span class="k">if</span> <span class="nv">DIR</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">non-VC</span> <span class="nv">project.</span>
+<span class="nv">DIR</span> <span class="nv">must</span> <span class="nv">include</span> <span class="nv">a</span> <span class="nv">file</span> <span class="nv">with</span> <span class="k">the</span> <span class="nv">name</span> <span class="nv">determined</span> <span class="nv">by</span> <span class="k">the</span>
+<span class="nv">variable</span> <span class="o">`</span><span class="nv">project-local-identifier</span><span class="o">'</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">considered</span> <span class="nv">a</span> <span class="nv">project.</span><span class="err">"</span>
+  <span class="p">(</span><span class="nv">if-let</span> <span class="p">((</span><span class="nv">root</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">listp</span> <span class="nv">project-local-identifier</span><span class="p">)</span>
+                     <span class="p">(</span><span class="nv">seq-some</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">n</span><span class="p">)</span>
+                                 <span class="p">(</span><span class="nv">locate-dominating-file</span> <span class="nv">dir</span> <span class="nv">n</span><span class="p">))</span>
+                               <span class="nv">project-local-identifier</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">locate-dominating-file</span> <span class="nv">dir</span> <span class="nv">project-local-identifier</span><span class="p">))))</span>
+      <span class="p">(</span><span class="nb">cons</span> <span class="ss">'local</span> <span class="nv">root</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nv">customize-set-variable</span> <span class="ss">'project-find-functions</span>
+                        <span class="p">(</span><span class="nb">list</span> <span class="nf">#'</span><span class="nv">project-try-vc</span>
+                              <span class="nf">#'</span><span class="nv">project-local-try-local</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>So my own approach was missing a definition like this:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">cl-defmethod</span> <span class="nv">project-root</span> <span class="p">((</span><span class="nv">project</span> <span class="p">(</span><span class="nv">head</span> <span class="nv">local</span><span class="p">)))</span>
+  <span class="s">"Return root directory of current PROJECT."</span>
+  <span class="p">(</span><span class="nb">cdr</span> <span class="nv">project</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Can’t explain how the <code>cl-defgeneric</code> and <code>cl-defmethod</code> stuff works at all; I can only highlight that this is all that was necessary. How this differs from the couple of built-in <code>project-root</code> method definitions, and how Elisp figures out which one to use? I have no clue.</p>
+
+<p>Now I merely have to add a <code>.project</code> file to a directory and <code>project.el</code> will remember this directory in my list of project paths, so I can quickly jump to a draft from anywhere quickly.</p>
+<hr /><p>Receive Christian’s <a href="https://christiantietze.de/newsletter/">new posts via email</a></p>

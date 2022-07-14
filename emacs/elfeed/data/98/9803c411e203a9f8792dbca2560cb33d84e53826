@@ -1,0 +1,95 @@
+<p>Today <a href="https://cider.mx">CIDER</a>, the Clojure Interactive Development Environment that Rocks, turns 10.</p>
+
+<blockquote>
+  <p>You don’t know where you’re going until you know where you’ve been.</p>
+</blockquote>
+
+<p>CIDER started its life as an effort to replace a hacked version of SLIME<sup id="fnref:1"><a class="footnote" href="https://metaredux.com/posts/2022/07/10/cider-turns-10.html#fn:1" rel="footnote">1</a></sup> with
+a proper environment for Clojure development on Emacs. The work on it was
+fueled mostly by the advent of <a href="https://nrepl.org">nREPL</a> which was the first project that aimed to
+provide a common tool-agnostic foundation for Clojure development tools.</p>
+
+<p>Phil Hagelberg (of Leiningen fame),
+hacked a prototype of an nREPL client in Emacs Lisp on a flight to
+San Francisco in April 2012.  He got a bit stuck on the socket-based bencode
+functionality and dropped it after the flight, but not before pushing
+the code out and mentioning it on the <a href="http://groups.google.com/group/clojure/browse_thread/thread/2bd91de7dca55ca4">Clojure mailing list</a>. That prototype was named
+<code class="language-plaintext highlighter-rouge">nrepl.el</code>.</p>
+
+<p>Fortunately Tim King picked it up, got the basic functionality working, and released <code class="language-plaintext highlighter-rouge">nrepl.el</code> 0.1 on the 10th of July 2012.
+I’ve decided to embrace this date as the official birthday, despite 0.1 never making an appearance in the <a href="https://github.com/clojure-emacs/cider/blob/master/CHANGELOG.md">changelog</a> - it was quickly followed by <a href="https://github.com/clojure-emacs/cider/blob/master/CHANGELOG.md#011-2012-07-11">0.1.1</a> on the 11th of July 2012.</p>
+
+<p>The project evolved at rapid pace and eventually superseded SLIME in August 2012.<sup id="fnref:2"><a class="footnote" href="https://metaredux.com/posts/2022/07/10/cider-turns-10.html#fn:2" rel="footnote">2</a></sup>
+I started to contribute to <code class="language-plaintext highlighter-rouge">nrepl.el</code> shortly after seeing the SLIME deprecation announcement and focused on implementing
+essential SLIME features that were still missing and polishing the existing functionality. At the time I was already reasonably
+well-versed in Emacs Lisp, because of my prior work on Projectile and Emacs Prelude.</p>
+
+<p>Unfortunately in early 2013 Tim ran out of time for <code class="language-plaintext highlighter-rouge">nrepl.el</code> and after a period of stagnation, eventually handed it over to me. I have been the project’s steward
+ever since. Somewhat controversially (at first at least) I renamed <code class="language-plaintext highlighter-rouge">nrepl.el</code> to CIDER in version 0.3 to avoid the common case of confusion between
+the nREPL server and the <code class="language-plaintext highlighter-rouge">nrepl</code> package for Emacs.<sup id="fnref:3"><a class="footnote" href="https://metaredux.com/posts/2022/07/10/cider-turns-10.html#fn:3" rel="footnote">3</a></sup> That’s a decision that I don’t regret one single bit, despite all the havoc it caused.</p>
+
+<p>Eventually CIDER became one of the most popular development environments in the
+Clojure community (like SLIME + <code class="language-plaintext highlighter-rouge">swank-clojure</code> before it) and it spawned many
+important projects like <code class="language-plaintext highlighter-rouge">cider-nrepl</code>, <code class="language-plaintext highlighter-rouge">refactor-nrepl</code>, <code class="language-plaintext highlighter-rouge">cljs-tooling</code> and
+<code class="language-plaintext highlighter-rouge">orchard</code>, that are widely used by other development tools.<sup id="fnref:4"><a class="footnote" href="https://metaredux.com/posts/2022/07/10/cider-turns-10.html#fn:4" rel="footnote">4</a></sup> Over the years a
+big ecosystem of additional packages grew around CIDER and nREPL - I like to
+think of it as <a href="https://metaredux.com/posts/2018/11/09/ciders-orchard-the-heart.html">CIDER’s Orchard</a>.</p>
+
+<p>Today CIDER faces a lot of competition, but
+it’s still evolving at a steady pace and it’s still one of the more innovative Clojure development environments,
+that serves as inspiration for many others.</p>
+
+<p>Much of the above is just a rehashing of <a href="https://docs.cider.mx/cider/about/history.html">CIDER’s History page</a>. Time to add something
+new to the story.</p>
+
+<p>CIDER today is very different from that initial 0.1 release:</p>
+
+<ul>
+  <li>it reached feature parity with SLIME and added a lot of extra features that are unique to CIDER</li>
+  <li>it has been battle-tested by thousands of Clojure developers</li>
+  <li>it has a strong focus on stability and backwards compatibility</li>
+  <li>it’s very well documented</li>
+  <li>it’s available for installation straight from Emacs’s newest official <a href="https://elpa.nongnu.org/nongnu/cider.html">NonGNU ELPA package repository</a></li>
+</ul>
+
+<p>10 years are a lot of time! In the fast-moving world of programming it feels
+almost like a lifetime. I used to be this tireless youth in 2012, who could code
+all through the night - those days are long-gone now. Some things, however,
+haven’t changed.  After all those years CIDER is still my favorite open-source
+project and I still enjoy a lot working on it. I’ve told many times the story
+that I started to contribute to the project, because at the time I wanted to
+switch careers from Ruby to Clojure and I wanted to build the best development
+environment for me. For various reasons I never got to work with Clojure
+professionally, even if I ended up writing a ton of OSS Clojure code over the
+years. Clojure is still my favorite programming language and I love the people
+in the Clojure community.</p>
+
+<p>I’m proud to be a member of this amazing community!
+I’m proud of all the great work we did together over the years and how we eventually pushed above and beyond the high bar set by SLIME. I’m proud
+of the community we’ve built around CIDER, and of all the great projects that we’ve inspired (e.g. Calva, <code class="language-plaintext highlighter-rouge">iced-vim</code>, <code class="language-plaintext highlighter-rouge">conjure</code>, etc). I’m proud that CIDER lead so many people to try out Emacs for the very first time. I’m extremely grateful
+to all the people and organizations who contributed to CIDER and supported it in one way or another. Thanks for all the parentheses! You rock!</p>
+
+<blockquote>
+  <p>A work of art is never finished. It is merely abandoned.</p>
+
+  <p>– E. M. Forster</p>
+</blockquote>
+
+<p>Despite everything we’ve done and achieved so far the journey is far from over. There’s still a lot of room for improvement on almost every front. As usual I’m optimistic that the best is yet to come. I don’t know what the next decade has in story for us, but I promise you that I’ll do everything in my power so that CIDER keeps on rocking!</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>A legendary Common Lisp development environment. <a class="reversefootnote" href="https://metaredux.com/posts/2022/07/10/cider-turns-10.html#fnref:1">↩</a></p>
+    </li>
+    <li id="fn:2">
+      <p><a href="https://technomancy.us/163">https://technomancy.us/163</a> <a class="reversefootnote" href="https://metaredux.com/posts/2022/07/10/cider-turns-10.html#fnref:2">↩</a></p>
+    </li>
+    <li id="fn:3">
+      <p>I also wanted to keep the door open for supporting alternative REPL backends. <a class="reversefootnote" href="https://metaredux.com/posts/2022/07/10/cider-turns-10.html#fnref:3">↩</a></p>
+    </li>
+    <li id="fn:4">
+      <p>As of 2022 about 40% of Clojure developers are using CIDER as their primary Clojure programming environment according to the annual State of Clojure survey. <a class="reversefootnote" href="https://metaredux.com/posts/2022/07/10/cider-turns-10.html#fnref:4">↩</a></p>
+    </li>
+  </ol>
+</div>

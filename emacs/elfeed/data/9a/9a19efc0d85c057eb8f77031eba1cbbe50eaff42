@@ -1,0 +1,79 @@
+<p>
+I like to try various things out in my editor to see if they're useful. Most are interesting but not useful. On my <a href="https://www.redblobgames.com/grids/hexagons/">guide to hexagons</a> I use colors for the three hexagon axes (q, r, s). I thought it might be cool to do something similar in the text editor, for x and y:
+</p>
+
+<figure>
+  <img src="https://www.redblobgames.com/x/screenshots/axis-coloring-1.png" />
+  Coloring variables by which axis they refer to
+</figure>
+<a name="more"></a>
+
+<p>
+Type systems already do so much for us. A type system catches operations that should not be allowed, like <kbd>sqrt("hello")</kbd>. But primitive types tend to be tied to hardware formats like <code>int32</code>, <code>double</code>, <code>char*</code>. Some type systems work with the types humans think about instead of what machines think about. For example, a type system could catch an invalid operation like <kbd>3_meters + 5_grams</kbd>. Or <kbd>sql`SELECT * FROM ` + html`&lt;img&gt;`</kbd>.  
+</p>
+
+<p>
+These kinds of systems are sometimes awkward to work with when you have to prove to the compiler that your code is correct. But what if they're just warnings in the editor and not compile errors? I implemented this using regular expressions and <a href="https://tree-sitter.github.io/tree-sitter/">tree-sitter</a>. I already was using tree-sitter to highlight specific keywords:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(tree-sitter-hl-add-patterns 'python
+  [
+   [<span class="string">"assert"</span> <span class="string">"return"</span> <span class="string">"raise"</span> <span class="string">"finally"</span> <span class="string">"continue"</span> <span class="string">"try"</span> <span class="string">"except"</span>]
+   @keyword.major
+   ])
+</pre>
+</div>
+
+<p>
+I highlighted those keywords in <span style="color: red; font-weight: bold;">bold red</span>, overriding the default coloring for keywords. I can extend the same idea to variable and field names:
+</p>
+
+<figure>
+  <img src="https://www.redblobgames.com/x/screenshots/axis-coloring-2.png" />
+  Horizontal and vertical variable names
+</figure>
+
+<p>
+The implementation for emacs:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(tree-sitter-hl-add-patterns lang
+  [
+   ([(identifier) (property_identifier)]
+    @variable.horizontal
+    (.match? @variable.horizontal
+             <span class="string">"(^q|^x\\d*|^x[A-Z]\\w*|^[cC]ols?|COLS|[wW]idth|WIDTH|[lL]eft|[rR]ight)$"</span>))
+   ([(identifier) (property_identifier)]
+    @variable.vertical
+    (.match? @variable.vertical
+             <span class="string">"(^r|^y\\d*|^y[A-Z]\\w*|^[rR]ows?|ROWS|[hH]eight|HEIGHT|[tT]op|[bB]ottom)$"</span>))
+   ]))
+</pre>
+</div>
+
+<p>
+and then you need to create faces <code>tree-sitter-hl-face:variable.horizontal</code> and <code>tree-sitter-hl-face:variable.vertical</code>.
+</p>
+
+<p>
+Of course, these are just naming conventions, not encoded in the type system or checked in any formal way. But what if they were understood by the type system? Wouldn't it be handy to get a warning if you tried calling <code>atan2(x, y)</code> instead of <code>atan2(y, x)</code>?  Or a warning for <code>rect(x, x, w, h)</code> instead of <code>rect(x, y, w, h)</code>? Maybe. I don't know!
+</p>
+
+<p>
+I believe tree-sitter is able to flag something like <code>atan2(x, y)</code>, but I didn't try implementing that.
+</p>
+
+<p>
+What about other editors? Tree-sitter is in <a href="https://github.blog/2018-10-31-atoms-new-parsing-system/">Atom</a>, <a href="https://github.com/nvim-treesitter/nvim-treesitter">neovim</a>, <a href="https://emacs-tree-sitter.github.io/getting-started/">emacs</a>, and <a href="https://marketplace.visualstudio.com/items?itemName=evgeniypeshkov.syntax-highlighter">vscode</a>. And even without tree sitter, that regexp might be useful for highlighting any string with a word boundary pattern <kbd>\b</kbd> instead of <kbd>^</kbd> or <kbd>$</kbd>.
+</p>
+
+<figure>
+  <img src="https://www.redblobgames.com/x/screenshots/axis-coloring-3.png" />
+  x and y variable names
+</figure>
+
+<p>
+Highlighting catches nowhere near as much as a type system, but it's so much easier to implement than a type system. I'll try it for a while and then decide whether to keep it. I like experimenting.
+</p>
