@@ -144,6 +144,7 @@
 
 - p7zip
 - unrar
+- unzip
 - zathura
 - zathura-pdf-mupdf
 - zathura-djvu
