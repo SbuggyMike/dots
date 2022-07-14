@@ -20,6 +20,8 @@
 
 (use-package elfeed)
 
+(setq elfeed-db-directory "~/repos/dots/emacs/elfeed")
+
 (setq elfeed-feeds
      '("https://archlinux.org/feeds/news"
      "https://www.reddit.com/r/archlinux.rss"
@@ -28,7 +30,11 @@
      "https://planet.emacslife.com/atom.xml"
      "https://hnrss.org/frontpage"
      "https://www.reddit.com/r/cricket.rss"
+     "https://www.innertemplelibrary.com/feed/"
+     "https://www.innertemplelibrary.com/category/trusts/feed/"
      ))
+
+(global-set-key (kbd "C-c r" ) 'elfeed)
      
 
 ;; emms
