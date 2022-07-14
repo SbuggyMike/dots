@@ -26,7 +26,9 @@
      "https://www.reddit.com/r/linux.rss"
      "https://www.reddit.com/r/emacs.rss"
      "https://planet.emacslife.com/atom.xml"
-     "https://hnrss.org/frontpage"))
+     "https://hnrss.org/frontpage"
+     "https://www.reddit.com/r/cricket.rss"
+     ))
      
 
 ;; emms
@@ -166,7 +168,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; disable line numbers for various modes
-(dolist (mode '(eshell-mode-hook eww-mode-hook helpful-mode-hook info-mode-hook))
+(dolist (mode '(eshell-mode-hook eww-mode-hook helpful-mode-hook info-mode-hook elfeed-mode-hook))
 	(add-hook mode (lambda () (display-line-numbers-mode -1))))
 
 ; MACROS
