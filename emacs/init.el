@@ -32,6 +32,7 @@
      "https://www.reddit.com/r/cricket.rss"
      "https://www.innertemplelibrary.com/feed/"
      "https://www.innertemplelibrary.com/category/trusts/feed/"
+     "https://www.reddit.com/r/ukpolitics.rss"
      ))
 
 (global-set-key (kbd "C-c r" ) 'elfeed)
@@ -177,7 +178,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; disable line numbers for various modes
-(dolist (mode '(eshell-mode-hook eww-mode-hook helpful-mode-hook info-mode-hook elfeed-mode-hook))
+(dolist (mode '(eshell-mode-hook eww-mode-hook helpful-mode-hook info-mode-hook elfeed-mode-hook elfeed-search-mode-hook elfeed-show-mode-hook))
 	(add-hook mode (lambda () (display-line-numbers-mode -1))))
 
 ; MACROS

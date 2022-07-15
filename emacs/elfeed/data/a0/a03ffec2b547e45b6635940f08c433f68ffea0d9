@@ -1,0 +1,6 @@
+
+<p>Hi HN!<p>I wrote a small program to browse folders in the terminal. The main inspiration was type-ahead search in GUI file managers. There exist several programs that are similar (see the listing in the README), but none of them do it quite the way I like, and often they have a very complex UI and a ton of features. I tried to make something that is obvious how to use and gets out of your way. (I also wanted an excuse to learn Rust.)<p>Let me know what you think!</p>
+<hr>
+<p>Comments URL: <a href="https://news.ycombinator.com/item?id=32106126">https://news.ycombinator.com/item?id=32106126</a></p>
+<p>Points: 243</p>
+<p># Comments: 137</p>
