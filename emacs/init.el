@@ -154,6 +154,7 @@
 ;; eww
 (global-set-key (kbd "C-c e") 'eww)
 (setq eww-search-prefix "https://duckduckgo.com/")
+(setq browse-url-secondary-browser-function 'browse-url-firefox)
 (setq browse-url-browser-function 'browse-url-firefox
       browse-url-new-window-flag  t
       browse-url-firefox-new-window-is-tab t)
@@ -250,7 +251,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
-   '("~/Nextcloud/life_org/paid_work.org" "~/Nextcloud/life_org/annual.org" "~/Nextcloud/life_org/cleaning.org" "~/Nextcloud/life_org/social.org" "~/Nextcloud/life_org/reading.org" "~/Nextcloud/life_org/exercise.org" "~/Nextcloud/life_org/todo.org" "~/Nextcloud/life_org/events.org" "~/Nextcloud/misc_law/fru/fru_todo.org"))
+   '("~/life_org/paid_work.org" "~/life_org/annual.org"  "~/life_org/social.org" "~/life_org/events.org" "~/misc_law/fru/fru_todo.org"))
  '(package-selected-packages '(elfeed magit pdf-tools use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
