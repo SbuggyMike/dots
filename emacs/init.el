@@ -33,6 +33,8 @@
      "https://www.innertemplelibrary.com/feed/"
      "https://www.innertemplelibrary.com/category/trusts/feed/"
      "https://www.reddit.com/r/ukpolitics.rss"
+     "https://stallman.org/rss/rss.xml"
+     "https://www.thetimes.co.uk/tto/news/rss"
      ))
 
 (global-set-key (kbd "C-c r" ) 'elfeed)
@@ -69,7 +71,7 @@
 (use-package counsel)
 
 (use-package ivy-rich
-  :config (ivy-rich-mode 1))
+  :init (ivy-rich-mode 1))
 
 ;; better help
 (use-package helpful
@@ -179,7 +181,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; disable line numbers for various modes
-(dolist (mode '(eshell-mode-hook eww-mode-hook helpful-mode-hook info-mode-hook elfeed-mode-hook elfeed-search-mode-hook elfeed-show-mode-hook))
+(dolist (mode '(eshell-mode-hook eww-mode-hook helpful-mode-hook info-mode-hook elfeed-mode-hook elfeed-search-mode-hook elfeed-show-mode-hook man-mode-hook pdfview-mode-hook))
 	(add-hook mode (lambda () (display-line-numbers-mode -1))))
 
 ; MACROS
