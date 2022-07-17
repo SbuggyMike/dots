@@ -2,6 +2,7 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(package-initialize)
 
 ;; use use-package
 (unless (package-installed-p 'use-package)
@@ -18,11 +19,9 @@
     (diminish 'abbrev-mode)
     (diminish 'visual-line-mode))
 
-(use-package elfeed)
-
-(setq elfeed-db-directory "~/repos/dots/emacs/elfeed")
-
-(setq elfeed-feeds
+(use-package elfeed
+  :init
+     (setq elfeed-feeds
      '("https://archlinux.org/feeds/news"
      "https://www.reddit.com/r/archlinux.rss"
      "https://www.reddit.com/r/linux.rss"
@@ -35,14 +34,17 @@
      "https://www.reddit.com/r/ukpolitics.rss"
      "https://stallman.org/rss/rss.xml"
      "https://www.thetimes.co.uk/tto/news/rss"
+     "http://feeds.bbci.co.uk/news/politics/rss.xml"
+     "http://newsrss.bbc.co.uk/rss/sportonline_uk_edition/front_page/rss.xml"
      ))
-
-(global-set-key (kbd "C-c r" ) 'elfeed)
-     
+     (setq elfeed-db-directory "~/repos/dots/emacs/elfeed")
+  :bind (("C-c r" . 'elfeed)))
 
 ;; emms
 (use-package emms
-  :config (emms-default-players)
+  :config
+  (emms-default-players)
+  (emms-all)
   :bind
    (("s-m SPC" . 'emms-pause)
     ("s-m n" . 'emms-next)
@@ -57,8 +59,6 @@
     ("s-m u" . 'emms-add-url)
     ("s-m x" . 'emms-add-playlist-file)
     ("s-m e" . 'emms)))
-(emms-all)
-(emms-default-players)
 
 ;; searching and shit
 (use-package ivy
@@ -68,7 +68,10 @@
     (("C-s" . swiper-isearch)
     ("C-r" . swiper-isearch-backward)))
 
-(use-package counsel)
+(use-package counsel
+  :bind
+  (("C-c c" . 'counsel-org-capture))
+)
 
 (use-package ivy-rich
   :init (ivy-rich-mode 1))
@@ -128,7 +131,9 @@
 
 ; AESTHETICS
 ;; theme
-(load-theme 'modus-operandi t)
+(if (> (random 2) 0)
+    (load-theme 'modus-operandi t)
+    (load-theme 'modus-vivendi t))
 
 ;; make text more readable
 ;;; wrap lines
@@ -174,14 +179,13 @@
 (global-set-key (kbd "C-c ol") 'org-clock-in-last)
 
 ;; org capture
-(global-set-key (kbd "C-c c") 'counsel-org-capture)
 (setq org-default-notes-file "~/life_org/capture.org")
 
 ;; yes or no
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; disable line numbers for various modes
-(dolist (mode '(eshell-mode-hook eww-mode-hook helpful-mode-hook info-mode-hook elfeed-mode-hook elfeed-search-mode-hook elfeed-show-mode-hook man-mode-hook pdfview-mode-hook))
+(dolist (mode '(eshell-mode-hook eww-mode-hook helpful-mode-hook info-mode-hook elfeed-mode-hook elfeed-search-mode-hook elfeed-show-mode-hook Man-mode-hook pdfview-mode-hook))
 	(add-hook mode (lambda () (display-line-numbers-mode -1))))
 
 ; MACROS

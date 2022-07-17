@@ -111,11 +111,13 @@
 
 ### File syncing
 
-- nextcloud-client
+- nextcloud-client (don't use)
 - git
   git config --global credential.helper store
 - yay (clone from aur)
 - rsync
+- syncthing
+  enable a user systemd unit
 
 ### File editing
 
