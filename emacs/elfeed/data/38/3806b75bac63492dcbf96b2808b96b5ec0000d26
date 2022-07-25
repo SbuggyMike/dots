@@ -1,0 +1,63 @@
+<p>
+Lately, i've gravitated towards <i>recoll</i> as a unified search engine for all my
+local data, including org and text notes, documents in PDF or similar formats,
+HTML files, and local email. As a result, my little <a href="https://codeberg.org/jao/consult-recoll">consult-recoll</a> package has
+gone up a few notches up in my list.  i've just released version 0.5,
+featuring live previews.
+</p>
+
+
+
+<figure id="org472bdac">
+<img alt="consult-recoll-preview.png" src="https://jao.io/img/consult-recoll-preview.png" />
+
+</figure>
+
+
+
+<p>
+<a href="https://www.lesbonscomptes.com/recoll/">Recoll</a> is a local search engine that knows how to index a wide variety of file
+formats.  It also offers a sophisticated query language, and, for some
+document kinds, snippets of the text of the document that actually match your
+query: that's always been one of my favourite features, and wanted to bring it
+to emacs.
+</p>
+
+<p>
+i found consult's <a href="https://github.com/minad/consult#live-previews">live previews</a> a very nice venue to bring snippets into
+emacs, via a new version of <a href="https://codeberg.org/jao/consult-recoll">consult-recoll</a>, and there you go, just a small
+matter of programming<sup><a class="footref" href="https://jao.io/blog/emacs-rss.xml#fn.1" id="fnr.1">1</a></sup>.
+</p>
+
+<p>
+There are several things of this package that make me happy.  For one, it's
+very small (less than 200 lines of code, including comments) and does quite a
+bit, thanks to the help of consult on the emacs side and of recoll on the
+system's side.  In my opinion, it's a very good example of how the operative
+environment provided by emacs brings the Unix philosophy to the next level:
+here, it's gluing together functionality provided by emacs packages
+(completing read, consult's asynchronous searches and previews, and so on),
+and the indexing and search capabilities of a totally unrelated, orthogonal
+program, recoll, which in turn delegates to a swarm of other unix programs
+(such as antiword, unrtf, poppler, pstotext and a long etc) to extract
+information from local files<sup><a class="footref" href="https://jao.io/blog/emacs-rss.xml#fn.2" id="fnr.2">2</a></sup>.  Very pleasant!
+</p>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a class="footnum" href="https://jao.io/blog/emacs-rss.xml#fnr.1" id="fn.1">1</a></sup> <div class="footpara"><p class="footpara">
+If you're not into consult, my unpublished little library <a href="https://codeberg.org/jao/elibs/src/branch/main/lib/doc/jao-recoll.el">jao-recoll</a>
+knows how to render recoll query results (including snippets) in an
+org-prettified buffer.
+</p></div></div>
+
+<div class="footdef"><sup><a class="footnum" href="https://jao.io/blog/emacs-rss.xml#fnr.2" id="fn.2">2</a></sup> <div class="footpara"><p class="footpara">
+Another way in which recoll is true to the same philosophy is in its
+nice separation of indexing, query and presentation programs; for instance,
+its CLI interface, <code>recollq</code>, is what made <code>consult-recoll</code> such a breeze.
+</p></div></div>
+
+
+</div>
+</div><div class="taglist"><a href="https://jao.io/blog/tags.html">Tags</a>: <a href="https://jao.io/blog/tag-emacs.html">emacs</a> </div>

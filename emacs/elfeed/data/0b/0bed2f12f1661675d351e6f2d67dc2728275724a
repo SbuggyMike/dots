@@ -1,0 +1,144 @@
+<p>Firstly, once you reach basic competency in Linux, different
+distributions don't matter. A lot of newbies analyze distros based on
+what they look like when you install them, often not realizing that
+it's a pretty simple affair not just to change superficial things like
+your theme and setup, but entire desktop environments. <strong>Basically all
+distro reviews online are wastes of time for people who know what
+they're doing.</strong> When I came to YouTube, all Linux YouTube was was
+people constantly installing distro after distro in a virtual machine
+and critiquing minutiae. It was a bleak and boring world. One of my
+first and greatest achievements on YouTube was making this video: <a href="https://www.youtube.com/watch?v=3zpgQpdy_fI">How
+to choose a Linux distro: Stop
+Thinking!</a>, which went
+semi-viral and sort of put a damper on distro reviews. Either way, I'll
+say what I think about different distro minutiae here.</p>
+<h2 id="things-that-matter">Things that matter</h2>
+<ul>
+<li><strong>Free software.</strong> If you are switching to Linux, there is no point
+of you just using junk proprietary spyware &quot;apps&quot; that you used on
+Windows. Any distribution that advertises proprietary software as a
+feature should be viewed as suspect. You can always <em>install</em>
+proprietary software if there is some particular need (usually the
+only &quot;need&quot; is a lack of knowledge of free software that is more
+extensible and performs the same tasks and more).</li>
+<li><strong>Up-to-date software.</strong> This matters because if you want to install
+a program, you're often going to need recent
+libraries/depencencies. This is especially important if you want to
+use software in active development: say software for video-game
+compatibility on Linux.</li>
+<li><strong>No gimmicky additions.</strong> Probably the worst thing you can do is
+install a distribution that puts a giant wall between you and the
+system itself. One of the biggest advantages of using Linux is the
+ability to understand what's going on on your computer and optimize
+it. If you use a distribution that hand-holds basic things, it might
+seem convenient at first, but as time goes on, you won't have a
+clue when that fragile system fails.</li>
+<li><strong>Consistent and reliable maintainence.</strong> Lastly, you'll want to
+make sure that your distribution has humans on the development side
+that are at least fixing basic problems. As programs change and are
+updated, it often requires some changes in your distro's
+repositories and more. Unmaintained distributions are usable, but it
+becomes annoying to deal with as time goes on if you want to install
+software with the distribution's package manager.</li>
+</ul>
+<h2 id="ubuntu">Ubuntu</h2>
+<p>Ubuntu is a common distribution because it is the distribution shilled
+by the company Canonical. Canonical has probably had a positive effect
+on making GNU/Linux more widely used and accessible, but Ubuntu has a
+lot of long-term headaches that will plague users.</p>
+<p>That said, <strong>Ubuntu is nearly the worst distribution for new users</strong>. It
+is maintatined at least, but fails on all the metrics above:</p>
+<ol>
+<li>It advertises proprietary software in its software center and
+encourages users to use programs because they are &quot;familiar&quot; from
+Windows.</li>
+<li>It releases slowly and you'll run into problems if you try to
+install something out of the box.</li>
+<li>It is full of gimicks, the elephant in the room being the Snap
+system, but Canonical has thrown in a lot of junk features in the
+past and a lot can break.</li>
+</ol>
+<h2 id="debian">Debian</h2>
+<p>Debian is just a more reasonable version of Ubuntu: it separates free
+and non-free software clearly&mdash;it has a optional version that allows
+unstable and testing packages for some recent software and it has so few
+gimmicks it's probably the most boring distro!</p>
+<p>I haven't used Debian much as a desktop system (I do use it on my
+servers), but the package manager and even the release speed of the
+testing versions isn't quite fast enough for me personally.</p>
+<h2 id="artix-and-arch">Artix and Arch</h2>
+<p><a href="https://artixlinux.org">Artix</a> is the distribution that I use and have
+been using for a while. It is really the same thing as
+<a href="https://archlinux.org">Arch</a>, except for Artix allows the usage of
+different init systems (I use runit).</p>
+<p>Arch and Arch-based distributions are &quot;bleeding-edge&quot; in their release
+time and have access to the Arch User Repository (AUR) allowing the
+single widest software library of all major Linux distributions.</p>
+<p>Artix offers many installable desktop-environment ISOs for newbie users,
+but thankfully they don't over-bloat them with gimmicky features. Arch
+itself only has an official minimal installation, and that's kind of
+its thing.</p>
+<p><strong>If I had to choose, Artix is the distribution that I recommend for
+both novice and most veteran users.</strong></p>
+<h2 id="manjaro">Manjaro</h2>
+<p>Manjaro is another Arch-based distro. I've even recommened it before
+for new users in the past and installed it on many people's computers
+in real life, but I will admit that my view on it is souring. They have
+definitely started to go the way of Ubuntu by adding lots of extra
+features, directly people to rely more on flatpak and &quot;harmful&quot;
+systems and generally adding more layers of abstraction between the user
+and the system.</p>
+<p>All the good things that can be said about Manjaro can also be said of
+<a href="https://artixlinux.org">Artix</a>, which also has easy to install ISOs, so
+I consider Artix the superior system.</p>
+<h2 id="parabola">Parabola</h2>
+<p><a href="https://parabola.nu">Parabola</a> is the FSF-approved, all-free software
+version of Arch Linux (it also has an OpenRC version for
+soystemd-haters). In the abstract, Parabola is my optimal distribution,
+but I don't actually use it anymore for two reasons:</p>
+<ol>
+<li>It uses the Linux-libre kernel, which is all free software, but
+networking will not function with laptops with proprietary wifi
+cards.</li>
+<li>It is not quite as well maintained as Arch and Artix, and you'll be
+a little more likely to run into package breakage.</li>
+</ol>
+<p>The second problem isn't the end of the world, but it can be annoying.</p>
+<h2 id="gentoo">Gentoo</h2>
+<p><a href="https://gentoo.org">Gentoo</a> is one of the best distributions and excels
+in all of the 4 requirements I give. Not only is non-free software
+obviously separated, but it isn't too difficult to have your Gentoo
+install with a Linux-libre kernel if you want.</p>
+<p>Gentoo is also unique because it is a source-based distribution: you can
+set basic compilation settings for your programs and have a lot of
+control over them. While Gentoo is very well maintained, <em>you</em> actually
+end up with a good bit more control over your system. That is a
+responsibility that has some prerequisite knowledge of course, so Gentoo
+has a reputation of being difficult to install.</p>
+<p>If you want to look into Gentoo, you should first be familiar with Linux
+and what specific kind of system you want. When you first install
+Gentoo, because you can customize it so specifically, it obviously helps
+to know what exact network backend you're comfortable with, whether you
+want to use GTK or QT, or many other little things that a Linux noob
+might not know too much about.</p>
+<h2 id="void">Void</h2>
+<p><a href="https://voidlinux.org">Void</a> is another great distribution. It's
+notable also for using runit instead of soystemd, having a musl version,
+and having a package system reminiscent of Arch, but in many ways more
+minimalist and extensible. It again separates free and non-free
+packages, and has a wide repository of them, included even more
+installable via the <code>xbps-src</code> system which is somewhat analogous to the
+AUR, although unlike the AUR, I don't believe it's quite as easy to
+update packages.</p>
+<p>Void has had a somewhat tumultuous development culture. It was
+originally the brainchild of one man, one man who went missing for a
+year... After he returned, drama eventually caused other member of the
+team to encourage his retirement. Either way, while I used the distro
+for a while and was one of the first people advertising it online, I
+never remember this translating into any downstream problems on my
+computer.</p>
+<h2 id="distro-not-here">Distro not here?</h2>
+<p>This is only a list of distributions that I've used for a bit. I don't
+do &quot;distro reviews&quot; or just install random distributions just to test
+them, so if it isn't here, I'm not going to have an experience-based
+opinion.</p>

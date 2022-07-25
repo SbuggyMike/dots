@@ -1,0 +1,39 @@
+<p>The next release of Leiningen (likely 2.9.9) will include support for starting
+an nREPL server listening to an Unix domain socket.<sup id="fnref:1"><a class="footnote" href="https://metaredux.com/posts/2022/07/25/leiningen-adds-support-for-nrepl-s-unix-sockets.html#fn:1" rel="footnote">1</a></sup> As a reminder - Unix
+domain sockets were one of the highlights of <a href="https://metaredux.com/posts/2021/12/12/nrepl-0-9.html">nREPL 0.9</a>, which was released at the end of 2021.</p>
+
+<p>The support for Unix sockets in Leiningen is two-fold. First, you’ll be able to do the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ lein repl :headless :socket path/to/socket
+</code></pre></div></div>
+
+<p>This will start a headless nREPL, bound to the socket file you’ve specified. Alternatively, you’ll be able to specify a <code class="language-plaintext highlighter-rouge">:socket</code> option in your <code class="language-plaintext highlighter-rouge">project.clj</code> under <code class="language-plaintext highlighter-rouge">:repl-options</code>:</p>
+
+<div class="language-clojure highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">;; Options to change the way the REPL behaves.</span><span class="w">
+</span><span class="no">:repl-options</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">;; Customize the socket the repl task listens on and</span><span class="w">
+                 </span><span class="c1">;; attaches to.  Specify either a filesystem :socket</span><span class="w">
+                 </span><span class="c1">;; (where the parent directory should be used to</span><span class="w">
+                 </span><span class="c1">;; control access since POSIX doesn't require</span><span class="w">
+                 </span><span class="c1">;; respecting the socket permissions):</span><span class="w">
+                 </span><span class="no">:socket</span><span class="w"> </span><span class="s">"/path/to/the/socket"</span><span class="w">
+                 </span><span class="c1">;; or a network :host and/or :port</span><span class="w">
+                 </span><span class="c1">;;   :host "0.0.0.0"</span><span class="w">
+                 </span><span class="c1">;;   :port 4001</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>That’s useful if you always want to use the same socket file.</p>
+
+<p>The work done in Leiningen essentially wraps years of work, mostly carried out by <a href="https://github.com/rlbdv">Rob Browning</a>, to perfect the support
+for Unix sockets in nREPL and CIDER. It was a long journey, but we made it! Now it’s time to sit back, relax and enjoy the fruits of this great work!<sup id="fnref:2"><a class="footnote" href="https://metaredux.com/posts/2022/07/25/leiningen-adds-support-for-nrepl-s-unix-sockets.html#fn:2" rel="footnote">2</a></sup></p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>See <a href="https://github.com/technomancy/leiningen/pull/2799">https://github.com/technomancy/leiningen/pull/2799</a>. <a class="reversefootnote" href="https://metaredux.com/posts/2022/07/25/leiningen-adds-support-for-nrepl-s-unix-sockets.html#fnref:1">↩</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Oh, well - we still need to teach CIDER how to extract the socket file automatically from Leiningen’s output, but that’s relatively simple. <a class="reversefootnote" href="https://metaredux.com/posts/2022/07/25/leiningen-adds-support-for-nrepl-s-unix-sockets.html#fnref:2">↩</a></p>
+    </li>
+  </ol>
+</div>

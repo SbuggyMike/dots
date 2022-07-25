@@ -1,0 +1,92 @@
+<p>I use Emacs mainly for programming, but I also write a lot of non-code in it, either for this blog, documentations for my projects, or just when I take notes.
+And I do it with a git-friendly style of formatting with single sentence per line.
+And because of that, I enable line truncation, to avoid wrapping text, because when the text is written this way, the wrapped version looks like a mess, in my opinion.
+This also helps with code, that has long lines - the formatting is preserved and unexpected multi-line expressions don’t mess me up.</p>
+<p>But because lines get truncated when exceeding window width, it means that I have to use horizontal scrolling.
+I rarely actually use scrolling, because this is a very good indication of a very long sentence, that should be rephrased into smaller ones, but still.
+However, when I do have to scroll, there’s a problem - Emacs doesn’t limit horizontal scrolling properly.</p>
+<p>If you open some other editor, like Gedit, and disable line wrapping, you’ll see that the most amount of horizontal scrolling you can get is basically such that the last character of the longest line is at the right border of the window.
+In Emacs, however, it’s not limited like that, and you can scroll past the last character of the longest line, and basically overshoot.
+This can be handy when you want to have some empty space to the right, for comfortable writing, but I don’t need that.
+Instead, I would like to get the behavior of editors like Gedit.</p>
+<p>Turns out, if you enable <code>horizontal-scroll-bar-mode</code>, Emacs will show the scroll-bar at the bottom, that will not allow you to over-scroll text, like in Gedit.
+But if you use touchpad, or manually call <code>scroll-left</code> it will continue scrolling.
+So let’s fix this.</p>
+<p>First thing we’ll need is a custom predicate, that will check if any line in the buffer exceeds buffer width.
+There are some corner cases to be aware of, like if the buffer’s font size is changed via <code>text-scale-adjust</code>, or if the line numbers are displayed, so this predicate should account for that too.
+I wrote such predicate like this:</p>
+<div class="highlight"><pre tabindex="0"><code class="language-emacs-lisp"><span style="display: flex;"><span>(<span style="font-weight: bold; font-style: italic;">defun</span> <span style="color: #666; font-weight: bold; font-style: italic;">truncated-lines-p</span> ()
+</span></span><span style="display: flex;"><span>  <span style="color: #666; font-style: italic;">"Non-nil if any line is longer than </span><span style="color: #666; font-style: italic;">`window-width'</span><span style="color: #666; font-style: italic;"> + </span><span style="color: #666; font-style: italic;">`window-hscroll'</span><span style="color: #666; font-style: italic;">.
+</span></span></span><span style="display: flex;"><span><span style="color: #666; font-style: italic;">
+</span></span></span><span style="display: flex;"><span><span style="color: #666; font-style: italic;">Returns t if any line exceeds the right border of the window.
+</span></span></span><span style="display: flex;"><span><span style="color: #666; font-style: italic;">Used for stopping scroll from going beyond the longest line.
+</span></span></span><span style="display: flex;"><span><span style="color: #666; font-style: italic;">Based on </span><span style="color: #666; font-style: italic;">`so-long-detected-long-line-p'</span><span style="color: #666; font-style: italic;">."</span>
+</span></span><span style="display: flex;"><span>  (<span style="font-weight: bold; font-style: italic;">save-excursion</span>
+</span></span><span style="display: flex;"><span>    (<span style="color: #666; font-weight: bold; font-style: italic;">goto-char</span> (<span style="color: #666; font-weight: bold; font-style: italic;">point-min</span>))
+</span></span><span style="display: flex;"><span>    (<span style="font-weight: bold; font-style: italic;">let*</span> ((<span style="color: #666; font-weight: bold; font-style: italic;">window-width</span>
+</span></span><span style="display: flex;"><span>            <span style="color: #888; font-style: italic;">;; This computes a more accurate width rather than `window-width', and</span>
+</span></span><span style="display: flex;"><span>            <span style="color: #888; font-style: italic;">;; respects `text-scale-mode' font width.</span>
+</span></span><span style="display: flex;"><span>            (<span style="color: #666; font-weight: bold; font-style: italic;">/</span> (<span style="color: #666; font-weight: bold; font-style: italic;">window-body-width</span> <span style="color: #666; font-weight: bold; font-style: italic;">nil</span> <span style="color: #666; font-weight: bold; font-style: italic;">t</span>) (<span style="color: #666; font-weight: bold; font-style: italic;">window-font-width</span>)))
+</span></span><span style="display: flex;"><span>           (<span style="color: #666; font-weight: bold; font-style: italic;">hscroll-offset</span>
+</span></span><span style="display: flex;"><span>            <span style="color: #888; font-style: italic;">;; `window-hscroll' returns columns that are not affected by</span>
+</span></span><span style="display: flex;"><span>            <span style="color: #888; font-style: italic;">;; `text-scale-mode'.  Because of that, we have to recompute the correct</span>
+</span></span><span style="display: flex;"><span>            <span style="color: #888; font-style: italic;">;; `window-hscroll' by multiplying it with a non-scaled value and</span>
+</span></span><span style="display: flex;"><span>            <span style="color: #888; font-style: italic;">;; dividing it with a scaled width value, rounding it to the upper</span>
+</span></span><span style="display: flex;"><span>            <span style="color: #888; font-style: italic;">;; boundary.  Since there's no way to get unscaled value, we have to get</span>
+</span></span><span style="display: flex;"><span>            <span style="color: #888; font-style: italic;">;; a width of a face that is not scaled by `text-scale-mode', such as</span>
+</span></span><span style="display: flex;"><span>            <span style="color: #888; font-style: italic;">;; `window-divider' face.</span>
+</span></span><span style="display: flex;"><span>            (<span style="color: #666; font-weight: bold; font-style: italic;">ceiling</span> (<span style="color: #666; font-weight: bold; font-style: italic;">/</span> (<span style="color: #666; font-weight: bold; font-style: italic;">*</span> (<span style="color: #666; font-weight: bold; font-style: italic;">window-hscroll</span>) (<span style="color: #666; font-weight: bold; font-style: italic;">window-font-width</span> <span style="color: #666; font-weight: bold; font-style: italic;">nil</span> <span style="color: #666; font-style: italic;">'window-divider</span>))
+</span></span><span style="display: flex;"><span>                        (<span style="color: #666; font-weight: bold; font-style: italic;">float</span> (<span style="color: #666; font-weight: bold; font-style: italic;">window-font-width</span>)))))
+</span></span><span style="display: flex;"><span>           (<span style="color: #666; font-weight: bold; font-style: italic;">line-number-width</span>
+</span></span><span style="display: flex;"><span>            <span style="color: #888; font-style: italic;">;; Compensate for line number width.  Add support for</span>
+</span></span><span style="display: flex;"><span>            <span style="color: #888; font-style: italic;">;; other modes if you use any, like `linum-mode'.</span>
+</span></span><span style="display: flex;"><span>            (<span style="font-weight: bold; font-style: italic;">if</span> (<span style="color: #666; font-weight: bold; font-style: italic;">bound-and-true-p</span> <span style="color: #666; font-weight: bold; font-style: italic;">display-line-numbers-mode</span>)
+</span></span><span style="display: flex;"><span>                (<span style="color: #666; font-weight: bold; font-style: italic;">-</span> <span style="color: #666; font-weight: bold; font-style: italic;">display-line-numbers-width</span>)
+</span></span><span style="display: flex;"><span>              0))
+</span></span><span style="display: flex;"><span>           (<span style="color: #666; font-weight: bold; font-style: italic;">threshold</span> (<span style="color: #666; font-weight: bold; font-style: italic;">+</span> <span style="color: #666; font-weight: bold; font-style: italic;">window-width</span> <span style="color: #666; font-weight: bold; font-style: italic;">hscroll-offset</span> <span style="color: #666; font-weight: bold; font-style: italic;">line-number-width</span>
+</span></span><span style="display: flex;"><span>                         -2))) <span style="color: #888; font-style: italic;">; -2 to compensate rounding during calculation</span>
+</span></span><span style="display: flex;"><span>      (<span style="font-weight: bold; font-style: italic;">catch</span> <span style="color: #666; font-style: italic;">'excessive</span>
+</span></span><span style="display: flex;"><span>        (<span style="font-weight: bold; font-style: italic;">while</span> (<span style="color: #666; font-weight: bold; font-style: italic;">not</span> (<span style="color: #666; font-weight: bold; font-style: italic;">eobp</span>))
+</span></span><span style="display: flex;"><span>          (<span style="font-weight: bold; font-style: italic;">let</span> ((<span style="color: #666; font-weight: bold; font-style: italic;">start</span> (<span style="color: #666; font-weight: bold; font-style: italic;">point</span>)))
+</span></span><span style="display: flex;"><span>            (<span style="font-weight: bold; font-style: italic;">save-restriction</span>
+</span></span><span style="display: flex;"><span>              (<span style="color: #666; font-weight: bold; font-style: italic;">narrow-to-region</span> <span style="color: #666; font-weight: bold; font-style: italic;">start</span> (<span style="color: #666; font-weight: bold; font-style: italic;">min</span> (<span style="color: #666; font-weight: bold; font-style: italic;">+</span> <span style="color: #666; font-weight: bold; font-style: italic;">start</span> 1 <span style="color: #666; font-weight: bold; font-style: italic;">threshold</span>)
+</span></span><span style="display: flex;"><span>                                           (<span style="color: #666; font-weight: bold; font-style: italic;">point-max</span>)))
+</span></span><span style="display: flex;"><span>              (<span style="color: #666; font-weight: bold; font-style: italic;">forward-line</span> 1))
+</span></span><span style="display: flex;"><span>            (<span style="font-weight: bold; font-style: italic;">unless</span> (<span style="font-weight: bold; font-style: italic;">or</span> (<span style="color: #666; font-weight: bold; font-style: italic;">bolp</span>)
+</span></span><span style="display: flex;"><span>                        (<span style="font-weight: bold; font-style: italic;">and</span> (<span style="color: #666; font-weight: bold; font-style: italic;">eobp</span>) (<span style="color: #666; font-weight: bold; font-style: italic;">&lt;=</span> (<span style="color: #666; font-weight: bold; font-style: italic;">-</span> (<span style="color: #666; font-weight: bold; font-style: italic;">point</span>) <span style="color: #666; font-weight: bold; font-style: italic;">start</span>)
+</span></span><span style="display: flex;"><span>                                        <span style="color: #666; font-weight: bold; font-style: italic;">threshold</span>)))
+</span></span><span style="display: flex;"><span>              (<span style="font-weight: bold; font-style: italic;">throw</span> <span style="color: #666; font-style: italic;">'excessive</span> <span style="color: #666; font-weight: bold; font-style: italic;">t</span>))))))))
+</span></span></code></pre></div><p>To illustrate what it does, here’s a screenshot of Emacs window with this blog post, as I edit it:</p>
+<figure><img src="https://andreyorst.gitlab.io/2022-07-20-limiting-horizontal-scroll-in-emacs/lines_exceed_window_width.png" />
+</figure>
+
+<p>I’ve made the frame smaller and enabled the <code>horizontal-scroll-bar-mode</code> to better show what I mean.
+In the echo area <code>t</code> is displayed because I’ve called <code>truncated-lines-p</code>, and it shows that some line exceeds the width of the window.
+You can see that lines go beyond right border (though there’s no arrow in the fringe, as I disabled these), and if I scroll with the scroll-bar, Emacs stops scrolling at about this position:</p>
+<figure><img src="https://andreyorst.gitlab.io/2022-07-20-limiting-horizontal-scroll-in-emacs/line_end_reached.png" />
+</figure>
+
+<p>Now <code>nil</code> is displayed in the echo area because I’ve called <code>truncated-lines-p</code> again, which means that the predicate works, since there’s no need to scroll anymore, all lines are not truncated by the right border.
+However, I can continue scrolling if I use touchpad:</p>
+<figure><img src="https://andreyorst.gitlab.io/2022-07-20-limiting-horizontal-scroll-in-emacs/overscroll.png" />
+</figure>
+
+<p>Note, that the handle in the scroll-bar changed its width.
+Emacs calculates the width of the handle based on the longest line currently visible in the window, meaning that it will change depending on the position in the buffer.
+And perhaps scroll-bar width limited for what you’re seeing is a performance optimization.
+My function does it for the whole buffer, and there are a lot of code for calculating text width with respect to the horizontal scroll.
+Thus, the calculation process may not seem very optimal, but the benchmarking this function seems to have decent performance on my <code>1603</code> lines <code>init.el</code> file:</p>
+<div class="highlight"><pre tabindex="0"><code class="language-emacs-lisp"><span style="display: flex;"><span><span style="color: #888; font-style: italic;">;; some lines exceed width</span>
+</span></span><span style="display: flex;"><span>(<span style="color: #666; font-weight: bold; font-style: italic;">benchmark</span> 1000 '(<span style="color: #666; font-weight: bold; font-style: italic;">truncated-lines-p</span>)) <span style="color: #888; font-style: italic;">; Elapsed time: 0.597171s</span>
+</span></span><span style="display: flex;"><span><span style="color: #888; font-style: italic;">;; no lines exceed width</span>
+</span></span><span style="display: flex;"><span>(<span style="color: #666; font-weight: bold; font-style: italic;">benchmark</span> 1000 '(<span style="color: #666; font-weight: bold; font-style: italic;">truncated-lines-p</span>)) <span style="color: #888; font-style: italic;">; Elapsed time: 1.247346s</span>
+</span></span></code></pre></div><p>In practice I never feel any slowdown from it.
+The only thing left is to make <code>sroll-left</code> to actually use it:</p>
+<div class="highlight"><pre tabindex="0"><code class="language-emacs-lisp"><span style="display: flex;"><span>(<span style="font-weight: bold; font-style: italic;">define-advice</span> <span style="color: #666; font-weight: bold; font-style: italic;">scroll-left</span> (<span style="font-weight: bold; font-style: italic;">:before-while</span> (<span style="font-weight: bold;">&amp;rest</span> <span style="color: #666; font-weight: bold; font-style: italic;">_</span>) <span style="color: #666; font-weight: bold; font-style: italic;">prevent-overscroll</span>)
+</span></span><span style="display: flex;"><span>  (<span style="font-weight: bold; font-style: italic;">and</span> <span style="color: #666; font-weight: bold; font-style: italic;">truncate-lines</span>
+</span></span><span style="display: flex;"><span>       (<span style="color: #666; font-weight: bold; font-style: italic;">not</span> (<span style="color: #666; font-weight: bold; font-style: italic;">memq</span> <span style="color: #666; font-weight: bold; font-style: italic;">major-mode</span> '(<span style="color: #666; font-weight: bold; font-style: italic;">vterm-mode</span> <span style="color: #666; font-weight: bold; font-style: italic;">term-mode</span>)))
+</span></span><span style="display: flex;"><span>       (<span style="color: #666; font-weight: bold; font-style: italic;">truncated-lines-p</span>)))
+</span></span></code></pre></div><p>I use a <code>before-while</code> advice, which acts like a predicate on its own, and doesn’t run function if the result is <code>nil</code>.
+As can be seen, it does an additional check for <code>truncate-lines</code> to be on, since if lines are not truncated there’s no reason to ever scroll left.
+I also would like to prevent this from working in certain major modes, like in terminals, since these automatically wrap lines themselves.</p>
+<p>Hope this is useful for someone, and if anybody knows a more robust way to calculate text width with the respect to the zoom level feel free to suggest improvements.</p>

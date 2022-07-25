@@ -36,7 +36,8 @@
      "https://www.thetimes.co.uk/tto/news/rss"
      "http://feeds.bbci.co.uk/news/politics/rss.xml"
      "http://newsrss.bbc.co.uk/rss/sportonline_uk_edition/front_page/rss.xml"
-     ))
+     "https://www.ft.com/world/uk?format=rss"
+     "https://lukesmith.xyz/index.xml"))
      (setq elfeed-db-directory "~/repos/dots/emacs/elfeed")
   :bind (("C-c r" . 'elfeed)))
 
@@ -95,6 +96,12 @@
 
 ;; org
 (use-package org)
+
+(use-package org-alert
+  :config
+  (org-alert-enable)
+  (setq org-alert-interval 60)
+  (setq alert-default-style 'libnotify))
 
 ;; pdf-reader
 (use-package pdf-tools
@@ -185,7 +192,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; disable line numbers for various modes
-(dolist (mode '(eshell-mode-hook eww-mode-hook helpful-mode-hook info-mode-hook elfeed-mode-hook elfeed-search-mode-hook elfeed-show-mode-hook Man-mode-hook pdfview-mode-hook))
+(dolist (mode '(eshell-mode-hook eww-mode-hook helpful-mode-hook info-mode-hook elfeed-mode-hook elfeed-search-mode-hook elfeed-show-mode-hook Man-mode-hook pdfview-mode-hook gnus-summary-mode-hook))
 	(add-hook mode (lambda () (display-line-numbers-mode -1))))
 
 ; MACROS
@@ -237,6 +244,10 @@
 (setq user-full-name "Stephen Hawes"
       user-mail-address "s.j.hawes@btinternet.com")
 
+;; rmail
+
+(setq rmail-primary-inbox-list '("imap://s.j.hawes%40btinternet.com:@mail.btinternet.com:993"))
+
 ;; time
 (setq display-time-world-list '(("Europe/London" "London") ("Asia/Shanghai" "China") ("America/New_York" "Eastern")))
 
@@ -256,8 +267,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files
-   '("~/life_org/paid_work.org" "~/life_org/annual.org"  "~/life_org/social.org" "~/life_org/events.org" "~/misc_law/fru/fru_todo.org"))
+'(org-agenda-files
+   '("~/life_org/paid_work.org" "~/life_org/annual.org"  "~/life_org/social.org" "~/life_org/events.org" "~/life_org/capture.org" "~/misc_law/fru/fru_todo.org"))
  '(package-selected-packages '(elfeed magit pdf-tools use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

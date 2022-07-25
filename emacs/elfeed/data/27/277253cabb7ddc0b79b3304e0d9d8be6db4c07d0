@@ -1,0 +1,6 @@
+
+<p>A while back I wrote a CHIP-8 emulator (which is considered the Hello, World! of emulators and is more accurately a virtual machine since historically CHIP-8 was an interpreted language running on top of the COSMAC VIP to make game programming easier).<p>But a few months ago I got really interested in embedded software, so decided it would be neat to port my emulator to a STM32 MCU and design a console around it as a learning experience, since CHIP-8 never existed as a physical system.<p>I didn't know much about embedded software when I began, and even less about electronics, but I managed to write all the firmware from scratch and even designed my first PCB, resulting in a finished (though not very polished) handheld CHIP-8 console.<p>For those curious, the GitHub repo also has links to my dev blog about the project as well as a build guide.<p>Thanks for looking!</p>
+<hr>
+<p>Comments URL: <a href="https://news.ycombinator.com/item?id=32158364">https://news.ycombinator.com/item?id=32158364</a></p>
+<p>Points: 89</p>
+<p># Comments: 11</p>

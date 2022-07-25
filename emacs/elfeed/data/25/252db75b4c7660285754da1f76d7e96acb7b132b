@@ -1,0 +1,50 @@
+<p>This isn't live on the <a href="https://github.com/lukesmithxyz/lb">old blog system's
+Github</a>, but partially inspired by
+by <a href="https://based.cooking">Based Cooking</a>'s tag system which is based
+on <a href="https://pedantic.software/git/blogit">blogit</a>, I've added in the
+feature to tag articles.</p>
+<p>I've been wanting to write more articles and informational pages on my
+website, but doing that with no organization is somewhat impratical. I
+now have a tagcloud <a href="https://lukesmith.xyz">on my homepage</a>.</p>
+<p>My issue with <a href="https://pedantic.software/git/blogit">blogit</a>, the tool
+used for Based.Cooking is that it is <em>slow</em>, mainly due to the fact that
+for every file, it has multiple system/program calls (<code>grep</code>, <code>sed</code>,
+etc. might be called for each article or tag).</p>
+<p>Here's an example of what I do, just for info. Instead of looking
+through each file and calling <code>grep</code> and friends each time to get file
+information, the title, the tags, etc., I merely run <code>awk</code> and <code>sed</code>
+once to get all the info from all files:</p>
+<pre><code># Awk prints out the filename, title and keywords/tag lines and Sed rearranges them for parsibility
+output=&quot;$(awk 2&gt;/dev/null '
+    /&lt;title&gt;/ {printf &quot;
+&quot; FILENAME $0};
+    /keywords/ {printf $0}' &quot;$webdir/$artdir&quot;/*html |
+        sed &quot;s/\s*&lt;meta.*keywords.*content=[\&quot;']/|/
+            s/\s*&lt;title&gt;\s*/;/
+            s/\(\s\+\|[\&quot;']&gt;$\)/ /g
+            s/^\s*//
+            s/,//g
+            s/\( *&amp;ndash.*\)*&lt;\/title&gt;//&quot; | grep &quot;|&quot;)&quot;
+</code></pre>
+<p>Then, instead of recursing and reading every file and manually running
+the same <code>grep</code> or <code>sed</code> commands each time, just recurse through the
+output of that previous command stored in <code>$output</code>.</p>
+<p>Actually, I realize in the title of this post, I lied! It actually
+isn't POSIX shell, but bash, but for a very good reason. Bash has a
+built-in that capitalizes strings:</p>
+<pre><code>$ name=luke
+$ echo &quot;${name^}&quot;
+Luke
+</code></pre>
+<p>POSIX shell lacks such a feature and would have to call an external
+program like <code>sed</code> or <code>tr</code> to capitalize strings, which I would need
+when later in the script recursing through tag names. This actually is a
+good case of when bash is faster to use, since it has the feature built
+into it, without needing to call external programs.</p>
+<p>Of course I'm sure someone will email me saying that there is some
+(albeit perhaps less elegant) way of capitalizing the first character of
+a string in POSIX sh...</p>
+<p>I might make my new blog system Makefile-based like blogit to get the
+perks of that, but I've always found Makefile syntax in a kind of
+disturbing and confusing uncanny valley. I know that's a silly thing to
+say.</p>

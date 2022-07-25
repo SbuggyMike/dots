@@ -1,0 +1,42 @@
+<p>A little bit over a year ago <a href="https://metaredux.com/posts/2021/07/31/hasta-la-vista-gmail.html">I switched from Gmail to Fastmail for my personal
+email</a>. Looking back, I couldn’t be happier with my decision. The more I’ve used Fastmail, the more I liked it. Working with email has never been so pleasant and I’ve been writing
+a lot more emails as a result.</p>
+
+<p>So, what has happened/changed in the past year?</p>
+
+<ul>
+  <li>I’ve convinced my family members using <code class="language-plaintext highlighter-rouge">batsov.com</code> Gmail emails to move to Fastmail as well and everyone really likes it. Also, according to my brother the import from Gmail works like magic.</li>
+  <li>I’ve started to use heavily Fastmail’s calendar. It’s not as fancy as Google Calendar, but it gets the job done.</li>
+  <li>I’ve played with deploying simple website straight from Fastmail’s “hosting” service. Basically you upload a bunch of static files and that’s it.</li>
+  <li>I’ve been using Fastmail to setup useful domain redirects for domains I own. (try something like <a href="https://batsov.dev">https://batsov.dev</a> or <a href="https://cv.batsov.net">https://cv.batsov.net</a>)</li>
+  <li>I’ve learned most of the essential Fastmail keybindings and I’m jumping around like a ninja.</li>
+  <li>Fastmail improved their UI a bit, which addressed one of my original reservations about them. I like their beta program.</li>
+  <li>They also released amazing integration with 1Password (another important tool in my toolbox), that allows you to generate unique disposable email addresses for various services.</li>
+  <li>I’m now using a million Fastmail aliases for various purposes (e.g. I have one named <code class="language-plaintext highlighter-rouge">dev.null@whatever.net</code> for airport wi-fi registration).</li>
+  <li>I’ve replicated some of the features of HEY that I liked in Fastmail (e.g. the Paper Trail and the Feed). I’m still pondering if I want to do the Screener as well.<sup id="fnref:1"><a class="footnote" href="https://batsov.com/articles/2022/07/20/fastmail-year-one/#fn:1" rel="footnote">1</a></sup></li>
+</ul>
+
+<p>I can also confirm that Fastmail’s support is just as good as advertised. I rarely needed it, but I always got speedy and helpful responses.</p>
+
+<p>Of course, it’s never just rainbows and unicorns. I’ve had a few small issues here and there:</p>
+
+<ul>
+  <li>Occasional lockups of the web UI (but those haven’t happened recently), that required reloading it.</li>
+  <li>Fastmail were targeted by quite a few DDoS attacks, which resulted in some downtime and delays (nothing major, though, and no email were lost).</li>
+  <li>I couldn’t find any 3rd party clients that support <a href="https://fastmail.blog/open-technologies/jmap-new-email-open-standard/">JMAP</a>, so if you want to special Fastmail features (e.g. undo send), you have to stick to their clients (which are pretty good).</li>
+</ul>
+
+<p>Once again I am convinced that focus in business matters. If your focus is solely email you’re likely to deliver a superb email experience to your end users.</p>
+
+<p>In the end of the day the net result is that I’m effectively not using HEY and Proton Mail at all these days and I’ve pretty much forgotten about the Gmail at this point. If only I had discovered Fastmail sooner! Still, better late than never, right?</p>
+
+<p>Are you ready to take the red pill and take your email experience to the next level?
+If so - here’s one <a href="https://ref.fm/u26676944">referral link</a> that will net you a 10% discount for the first year.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>More on the topic here - <a href="https://www.nunodonato.com/2020/06/25/a-guide-on-re-creating-heys-features/">https://www.nunodonato.com/2020/06/25/a-guide-on-re-creating-heys-features/</a>. <a class="reversefootnote" href="https://batsov.com/articles/2022/07/20/fastmail-year-one/#fnref:1">↩</a></p>
+    </li>
+  </ol>
+</div>

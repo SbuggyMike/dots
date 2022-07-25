@@ -1,0 +1,84 @@
+<p>This is a continuation of my post <a href="https://tsdh.org/2021-06-21-using-eldoc-with-magit.md">Using Eldoc with
+Magit</a> where I've shown how to define a
+function to be added to <code>eldoc-documentation-functions</code> in
+<a href="https://magit.vc/">Magit</a> status or log buffers which shows the author and
+diffstat of the commit under point.  That function has served me well until it
+started to produce hangs in emacs at work.</p>
+<p>The hangs began when I've started working with a branch which implements a
+major architectural restructuring of great parts of our code-base at work.
+That branch has been created more than two years ago and it has thousands of
+commits not in other branches.  However, there's a merge cascade so that all
+fixes to release branches will eventually also be merged into that branch.</p>
+<p>As it turned out, <code>git show</code> can become quite slow (up to several seconds) when
+invoked on a merge commit between very divergent branches.  So whenever point
+was on a merge commit, Eldoc would run my function doing a <code>git show</code> shell
+command and block until that finished.</p>
+<p>Long story short: Eldoc in Emacs 28.1 and above has support for asynchronous
+documentation functions in terms that a documentation function now receives a
+<code>callback</code> function which it should call with the documentation string once
+it's computed.  In my <a href="https://tsdh.org/2021-06-21-using-eldoc-with-magit.md">last post</a>, I've
+just ignored it.</p>
+<p>So without further ado, here's the workhorse function which given a <code>callback</code>
+and a <code>commit</code> (which actually might be any object <code>git show</code> can operate on)
+computes the author/date/diffstat information asynchronously and then calls
+<code>callback</code> with it.</p>
+<pre style="background-color: #2b303b;"><span style="color: #c0c5ce;">(</span><span style="color: #96b5b4;">defvar</span><span style="color: #c0c5ce;"> th/eldoc-git-show-stat--process </span><span style="color: #d08770;">nil</span><span style="color: #c0c5ce;">)
+</span><span style="color: #c0c5ce;">(</span><span style="color: #b48ead;">defun </span><span style="color: #8fa1b3;">th</span><span style="color: #c0c5ce;">/eldoc-git-show-stat (callback commit)
+</span><span style="color: #c0c5ce;">  "</span><span style="color: #a3be8c;">Compute diffstat for COMMIT asynchronously, then call CALLBACK with it.</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">  </span><span style="color: #65737e;">;; Kill the possibly still running old process and its buffer.
+</span><span style="color: #c0c5ce;">  (</span><span style="color: #b48ead;">when </span><span style="color: #c0c5ce;">(processp th/eldoc-git-show-stat--process)
+</span><span style="color: #c0c5ce;">    (</span><span style="color: #b48ead;">let </span><span style="color: #c0c5ce;">((buf (process-buffer th/eldoc-git-show-stat--process)))
+</span><span style="color: #c0c5ce;">      (</span><span style="color: #b48ead;">when </span><span style="color: #c0c5ce;">(process-live-p th/eldoc-git-show-stat--process)
+</span><span style="color: #c0c5ce;">        (</span><span style="color: #b48ead;">let </span><span style="color: #c0c5ce;">(confirm-kill-processes)
+</span><span style="color: #c0c5ce;">          (kill-process th/eldoc-git-show-stat--process)))
+</span><span style="color: #c0c5ce;">      (</span><span style="color: #b48ead;">when </span><span style="color: #c0c5ce;">(buffer-live-p buf)
+</span><span style="color: #c0c5ce;">        (kill-buffer buf))))
+</span><span style="color: #c0c5ce;">
+</span><span style="color: #c0c5ce;">  </span><span style="color: #65737e;">;; Spawn a new "git show" process.
+</span><span style="color: #c0c5ce;">  (</span><span style="color: #b48ead;">let</span><span style="color: #c0c5ce;">* ((cmd (</span><span style="color: #96b5b4;">list </span><span style="color: #c0c5ce;">"</span><span style="color: #a3be8c;">git</span><span style="color: #c0c5ce;">" "</span><span style="color: #a3be8c;">--no-pager</span><span style="color: #c0c5ce;">" "</span><span style="color: #a3be8c;">show</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">                    "</span><span style="color: #a3be8c;">--no-color</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">                    </span><span style="color: #65737e;">;; Author Name &lt;author@email.com&gt;, &lt;date-and-time&gt;
+</span><span style="color: #c0c5ce;">                    "</span><span style="color: #a3be8c;">--format=format:%an &lt;%ae&gt;, %aD</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">                    "</span><span style="color: #a3be8c;">--stat=80</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">                    commit)))
+</span><span style="color: #c0c5ce;">    </span><span style="color: #65737e;">;; An async eldoc-documentation-function must also return a non-nil,
+</span><span style="color: #c0c5ce;">    </span><span style="color: #65737e;">;; non-string result if it's applicable for computing a documentation
+</span><span style="color: #c0c5ce;">    </span><span style="color: #65737e;">;; string, so we set and return the new process here.
+</span><span style="color: #c0c5ce;">    (</span><span style="color: #96b5b4;">setq</span><span style="color: #c0c5ce;"> th/eldoc-git-show-stat--process
+</span><span style="color: #c0c5ce;">          (make-process
+</span><span style="color: #c0c5ce;">           :name "</span><span style="color: #a3be8c;">eldoc-git-show</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">           :buffer (generate-new-buffer "</span><span style="color: #a3be8c;"> *git-show-stat*</span><span style="color: #c0c5ce;">")
+</span><span style="color: #c0c5ce;">           :noquery </span><span style="color: #d08770;">t
+</span><span style="color: #c0c5ce;">           :command cmd
+</span><span style="color: #c0c5ce;">           :sentinel (</span><span style="color: #96b5b4;">lambda </span><span style="color: #c0c5ce;">(proc event)
+</span><span style="color: #c0c5ce;">                       (</span><span style="color: #b48ead;">when </span><span style="color: #c0c5ce;">(eq (process-status proc) 'exit)
+</span><span style="color: #c0c5ce;">                         (</span><span style="color: #b48ead;">with</span><span style="color: #c0c5ce;">-current-buffer (process-buffer proc)
+</span><span style="color: #c0c5ce;">                           (goto-</span><span style="color: #96b5b4;">char </span><span style="color: #c0c5ce;">(point-min))
+</span><span style="color: #c0c5ce;">                           (put-text-property (point-min)
+</span><span style="color: #c0c5ce;">                                              (line-end-</span><span style="color: #96b5b4;">position</span><span style="color: #c0c5ce;">)
+</span><span style="color: #c0c5ce;">                                              'face 'bold)
+</span><span style="color: #c0c5ce;">                           (</span><span style="color: #96b5b4;">funcall</span><span style="color: #c0c5ce;"> callback (buffer-</span><span style="color: #96b5b4;">string</span><span style="color: #c0c5ce;">)))))))))
+</span></pre>
+<p>To use the above function as an eldoc documentation function in
+<a href="https://magit.vc/">Magit</a> status and log buffers, the following function
+<code>th/magit-eldoc-for-commit</code> is defined and added buffer-locally to buffers of
+the respective magit modes.</p>
+<pre style="background-color: #2b303b;"><span style="color: #c0c5ce;">(defvar th/magit-eldoc-last-commit nil)
+</span><span style="color: #c0c5ce;">(defun th/magit-eldoc-for-commit (callback)
+</span><span style="color: #c0c5ce;">  (let ((commit (magit-commit-at-point)))
+</span><span style="color: #c0c5ce;">    (when (and commit
+</span><span style="color: #c0c5ce;">               (not (equal commit th/magit-eldoc-last-commit)))
+</span><span style="color: #c0c5ce;">      (setq th/magit-eldoc-last-commit commit)
+</span><span style="color: #c0c5ce;">      (th/eldoc-git-show-stat callback commit))))
+</span><span style="color: #c0c5ce;">
+</span><span style="color: #c0c5ce;">(defun th/magit-eldoc-setup ()
+</span><span style="color: #c0c5ce;">  (add-hook 'eldoc-documentation-functions
+</span><span style="color: #c0c5ce;">            #'th/magit-eldoc-for-commit nil t))
+</span><span style="color: #c0c5ce;">
+</span><span style="color: #c0c5ce;">(add-hook 'magit-status-mode-hook #'th/magit-eldoc-setup)
+</span><span style="color: #c0c5ce;">(add-hook 'magit-log-mode-hook #'th/magit-eldoc-setup)
+</span></pre>
+<p>So with these changes in place, operating in Magit buffers containing merge
+commits of very diverged branches won't hang my Emacs anymore.</p>
+<p><img alt="Screenshot of eldoc showing commit author, date, and diffstat" src="https://tsdh.org/magit-eldoc-async-screenshot.png" /></p>
+<p>What a relief!</p>

@@ -1,0 +1,22 @@
+<p><em>This post inaugurates a series of video demos in which I will show how I use the Emacs package <a href="https://github.com/localauthor/zk" target="_blank">zk</a> for notetaking. The emphasis will be on showcasing the practicalities of my process.</em></p>
+
+<div class="org-center">
+  <div></div>
+<p><strong>——————————————————————————————</strong></p>
+</div>
+
+<div class="org-center">
+  <div></div>
+
+</div>
+<p>In this video I show how I use a <a href="https://github.com/abo-abo/hydra" target="_blank">hydra</a> as an entry point to my zk. The config for my hydra is here, <a href="https://github.com/localauthor/.emacs.d/blob/210531740c05104b7718b257671f2674f605f374/my-lisp/zk-setup.el#L154" target="_blank">in my dotfiles</a>.</p>
+<p>I also show how I use an “inbox” note as a starting place for new notes. For more on the place of the inbox in a notetaking practice, see section 2.1 of <em>How to Take Smart Notes</em> by Sönke Ahrens.<sup id="fnref:1"><a class="footnote-ref" href="https://localauthor.github.io/categories/emacs/index.xml#fn:1">1</a></sup></p>
+<p>In the next video, I will show how I use the function <code>zk-find-file</code> and others in combination with <a href="https://github.com/oantolin/embark" target="_blank">Embark</a> to quickly find notes and insert links — with a minimum of effort!</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Sönke Ahrens, <i>How to Take Smart Notes: One Simple Technique to Boost Writing, Learning and Thinking</i> (North Charleston, SC: CreateSpace, 2017). <a class="footnote-backref" href="https://localauthor.github.io/categories/emacs/index.xml#fnref:1">↩︎</a></p>
+</li>
+</ol>
+</div>

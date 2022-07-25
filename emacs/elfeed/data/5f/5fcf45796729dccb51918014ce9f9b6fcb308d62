@@ -1,0 +1,2 @@
+Problem: emacs isn’t passing on the command output My command doesn’t write when it’s executed by a keystroke or by `M-x`, but it does when I just evaluate it with `C-x C-e`. Nonetheless, both command actually WORK – they just don’t print. Why?
+(defun tsa/change-volume (amount-str) (interactive) (shell-command (concat "pactl set-sink-volume 0 " amount-str)) (shell-command-to-string "pactl get-sink-volume 0") ; "Volume: front-left: 55865 / 85% / -4.16 dB, front-right: 55865 / 85% / -4.

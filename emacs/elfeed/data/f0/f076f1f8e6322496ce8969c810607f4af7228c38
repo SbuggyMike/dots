@@ -1,0 +1,10 @@
+<p><em>This post continues a series of video demos in which I show how I use the Emacs package <a href="https://github.com/localauthor/zk" target="_blank">zk</a> for notetaking. The emphasis is on showcasing the practicalities of my process.</em></p>
+
+<div class="org-center">
+  <div></div>
+<p><strong>——————————————————————————————</strong></p>
+</div>
+
+<p>In <a href="https://www.youtube.com/watch?v=VIPxC8TMR6s" target="_blank">this video</a>, I show how I quickly find notes related to the note I am working on in <a href="https://github.com/localauthor/zk" target="_blank">zk</a>, and then insert the relevant links.</p>
+<p>The goal is to find and insert links with a minimum of mental overhead and technical friction, so that I can keep my focus on the ideas and content of the note at hand.</p>
+<p>Trying to find a single note among hundreds, and then putting the link in the right spot, could be a task unto itself — a not inconsiderable problem and distraction. But a few handy search functions, and some help from the package <a href="https://github.com/oantolin/embark" target="_blank">Embark</a>, make the matter all but effortless.</p>

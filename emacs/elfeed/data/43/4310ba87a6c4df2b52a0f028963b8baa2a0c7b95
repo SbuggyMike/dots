@@ -1,0 +1,6 @@
+
+<p>pg_jsonschema is a solution we're exploring to allow enforcing more structure on json and jsonb typed postgres columns.<p>We initially wrote the extension as an excuse to play with pgx, the rust framework for writing postgres extensions. That let us lean on existing rust libs for validation (jsonschema), so the extension's implementation is only 10 lines of code :)<p><a href="https://github.com/supabase/pg_jsonschema/blob/fb7ab09bf6050130e8d656f2999ec0f6a3fedc0d/src/lib.rs#L1-L13" rel="nofollow">https://github.com/supabase/pg_jsonschema/blob/fb7ab09bf6050...</a><p>happy to answer any questions!</p>
+<hr>
+<p>Comments URL: <a href="https://news.ycombinator.com/item?id=32179856">https://news.ycombinator.com/item?id=32179856</a></p>
+<p>Points: 172</p>
+<p># Comments: 45</p>

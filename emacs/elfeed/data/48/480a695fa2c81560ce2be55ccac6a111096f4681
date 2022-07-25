@@ -1,0 +1,56 @@
+<div class="e-content" lang="en"><blockquote><p>I should be packing…</p></blockquote><p> I get mail like this, in RMAIL:</p><pre>Content-Type: multipart/encrypted; protocol="application/pgp-encrypted"; boundary="------3731fd63500a99617c474bca321ff6f77b018f081ec247a77a67f22adcd57eed"; charset=utf-8
+
+
+[1:application/pgp-encrypted Show Save:noname (11B)]
+
+
+[2:application/octet-stream Show Save:encrypted.asc (9kB)]</pre><p>No problem, this is an encrypted email, but with multiple parts.</p><p>I run <code>rmail-epa-decrypt</code> and “replace the original message” to get the following:</p><pre>Content-Type: multipart/encrypted; protocol="application/pgp-encrypted"; boundary="------3731fd63500a99617c474bca321ff6f77b018f081ec247a77a67f22adcd57eed"; charset=utf-8
+
+This is an OpenPGP/MIME encrypted message (RFC 4880 and 3156)
+--------3731fd63500a99617c474bca321ff6f77b018f081ec247a77a67f22adcd57eed
+Content-Type: application/pgp-encrypted
+Content-Description: PGP/MIME version identification
+
+Version: 1
+
+--------3731fd63500a99617c474bca321ff6f77b018f081ec247a77a67f22adcd57eed
+Content-Type: application/octet-stream; name="encrypted.asc"
+Content-Description: OpenPGP encrypted message
+Content-Disposition: inline; filename="encrypted.asc"
+
+Content-Type: multipart/mixed;boundary=---------------------6afc1cb4a8cd500fac78c43304496efd
+
+-----------------------6afc1cb4a8cd500fac78c43304496efd
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;charset=utf-8
+
+Hi Alex,
+…</pre><p>Now this is broken! Notice in the middle, there are headers for the part with name=”encrypted.asc”, followed by an empty line, and then different headers: something about multipart/mixed, with a different boundary. And as you can see, the next part uses exactly this boundary.</p><p>So what’s actually required is for the first three header lines and the empty line to be removed so that this message is once again a correctly nested MIME message.</p><p>I edit the message (<code>e</code>) and remove the four lines above “Content-Type: multipart/mixed”:</p><pre>Content-Type: multipart/encrypted; protocol="application/pgp-encrypted"; boundary="------3731fd63500a99617c474bca321ff6f77b018f081ec247a77a67f22adcd57eed"; charset=utf-8
+
+This is an OpenPGP/MIME encrypted message (RFC 4880 and 3156)
+--------3731fd63500a99617c474bca321ff6f77b018f081ec247a77a67f22adcd57eed
+Content-Type: application/pgp-encrypted
+Content-Description: PGP/MIME version identification
+
+Version: 1
+
+--------3731fd63500a99617c474bca321ff6f77b018f081ec247a77a67f22adcd57eed
+Content-Type: multipart/mixed;boundary=---------------------6afc1cb4a8cd500fac78c43304496efd
+
+-----------------------6afc1cb4a8cd500fac78c43304496efd
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;charset=utf-8
+
+Hi Alex,</pre><p>Save using <code>C-c C-c</code> and now I have a readable, decrypted, multipart MIME message where I can navigate between the various parts:</p><pre>Content-Type: multipart/encrypted; protocol="application/pgp-encrypted"; boundary="------3731fd63500a99617c474bca321ff6f77b018f081ec247a77a67f22adcd57eed"; charset=utf-8
+
+
+[1:application/pgp-encrypted Show Save:noname (11B)]
+
+
+[2:multipart/mixed Hide]
+
+
+[2/1:text/plain Hide]
+
+Hi Alex,
+…</pre><p>Every. Single. Time.</p><p>How awkward. 😬</p><p><a class="outside tag" href="https://alexschroeder.ch/wiki?action=tag;id=Emacs" rel="tag" title="Tag">#Emacs</a> <a class="outside tag" href="https://alexschroeder.ch/wiki?action=tag;id=Rmail" rel="tag" title="Tag">#Rmail</a> <a class="outside tag" href="https://alexschroeder.ch/wiki?action=tag;id=Cryptography" rel="tag" title="Tag">#Cryptography</a></p></div>

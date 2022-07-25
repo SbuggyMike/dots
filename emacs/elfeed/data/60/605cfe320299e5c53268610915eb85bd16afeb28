@@ -1,0 +1,55 @@
+<p>Pulsar is a small package that temporarily highlights the current line,
+either on demand or automatically after invoking a function that is
+present in a user-defined list.  <a href="https://protesilaos.com/codelog/2022-03-14-emacs-pulsar-demo/">Watch the
+demo</a></p>
+
+<p>Further below are the release notes.</p>
+
+<ul>
+  <li>Package name (GNU ELPA): <code>pulsar</code></li>
+  <li>Official manual: <a href="https://protesilaos.com/emacs/pulsar">https://protesilaos.com/emacs/pulsar</a></li>
+  <li>Change log: <a href="https://protesilaos.com/emacs/pulsar-changelog">https://protesilaos.com/emacs/pulsar-changelog</a></li>
+  <li>Git repo on SourceHut: <a href="https://git.sr.ht/~protesilaos/pulsar">https://git.sr.ht/~protesilaos/pulsar</a>
+    <ul>
+      <li>Mirrors:
+        <ul>
+          <li>GitHub: <a href="https://github.com/protesilaos/pulsar">https://github.com/protesilaos/pulsar</a></li>
+          <li>GitLab: <a href="https://gitlab.com/protesilaos/pulsar">https://gitlab.com/protesilaos/pulsar</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Mailing list: <a href="https://lists.sr.ht/~protesilaos/pulsar">https://lists.sr.ht/~protesilaos/pulsar</a></li>
+</ul>
+
+<hr />
+
+<ul>
+  <li>
+    <p>Added the user option <code>pulsar-pulse-on-window-change</code>.  This covers
+all commands or functions that affect the current window, so there is
+no need to include them individually in the <code>pulsar-pulse-functions</code>.
+Users who prefer to trigger a pulse only after select functions
+(e.g. only after <code>other-window</code>) are advised to set this user option
+to nil and update the <code>pulsar-pulse-functions</code> accordingly.  Thanks to
+Ivan Popovych for the patch (commit <code>b1a78dd</code>).</p>
+  </li>
+  <li>
+    <p>Changed the default value of <code>pulsar-pulse-functions</code> to omit all
+those commands which are already covered by the aforementioned.  In
+the interest of continuity, the old value is kept in the source
+code, with the relevant symbols commented out.</p>
+  </li>
+  <li>
+    <p>Named the mailing list email address as the <code>Maintainer:</code> of Pulsar.
+The package headers help the user find our primary sources and/or
+communication channels.  This change conforms with work being done
+upstream in package.el by Philip Kaludercic.  I was informed about it
+here:
+<a href="https://lists.sr.ht/~protesilaos/general-issues/%3C875ykl84yi.fsf%40posteo.net%3E">https://lists.sr.ht/~protesilaos/general-issues/%3C875ykl84yi.fsf%40posteo.net%3E</a>.</p>
+  </li>
+  <li>
+    <p>Updated the documentation, where necessary and made other minor tweaks
+to the code.</p>
+  </li>
+</ul>

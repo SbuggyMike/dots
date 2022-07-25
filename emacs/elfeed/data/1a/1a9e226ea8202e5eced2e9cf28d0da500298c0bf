@@ -1,0 +1,161 @@
+<div class="content" id="content">
+
+ <div class="outline-2" id="outline-container-a-lifehack-for-your-shell">
+ <h2 id="a-lifehack-for-your-shell"> <span class="timestamp-wrapper"> <span class="timestamp">16 July 2022</span></span> A lifehack for your shell</h2>
+ <div class="outline-text-2" id="text-a-lifehack-for-your-shell">
+
+ <div class="figure" id="org26cabca">
+ <p> <img alt="unzip_x2.gif" height="70%" src="https://xenodium.com/images/a-lifehack-for-your-shell/unzip_x2.gif" width="70%" /></p>
+</div>
+
+ <p>
+I'm a fan of the  <a href="http://infozip.sourceforge.net/mans/unzip.html">unzip</a> command line utility that ships with macOS. I give it a .zip file and it unzips it for me. No flags or arguments to remember (for my typical usages anyway). Most importantly, I've fully internalized the  <code>unzip</code> command into muscle memory, probably because of its  <i>perfect mnemonic</i>.
+</p>
+
+ <p>
+But then there's .tar, .tar.gz, .tar.xz, .rar, and a whole world of compression archives, often requiring different tools, flags, etc. and I need to remember those too.
+</p>
+
+ <p>
+Can't remember where I got this "life hack" from, but it suggests something along the lines of…
+</p>
+
+ <div class="org-center">
+ <p>
+ <i>Once you find a lost item at home, place it in the first spot you looked.</i>
+</p>
+</div>
+
+ <p>
+Great, I'll find things quickly. Win.
+</p>
+
+ <p>
+Now, I still remember a couple of unarchiving commands from memory (looking at you  <code>tar xvzf</code>), but I've noticed the first word that pops into mind when extracting is always  <code>unzip</code>.
+</p>
+
+ <p>
+There's the great  <a href="https://www.nongnu.org/atool/">atool</a> wrapper out there to extract all kinds of archives (would love to hear of others), but unlucky for me, its name never comes to mind as quickly as  <code>unzip</code> does.
+</p>
+
+ <p>
+With "life hack" in mind, let's just create an  <code>unzip</code>  <a href="https://www.gnu.org/software/emacs/manual/html_mono/eshell.html">eshell</a> alias to  <code>atool</code>. Next time I need to unarchive anything, the first word that comes to mind (unzip!) will quickly get me on my way…
+</p>
+
+ <div class="org-src-container">
+ <pre class="src src-sh"> <span style="color: #a71d5d;">alias</span> unzip  <span style="color: #183691;">'atool --extract --explain $1'</span>
+</pre>
+</div>
+
+ <p>
+Or if you prefer to add to your Emacs config:
+</p>
+
+ <div class="org-src-container">
+ <pre class="src src-emacs-lisp">(eshell/alias  <span style="color: #183691;">"unzip"</span>  <span style="color: #183691;">"atool --extract --explain $1"</span>)
+</pre>
+</div>
+
+ <p>
+While  <a href="https://xenodium.com/yasnippet-in-emacs-eshell/">I'm fan of Emacs eshell</a>, it's not everyone's cup of tea. Lucky for us all, aliases are a popular feature across shells. Happy unzipping!
+</p>
+</div>
+
+ <div class="outline-3" id="outline-container-org3590578">
+ <h3 id="org3590578">Bonus</h3>
+ <div class="outline-text-3" id="text-org3590578">
+ <p>
+Since I'm a keen on using "unzip" mnemonic everywhere in Emacs (not just my shell), I now have a  <a href="https://xenodium.com/emacs-dwim-shell-command/">DWIM shell-command</a> for it:
+</p>
+
+ <div class="org-src-container">
+ <pre class="src src-emacs-lisp">(<span style="color: #a71d5d;">defun</span>  <span style="color: #795da3;">dwim-shell-command-unzip</span> ()
+   <span style="color: #183691;">"Unzip all marked archives (of any kind) using `</span> <span style="color: #0086b3;">atool</span> <span style="color: #183691;">'."</span>
+  (<span style="color: #a71d5d;">interactive</span>)
+  (dwim-shell-command-on-marked-files
+    <span style="color: #183691;">"Unzip"</span>  <span style="color: #183691;">"atool --extract --explain '</span> <span style="color: #0086b3;"><span></span> <span style="color: #183691;">'"</span>
+    <span style="color: #a71d5d;">:utils</span>  <span style="color: #183691;">"atool"</span>))
+</span></pre>
+</div>
+
+
+ <div class="figure" id="org6ce7fe4">
+ <p> <img alt="unzip-dired_x1.5.gif" height="70%" src="https://xenodium.com/images/a-lifehack-for-your-shell/unzip-dired_x1.5.gif" width="70%" /></p>
+</div>
+</div>
+</div>
+
+ <div class="outline-3" id="outline-container-org261deaa">
+ <h3 id="org261deaa">UPDATE:</h3>
+ <div class="outline-text-3" id="text-org261deaa">
+ <p>
+ <a href="https://lobste.rs/">Lobste.rs</a> has great  <a href="https://lobste.rs/s/qaimmg/lifehack_for_your_shell">comments</a>. Thanks all:
+</p>
+</div>
+
+ <div class="outline-4" id="outline-container-orgea86a43">
+ <h4 id="orgea86a43">Aliases missing on remote machines</h4>
+ <div class="outline-text-4" id="text-orgea86a43">
+ <p>
+Concerns about aliases  <a href="https://lobste.rs/s/qaimmg/lifehack_for_your_shell#c_mqxo73">not available on remote machines</a>. Valid. Certainly brings challenges if you can't modify the environment on the remote machine. The severity would depend on how frequently you have to do this. Fortunately for me, it's infrequent.
+</p>
+
+ <p>
+Additionally, if accessing remote machine via  <a href="https://www.gnu.org/software/emacs/manual/html_mono/eshell.html">eshell</a>, this is a non-issue. You get to transparently bring most of your environment with you anyway.
+</p>
+</div>
+</div>
+
+ <div class="outline-4" id="outline-container-org5952429">
+ <h4 id="org5952429">Unzip keyword is overloaded</h4>
+ <div class="outline-text-4" id="text-org5952429">
+ <p>
+The alias is  <a href="https://lobste.rs/s/qaimmg/lifehack_for_your_shell#c_78nnwt">overloading the unzip command</a>. I know. It's a little naughty. Going with it for now. I used to use "extract" (also in comments), which I still like but somehow "unzip" still wins my memory race.  <a href="https://lobste.rs/s/qaimmg/lifehack_for_your_shell#c_73bzze">There's also "x"</a> (nice option), which seems to originate from  <a href="https://github.com/sorin-ionescu/prezto">prezto</a>. I could consider unzipp, unzip1, or some other variation.
+</p>
+
+
+ <p>
+Not sure how I missed this, but there's also an  <a href="https://lobste.rs/s/qaimmg/lifehack_for_your_shell#c_ra6sbf">existing alias for atool</a>: aunpack. Could be a great alternative.
+</p>
+</div>
+</div>
+
+
+ <div class="outline-4" id="outline-container-orgd0981ff">
+ <h4 id="orgd0981ff">Pause before extracting archives</h4>
+ <div class="outline-text-4" id="text-orgd0981ff">
+ <p>
+Valid  <a href="https://lobste.rs/s/qaimmg/lifehack_for_your_shell#c_73bzze">point</a>. In my case, the pause typically happens  <i>before</i> I invoke the alias.
+</p>
+</div>
+</div>
+
+ <div class="outline-4" id="outline-container-org9911027">
+ <h4 id="org9911027">Littering</h4>
+ <div class="outline-text-4" id="text-org9911027">
+ <p>
+If the archive didn't have a root dir, it can  <a href="https://lobste.rs/s/qaimmg/lifehack_for_your_shell#c_7fsart">litter your current directory</a>. Indeed a pain to clean up. For this, we can atool's  <code>--subdir</code> param to  <i>always create subdirectory when extracting</i>.
+</p>
+</div>
+</div>
+
+ <div class="outline-4" id="outline-container-org0545a77">
+ <h4 id="org0545a77">Alias to retrain</h4>
+ <div class="outline-text-4" id="text-org0545a77">
+ <p>
+ <a href="https://lobste.rs/s/qaimmg/lifehack_for_your_shell#c_yr1jby">Neat trick</a>:  <code>alias unzip = “echo ‘use atool’”</code> to help retrain yourself. Reminds me of Emacs  <a href="https://github.com/bbatsov/guru-mode">guru-mode</a>.
+</p>
+</div>
+</div>
+
+ <div class="outline-4" id="outline-container-orgef8a768">
+ <h4 id="orgef8a768">atool alternatives</h4>
+ <div class="outline-text-4" id="text-orgef8a768">
+ <p>
+Nice to see other options suggested  <a href="https://github.com/moonpyk/dtrx">dtrx</a> ( <a href="https://lobste.rs/s/qaimmg/lifehack_for_your_shell#c_mutdjl">comment</a>),  <a href="https://github.com/mholt/archiver">archiver</a> ( <a href="https://lobste.rs/s/qaimmg/lifehack_for_your_shell#c_nlsk7w">comment</a>),  <a href="https://github.com/ashang/unar">unar</a> ( <a href="https://lobste.rs/s/qaimmg/lifehack_for_your_shell#c_90dk1l">comment</a>), bsdtar from  <a href="https://github.com/libarchive/libarchive">libarchive</a> ( <a href="https://lobste.rs/s/qaimmg/lifehack_for_your_shell#c_ojy6ah">comment</a>),  <a href="https://packages.debian.org/stable/unp">unp</a>,  <a href="https://wummel.github.io/patool/">patool</a>, and the tangentially related  <a href="https://www.nongnu.org/zutils/zutils.html">zgrep</a> ( <a href="https://lobste.rs/s/qaimmg/lifehack_for_your_shell#c_vp8fdw">comment</a>).
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,6 @@
+
+<p>I'm very interested in what types of interesting data structures are out there HN. Totally your preference.<p>I'll start: bloom filters. Lets you test if a value is definitely NOT in a list of pre-stored values (or POSSIBLY in a list - with adjustable probability that influences storage of the values.)<p>Good use-case: routing. Say you have a list of 1 million IPs that are black listed. A trivial algorithm would be to compare every element of the set with a given IP. The time complexity grows with the number of elements. Not so with a bloom filter! A bloom filter is one of the few data structures whose time complexity does not grow with the number of elements due to the 'keys' not needing to be stored ('search' and 'insert' is based on the number of hash functions.)<p>Bonus section: Golomb Coded Sets are similar to bloom filters but the storage space is much smaller. Worse performance though.</p>
+<hr>
+<p>Comments URL: <a href="https://news.ycombinator.com/item?id=32186203">https://news.ycombinator.com/item?id=32186203</a></p>
+<p>Points: 583</p>
+<p># Comments: 290</p>
