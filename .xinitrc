@@ -41,6 +41,7 @@ fi
 
 # english and swap escape
 setxkbmap -layout gb -option caps:swapescape
+xsetroot -solid "#002244"
 
 # start some nice programs
 

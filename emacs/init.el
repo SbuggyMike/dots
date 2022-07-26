@@ -28,6 +28,7 @@
      "https://www.reddit.com/r/emacs.rss"
      "https://planet.emacslife.com/atom.xml"
      "https://hnrss.org/frontpage"
+     "https://lukesmith.xyz/index.xml"
      "https://www.reddit.com/r/cricket.rss"
      "https://www.innertemplelibrary.com/feed/"
      "https://www.innertemplelibrary.com/category/trusts/feed/"
@@ -37,7 +38,8 @@
      "http://feeds.bbci.co.uk/news/politics/rss.xml"
      "http://newsrss.bbc.co.uk/rss/sportonline_uk_edition/front_page/rss.xml"
      "https://www.ft.com/world/uk?format=rss"
-     "https://lukesmith.xyz/index.xml"))
+     "https://www.reddit.com/r/chess.rss"
+     "https://www.reddit.com/r/classicalmusic.rss"))
      (setq elfeed-db-directory "~/repos/dots/emacs/elfeed")
   :bind (("C-c r" . 'elfeed)))
 
@@ -138,10 +140,14 @@
 
 ; AESTHETICS
 ;; theme
-(if (> (random 2) 0)
-    (load-theme 'modus-operandi t)
-    (load-theme 'modus-vivendi t))
-
+(cl-case (random 5)
+  (0 (load-theme 'modus-operandi))
+  (1 (load-theme 'modus-vivendi))
+  (2 (load-theme 'wombat))
+  (3 (load-theme 'misterioso))
+  (4 (load-theme 'manoj-dark))
+  )
+  
 ;; make text more readable
 ;;; wrap lines
 (global-visual-line-mode t)

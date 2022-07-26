@@ -5,6 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# aow
+[[ -f $HOME/artwar.1b.txt ]]  && grep ^[1-9] artwar.1b.txt >> tmp.txt &&  head -n  $(( $SRANDOM % $( grep ^[1-9] artwar.1b.txt | wc -l ) )) tmp.txt | tail -1 && rm tmp.txt
+
 # vim keybindings
 set -o emacs
 
