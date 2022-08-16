@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # aow
-[[ -f $HOME/artwar.1b.txt ]]  && grep ^[1-9] artwar.1b.txt >> tmp.txt &&  head -n  $(( $SRANDOM % $( grep ^[1-9] artwar.1b.txt | wc -l ) )) tmp.txt | tail -1 && rm tmp.txt
+[[ -f $HOME/artwar.1b.txt ]] && cd $HOME && grep ^[1-9] artwar.1b.txt >> tmp.txt &&  head -n  $(( $SRANDOM % $( grep ^[1-9] artwar.1b.txt | wc -l ) )) tmp.txt | tail -1 && rm tmp.txt
 
 # vim keybindings
 set -o emacs
@@ -21,3 +21,4 @@ alias stop="systemctl suspend"
 alias y="yay -Syu"
 alias z="zathura"
 
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl

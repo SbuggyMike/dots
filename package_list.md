@@ -73,6 +73,8 @@
 - xorg-server
 - xorg-xinit
 - xfce4
+- xorg-xsetroot (for basic customisation)
+- xorg-xkill (to kill the xserver)
 - lightdm
 > systemctl enable lightdm
 - lightdm-gtk-greeter
