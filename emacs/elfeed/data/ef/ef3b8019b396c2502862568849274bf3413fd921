@@ -1,0 +1,25 @@
+<p>Today I saw a clever bit of Clojure code involving <code class="language-plaintext highlighter-rouge">clojure.string/replace</code>, that reminded me how powerful the Clojure standard library is. I guess pretty much everyone knows that <code class="language-plaintext highlighter-rouge">replace</code> is normally used to replace some part of a string using a regular expression to describe what exactly to replace:</p>
+
+<div class="language-clojure highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nf">str/replace</span><span class="w"> </span><span class="s">"OCaml rocks!"</span><span class="w"> </span><span class="o">#</span><span class="s">"([Hh]askell)|([Oo][Cc]aml)"</span><span class="w"> </span><span class="s">"Clojure"</span><span class="p">)</span><span class="w">
+</span><span class="c1">;; =&gt; "Clojure rocks!"</span><span class="w">
+
+</span><span class="c1">;; we can refer to the match groups in the replacement string</span><span class="w">
+</span><span class="p">(</span><span class="nf">str/replace</span><span class="w"> </span><span class="s">"Haskell rocks!"</span><span class="w"> </span><span class="o">#</span><span class="s">"([Hh]askell)|([Oo][Cc]aml)"</span><span class="w"> </span><span class="s">"$1 is nice, but Clojure"</span><span class="p">)</span><span class="w">
+</span><span class="c1">;; =&gt; "Haskell is nice, but Clojure rocks!"</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Pretty useful and pretty straightforward. But wait, there’s more! I had forgotten you can actually use a function for the replacement, which allows us to do more sophisticated things. Here’s how we can capitalize every word with 5 or more letters in a string:</p>
+
+<div class="language-clojure highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nf">str/replace</span><span class="w"> </span><span class="s">"master of Clojure is pulling the strings"</span><span class="w"> </span><span class="o">#</span><span class="s">"\w{5,}"</span><span class="w"> </span><span class="n">str/upper-case</span><span class="p">)</span><span class="w">
+</span><span class="c1">;; =&gt; "MASTER of CLOJURE is PULLING the STRINGS"</span><span class="w">
+</span></code></pre></div></div>
+
+<p>If you’ve got more match groups in your regular expression you can use all of them in the function that you’re using to generate the replacements:</p>
+
+<div class="language-clojure highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nf">str/replace</span><span class="w"> </span><span class="s">"pom kon sor"</span><span class="w"> </span><span class="o">#</span><span class="s">"(.)o(.)"</span><span class="w"> </span><span class="p">(</span><span class="k">fn</span><span class="w"> </span><span class="p">[[</span><span class="n">_</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">b</span><span class="p">]]</span><span class="w"> </span><span class="p">(</span><span class="nb">str</span><span class="w"> </span><span class="p">(</span><span class="nf">str/upper-case</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="s">"-o-"</span><span class="w"> </span><span class="p">(</span><span class="nf">str/upper-case</span><span class="w"> </span><span class="n">b</span><span class="p">))))</span><span class="w">
+</span><span class="s">"P-o-M K-o-N S-o-R"</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Note here the use of deconstructing to account that each match is essentially a vector of the full match and each group match (e.g. <code class="language-plaintext highlighter-rouge">["pom" "p" "m"]</code>).</p>
+
+<p>That’s I have for you today! Feel free to share with me more fun usages of <code class="language-plaintext highlighter-rouge">replace</code>!</p>

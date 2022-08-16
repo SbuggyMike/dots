@@ -1,0 +1,40 @@
+<p>I’ve long thought it was a little funny that Emacs doesn’t provide an
+easy way to run a shell command on the current file. It turns out it
+does, but it’s not as obvious as you might expect.</p>
+<p>Emacs provides lots of great commands for conveniently running shell
+commands:</p>
+<ul>
+<li><code>M-!</code> (<code>shell-command</code>): executes the given shell command, displays
+output in a new buffer or the echo area (depending on output
+length). Optionally inserts the output into the current buffer when
+given a prefix argument.</li>
+<li><code>M-&amp;</code> (<code>async-shell-command</code>): as above, but executed
+asynchronously.</li>
+<li><code>M-|</code> (<code>shell-command-on-region</code>): pass the current region as input
+to a shell command and display output. Optionally replaces the
+region when given a prefix argument.</li>
+</ul>
+<p>Of course we can also run a shell <em>within</em> Emacs, via <code>shell</code> (the
+basic option), <code>eshell</code> (a shell implemented in Emacs Lisp, with
+access to Emacs Lisp functions), and <code>term</code> (a more fully-featured
+terminal emulator).</p>
+<p>We also have <code>compile</code>, which will run a shell command (often <code>make</code>),
+streaming in the output and overlaying functionality to easily jump to
+files referenced in the output (compilation warnings, <code>grep</code> results,
+etc.).</p>
+<p>But what has always been notably missing for me, is a quick way to run
+a shell command on the current <em>file</em>. Not <em>buffer</em> / file contents,
+not <em>region</em>, but <em>file</em>.</p>
+<p>From <code>dired-mode</code>, we can easily do this with <code>!</code>, but invoking Dired
+just to run a shell command is more disruptive to my workflow than it
+needs to be when I just want to run <code>open &lt;current-file&gt;</code> or similar.</p>
+<p>It turns out there is a built-in two-keystroke solution via the
+“future history” mechanism <a href="https://engineering.collbox.co/post/working-faster-in-emacs-by-reading-the-future/">I wrote about on the CollBox Engineering
+blog</a>:</p>
+<p>If you use <code>M-!</code> (<code>shell-command</code>) and then press <code>M-n</code>
+(<code>next-history-element</code>), the current file name will be inserted into
+the minibuffer with point before it. Then you just need to type the
+command you want to run and hit return.</p>
+<p>It’s a good reminder that with 46 years of history behind it, if
+something obvious appears to be missing from Emacs, there’s probably a
+good reason why.</p>

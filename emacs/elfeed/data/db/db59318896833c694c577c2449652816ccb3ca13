@@ -1,0 +1,146 @@
+<div class="content" id="content">
+
+ <div class="outline-2" id="outline-container-dwim-shell-command-improvements">
+ <h2 id="dwim-shell-command-improvements"> <span class="timestamp-wrapper"> <span class="timestamp">28 July 2022</span></span> dwim-shell-command improvements</h2>
+ <div class="outline-text-2" id="text-dwim-shell-command-improvements">
+ <p>
+Added a few improvements to  <a href="https://github.com/xenodium/dwim-shell-command">dwim-shell-command</a>.
+</p>
+</div>
+
+ <div class="outline-3" id="outline-container-org628e08a">
+ <h3 id="org628e08a">Dired region</h3>
+ <div class="outline-text-3" id="text-org628e08a">
+ <p>
+In DWIM style, if you happen to have a  <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html">dired</a> region selected, use region files instead. There's no need to explicitly mark them.
+</p>
+
+
+ <div class="figure" id="org245aee3">
+ <p> <img alt="backup_x2.webp" height="70%" src="https://xenodium.com/images/dwim-shell-command-improvements/backup_x2.webp" width="70%" /></p>
+</div>
+</div>
+</div>
+
+ <div class="outline-3" id="outline-container-org0eb991e">
+ <h3 id="org0eb991e">Clipboard (kill-ring) replacement</h3>
+ <div class="outline-text-3" id="text-org0eb991e">
+ <p>
+Use  <code><code></code> to substitute with clipboard content. This is handy for cloning git repos, using a URL copied from your browser.
+</code></p><code>
+
+ <div class="org-src-container">
+ <pre class="src src-sh">git clone <pre></pre>
+</pre></div>
+
+
+ <div class="figure" id="orga1bb9bd">
+ <p> <img alt="clone.webp" height="70%" src="https://xenodium.com/images/dwim-shell-command-improvements/clone.webp" width="70%" /></p>
+</div>
+
+ <p>
+This illustrates  <code><code></code> usage, but you may want to use  <code>dwim-shell-commands-git-clone-clipboard-url</code> from  <a href="https://github.com/xenodium/dwim-shell-command/blob/main/dwim-shell-commands.el">dwim-shell-commands.el</a> instead. It does the same thing internally, but makes the command more accessible.
+</code></p><code>
+
+ <div class="org-src-container">
+ <pre class="src src-emacs-lisp">(<span style="color: #a71d5d;">defun</span>  <span style="color: #795da3;">dwim-shell-commands-git-clone-clipboard-url</span> ()
+   <span style="color: #183691;">"Clone git URL in clipboard to `</span> <span style="color: #0086b3;">default-directory</span> <span style="color: #183691;">'."</span>
+  (<span style="color: #a71d5d;">interactive</span>)
+  (dwim-shell-command-on-marked-files
+   (format  <span style="color: #183691;">"Clone %s"</span> (file-name-base (current-kill 0)))
+    <span style="color: #183691;">"git clone <span>"</span>
+    <span style="color: #a71d5d;">:utils</span>  <span style="color: #183691;">"git"</span>))
+</span></pre>
+</div>
+</code></code></div><code><code>
+</code></code></div><code><code>
+
+ <div class="outline-3" id="outline-container-org9da975d">
+ <h3 id="org9da975d">Counter replacement</h3>
+ <div class="outline-text-3" id="text-org9da975d">
+ <p>
+Use  <code><code></code> to substitute with a counter. You can also use  <code>&lt;&lt;3n&gt;&gt;</code> to start the counter at 3.
+</code></p><code>
+
+ <p>
+Handy if you'd like to consistently rename or copy files.
+</p>
+
+ <div class="org-src-container">
+ <pre class="src src-sh">mv  <span style="color: #183691;">'<span>'</span>  <span style="color: #183691;">'image(<span>).png'</span>
+</span></span></pre>
+</div>
+
+
+ <div class="figure" id="orge6745ad">
+ <p> <img alt="numberedsorted_x2.2.webp" height="70%" src="https://xenodium.com/images/dwim-shell-command-improvements/numberedsorted_x2.2.webp" width="70%" /></p>
+</div>
+
+ <p>
+Can also use an alphabetic counter with  <code><code></code>. Like the numeric version, can use any letter to start the counter with.
+</code></p><code>
+
+ <div class="org-src-container">
+ <pre class="src src-sh">mv  <span style="color: #183691;">'<span>'</span>  <span style="color: #183691;">'image(<span>).png'</span>
+</span></span></pre>
+</div>
+
+
+ <div class="figure" id="org0367bd9">
+ <p> <img alt="alphacount_x2.2.webp" height="70%" src="https://xenodium.com/images/dwim-shell-command-improvements/alphacount_x2.2.webp" width="70%" /></p>
+</div>
+</code></code></div><code><code>
+</code></code></div><code><code>
+
+ <div class="outline-3" id="outline-container-org24f5256">
+ <h3 id="org24f5256">Prefix counter</h3>
+ <div class="outline-text-3" id="text-org24f5256">
+ <p>
+Use a  <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Prefix-Command-Arguments.html">prefix command argument</a> on  <code>dwim-shell-commands</code> to repeat the command a number of times. Combined with a counter, you can make multiple copies of a single file.
+</p>
+
+
+ <div class="figure" id="org2bb6283">
+ <p> <img alt="repeat.webp" height="70%" src="https://xenodium.com/images/dwim-shell-command-improvements/repeat.webp" width="70%" /></p>
+</div>
+</div>
+</div>
+
+ <div class="outline-3" id="outline-container-org84eeb7a">
+ <h3 id="org84eeb7a">Optional error prompt</h3>
+ <div class="outline-text-3" id="text-org84eeb7a">
+ <p>
+Set  <code>dwim-shell-command-prompt-on-error</code> to nil to skip error prompts. Focus process buffers automatically instead.
+</p>
+
+
+ <div class="figure" id="org344cd35">
+ <p> <img alt="couldnt.png" height="70%" src="https://xenodium.com/images/dwim-shell-command-improvements/couldnt.png" width="70%" /></p>
+</div>
+</div>
+</div>
+
+ <div class="outline-3" id="outline-container-org300ed53">
+ <h3 id="org300ed53">Configurable prompt</h3>
+ <div class="outline-text-3" id="text-org300ed53">
+ <p>
+By default,  <code>dwim-shell-command</code> shows all supported placeholders. You can change that prompt to something shorter using  <code>dwim-shell-command-prompt</code>.
+</p>
+
+
+ <div class="figure" id="org4ebcd27">
+ <p> <img alt="prompt.jpg" height="90%" src="https://xenodium.com/images/dwim-shell-command-improvements/prompt.jpg" width="90%" /></p>
+</div>
+</div>
+</div>
+
+ <div class="outline-3" id="outline-container-orga8a08c5">
+ <h3 id="orga8a08c5">⚠️ Use with care ⚠️</h3>
+ <div class="outline-text-3" id="text-orga8a08c5">
+ <p>
+The changes are pretty fresh. Please use with caution (specially the counter support).
+</p>
+</div>
+</div>
+</code></code></code></code></div><code><code><code><code>
+</code></code></code></code></div>

@@ -1,0 +1,44 @@
+<p><a href="https://guix.gnu.org/">GNU Guix</a> (just like <a href="https://nixos.org/">Nix</a>) can easily spawn development environments with all the necessary dependencies one may need to work on a project.</p>
+<p><strong>For example:</strong> In a shell session, all you would have to do is to run</p>
+<pre><code>$ guix shell gcc</code></pre>
+<p>and a new shell is launched with adjusted environmental variables, so that GCC can now be used. Likewise, you can instruct Guix to fetch the developmental dependencies, i.e. exactly what you need to <em>build</em> a package</p>
+<pre><code>$ guix shell --development gcc</code></pre>
+<p>As a matter of convenience, one can also specify what an environment should consist of and store that in a file. An easy way to generate such a file is using the <code>--export-manifest</code> option:</p>
+<pre><code>$ guix shell --export-manifest --development gcc &gt; manifest.scm</code></pre>
+<p>On my system this generates this file:</p>
+<pre><code>;; What follows is a "manifest" equivalent to the command line you gave.
+;; You can store it in a file that you may then pass to any 'guix' command
+;; that accepts a '--manifest' (or '-m') option.
+(package-&gt;development-manifest
+  (specification-&gt;package "gcc"))</code></pre>
+<p>More details on other options can be found in the <a href="https://guix.gnu.org/manual/devel/en/html_node/Invoking-guix-shell.html">manual</a>.</p>
+<hr />
+<p>This is fine, but if you use Emacs, then the shell and the editor are “inverted”, or rather Emacs performs the function of a shell (generic user interface, that wraps the kernel). To use something like <code>guix shell</code>, you’d have to either</p>
+<ol type="1">
+<li>Start Emacs in a <code>guix shell</code> session so that it inherits the environmental variables set by Guix.</li>
+<li>Prefix any command you might execute in <code>M-x shell</code>, using <code>shell-command</code>, <code>compile</code>, etc. with a <code>guix shell ... --</code> prefix.`</li>
+</ol>
+<p>Neither of these two options are that convenient, so I was unusually delighted when I found a simple solution in the recently updated <a href="https://elpa.gnu.org/packages/buffer-env.html">buffer-env</a> by <a href="https://github.com/astoff/">Augusto Stoffel</a> (author of many under-appreciated packages). Reading through the source for the first time was a real joy, and I kept thinking about it like one would after hearing a good, catchy song.</p>
+<p>The package has as simple interface, and for the most part it can be configured in a <a href="https://github.com/astoff/buffer-env#on-the-emacs-side">single line</a>:</p>
+<pre><code>(add-hook 'hack-local-variables-hook 'buffer-env-update)</code></pre>
+<p>The package was added to GNU ELPA earlier this year, and was initially just described as a pure-elisp <a href="https://direnv.net/">direnv</a> implementation. If this is all you need, you don’t need to bother yourself with anything else.</p>
+<p>For those unfamiliar with <code>hack-local-variables-hook</code>, here is the docstring:</p>
+<blockquote>
+<p>Normal hook run after processing a file’s local variables specs. Major modes can use this to examine user-specified local variables in order to initialize other data structure based on them.</p>
+</blockquote>
+<p>So what <code>buffer-env-update</code> does, in the case of Guix, is check the <code>buffer-env-commands</code> variable and find an entry that says “if you find a <code>manifest.scm</code> command”, run</p>
+<pre><code>guix shell -D -f \"$0\" -- env -0</code></pre>
+<p>(where <code>$0</code> is replaced with the absolute file path), parse the output and update variables such as <code>process-environment</code> and <code>exec-path</code>, that influence how processes are spawned.</p>
+<p>The Guix documentation <a href="https://guix.gnu.org/cookbook/en/html_node/Guix-environment-via-direnv.html">mentions</a> something similar to this idea, but I find it much more complicated than what buffer-env allows me to do.</p>
+<p>My configuration goes a bit further than just modifying <code>hack-local-variables-hook</code>: Using <a href="https://www.emacswiki.org/emacs/SetupEl">Setup</a> I have the following in my <code>init.el</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb7-1"><a href="https://ruzkuku.com/emacs.atom#cb7-1"></a><span class="co">;;;;; Dynamic Environments</span></span>
+<span id="cb7-2"><a href="https://ruzkuku.com/emacs.atom#cb7-2"></a>(setup (:if-package buffer-env)</span>
+<span id="cb7-3"><a href="https://ruzkuku.com/emacs.atom#cb7-3"></a>  (:option buffer-env-script-name <span class="st">"manifest.scm"</span>)</span>
+<span id="cb7-4"><a href="https://ruzkuku.com/emacs.atom#cb7-4"></a>  (add-hook 'comint-mode-hook #'hack-dir-local-variables-non-file-buffer)</span>
+<span id="cb7-5"><a href="https://ruzkuku.com/emacs.atom#cb7-5"></a>  (add-hook 'hack-local-variables-hook #'buffer-env-update))</span></code></pre></div>
+<p>In other words, this changes two notable things:</p>
+<ol type="1">
+<li>Setting <code>buffer-env-script-name</code> to looks for <code>manifest.scm</code> files, so that buffer-env automatically picks up on <code>manifest.scm</code> files. Could be a list as well, if I also wanted to use <code>guix.scm</code> files.</li>
+<li>Load directory local variables in <code>comint</code> buffers (REPLs, <code>M-x    shell</code>, …) so that buffer-env also takes effect in these kinds of buffers that have no files associated with them.</li>
+</ol>
+<p>What I found particularly clever is that there is no need for an ongoing <code>guix shell</code> session, but that by calling <code>env -0</code> we extract all the environmental variables and apply them manually. This might run into issues if you use <code>guix gc</code> concurrently though. And after all, all there is to Guix or Nix are just a few clever symbolic links and environmental variables.</p>

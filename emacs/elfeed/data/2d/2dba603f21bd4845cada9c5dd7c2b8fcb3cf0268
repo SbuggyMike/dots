@@ -1,0 +1,122 @@
+<p>My blog posts here usually have a line like:</p>
+
+<pre><code>tags: [ swift, xcode, codesigning ]
+</code></pre>
+
+<p>For tags I don’t use a lot, I sometimes don’t remember how to write them. So I do the only sane thing – and go to my website’s <a href="https://christiantietze.de/posts/tags/">list of tags</a> and look for a match.</p>
+
+<p>Got annoyed by that now after a couple of years :)</p>
+
+<h2 id="extract-all-tags-from-all-posts">Extract All Tags from All Posts</h2>
+
+<p>Using <code>rg</code>, I can match these lines <em>and</em> focus on group matches inside without piping the output through <code>sed</code> or similar.</p>
+
+<p>The regular expression that works good enough for me:</p>
+
+<pre><code>^tags:\s\[([a-zA-Z0-9 -_]+)\]
+</code></pre>
+
+<p>The first group here then returns <code>" swift, xcode, codesigning "</code> for the example above with the right ripgrep incantation:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rg <span class="nt">--context</span> 0 <span class="se">\</span>
+     <span class="nt">--no-filename</span> <span class="se">\</span>
+     <span class="nt">--no-heading</span> <span class="se">\</span>
+     <span class="nt">--replace</span> <span class="s2">"</span><span class="se">\$</span><span class="s2">1"</span> <span class="se">\</span>
+     <span class="nt">--</span> <span class="o">&lt;&lt;</span><span class="no">regex</span><span class="sh"> here&gt;&gt;
+</span></code></pre></div></div>
+
+<p>This produces just the string inside the <code>tags: [...]</code> brackets, without filename, and no empty lines in between.</p>
+
+<p>Here’s the Emacs Lisp version to get these lines:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">defun</span> <span class="nv">ct/all-tag-lines</span> <span class="p">()</span>
+  <span class="s">"Extract the array contents of YAML lines for `tags: [...]'."</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">project-dir</span> <span class="p">(</span><span class="nb">cdr</span> <span class="p">(</span><span class="nv">project-current</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nv">regex</span> <span class="s">"^tags:\\s\\[\\s*([a-zA-Z0-9 -_]+)\\s*\\]"</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">shell-command-to-string</span>
+     <span class="p">(</span><span class="nv">concat</span> <span class="s">"rg --context 0 --no-filename --no-heading --replace \"\\$1\" -- "</span> <span class="p">(</span><span class="nv">shell-quote-argument</span> <span class="nv">regex</span><span class="p">)</span> <span class="s">" "</span> <span class="nv">project-dir</span><span class="p">))))</span>
+</code></pre></div></div>
+
+<p>Now time to clean this up and make this usable.</p>
+
+<h2 id="transform-the-extracted-yaml-lines-into-filterable-lists-in-emacs">Transform the Extracted YAML Lines Into Filterable Lists in Emacs</h2>
+
+<p>Samples output from <code>rg</code> is e.g.:</p>
+
+<pre><code>zettelkasten, reading, archive
+calendarpasteapp
+zettelkasten, writing, personal, craft
+nv, zettelkasten, software, review
+writing, productivity, quantified-self
+</code></pre>
+
+<p>I need to split the lines into individual tags and then remove duplicates like <code>zettelkasten</code>.</p>
+
+<ul>
+  <li>
+    <p>Split string by lines, trimming whitespace:</p>
+
+    <pre><code>  (split-string "..." "\n" nil " ")
+</code></pre>
+  </li>
+  <li>
+    <p>Split lines by comma and/or spaces to extract individual tags, dropping empty strings:</p>
+
+    <pre><code>  (split-string "..." "[, ]+" t " ")
+</code></pre>
+  </li>
+  <li>
+    <p>Combined:</p>
+
+    <pre><code>  (split-string "..." "[, \n]+" t " \n")
+</code></pre>
+  </li>
+</ul>
+
+<p>To delete duplicates, <code>delete-dups</code> does the trick:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">defun</span> <span class="nv">ct/all-tags</span> <span class="p">()</span>
+  <span class="s">"Return a list of unique tags across all articles."</span>
+  <span class="p">(</span><span class="nv">delete-dups</span>
+   <span class="p">(</span><span class="nv">split-string</span> <span class="p">(</span><span class="nv">ct/all-tag-lines</span><span class="p">)</span> <span class="s">"[, \n]+"</span> <span class="no">t</span> <span class="s">" \n"</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p>This returns an (unsorted) list of unique tag strings.</p>
+
+<pre><code>zettelkasten
+reading
+archive
+calendarpasteapp
+writing
+personal
+craft
+nv
+software
+review
+productivity
+quantified-self
+</code></pre>
+
+<p>With that, I’m almost finished. I can pass this to <code>completing-read</code> to get – well, the name reveals almost as much: – interactive completion for matches in this selection.</p>
+
+<p>And I ultimately want to <em>insert</em> the match, not just produce a result programmatically.</p>
+
+<p>So this is the “public”, i.e. user facing function I’m using:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">defun</span> <span class="nv">ct/insert-project-tag</span> <span class="p">()</span>
+  <span class="s">"Select and insert a tag from YAML frontmatter tags in the project."</span>
+  <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">insert</span> <span class="p">(</span><span class="nv">completing-read</span> <span class="s">"Tag: "</span> <span class="p">(</span><span class="nv">ct/all-tags</span><span class="p">))))</span>
+</code></pre></div></div>
+
+<p>Since I’m using the built-in <code>project.el</code> package, I added a key binding to <kbd>C-x p t</kbd> (am actually using <kbd>SPC p t</kbd> in command mode) to insert a tag:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">define-key</span> <span class="nv">project-prefix-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"t"</span><span class="p">)</span> <span class="nf">#'</span><span class="nv">ct/insert-project-tag</span><span class="p">)</span>
+</code></pre></div></div>
+
+<figure><a href="https://christiantietze.de/posts/2022/07/emacs-blogging-insert-tag-yaml-frontmatter-posts/tags.png"><img alt="" src="https://christiantietze.de/posts/2022/07/emacs-blogging-insert-tag-yaml-frontmatter-posts/tags.png" /></a>Ah well, looks like I have singular/plural form duplicates already. Gah.</figure>
+
+<p>Up next, I’d maybe like to push this completion from a selection in the mode-line to <code>completion-at-point</code>, i.e. to get suggestions and auto-completion in-place while I type.</p>
+
+<p>Judging by the speed I implemented these things in the past, it should be ready by 2026.</p>
+<hr /><p>Receive Christian’s <a href="https://christiantietze.de/newsletter/">new posts via email</a></p>

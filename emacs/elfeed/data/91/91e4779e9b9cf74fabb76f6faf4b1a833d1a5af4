@@ -1,0 +1,213 @@
+<blockquote>
+  <p><code>dired-rsync</code> is a great additional to my Machine Learning workflow in
+Emacs</p>
+</blockquote>
+
+<h1 id="table-of-contents">Table of Contents</h1>
+
+<ul>
+  <li><a href="http://yitang.uk/atom.xml#org6c487b1">File Manager GUI</a></li>
+  <li><a href="http://yitang.uk/atom.xml#orgfe31ac5">Rsync Tool in CLI</a></li>
+  <li><a href="http://yitang.uk/atom.xml#orgf0ebfb2">Emacs’ Way: <code>dired-rsync</code></a></li>
+  <li><a href="http://yitang.uk/atom.xml#org23d9482">Setup for <code>dired=rsync</code></a></li>
+  <li><a href="http://yitang.uk/atom.xml#org0566895">Enhance <code>dired-rsync</code> with compilation mode</a></li>
+</ul>
+
+<p>For machine learning projects, I tweaked my workflow so the
+interaction with remote server is kept as less as possible.  I prefer
+to do everything locally on my laptop (M1 Pro) where I have all the
+tools for the job to do data analysis, visualisation, debugging etc
+and I can do all those without lagging or WI-FI.</p>
+
+<p>The only usage of servers is running computation extensive tasks like
+recursive feature selection, hyperparameter tuning etc. For that I ssh
+to the server, start <a href="https://en.wikipedia.org/wiki/Tmux">tmux</a>, <code>git pull</code> to update the codebase, run a
+bash script that I prepared locally to fire hundreds of
+experiments. All done in Emacs of course thanks to Lukas Fürmetz’s
+<a href="https://github.com/akermu/emacs-libvterm">vterm</a>.</p>
+
+<p>The only thing left is getting the experiment results back to my
+laptop. I used two approaches for copying the data to local: file
+manager GUI and <code>rsync</code> tool in CLI.</p>
+
+<p>Recently I discovered <code>dired-rsync</code> that works like a charm - it
+combines the two approaches above, providing a interactive way of
+running <code>rsync</code> tool in Emacs. What’s more, it is integrated
+seamlessly into my current workflow.</p>
+
+<p>They all have their own use case. In this post, I brief describe those
+three approaches for coping files with a focus on <code>dired-rsync</code> in
+terms of how to use it, how to setup, and my thoughts on how to
+enhance it.</p>
+
+<p>Note the RL stands for remote location, i.e. a folder a in remote
+server, and LL stands for local location, the RL’s counterpart. The
+action in discussion is how to efficiently copying files from RL to
+LL.</p>
+
+<p><a id="org6c487b1"></a></p>
+
+<h1 id="file-manager-gui">File Manager GUI</h1>
+
+<p>This is the simplest approach requires little technical skills. The RL
+is mounted in the file manager which acts as an access point so it can
+be used just like a local folder.</p>
+
+<p>I usually have two tabs open side by side, one for RL, and one for LL,
+compare the differences, and then copy what are useful and exists in
+RL but not in LL.</p>
+
+<p>I used this approach on my Windows work laptop where <code>rsync</code> is not
+available so I have to copy files manually.</p>
+
+<p><a id="orgfe31ac5"></a></p>
+
+<h1 id="rsync-tool-in-cli">Rsync Tool in CLI</h1>
+
+<p>The <a href="https://linux.die.net/man/1/rsync"><code>rsync</code></a> tool is similar to <code>cp</code> and <code>scp</code> but it is much more
+power:</p>
+
+<ol>
+  <li>It copies files incrementally so it can stop at anytime without
+losing progress</li>
+  <li>The output shows what files are copied, what are remaining, copying
+speed, overall progress etc</li>
+  <li>Files and folders can be included/excluded by specifying
+patterns</li>
+</ol>
+
+<p>I have a bash function in the project’s script folder as a shorthand
+like this</p>
+
+<figure class="highlight"><pre><code class="language-bash">copy_from_debian_to_laptop <span class="o">()</span> <span class="o">{</span>
+    <span class="c"># first argument to this function</span>
+    <span class="nv">folder_to_sync</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="c"># define where the RL is </span>
+    <span class="nv">remote_project_dir</span><span class="o">=</span>debian:~/Projects/2022-May
+    <span class="c"># define where the LL is </span>
+    <span class="nv">local_project_dir</span><span class="o">=</span>~/Projects/2022-May          
+    rsync <span class="nt">-avh</span> <span class="nt">--progress</span> <span class="se">\</span>
+	  <span class="k">${</span><span class="nv">remote_project_dir</span><span class="k">}</span>/<span class="k">${</span><span class="nv">folder_to_sync</span><span class="k">}</span>/ <span class="se">\</span>
+	  <span class="k">${</span><span class="nv">local_project_dir</span><span class="k">}</span>/<span class="k">${</span><span class="nv">folder_to_sync</span><span class="k">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>To use it, I firstly <code>cd</code> (change directory) to the project directory
+in terminal, call <code>copy_from_debian_to_laptop</code> function, and use the
+TAB completion to quickly get the directory I want to copy, for
+example</p>
+
+<figure class="highlight"><pre><code class="language-bash">copy_from_debian_to_laptop experiment/2022-07-17-FE</code></pre></figure>
+
+<p>This function is called more often from a org-mode file where I kept
+track of all the experiments.</p>
+
+<p><a id="orgf0ebfb2"></a></p>
+
+<h1 id="emacs-way-dired-rsync">Emacs’ Way: <code>dired-rsync</code></h1>
+
+<p>This approach is a blend of the previous two, enable user to enjoy the
+benefits of GUI for exploring and the power of <code>rsync</code>.</p>
+
+<p>What’s more, it integrates so well into the current workflow by simply
+switching from calling <code>dired-copy</code> to calling <code>dired-rsync</code>, or
+pressing <code>r</code> key instead of <code>C</code> key by using the configuration in this
+post.</p>
+
+<p>To those who are not familiar with copying files using <code>dired</code> in
+Emacs, here is the step by step process:</p>
+
+<ol>
+  <li>Open two <code>dired</code> buffer, one at RL and one at LL, either manually
+or using <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Bookmarks.html">bookmarks</a></li>
+  <li>Mark the files/folders to copy in the RL <code>dired</code> buffer</li>
+  <li>Press <em>r</em> key to invoke <code>dired-rsync</code></li>
+  <li>It asks for what to copy to. The default destination is LL so press
+Enter to confirm.</li>
+</ol>
+
+<p>After that, a unique process buffer, named *rsync with a timestamp
+suffix, is created to show the rsync output. I can stop the copying by
+killing the process buffer.</p>
+
+<p><a id="org23d9482"></a></p>
+
+<h1 id="setup-for-diredrsync">Setup for <code>dired=rsync</code></h1>
+
+<p>The <em>dired-rsync-options</em> control the output shown in the process
+buffer. It defaults to “-az –info=progress2”. It shows the overall
+progress in one-line, clean and neat (not in MacOS though, see <a href="https://github.com/stsquad/dired-rsync/issues/36">Issue
+36</a>). Sometimes I prefer “-azh –progress” so I can see exactly which
+files are copied.</p>
+
+<p>There are other options for showing progress in modeline
+(<em>dired-rsync-modeline-status</em>), hooks for sending notifications on
+failure/success (<em>dired-rsync-failed-hook</em> and
+<em>dired-rsync-success-hook</em>).</p>
+
+<p>Overall the library is well designed, and the default options work for
+me, so I can have a bare-minimal configuration as below (borrowed from
+<a href="https://www.reddit.com/r/emacs/comments/g0jkkj/comment/fnc68iq/?utm_source=share&amp;utm_medium=web2x&amp;context=3">ispinfx</a>):</p>
+
+<figure class="highlight"><pre><code class="language-elisp"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">dired-rsync</span>
+  <span class="ss">:demand</span> <span class="no">t</span>
+  <span class="ss">:after</span> <span class="nv">dired</span>
+  <span class="ss">:bind</span> <span class="p">(</span><span class="ss">:map</span> <span class="nv">dired-mode-map</span> <span class="p">(</span><span class="s">"r"</span> <span class="o">.</span> <span class="nv">dired-rsync</span><span class="p">))</span>
+  <span class="ss">:config</span> <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'mode-line-misc-info</span> <span class="o">'</span><span class="p">(</span><span class="ss">:eval</span> <span class="nv">dired-rsync-modeline-status</span> <span class="ss">'append</span><span class="p">))</span>
+  <span class="p">)</span></code></pre></figure>
+
+<p>There are two more things to do on the system side:</p>
+
+<ol>
+  <li>
+    <p>In macOS, the default rsync is a 2010 version. It does not work
+with the latest rsync I have on Debian server so I upgrade it using
+<code>brew install rsync</code>.</p>
+  </li>
+  <li>
+    <p>There no way of typing password as a limitation of using process
+buffer so I have to ensure I can rsync without remote server asking
+for password. It sounds complicated but fortunately it takes few
+steps to do as in <a href="https://fedingo.com/setup-rsync-between-two-servers-without-password/">Setup Rsync Between Two Servers Without Password</a>.</p>
+  </li>
+</ol>
+
+<p><a id="org0566895"></a></p>
+
+<h1 id="enhance-dired-rsync-with-compilation-mode">Enhance <code>dired-rsync</code> with compilation mode</h1>
+
+<p>It’s such a great library that makes my life much easier. It can be
+improved further to provide greater user experience, for example, keep
+the process buffer alive as a log after the coping finished because
+the user might want to have a look later.</p>
+
+<p>At the moment, there’s no easy way of changing the arguments send to
+rsync. I might want to test a dry-run (adding <code>-n</code> argument) so I can
+see exactly what files are going to be copied before running, or I
+need to exclude certain files/folders, or rerun the coping if there’s
+new files generated on RL.</p>
+
+<p>If you used compilation buffer before, you know where I am
+going. That’s right, I am thinking of turning the rsync process buffer
+into <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Compilation-Mode.html">compilation mode</a>, then it would inherit these two features:</p>
+
+<ol>
+  <li>Press <em>g</em> to rerun the rsync command when I know there are new
+files generated on the RL</li>
+  <li>Press <em>C-u g</em> (g with prefix) to change the rsync arguments before
+running it for dry-run, inclusion or exclusion</li>
+</ol>
+
+<p>I don’t have much experience in elisp but I had a quick look at source
+code, it seems there’s no easy of implementing this idea so something
+to add to my ever-growing Emacs wish-list.</p>
+
+<p>In fact, the limitation comes from using lower level elisp
+functions. The <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Process-Buffers.htmlnov:">Emacs Lisp manual on Process Buffers</a> states that</p>
+
+<blockquote>
+  <p>Many applications of processes also use the buffer for editing input
+to be sent to the process, but this is not built into Emacs Lisp.</p>
+</blockquote>
+
+<p>What a pity. For now I enjoy using it and look for opportunities to
+use it.</p>

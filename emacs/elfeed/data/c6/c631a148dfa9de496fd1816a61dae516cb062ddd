@@ -1,0 +1,51 @@
+<p>Many programming languages have a function for combining the elements of multiple collections (e.g. arrays or lists) together. Typically this function is named <code class="language-plaintext highlighter-rouge">zip</code>. Here’s an example from Haskell:</p>
+
+<div class="language-haskell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">zip</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="p">[</span><span class="sc">'a'</span><span class="p">,</span> <span class="sc">'b'</span><span class="p">]</span> <span class="c1">-- =&gt; [(1, 'a'), (2, 'b')]</span>
+</code></pre></div></div>
+
+<p>Clojure doesn’t have a <code class="language-plaintext highlighter-rouge">zip</code> function in the standard library, which leads many newcomers to the language to wonder what to use in its place. The answer is quite simple:</p>
+
+<div class="language-clojure highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">;; let's zip a couple of lists, even if no one really uses them in Clojure</span><span class="w">
+</span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="nb">vector</span><span class="w"> </span><span class="o">'</span><span class="p">(</span><span class="nf">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">'</span><span class="p">(</span><span class="nf">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">))</span><span class="w">
+</span><span class="c1">;; =&gt; ([1 4] [2 5] [3 6])</span><span class="w">
+
+</span><span class="c1">;; works with vectors as well</span><span class="w">
+</span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="nb">vector</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">])</span><span class="w">
+</span><span class="c1">;; =&gt; ([1 4] [2 5] [3 6])</span><span class="w">
+
+</span><span class="c1">;; actually this works with anything seq-able</span><span class="w">
+</span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="nb">vector</span><span class="w"> </span><span class="s">"this"</span><span class="w"> </span><span class="s">"that"</span><span class="p">)</span><span class="w">
+</span><span class="c1">;; =&gt; ([\t \t] [\h \h] [\i \a] [\s \t])</span><span class="w">
+
+</span><span class="c1">;; and you can mix and match different seq types</span><span class="w">
+</span><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="nb">vector</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="s">"this"</span><span class="p">)</span><span class="w">
+</span><span class="c1">;; =&gt; ([1 \t] [2 \h] [3 \i] [4 \s])</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The function <code class="language-plaintext highlighter-rouge">vector</code> takes a variable number of arguments and produces a vector out of them. And vectors happen to be the idiomatic way to represent the concept of tuples (common in other functional programming languages) in Clojure. By the way, you can zip as many sequences together as your heart desires:<sup id="fnref:1"><a class="footnote" href="https://batsov.com/articles/2022/07/31/clojure-tricks-zipping-things-together/#fn:1" rel="footnote">1</a></sup></p>
+
+<div class="language-clojure highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="nb">vector</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">9</span><span class="p">])</span><span class="w">
+</span><span class="c1">;; =&gt; ([1 4 7] [2 5 8] [3 6 9])</span><span class="w">
+</span></code></pre></div></div>
+
+<p>And they don’t all have to be of the same length either:</p>
+
+<div class="language-clojure highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="nb">vector</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="w"> </span><span class="mi">11</span><span class="p">])</span><span class="w">
+</span><span class="c1">;; =&gt; ([1 4 7 10] [2 5 8 11])</span><span class="w">
+</span></code></pre></div></div>
+
+<p>One more thing… Clojure also has a function named <code class="language-plaintext highlighter-rouge">zipmap</code> that can zip a couple of seqs into a map:</p>
+
+<div class="language-clojure highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">zipmap</span><span class="w"> </span><span class="p">[</span><span class="no">:a</span><span class="w"> </span><span class="no">:b</span><span class="w"> </span><span class="no">:c</span><span class="w"> </span><span class="no">:d</span><span class="w"> </span><span class="no">:e</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="p">])</span><span class="w">
+</span><span class="c1">;; =&gt; {:a 1, :b 2, :c 3, :d 4, :e 5}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>That’s all I have for you today. Zip long and prosper!</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>That’s a big advantage over Haskell’s <code class="language-plaintext highlighter-rouge">zip</code> mentioned earlier, as it can only combine two lists. There’s a similar function called <code class="language-plaintext highlighter-rouge">zip3</code> that can combine three lists. <a class="reversefootnote" href="https://batsov.com/articles/2022/07/31/clojure-tricks-zipping-things-together/#fnref:1">↩</a></p>
+    </li>
+  </ol>
+</div>

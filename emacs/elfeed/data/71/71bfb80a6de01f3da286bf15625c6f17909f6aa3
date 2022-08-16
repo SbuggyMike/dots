@@ -1,0 +1,6 @@
+
+<p>For this palette, I used recent advances in color science, which made perceptual design more accessible, to choose a set of colors (mainly for syntax highlighting) that have uniform luminance for less visually uneven, fluidly readable code, but at the same time maximally distinguishable hue and chroma. The background colors are based on natural (sun-)light and shade for a more pleasing look than equally neutral greys.<p>For much more detailed info, including the construction, check out the repository.<p>There’s also already a (bare-bones) VSCode extension, linked in the repository, but it could admittedly use more informed distribution of colors over tokens, language specific highlighting and perhaps more opinionated use in UI elements.</p>
+<hr>
+<p>Comments URL: <a href="https://news.ycombinator.com/item?id=32348461">https://news.ycombinator.com/item?id=32348461</a></p>
+<p>Points: 161</p>
+<p># Comments: 42</p>

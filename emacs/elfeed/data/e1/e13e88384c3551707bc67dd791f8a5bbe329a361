@@ -1,0 +1,174 @@
+<p>The <code class="language-plaintext highlighter-rouge">git-gutter</code> package (and its <code class="language-plaintext highlighter-rouge">git-gutter-fringe</code> extension)
+highlights in the margin or fringe of the window the status of affected
+version-controlled lines.  By default, <code class="language-plaintext highlighter-rouge">git-gutter</code> uses a colour-coded
+background, such as green for additions, together with the character or
+bitmap of an appropriate sign, like the <code class="language-plaintext highlighter-rouge">+</code> for added lines.</p>
+
+<p>When I test <code class="language-plaintext highlighter-rouge">git-gutter</code> in my capacity as the maintainer of the
+<code class="language-plaintext highlighter-rouge">modus-themes</code> for the purposes of supporting the faces it defines, I
+use what the upstream source provides.  As such, I apply a combination
+of background and foreground that works the way the original package
+intends to.  I add a colour-coded background and the correct foreground
+(black for <code class="language-plaintext highlighter-rouge">modus-operandi</code>, white for <code class="language-plaintext highlighter-rouge">modus-vivendi</code>).  As a result,
+the <code class="language-plaintext highlighter-rouge">modus-themes</code> work as intended with <code class="language-plaintext highlighter-rouge">git-gutter</code> and
+<code class="language-plaintext highlighter-rouge">git-gutter-fringe</code>.</p>
+
+<p>[ Colour-coding is influenced by <code class="language-plaintext highlighter-rouge">modus-themes-deuteranopia</code> for those
+  who need to opt-in to it. ]</p>
+
+<p>Doom Emacs, the popular configuration of our favourite computing
+environment, uses <code class="language-plaintext highlighter-rouge">git-gutter</code> (<code class="language-plaintext highlighter-rouge">git-gutter-fringe</code>) by default.
+However, it is effectively running a soft fork of the package, as it
+introduces changes which refashion its appearance; changes which were
+not anticipated upstream and, consequently, could not have been foreseen
+by theme developers.  Doom Emacs adds its own custom bitmaps, which
+replace those signs with contiguous lines.</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">;; Copied from Doom Emacs (commit 55544200b)</span>
+
+<span class="c1">;; places the git gutter outside the margins.</span>
+<span class="p">(</span><span class="nv">setq-default</span> <span class="nv">fringes-outside-margins</span> <span class="no">t</span><span class="p">)</span>
+
+<span class="c1">;; thin fringe bitmaps</span>
+<span class="p">(</span><span class="nv">define-fringe-bitmap</span> <span class="ss">'git-gutter-fr:added</span> <span class="nv">[224]</span>
+  <span class="no">nil</span> <span class="no">nil</span> <span class="o">'</span><span class="p">(</span><span class="nv">center</span> <span class="nv">repeated</span><span class="p">))</span>
+<span class="p">(</span><span class="nv">define-fringe-bitmap</span> <span class="ss">'git-gutter-fr:modified</span> <span class="nv">[224]</span>
+  <span class="no">nil</span> <span class="no">nil</span> <span class="o">'</span><span class="p">(</span><span class="nv">center</span> <span class="nv">repeated</span><span class="p">))</span>
+<span class="p">(</span><span class="nv">define-fringe-bitmap</span> <span class="ss">'git-gutter-fr:deleted</span> <span class="nv">[128</span> <span class="mi">192</span> <span class="mi">224</span> <span class="nv">240]</span>
+  <span class="no">nil</span> <span class="no">nil</span> <span class="ss">'bottom</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Sample of the original bitmap, as seen in <code class="language-plaintext highlighter-rouge">git-gutter-fringe.el</code>:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">fringe-helper-define</span> <span class="ss">'git-gutter-fr:added</span> <span class="no">nil</span>
+                      <span class="s">"...XX..."</span>
+                      <span class="s">"...XX..."</span>
+                      <span class="s">"...XX..."</span>
+                      <span class="s">"XXXXXXXX"</span>
+                      <span class="s">"XXXXXXXX"</span>
+                      <span class="s">"...XX..."</span>
+                      <span class="s">"...XX..."</span>
+                      <span class="s">"...XX..."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Taken in a vacuum, I like the visuals of this change: I prefer to have a
+contiguous, colour-coded line that has no symbols or other
+embellishments.  It is how the <code class="language-plaintext highlighter-rouge">diff-hl</code> package that I use looks with
+one minor tweak to a relevant user option.  However, Doom’s otherwise
+innocuous modifications have a negative effect on themes that are not
+designed specifically for Doom Emacs.  What once was a plus sign with a
+black/white foreground now turns into a straight line that either covers
+or is adjacent to the standard colour-coded background.</p>
+
+<p><a href="https://protesilaos.com/assets/images/attachments/2022-08-04-doom-modus-git-gutter.png"><img alt="2022-08-04-doom-modus-git-gutter.png sample" src="https://protesilaos.com/assets/images/attachments/2022-08-04-doom-modus-git-gutter.png" /></a></p>
+
+<p>In other words, Doom breaks the <code class="language-plaintext highlighter-rouge">modus-themes</code>.  There is nothing we can
+do about it because its soft fork of <code class="language-plaintext highlighter-rouge">git-gutter</code> is not a standalone
+package with the appropriate points of entry that we could configure.</p>
+
+<p>This has been known for a while now.  The manual of the <code class="language-plaintext highlighter-rouge">modus-themes</code>,
+informs users of Doom Emacs about the problem and what they can do to
+fix it using local tweaks:
+<a href="https://protesilaos.com/emacs/modus-themes#h:a195e37c-e58c-4148-b254-8ba1ed8a731a">https://protesilaos.com/emacs/modus-themes#h:a195e37c-e58c-4148-b254-8ba1ed8a731a</a>.
+Excerpt with just the code, while the docs explain the details:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">defun</span> <span class="nv">my-modus-themes-custom-faces</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">modus-themes-with-colors</span>
+    <span class="p">(</span><span class="nv">custom-set-faces</span>
+     <span class="c1">;; Replace green with blue if you use `modus-themes-deuteranopia'.</span>
+     <span class="o">`</span><span class="p">(</span><span class="nv">git-gutter-fr:added</span> <span class="p">((</span><span class="o">,</span><span class="nc">class</span> <span class="ss">:foreground</span> <span class="o">,</span><span class="nv">green-fringe-bg</span><span class="p">)))</span>
+     <span class="o">`</span><span class="p">(</span><span class="nv">git-gutter-fr:deleted</span> <span class="p">((</span><span class="o">,</span><span class="nc">class</span> <span class="ss">:foreground</span> <span class="o">,</span><span class="nv">red-fringe-bg</span><span class="p">)))</span>
+     <span class="o">`</span><span class="p">(</span><span class="nv">git-gutter-fr:modified</span> <span class="p">((</span><span class="o">,</span><span class="nc">class</span> <span class="ss">:foreground</span> <span class="o">,</span><span class="nv">yellow-fringe-bg</span><span class="p">))))))</span>
+
+<span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'modus-themes-after-load-theme-hook</span> <span class="nf">#'</span><span class="nv">my-modus-themes-custom-faces</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The user evaluates this code and then re-loads the theme for changes to
+take effect.  An unpleasant experience for what ought to just work.
+What the code does is remove the black/white foreground and replace it
+with the same colour as the background.  We cannot have such code in the
+themes because it breaks standard <code class="language-plaintext highlighter-rouge">git-gutter</code> (technically, it is
+<code class="language-plaintext highlighter-rouge">git-gutter-fringe</code> which is specifically for the fringes, but the point
+is the same).</p>
+
+<p>Looking at the code of <code class="language-plaintext highlighter-rouge">git-gutter</code>, we have user options like this one:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">defcustom</span> <span class="nv">git-gutter:added-sign</span> <span class="s">"+"</span>
+  <span class="s">"Added sign."</span>
+  <span class="ss">:type</span> <span class="ss">'string</span>
+  <span class="ss">:group</span> <span class="ss">'git-gutter</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Instead of dirty hacks, we can have a contiguous colour-coded
+presentation by replacing the character with an empty space:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">setq</span> <span class="nv">git-gutter:added-sign</span> <span class="s">" "</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>No need to use the fringes.  This works for all users and with all
+themes that cover <code class="language-plaintext highlighter-rouge">git-gutter</code>.  You get the idea.</p>
+
+<h2>Good citizenship and responsibility</h2>
+
+<p>I am a proponent of community building.  Emacs is a fairly small space
+and we all know each other, more or less.  As package maintainers, we
+contribute to the wellness of the community by writing code that does
+not have a negative impact on third parties; code which has a clear
+scope, conforms with the principle of least surprise, and can be
+integrated in wider workflows.  Put simply, when our code breaks stuff
+elsewhere, we fix our code.</p>
+
+<p>This is not about the technicalities of the intersection between the
+<code class="language-plaintext highlighter-rouge">modus-themes</code>, <code class="language-plaintext highlighter-rouge">git-gutter</code>, and Doom Emacs.  Every maintainer has a
+responsibility towards the community.</p>
+
+<p>Doom Emacs happens to be a very popular choice, especially for new users
+who are not yet familiar with all the minutiae of Emacs.  When a soft
+fork breaks my package, I get to deal with the problem even though my
+package works correctly.  This is not nice and it detracts from my other
+projects.</p>
+
+<p>[ I keep calling the <code class="language-plaintext highlighter-rouge">modus-themes</code> “my package” though note that it is
+  built into Emacs.  The soft fork thus breaks standard Emacs. ]</p>
+
+<p>I feel disempowered because even though I want to help users get the
+best experience out-of-the-box, I cannot do anything more than write
+documentation about the issue and hope for the best.  I do that, yet I
+keep getting emails about it…</p>
+
+<p>The manual is not the right place to fix bugs.  It is there to inform
+the user about how to set up the package, what the customisation options
+are, and, for the more adventurous, provide guidance on possible
+do-it-yourself extensions.</p>
+
+<p>Soft forks are quasi-proprietary <em>in practice</em>, as they are not
+publicly available for me as a third party to interface with them using
+standard mechanisms (i.e. not ad-hoc arrangements).  I cannot maintain
+dirty hacks to accommodate soft forks: it debases the quality of my
+package and makes it harder to maintain it.  Besides, makeshift
+solutions of this sort have no place in emacs.git, where I push my
+themes after every tagged release (I did so <a href="https://protesilaos.com/codelog/2022-08-03-modus-themes-2-5-0/">yesterday for version
+2.5.0</a>).</p>
+
+<p>I strongly encourage maintainers of soft forks, such as Doom Emacs in
+this case, to upstream their changes or, at the very least, subject
+their feature to an opt-in toggle so that the user is informed about the
+matter.</p>
+
+<p>More broadly, each of us must consider that there exists a wider
+community outside our particular milieu which is affected by our
+decisions.  It is our duty to keep this place pleasant.  The more
+influential and widely-used the code is, the greater the concomitant
+responsibility.</p>
+
+<p>Why am I not reporting this in the Doom repo?  Because (1) I am not a
+user and (2) this is not about Doom Emacs per se.  It is an opportunity
+for me to address a general topic and raise awareness about it.  Keeping
+the information limited to an issue tracker does not help in this
+regard.</p>
+
+<p>Finally, a note for users who copy snippets without considering the
+implications: if something looks broken, consider the possibility that
+your custom code is the cause of it.  When reporting issues, make your
+customisations explicit, otherwise you are unintentionally spreading
+misinformation.</p>

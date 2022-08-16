@@ -1,0 +1,39 @@
+<p>
+I updated my brew packages yesterday, thereby inadvertently updating Emacs to version 28, which proved incompatible with my v26 configuration.
+</p>
+
+<p>
+Emacs started up in an unusable state, with multiple errors.
+</p>
+
+<p>
+This brought my workflow to a grinding halt.  I should really have a backup Textmind instance for such situations.  (Maybe I do somewhere.)
+</p>
+
+<p>
+I googled how to downgrade the package in brew, but that appeared needlessly complicated.  Brew did not have alternative versions of Emacs.
+</p>
+
+<p>
+Instead I downloaded Emacs 26.3 from <a href="https://emacsformacosx.com/builds/all">Emacs for Macos X</a>.  I installed it as Emacs 3 (and Emacs 27 as Emacs 2).
+</p>
+
+<p>
+I ran Emacs 3, and everything worked fine.  Now I can upgrade my configuration at my leisure, and my workflow is uninterrupted.
+</p>
+
+<p>
+My googling didn't highlight this easy answer, causing me to waste time doing questionable things at the Terminal.
+</p>
+
+<p>
+I have a complicated setup with Chemacs profiles etc, and it somewhat surprised me when everything just worked.  That's why I use MacOS.
+</p>
+
+<p>
+Best practices are good, but fast food is forever!
+</p>
+
+<p>
+<a href="https://www.seriouseats.com/the-food-lab-why-mcdonalds-burgers-never-rot">Here's Why McDonald's Burgers Don't Rot | The Food Lab</a>
+</p><p>On reddit: <a href="https://www.reddit.com/r/emacs/comments/w6ryms/the_lazy_way_to_downgrade_brew_to_an_earlier/">https://www.reddit.com/r/emacs/comments/w6ryms/the_lazy_way_to_downgrade_brew_to_an_earlier/</a></p>

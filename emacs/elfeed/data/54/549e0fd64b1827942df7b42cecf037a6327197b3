@@ -1,0 +1,56 @@
+
+<figure class="titleimg">
+    
+        <img src="https://lukesmith.xyz/pix/deadsea-small.jpg" title="Where the Dead Sea Scrolls were found."/>
+    
+    
+</figure>
+
+
+<p>I've made a couple very useful command-line accessible Bibles for a
+quick and scriptable lookup of Bible verses and passages. They exist not
+only in English, but for Latin and Greek as well.</p>
+<ol>
+<li>English King James Version (including Apocrypha) &mdash;
+<a href="https://github.com/lukesmithxyz/kjv">Github</a>,
+<a href="https://gitlab.com/lukesmithxyz/kjv">Gitlab</a></li>
+<li>Latin Vulgate &mdash; <a href="https://github.com/lukesmithxyz/vul">Github</a>, <a href="https://gitlab.com/lukesmithxyz/vul">Gitlab</a></li>
+<li>Greek Septuagint &amp; New Testament &mdash;
+<a href="https://github.com/lukesmithxyz/grb">Github</a>,
+<a href="https://gitlab.com/lukesmithxyz/grb">Gitlab</a></li>
+</ol>
+<h2 id="installation">Installation</h2>
+<pre><code>git clone https://github.com/lukesmithxyz/kjv.git
+cd kjv
+sudo make install
+</code></pre>
+<p>Or just replace <code>kjv</code> with <code>vul</code> for the Latin version or <code>grb</code> for the
+Greek.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="single-run">Single run</h3>
+<p>Run the program name followed by a passage. The text will appear to you
+in your pager. Arrows or vim-keys to scroll, <code>q</code> to quit.</p>
+<pre><code>kjv rev 3:9
+Revelation
+3:9     Behold, I will make them of the synagogue of Satan, which say they are
+        Jews, and are not, but do lie; behold, I will make them to come and
+        worship before thy feet, and to know that I have loved thee.
+</code></pre>
+<p>Note that you may also give whole books or chapters. <code>kjv genesis</code> will
+give you all of Genesis. <code>kjv mat 1:1-10</code> will show only Matthew 1:1-10.
+Note also that you can usually abbreviate books.</p>
+<h3 id="searching">Searching</h3>
+<p><code>/</code> searches for patterns. For example, <code>kjv /offering</code> will search the
+whole Bible for the word &quot;offering.&quot; You may specify a book/location
+before it to search only that book.</p>
+<h3 id="interactive-mode">Interactive mode</h3>
+<p>Just type <code>kjv</code> (or <code>vul</code> or <code>grb</code>) alone to enter interactive mode. You
+can then just type verses/books without prefixing them with the command
+name each time if you prefer.</p>
+<h2 id="origin">Origin</h2>
+<p>I forked the original software from <a href="https://github.com/bontibon/kjv">this
+repository</a> which is an incomplete
+English King James Version (without the Apocrypha). With the use of
+coreutils and vim, I found online texts of the Apochrypha, Vulgate,
+Septuagint and the <a href="http://sblgnt.com/download/">SBL New Testament</a> and
+formatting them to function with this program.</p>

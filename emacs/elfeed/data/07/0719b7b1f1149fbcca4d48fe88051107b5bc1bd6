@@ -1,0 +1,88 @@
+<p>While I was developing a small CLI in Go that made HTTP requests to an API, I encountered a small optimization: the API used <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag">ETags</a> to cache resource request responses. Of course, it does not make sense to always requests the entire resource anew, so just like a browser client, we should:</p>
+
+<ol>
+  <li>Make a request</li>
+  <li>Save the ETag and the corresponding response payload</li>
+  <li>If we make a request again to the same resource, include the ETag</li>
+  <li>If the response is <code class="language-plaintext highlighter-rouge">not_modified</code>, then we can just return the cached response with confidence, otherwise we return the response and cache it</li>
+</ol>
+
+<p>So let’s see how this can be done in one small file and how it can be integrated with <code class="language-plaintext highlighter-rouge">net/http</code>.</p>
+
+<h2 id="creating-the-cache-system">Creating the cache system</h2>
+
+<h3 id="defining-the-object-store">Defining the object store</h3>
+
+<p>Since Go has really great facilities for serialization/deserialization of data structures, we will go ahead and define a struct for storing two things:</p>
+
+<ul>
+  <li>The ETag</li>
+  <li>The response payload</li>
+</ul>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">Cache</span> <span class="k">struct</span> <span class="p">{</span>
+	<span class="n">Etag</span> <span class="kt">string</span> <span class="s">`json:"etag"`</span>
+	<span class="n">Data</span> <span class="k">interface</span><span class="p">{}</span> <span class="s">`json:"data"`</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="implementing-the-helpers">Implementing the helpers</h3>
+
+<p>A typical cache system needs only a few basic functions:</p>
+
+<ul>
+  <li><strong>Init</strong> (create and setup the cache system on the host)</li>
+  <li><strong>Get</strong> (get a cache entry by <code class="language-plaintext highlighter-rouge">key</code>)</li>
+  <li><strong>Save</strong> (save a cache entry by <code class="language-plaintext highlighter-rouge">key</code>)</li>
+  <li><strong>Purge</strong> (manually purge the entire cache and reset it)</li>
+</ul>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// Initialize ETag based cache system</span>
+<span class="k">func</span> <span class="n">Init</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">os</span><span class="o">.</span><span class="n">Mkdir</span><span class="p">(</span><span class="n">CacheDir</span><span class="p">(),</span> <span class="m">0770</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">// Purge all cache entries manually by deleting all ETag files</span>
+<span class="k">func</span> <span class="n">Purge</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Purging cache..."</span><span class="p">)</span>
+	<span class="n">os</span><span class="o">.</span><span class="n">RemoveAll</span><span class="p">(</span><span class="n">CacheDir</span><span class="p">())</span>
+	<span class="n">Init</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c">// Try to get a cache entry. Returns empty cache and falsy if does not exist, otherwise truthy.</span>
+<span class="k">func</span> <span class="n">Get</span><span class="p">(</span><span class="n">key</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="n">Cache</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">file</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">os</span><span class="o">.</span><span class="n">OpenFile</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">Join</span><span class="p">(</span><span class="n">CacheDir</span><span class="p">(),</span> <span class="n">key</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">O_RDONLY</span><span class="p">,</span> <span class="m">0666</span><span class="p">)</span>
+	<span class="k">defer</span> <span class="n">file</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>
+	<span class="k">if</span> <span class="n">errors</span><span class="o">.</span><span class="n">Is</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">ErrNotExist</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">Cache</span><span class="p">{},</span> <span class="no">false</span>
+	<span class="p">}</span>
+
+	<span class="n">bytes</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">ioutil</span><span class="o">.</span><span class="n">ReadAll</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+	<span class="k">var</span> <span class="n">cache</span> <span class="n">Cache</span>
+	<span class="n">json</span><span class="o">.</span><span class="n">Unmarshal</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">cache</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">cache</span><span class="p">,</span> <span class="no">true</span>
+<span class="p">}</span>
+
+<span class="c">// Save data under a SHA1 key hash, with an ETag and raw data</span>
+<span class="k">func</span> <span class="n">Save</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">etag</span> <span class="kt">string</span><span class="p">,</span> <span class="n">raw</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+	<span class="k">var</span> <span class="n">data</span> <span class="k">interface</span><span class="p">{}</span>
+	<span class="n">json</span><span class="o">.</span><span class="n">Unmarshal</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">)</span>
+	<span class="n">cache</span> <span class="o">:=</span> <span class="n">Cache</span><span class="p">{</span><span class="n">etag</span><span class="p">,</span> <span class="n">data</span><span class="p">}</span>
+
+	<span class="n">cacheData</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">json</span><span class="o">.</span><span class="n">Marshal</span><span class="p">(</span><span class="n">cache</span><span class="p">)</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">err</span>
+	<span class="p">}</span>
+
+	<span class="n">err</span> <span class="o">=</span> <span class="n">ioutil</span><span class="o">.</span><span class="n">WriteFile</span><span class="p">(</span><span class="n">filepath</span><span class="o">.</span><span class="n">Join</span><span class="p">(</span><span class="n">CacheDir</span><span class="p">(),</span> <span class="n">key</span><span class="p">),</span> <span class="n">cacheData</span><span class="p">,</span> <span class="m">0666</span><span class="p">)</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">err</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="no">nil</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And that is it! The way we identify unique resources in the HTTP client is by passing the request path into a hashing function like SHA1, and then saving the cache files using it as the file name, then looking it up later.</p>
+
+<p>You can see a full example in action <a href="https://github.com/platogo/zube-cli/blob/master/cache/cache.go">here</a>.</p>

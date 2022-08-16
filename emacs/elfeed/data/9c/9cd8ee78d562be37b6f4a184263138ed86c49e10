@@ -1,0 +1,2 @@
+Why? Now your latest release is one git clone &lt;url&gt; -b release &lt;local-path&gt; away. That's what I want.
+GitLab CI image: archlinux:latest variables: SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY before_script: - pacman -Syu --noconfirm make git openssh "default": stage: "build" script: - make public after_script: - mkdir ~/.ssh - echo "$SSH_PRIVATE_KEY" &gt; ~/.ssh/id_rsa - chmod 600 ~/.ssh/id_rsa - touch ~/.ssh/known_hosts - ssh-keyscan gitlab.com &gt;&gt; ~/.ssh/known_hosts - cd public - git init --initial-branch=release - git config user.

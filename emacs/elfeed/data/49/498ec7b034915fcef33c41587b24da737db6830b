@@ -1,0 +1,91 @@
+<p>You can think of <a href="https://orgmode.org/">org-mode</a> as simply a kind of markdown, a plain text file that can be exported to fancier formats such as HTML or PDF. It’s a lot more than that, but that’s a reasonable place to start.</p>
+<p>Org-mode also integrates with source code. You can embed code in your file and have the code and/or the result of running the code appear when you export the file to another format.</p>
+<h2>Org-mode as notebook</h2>
+<p>You can use org-mode as a notebook, something like a Jupyter notebook, but much simpler. An org file is a plain text file, and you can execute embedded code right there in your editor. You don’t need a browser, and there’s no hidden state.</p>
+<p>Here’s an example of mixing markup and code:</p>
+<pre>    The volume of an n-sphere of radius r is 
+
+    $$\frac{\pi^{\frac{n}{2}}}{\Gamma\left(\frac{n}{2} + 1\right)}r^n.$$
+
+    #+begin_src python :session
+    from scipy import pi
+    from scipy.special import gamma
+
+    def vol(r, n):
+        return pi**(n/2)*r**n/gamma(n/2 + 1)
+
+    vol(1, 5)
+    #+end_src
+</pre>
+<p>If you were to export the file to PDF, the equation for the volume of a sphere would be compiled into a image using LaTeX.</p>
+<p>To run the code [1], put your cursor somewhere in the code block and type <code>C-c C-c</code>. When you do, the following lines will appear below your code.</p>
+<pre>    #+RESULTS:
+    : 5.263789013914324
+</pre>
+<p>If you think of your org-mode file as primary, and you’re just inserting some code as a kind of scratch area, an advantage of org-mode is that you never leave your editor.</p>
+<h2>Jupyter notebooks</h2>
+<p>Now let’s compare that to a Jupyter notebook. Jupyter organizes everything by cells, and a cell can contain markup or code. So you could create a markup cell and enter the exact same introductory text [2].</p>
+<pre>    The volume of an n-sphere of radius r is 
+
+    $$\frac{\pi^{\frac{n}{2}}}{\Gamma\left(\frac{n}{2} + 1\right)}r^n$$.
+</pre>
+<p>When you “run” the cell, the LaTeX is processed and you see the typeset expression rather than its LaTeX source. You can click on the cell to see the LaTeX code again.</p>
+<p>Then you would enter the Python code in another cell. When you run the cell you see the result, much as in org-mode. And you could export your notebook to PDF as with org-mode.</p>
+<h2>File diff</h2>
+<p>Now suppose we make a couple small changes. We want the n and <em>r</em> in the comment section set in math italic, and we’d like to find the volume of a 5-sphere of radius 2 rather than radius 1. We do this, in Jupyter and in org-mode [3], by putting dollar signs around the “n” and the “r”, and we change <code>vol(1, 5)</code> to <code>vol(2, 5)</code>.</p>
+<p>Let’s run <code>diff</code> on the two versions of the org-mode file and on the two versions of the Jupyter notebook.</p>
+<p>The differences in the org files are easy to spot:</p>
+<pre>    1c1
+    &lt; The volume of an n-sphere of radius r is 
+    ---
+    &gt; The volume of an \(n\)-sphere of radius \(r\) is 
+    12c12
+    &lt; vol(1, 5)
+    ---
+    &gt; vol(2, 5)
+    16c16,17
+    &lt; : 5.263789013914324
+    ---
+    &gt; : 168.44124844525837
+</pre>
+<p>However, the differences in the Jupyter files are more complicated:</p>
+<pre>    5c5
+    &lt;    "id": "2a1b0bc4",
+    ---
+    &gt;    "id": "a0a89fcf",
+    8c8
+    &lt;     "The volume of an n-sphere of radius r is \n",
+    ---
+    &gt;     "The volume of an $n$-sphere of radius $r$ is \n",
+    15,16c15,16
+    &lt;    "execution_count": 1,
+    &lt;    "id": "888660a2",
+    ---
+    &gt;    "execution_count": 2,
+    &gt;    "id": "1adcd8b1",
+    22c22
+    &lt;        "5.263789013914324"
+    ---
+    &gt;        "168.44124844525837"
+    25c25
+    &lt;      "execution_count": 1,
+    ---
+    &gt;      "execution_count": 2,
+    37c37
+    &lt;     "vol(1, 5)"
+    ---
+    &gt;     "vol(2, 5)"
+    43c43
+    &lt;    "id": "f8d4d1b0",
+</pre>
+<p>There’s a lot of extra stuff in a Jupyter notebook. This is a trivial notebook, and more complex notebooks have more extra stuff. An apparently small change to the notebook can cause a large change in the underlying notebook file. This makes it difficult to track changes in a Jupyter notebook in a version control system.</p>
+<h2>Related posts</h2>
+<ul>
+<li class="link"><a href="https://www.johndcook.com/blog/2016/09/07/reversing-wysiwyg/">Visually WYSIWYG vs functionally WYSIWYG</a></li>
+<li class="link"><a href="https://www.johndcook.com/blog/2020/07/25/worst-tool-for-the-job/">The worst tool for the job</a></li>
+<li class="link"><a href="https://www.johndcook.com/blog/2012/02/09/mixing-r-python-and-perl-in-13-lines-of-code/">Mixing R, Python, and Perl in 14 lines of code</a></li>
+</ul>
+<p>[1] Before this will work, you have to tell Emacs that Python is one of the languages you want to run inside org-mode. I have the following line in my init file to tell Emacs that I want to be able to run Python, DITAA, R, and Perl.</p>
+<pre>    (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (ditaa . t) (R . t) (perl . t)))</pre>
+<p>[2] Org-mode will let you use <code>\[</code> and <code>\]</code> to bracket LaTeX code for a displayed equation, and it will also let you use <code>$$</code>. Jupyter only supports the latter.</p>
+<p>[3] In org-mode, putting dollar signs around variables sometimes works and sometimes doesn’t. And in this example, it works for the “r” but not for the “n”. This is very annoying, but it can be fixed by using <code>\(</code> and <code>\)</code> to enter and leave math mode rather than use a dollar sign for both.</p>The post <a href="https://www.johndcook.com/blog/2022/08/02/org-babel-vs-jupyter/">Org-mode as a lightweight notebook</a> first appeared on <a href="https://www.johndcook.com/blog">John D. Cook</a>.

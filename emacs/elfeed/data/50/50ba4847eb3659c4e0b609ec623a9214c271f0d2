@@ -1,0 +1,38 @@
+<p>I used to rely on <kbd>M-h</kbd> to mark the structural element in Emacs; in text buffers, that’d be the paragraph, in org buffers, that was the whole outline item (when the cursor was in the heading line, at least).</p>
+
+<p>Ever since I installed <a href="https://emacsformacosx.com/">Emacs for Mac OS X</a> which now is also on Emacs 28.1, this shortcut wouldn’t work for me anymore, because my Meta key is my left Command key, and <kbd>Cmd</kbd>-<kbd>H</kbd> is the macOS shortcut to hide the frontmost app.</p>
+
+<p>I’m rather happy about <em>Emacs for Mac OS X</em>’s adherence to default macOS shortcuts.</p>
+
+<p>So I looked for alternative key bindings.</p>
+
+<p>My modal input scheme (<a href="https://github.com/xahlee/xah-fly-keys">Xah Fly Keys</a>) has selection shortcuts on the number keys <kbd>6</kbd>, <kbd>7</kbd>, <kbd>8</kbd> and <kbd>9</kbd>. But the one on <kbd>9</kbd> never made sense to me, so I now use that key to select the paragraph or org-element.</p>
+
+<p>My own function that does the selection:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">defun</span> <span class="nv">ct/mark-paragraph</span> <span class="p">()</span>
+  <span class="s">"Mark the paragraph or structural element, depending on the mode."</span>
+  <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">cond</span>
+   <span class="p">((</span><span class="nv">derived-mode-p</span> <span class="ss">'org-mode</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">org-mark-element</span><span class="p">))</span>
+   <span class="p">((</span><span class="nv">derived-mode-p</span> <span class="ss">'web-mode</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">web-mode-mark-and-expand</span><span class="p">))</span>
+   <span class="p">(</span><span class="no">t</span>
+    <span class="p">(</span><span class="nv">mark-paragraph</span><span class="p">))))</span>
+</code></pre></div></div>
+
+<p>This function is extensible to e.g. select an enclosing HTML element in <code>web-mode</code> or a function or type or other structural element in C code or Swift. I have yet to add these.</p>
+
+<p><strong>Update:</strong> Screw it, I just added the HTML variant. Didn’t even know it was bound to <kbd>C-c RET</kbd> until I looked for a suitable function.</p>
+
+<p>I’m using <code>derived-mode-p</code> to test for both same modes, and derived modes; so e.g. <code>(derived-mode-p 'outline-mode)</code> will also return non-nil when visiting an org-mode buffer, since <code>org-mode</code> is derived from <code>outline-mode</code>. Got this tip <a href="https://emacsredux.com/blog/2020/06/14/checking-the-major-mode-in-emacs-lisp/">from a post by Bozhidar Batsov</a>.</p>
+
+<p>A better name would maybe be <code>ct/mark-paragraph-dwim</code> because it’s context sensitive and does different things in different modes.</p>
+
+<p>The key binding isn’t interesting, but here it is for completion:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">define-key</span> <span class="nv">xah-fly-command-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"9"</span><span class="p">)</span> <span class="nf">#'</span><span class="nv">ct/mark-paragraph</span><span class="p">)</span>
+<span class="c1">;; was 'xah-select-text-in-quote</span>
+</code></pre></div></div>
+<hr /><p>Receive Christian’s <a href="https://christiantietze.de/newsletter/">new posts via email</a></p>

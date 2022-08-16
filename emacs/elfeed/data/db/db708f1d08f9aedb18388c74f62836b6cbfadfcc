@@ -1,0 +1,65 @@
+<p>RuboCop’s motto has always been “The Ruby Linter that Serves and Protects”.<sup id="fnref:1"><a class="footnote" href="https://metaredux.com/posts/2022/07/26/rubocop-serves-much-faster.html#fn:1" rel="footnote">1</a></sup> Now, with the addition of a <a href="https://docs.rubocop.org/rubocop/usage/server.html">server mode</a> in RuboCop 1.31 that motto is truer than ever! But first - a bit of background.</p>
+
+<p>Most people value speed and we’ve been on a decade-long journey in RuboCop to improve the performance:</p>
+
+<ul>
+  <li>we’ve started with the <a href="https://github.com/rubocop/rubocop/blob/master/lib/rubocop/cop/commissioner.rb">Commissioner</a> that triggered all cops during a single parser run for each file (originally we were doing some crazy ineffective things)</li>
+  <li>then we’ve made it possible to run inspection in parallel (that’s the default behavior these days)</li>
+  <li>then we’ve started to <a href="https://docs.rubocop.org/rubocop/usage/caching.html">cache the results</a> of inspection runs which resulted in lighting fast subsequent RuboCop runs</li>
+  <li>we’ve been doing frequent surgical performance tweaks in slow cops</li>
+</ul>
+
+<p>One problem kept alluding us, though - RuboCop’s slow startup time. As RuboCop grew bigger and more complex it needed to do more work on startup:</p>
+
+<ul>
+  <li>load more and more cops and utility (and <code class="language-plaintext highlighter-rouge">require</code>s in Ruby are kind of slow)</li>
+  <li>process the configuration, which was getting more complex itself</li>
+</ul>
+
+<p>As a result the main complaint on the performance front became that it was pretty unpleasant to run RuboCop within a text editor (there are numerous plugins that integrate linters with editors) - it was starting too damn slow (a few seconds in some cases) and not every editor was running linters in some async fashion.</p>
+
+<p>Eventually a popular workaround emerged - <a href="https://github.com/fohte/rubocop-daemon">rubocop-daemon</a>. As the name of the project implies it runs RuboCop as a daemon (server) process, so the startup overhead happens just once and subsequent RuboCop invocations are much faster as a result of this. With RuboCop 1.31 we’ve decided to
+make the lives of everyone a bit simpler and brought the same concept to RuboCop itself. Now all you have to do is run RuboCop like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rubocop --server
+</code></pre></div></div>
+
+<p>If a server process has not started yet, this will start a server process (bound to the current directory) and execute inspection with the help of the server. Magic!
+You can also start the server without an inspection run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rubocop --start-server
+RuboCop server starting on 127.0.0.1:55772.
+</code></pre></div></div>
+
+<p>If a server is already running, the command only displays the server’s PID. A new server will not be started.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">rubocop</code> command is executed using the server process if a server is started.
+Whenever a server process is not running, it will load the RuboCop runtime files and execute normally. (same behavior as with RuboCop 1.30 and lower)</p>
+
+<p>Note that RuboCop servers are associated with the directory in which they were started, so you can have several of them running:</p>
+
+<pre><code class="language-shellsession">$ ps waux | grep rubocop
+bozhidar 17801  0.2  0.5 1227840 87804 ?       S    10:50   0:00 rubocop --server /home/bozhidar/projects/rubocop
+bozhidar 17990  0.0  0.3 117240 53172 ?        S    10:54   0:00 rubocop --server /home/bozhidar/projects/rubocop-ast
+</code></pre>
+
+<p>The <code class="language-plaintext highlighter-rouge">rubocop</code> command will connect to right server automatically, based on the folder where it was run.</p>
+
+<p>You should keep in mind that you’ll need to restart the server manually if you change RuboCop’s configuration. You can do so like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rubocop --restart-server
+</code></pre></div></div>
+
+<p>Make sure to run this command in the same folder you’ve started the server. Down the road we’ll likely auto-restart the server on configuration changes.</p>
+
+<p>So how much faster is RuboCop with the server mode? According to our <a href="https://github.com/rubocop/rubocop/pull/10706#issuecomment-1152382752">“scientific benchmarks”</a> it might be as much as 900x faster. I think that’s fast enough!</p>
+
+<p>That’s all I have for you today! Hopefully I’ll have more fun performance updates to share on our road to a much faster RuboCop 2.0!</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>It was meant to be a funny pun, that sadly has become somewhat controversial in recent years. <a class="reversefootnote" href="https://metaredux.com/posts/2022/07/26/rubocop-serves-much-faster.html#fnref:1">↩</a></p>
+    </li>
+  </ol>
+</div>

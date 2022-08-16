@@ -1,0 +1,19 @@
+<p>Given a random variable <em>X</em>, you often want to compute the probability that <em>X</em> will take on a value less than <em>x</em> or greater than <em>x</em>. Define the functions</p>
+<p style="padding-left: 40px;"><em>F</em><sub><em>X</em></sub>(<em>x</em>) = Prob(<em>X</em> ≤ <em>x</em>)</p>
+<p>and</p>
+<p style="padding-left: 40px;"><em>G</em><sub><em>X</em></sub>(<em>x</em>) = Prob(<em>X</em> &gt; <em>x</em>)</p>
+<p>What do you call <em>F</em> and <em>G</em>? I tend to call them the CDF (cumulative distribution function) and CCDF (complementary cumulative distribution function) but conventions vary.</p>
+<p>The names of software functions to compute these two functions can be confusing. For example, Python (SciPy) uses the names <code>cdf</code> and <code>sf</code> (the latter for “survival function”) while the R functions to compute the CDF take an optional argument to return the CCDF instead [1].</p>
+<p>In the Emacs calculator, the function <code>ltpn</code> computes the CDF. At first glace I thought this was horribly cryptic. It’s actually a very nice naming convention; it just wasn’t what I was expecting.</p>
+<p>The “ltp” stands for <em>lower tail probability</em> and “n” stands for <em>normal</em>. The complementary probability function is <code>utpn</code> where “utp” stands for <em>upper tail probability</em>. Unlike other software libraries, Emacs gives symmetric names to these two symmetrically related functions.</p>
+<p>“Lower tail” probability is clearer than “cumulative” probability because it leaves no doubt whether you’re accumulating from the left or the right.</p>
+<p>You can replace the “n” at the end of <code>ltpn</code> and <code>utpn</code> with the first letters of binomial, chi-square, t, F, and Poisson to get the corresponding functions for these distributions. For example, <code>utpt</code> gives the upper tail probability for the Student <em>t</em> distribution [2].</p>
+<p>The <a href="https://www.johndcook.com/blog/2010/10/11/emacs-calc/">Emacs calculator</a> can be quirky, but props to the developers for choosing good names for the probability functions.</p>
+<h2>Related posts</h2>
+<ul>
+<li class="link">Probability functions in <a href="https://www.johndcook.com/blog/distributions_r_splus/">R</a> and in <a href="https://www.johndcook.com/blog/distributions_scipy/">SciPy</a></li>
+<li class="link"><a href="https://www.johndcook.com/blog/2010/07/14/bc-math-library/">Three surprises with bc</a></li>
+<li class="link"><a href="https://www.johndcook.com/blog/2022/08/02/org-babel-vs-jupyter/">Embedding code in org-mode</a></li>
+</ul>
+<p>[1] Incidentally, the CCDF cannot always be computed by simply computing the CDF first and subtracting the value from 1. In theory this is possible, but not in floating point practice. See the discussion of erf and erfc in <a href="https://www.johndcook.com/blog/2010/06/07/math-library-functions-that-seem-unnecessary/">this post</a> for an explanation.</p>
+<p>[2] These names are very short and only a handful of distribution families are supported. But that’s fine in context. The reason to use the Emacs calculator is to do a quick calculation without having to leave Emacs, not to develop production quality statistical software.</p>The post <a href="https://www.johndcook.com/blog/2022/08/05/cdf/">Naming probability functions</a> first appeared on <a href="https://www.johndcook.com/blog">John D. Cook</a>.

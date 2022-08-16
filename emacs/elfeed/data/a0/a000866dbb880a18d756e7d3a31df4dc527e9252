@@ -1,0 +1,28 @@
+<p>
+I've just released a new version of <a href="https://codeberg.org/jao/consult-recoll">consult-recoll</a>, which implements a couple
+of features that i am really liking, namely, grouping of search results by
+mime type:
+</p>
+
+
+<figure id="orgf9c8736">
+<img alt="consult-recoll-group.png" src="https://jao.io/img/consult-recoll-group.png" />
+
+</figure>
+
+<p>
+and inline snippets:
+</p>
+
+
+<figure id="org625c599">
+<img alt="consult-recoll-inline.png" src="https://jao.io/img/consult-recoll-inline.png" />
+
+</figure>
+
+<p>
+Happy searches!
+</p>
+
+
+<div class="taglist"><a href="https://jao.io/blog/tags.html">Tags</a>: <a href="https://jao.io/blog/tag-emacs.html">emacs</a> <a href="https://jao.io/blog/tag-programming.html">programming</a> </div>

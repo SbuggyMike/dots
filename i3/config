@@ -48,7 +48,7 @@ bindsym Print exec xfce4-screenshooter
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec st
 # start a emacsclient
 bindsym $mod+c exec --no-startup-id emacsclient -nc
 
@@ -190,6 +190,7 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
 exec --no-startup-id twmnd
 exec --no-startup-id emacs --daemon
 exec --no-startup-id i3-msg 'workspace 3; exec thunderbird; workspace 4'

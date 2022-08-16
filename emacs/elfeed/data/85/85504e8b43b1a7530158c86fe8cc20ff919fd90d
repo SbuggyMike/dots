@@ -1,0 +1,7 @@
+
+<p>I was just poking around on a Shopify store on my Firefox browser and saw Apple Pay button showed up, first thought it's a front-end bug on the website but tapped on it and the widget slid up and you can legibly make the purchase!<p>Tried on Chrome too and it worked there too!<p>Tried a few other website and can confirm it works everywhere Apple Pay is offered. is it a feature? bug?<p>Wanna try it yourself? you can check this Stripe test page
+https://stripe.com/docs/stripe-js/elements/payment-request-button?html-or-react=html<p>Haven't installed Beta 4 yet to see if it is still working.</p>
+<hr>
+<p>Comments URL: <a href="https://news.ycombinator.com/item?id=32280325">https://news.ycombinator.com/item?id=32280325</a></p>
+<p>Points: 65</p>
+<p># Comments: 23</p>

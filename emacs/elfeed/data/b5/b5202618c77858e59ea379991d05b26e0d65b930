@@ -1,0 +1,57 @@
+<p><a href="https://manueluberti.eu/emacs/2021/09/10/rgrep-and-vc-git-grep/">Almost a year
+ago</a> I wrote
+about my handy <code class="language-plaintext highlighter-rouge">mu-recursive-grep</code>, an easy way to combine <code class="language-plaintext highlighter-rouge">rgrep</code> and
+<code class="language-plaintext highlighter-rouge">vc-git-grep</code>. But after Leah Neukirchen mentioned <code class="language-plaintext highlighter-rouge">ugrep</code>
+<a href="https://leahneukirchen.org/blog/archive/2022/03/note-taking-in-emacs-with-howm.html">recently</a>,
+I could not resist checking whether it was a good fit for my daily Emacs usage.
+A couple of benchmark (see
+<a href="https://debbugs.gnu.org/cgi/bugreport.cgi?bug=54608#14">54608#14</a> and
+<a href="https://debbugs.gnu.org/cgi/bugreport.cgi?bug=54608#20">54608#20</a>) impressed me
+enough to add support for it directly via <code class="language-plaintext highlighter-rouge">xref-search-program-alist</code>.</p>
+
+<p>The details to configure everything you need are over at <a href="https://github.com/Genivia/ugrep#using-ugrep-within-emacs">Using ugrep within
+Emacs</a> on the project
+README. Once set, you can just hit <kbd>C-x p g</kbd> (<code class="language-plaintext highlighter-rouge">project-find-regexp</code>) in
+your project and let <code class="language-plaintext highlighter-rouge">ugrep</code> do his magic.</p>
+
+<p>Moreover, as the README mentions, it’s possible to leverage <code class="language-plaintext highlighter-rouge">grep-template</code> to
+have commands like <code class="language-plaintext highlighter-rouge">lgrep</code> rely on <code class="language-plaintext highlighter-rouge">ugrep</code>.</p>
+
+<div class="language-emacs-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">setq-default</span> <span class="nv">grep-template</span> <span class="p">(</span><span class="nv">string-join</span> <span class="o">'</span><span class="p">(</span><span class="s">"ugrep"</span>
+                                           <span class="s">"--color=always"</span>
+                                           <span class="s">"--ignore-binary"</span>
+                                           <span class="s">"--ignore-case"</span>
+                                           <span class="s">"--include=&lt;F&gt;"</span>
+                                           <span class="s">"--line-number"</span>
+                                           <span class="s">"--null"</span>
+                                           <span class="s">"--recursive"</span>
+                                           <span class="s">"--regexp=&lt;R&gt;"</span><span class="p">)</span>
+                                         <span class="s">" "</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Thus, <code class="language-plaintext highlighter-rouge">mu-recursive-grep</code> becomes a bit simpler:</p>
+
+<div class="language-emacs-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">defun</span> <span class="nv">mu-recursive-grep</span> <span class="p">(</span><span class="nv">search-term</span> <span class="nv">search-path</span><span class="p">)</span>
+  <span class="s">"Recursively search for SEARCH-TERM in SEARCH-PATH."</span>
+  <span class="p">(</span><span class="nv">interactive</span>
+   <span class="p">(</span><span class="k">progn</span>
+     <span class="p">(</span><span class="nb">unless</span> <span class="nv">grep-command</span>
+       <span class="p">(</span><span class="nv">grep-compute-defaults</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">search-term</span> <span class="p">(</span><span class="nv">grep-read-regexp</span><span class="p">))</span>
+           <span class="p">(</span><span class="nv">search-path</span> <span class="p">(</span><span class="nv">expand-file-name</span>
+                         <span class="p">(</span><span class="nv">read-directory-name</span>
+                          <span class="s">"Directory: "</span> <span class="no">nil</span> <span class="nv">default-directory</span> <span class="no">t</span><span class="p">))))</span>
+       <span class="p">(</span><span class="nb">list</span> <span class="nv">search-term</span> <span class="nv">search-path</span><span class="p">))))</span>
+  <span class="p">(</span><span class="nv">lgrep</span> <span class="nv">search-term</span> <span class="s">"*"</span> <span class="nv">search-path</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>As mentioned in <a href="https://manueluberti.eu/emacs/2021/09/10/rgrep-and-vc-git-grep/">Grep’s good
+rep</a>, for
+project-wide searches <kbd>C-x p g</kbd> is my go-to key binding. However, there
+are situations when I want to limit the search to specific paths, and that’s
+where I prefer using <code class="language-plaintext highlighter-rouge">mu-recursive-grep</code>.</p>
+
+<p>A closing remark: before blindly leaving <code class="language-plaintext highlighter-rouge">grep</code>, <code class="language-plaintext highlighter-rouge">ripgrep</code>, or even
+<code class="language-plaintext highlighter-rouge">vc-git-grep</code> behind, I suggest to benchmark the performance of each tool and
+see what actually suits you best. You may find that whatever you are using at
+the moment is already the best choice.</p>

@@ -1,0 +1,888 @@
+<p>[ Note that I am working with the current development version:
+  <code class="language-plaintext highlighter-rouge">2.5.0-dev</code>.  The version of the <code class="language-plaintext highlighter-rouge">modus-themes</code> built into Emacs 28 is
+  <code class="language-plaintext highlighter-rouge">1.6.0</code>, while Emacs 29 is on <code class="language-plaintext highlighter-rouge">2.4.0</code>. ]</p>
+
+<p>One of the powerful features of the <code class="language-plaintext highlighter-rouge">modus-themes</code> that I have not
+covered before is the ability to override any colour in their palette.
+The manual provides several examples, though none of them offers a fully
+fledged, bespoke derivative.</p>
+
+<p>The idea is to let the user introduce changes that may deviate from the
+high accessibility standards of the original design.  Perhaps to alter a
+hue or, if the user is feeling adventurous, to restyle the themes while
+still benefiting from their customisation options, broad coverage of
+packages, and meticulous design.</p>
+
+<p>Here I will elaborate on the latter scenario of thoroughly refashioning
+the themes.  I am turning these:</p>
+
+<p><a href="https://protesilaos.com/assets/images/attachments/2022-07-26-modus-themes-summertime-demo-regular-operandi.png"><img alt="modus-themes-summertime-demo-regular-operandi sample" src="https://protesilaos.com/assets/images/attachments/2022-07-26-modus-themes-summertime-demo-regular-operandi.png" /></a></p>
+
+<p><a href="https://protesilaos.com/assets/images/attachments/2022-07-26-modus-themes-summertime-demo-regular-vivendi.png"><img alt="modus-themes-summertime-demo-regular-vivendi sample" src="https://protesilaos.com/assets/images/attachments/2022-07-26-modus-themes-summertime-demo-regular-vivendi.png" /></a></p>
+
+<p>Into these:</p>
+
+<p><a href="https://protesilaos.com/assets/images/attachments/2022-07-26-modus-themes-summertime-demo-override-operandi.png"><img alt="modus-themes-summertime-demo-override-operandi sample" src="https://protesilaos.com/assets/images/attachments/2022-07-26-modus-themes-summertime-demo-override-operandi.png" /></a></p>
+
+<p><a href="https://protesilaos.com/assets/images/attachments/2022-07-26-modus-themes-summertime-demo-override-vivendi.png"><img alt="modus-themes-summertime-demo-override-vivendi sample" src="https://protesilaos.com/assets/images/attachments/2022-07-26-modus-themes-summertime-demo-override-vivendi.png" /></a></p>
+
+<p>[ Remember that the themes have <strong>lots of customisation options</strong> which
+  govern the looks of individual components.  The screenshots do not
+  cover everything. ]</p>
+
+<h2>The basics of overriding the palette</h2>
+
+<p>The user options are <code class="language-plaintext highlighter-rouge">modus-themes-operandi-color-overrides</code> and
+<code class="language-plaintext highlighter-rouge">modus-themes-vivendi-color-overrides</code> (<code class="language-plaintext highlighter-rouge">modus-operandi</code> is the light
+theme and <code class="language-plaintext highlighter-rouge">modus-vivendi</code> is the dark one).  To make best use of them,
+the user needs to inspect the source code and learn from the constants
+<code class="language-plaintext highlighter-rouge">modus-themes-operandi-colors</code> and <code class="language-plaintext highlighter-rouge">modus-themes-vivendi-colors</code>.
+Essentially, the user mirrors the palette while changing the
+corresponding colour value.  Then reloads the theme for changes to take
+effect.  Concretely:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">;; Override the given associations</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">modus-themes-operandi-color-overrides</span>
+      <span class="o">'</span><span class="p">((</span><span class="nv">bg-main</span> <span class="o">.</span> <span class="s">"#fff0f2"</span><span class="p">)</span> <span class="c1">; default is #ffffff</span>
+        <span class="p">(</span><span class="nv">bg-dim</span> <span class="o">.</span> <span class="s">"#fbe6ef"</span><span class="p">)</span>  <span class="c1">; default is #f8f8f8</span>
+        <span class="p">(</span><span class="nv">bg-alt</span> <span class="o">.</span> <span class="s">"#f5dae6"</span><span class="p">)</span>  <span class="c1">; default is #f0f0f0</span>
+        <span class="c1">;; more colours here</span>
+        <span class="p">))</span>
+
+<span class="c1">;; Load `modus-operandi' while disabling all others</span>
+<span class="p">(</span><span class="nv">modus-themes-load-operandi</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>As with all customisation options, changes are made manifest after
+loading the theme.  So if one tweaks the overrides, they need to reload
+the theme.</p>
+
+<h2>Setting overrides on demand via a minor mode</h2>
+
+<p>In my workflow, I prefer to define a minor mode that applies the
+overrides.  This gives me the flexibility to switch between the original
+and the custom looks via <code class="language-plaintext highlighter-rouge">M-x</code> or a key binding.  Building on the
+previous example:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">define-minor-mode</span> <span class="nv">my-modus-themes-overrides</span>
+  <span class="s">"Toggle overrides demo."</span>
+  <span class="ss">:init-value</span> <span class="no">nil</span>
+  <span class="ss">:global</span> <span class="no">t</span>
+  <span class="p">(</span><span class="k">if</span> <span class="nv">my-modus-themes-overrides</span>
+      <span class="c1">;; Override the given associations when the minor mode is enabled</span>
+      <span class="p">(</span><span class="k">setq</span> <span class="nv">modus-themes-operandi-color-overrides</span>
+            <span class="o">'</span><span class="p">((</span><span class="nv">bg-main</span> <span class="o">.</span> <span class="s">"#fff0f2"</span><span class="p">)</span> <span class="c1">; default is #ffffff</span>
+              <span class="p">(</span><span class="nv">bg-dim</span> <span class="o">.</span> <span class="s">"#fbe6ef"</span><span class="p">)</span>  <span class="c1">; default is #f8f8f8</span>
+              <span class="p">(</span><span class="nv">bg-alt</span> <span class="o">.</span> <span class="s">"#f5dae6"</span><span class="p">)</span>  <span class="c1">; default is #f0f0f0</span>
+              <span class="c1">;; more colours here</span>
+              <span class="p">))</span>
+    <span class="c1">;; Remove the overrides if the minor mode is disabled</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">modus-themes-operandi-color-overrides</span> <span class="no">nil</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p>In this scenario, we would enable the minor mode and then load the theme
+for changes to propagate.</p>
+
+<p>Notice that I am only overriding <code class="language-plaintext highlighter-rouge">modus-operandi</code> in these examples.  It
+is, of course, possible to extend this to <code class="language-plaintext highlighter-rouge">modus-vivendi</code> as well.  More
+on that below.</p>
+
+<h2>The “Summertime” re-spin</h2>
+
+<p>A hand-crafted derivative is no mean task.  One needs to check how all
+colours work together in the relevant contexts or interfaces.  What I
+have here is a pair of colour palettes that I have been using for the
+last 10 days.  They give a playful, pleasant, and confident vibe.</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">setq</span> <span class="nv">modus-themes-operandi-color-overrides</span>
+      <span class="o">'</span><span class="p">((</span><span class="nv">bg-main</span> <span class="o">.</span> <span class="s">"#fff0f2"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-dim</span> <span class="o">.</span> <span class="s">"#fbe6ef"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-alt</span> <span class="o">.</span> <span class="s">"#f5dae6"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-hl-line</span> <span class="o">.</span> <span class="s">"#fad8e3"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-active</span> <span class="o">.</span> <span class="s">"#efcadf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-inactive</span> <span class="o">.</span> <span class="s">"#f3ddef"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-active-accent</span> <span class="o">.</span> <span class="s">"#ffbbef"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-region</span> <span class="o">.</span> <span class="s">"#dfc5d1"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-region-accent</span> <span class="o">.</span> <span class="s">"#efbfef"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-region-accent-subtle</span> <span class="o">.</span> <span class="s">"#ffd6ef"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-header</span> <span class="o">.</span> <span class="s">"#edd3e0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-tab-active</span> <span class="o">.</span> <span class="s">"#ffeff2"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-tab-inactive</span> <span class="o">.</span> <span class="s">"#f8d3ef"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-tab-inactive-accent</span> <span class="o">.</span> <span class="s">"#ffd9f5"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-tab-inactive-alt</span> <span class="o">.</span> <span class="s">"#e5c0d5"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-tab-inactive-alt-accent</span> <span class="o">.</span> <span class="s">"#f3cce0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-main</span> <span class="o">.</span> <span class="s">"#543f78"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-dim</span> <span class="o">.</span> <span class="s">"#5f476f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-alt</span> <span class="o">.</span> <span class="s">"#7f6f99"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-unfocused</span> <span class="o">.</span> <span class="s">"#8f6f9f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-active</span> <span class="o">.</span> <span class="s">"#563068"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-inactive</span> <span class="o">.</span> <span class="s">"#8a5698"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-docstring</span> <span class="o">.</span> <span class="s">"#5f5fa7"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-comment-yellow</span> <span class="o">.</span> <span class="s">"#a9534f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-escape-char-construct</span> <span class="o">.</span> <span class="s">"#8b207f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-escape-char-backslash</span> <span class="o">.</span> <span class="s">"#a06d00"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-cold</span> <span class="o">.</span> <span class="s">"#d3e0f4"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-faint-cold</span> <span class="o">.</span> <span class="s">"#e0efff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-mild</span> <span class="o">.</span> <span class="s">"#c4ede0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-faint-mild</span> <span class="o">.</span> <span class="s">"#e0f0ea"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-warm</span> <span class="o">.</span> <span class="s">"#efd0c4"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-faint-warm</span> <span class="o">.</span> <span class="s">"#ffe4da"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-calm</span> <span class="o">.</span> <span class="s">"#f0d3ea"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-faint-calm</span> <span class="o">.</span> <span class="s">"#fadff9"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-special-cold</span> <span class="o">.</span> <span class="s">"#405fb8"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-special-mild</span> <span class="o">.</span> <span class="s">"#407f74"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-special-warm</span> <span class="o">.</span> <span class="s">"#9d6f4f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-special-calm</span> <span class="o">.</span> <span class="s">"#af509f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-completion</span> <span class="o">.</span> <span class="s">"#ffc5e5"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-completion-subtle</span> <span class="o">.</span> <span class="s">"#f7cfef"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red</span> <span class="o">.</span> <span class="s">"#ed2f44"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-alt</span> <span class="o">.</span> <span class="s">"#e0403d"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-alt-other</span> <span class="o">.</span> <span class="s">"#e04059"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-faint</span> <span class="o">.</span> <span class="s">"#ed4f44"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-alt-faint</span> <span class="o">.</span> <span class="s">"#e0603d"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-alt-other-faint</span> <span class="o">.</span> <span class="s">"#e06059"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green</span> <span class="o">.</span> <span class="s">"#217a3c"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-alt</span> <span class="o">.</span> <span class="s">"#417a1c"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-alt-other</span> <span class="o">.</span> <span class="s">"#006f3c"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-faint</span> <span class="o">.</span> <span class="s">"#318a4c"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-alt-faint</span> <span class="o">.</span> <span class="s">"#518a2c"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-alt-other-faint</span> <span class="o">.</span> <span class="s">"#20885c"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow</span> <span class="o">.</span> <span class="s">"#b06202"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-alt</span> <span class="o">.</span> <span class="s">"#a95642"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-alt-other</span> <span class="o">.</span> <span class="s">"#a06f42"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-faint</span> <span class="o">.</span> <span class="s">"#b07232"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-alt-faint</span> <span class="o">.</span> <span class="s">"#a96642"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-alt-other-faint</span> <span class="o">.</span> <span class="s">"#a08042"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue</span> <span class="o">.</span> <span class="s">"#275ccf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-alt</span> <span class="o">.</span> <span class="s">"#475cc0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-alt-other</span> <span class="o">.</span> <span class="s">"#3340ef"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-faint</span> <span class="o">.</span> <span class="s">"#476ce0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-alt-faint</span> <span class="o">.</span> <span class="s">"#575ccf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-alt-other-faint</span> <span class="o">.</span> <span class="s">"#3f60d7"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta</span> <span class="o">.</span> <span class="s">"#bf317f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-alt</span> <span class="o">.</span> <span class="s">"#d033c0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-alt-other</span> <span class="o">.</span> <span class="s">"#844fe4"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-faint</span> <span class="o">.</span> <span class="s">"#bf517f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-alt-faint</span> <span class="o">.</span> <span class="s">"#d053c0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-alt-other-faint</span> <span class="o">.</span> <span class="s">"#846fe4"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan</span> <span class="o">.</span> <span class="s">"#007a9f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-alt</span> <span class="o">.</span> <span class="s">"#3f709f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-alt-other</span> <span class="o">.</span> <span class="s">"#107f7f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-faint</span> <span class="o">.</span> <span class="s">"#108aaf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-alt-faint</span> <span class="o">.</span> <span class="s">"#3f80af"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-alt-other-faint</span> <span class="o">.</span> <span class="s">"#3088af"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-active</span> <span class="o">.</span> <span class="s">"#cd2f44"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-active</span> <span class="o">.</span> <span class="s">"#116a6c"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-active</span> <span class="o">.</span> <span class="s">"#993602"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-active</span> <span class="o">.</span> <span class="s">"#475ccf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-active</span> <span class="o">.</span> <span class="s">"#7f2ccf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-active</span> <span class="o">.</span> <span class="s">"#007a8f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-nuanced-bg</span> <span class="o">.</span> <span class="s">"#ffdbd0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-nuanced-fg</span> <span class="o">.</span> <span class="s">"#ed6f74"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-nuanced-bg</span> <span class="o">.</span> <span class="s">"#dcf0dd"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-nuanced-fg</span> <span class="o">.</span> <span class="s">"#3f9a4c"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-nuanced-bg</span> <span class="o">.</span> <span class="s">"#fff3aa"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-nuanced-fg</span> <span class="o">.</span> <span class="s">"#b47232"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-nuanced-bg</span> <span class="o">.</span> <span class="s">"#e3e3ff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-nuanced-fg</span> <span class="o">.</span> <span class="s">"#201f6f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-nuanced-bg</span> <span class="o">.</span> <span class="s">"#fdd0ff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-nuanced-fg</span> <span class="o">.</span> <span class="s">"#c0527f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-nuanced-bg</span> <span class="o">.</span> <span class="s">"#dbefff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-nuanced-fg</span> <span class="o">.</span> <span class="s">"#0f3f60"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-heading</span> <span class="o">.</span> <span class="s">"#b7cfe0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-heading</span> <span class="o">.</span> <span class="s">"#041645"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-added</span> <span class="o">.</span> <span class="s">"#d6f0d6"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-added</span> <span class="o">.</span> <span class="s">"#004520"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-changed</span> <span class="o">.</span> <span class="s">"#fcefcf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-changed</span> <span class="o">.</span> <span class="s">"#524200"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-removed</span> <span class="o">.</span> <span class="s">"#ffe0ef"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-removed</span> <span class="o">.</span> <span class="s">"#891626"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-refine-added</span> <span class="o">.</span> <span class="s">"#84cfa4"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-refine-added</span> <span class="o">.</span> <span class="s">"#002a00"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-refine-changed</span> <span class="o">.</span> <span class="s">"#cccf8f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-refine-changed</span> <span class="o">.</span> <span class="s">"#302010"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-refine-removed</span> <span class="o">.</span> <span class="s">"#da92b0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-refine-removed</span> <span class="o">.</span> <span class="s">"#500010"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-focus-added</span> <span class="o">.</span> <span class="s">"#a6e5c6"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-focus-added</span> <span class="o">.</span> <span class="s">"#002c00"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-focus-changed</span> <span class="o">.</span> <span class="s">"#ecdfbf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-focus-changed</span> <span class="o">.</span> <span class="s">"#392900"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-focus-removed</span> <span class="o">.</span> <span class="s">"#efbbcf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-focus-removed</span> <span class="o">.</span> <span class="s">"#5a0010"</span><span class="p">))</span>
+      <span class="nv">modus-themes-vivendi-color-overrides</span>
+      <span class="o">'</span><span class="p">((</span><span class="nv">bg-main</span> <span class="o">.</span> <span class="s">"#25152a"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-dim</span> <span class="o">.</span> <span class="s">"#2a1930"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-alt</span> <span class="o">.</span> <span class="s">"#382443"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-hl-line</span> <span class="o">.</span> <span class="s">"#332650"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-active</span> <span class="o">.</span> <span class="s">"#463358"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-inactive</span> <span class="o">.</span> <span class="s">"#2d1f3a"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-active-accent</span> <span class="o">.</span> <span class="s">"#50308f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-region</span> <span class="o">.</span> <span class="s">"#5d4a67"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-region-accent</span> <span class="o">.</span> <span class="s">"#60509f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-region-accent-subtle</span> <span class="o">.</span> <span class="s">"#3f285f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-header</span> <span class="o">.</span> <span class="s">"#3a2543"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-tab-active</span> <span class="o">.</span> <span class="s">"#26162f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-tab-inactive</span> <span class="o">.</span> <span class="s">"#362647"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-tab-inactive-accent</span> <span class="o">.</span> <span class="s">"#36265a"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-tab-inactive-alt</span> <span class="o">.</span> <span class="s">"#3e2f5a"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-tab-inactive-alt-accent</span> <span class="o">.</span> <span class="s">"#3e2f6f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-main</span> <span class="o">.</span> <span class="s">"#debfe0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-dim</span> <span class="o">.</span> <span class="s">"#d0b0da"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-alt</span> <span class="o">.</span> <span class="s">"#ae85af"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-unfocused</span> <span class="o">.</span> <span class="s">"#8e7f9f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-active</span> <span class="o">.</span> <span class="s">"#cfbfef"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-inactive</span> <span class="o">.</span> <span class="s">"#b0a0c0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-docstring</span> <span class="o">.</span> <span class="s">"#c8d9f7"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-comment-yellow</span> <span class="o">.</span> <span class="s">"#cf9a70"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-escape-char-construct</span> <span class="o">.</span> <span class="s">"#ff75aa"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-escape-char-backslash</span> <span class="o">.</span> <span class="s">"#dbab40"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-cold</span> <span class="o">.</span> <span class="s">"#2a3f58"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-faint-cold</span> <span class="o">.</span> <span class="s">"#1e283f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-mild</span> <span class="o">.</span> <span class="s">"#0f3f31"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-faint-mild</span> <span class="o">.</span> <span class="s">"#0f281f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-warm</span> <span class="o">.</span> <span class="s">"#44331f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-faint-warm</span> <span class="o">.</span> <span class="s">"#372213"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-calm</span> <span class="o">.</span> <span class="s">"#4a314f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-special-faint-calm</span> <span class="o">.</span> <span class="s">"#3a223f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-special-cold</span> <span class="o">.</span> <span class="s">"#c0b0ff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-special-mild</span> <span class="o">.</span> <span class="s">"#bfe0cf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-special-warm</span> <span class="o">.</span> <span class="s">"#edc0a6"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-special-calm</span> <span class="o">.</span> <span class="s">"#ff9fdf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-completion</span> <span class="o">.</span> <span class="s">"#502d70"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-completion-subtle</span> <span class="o">.</span> <span class="s">"#451d65"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red</span> <span class="o">.</span> <span class="s">"#ff5f6f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-alt</span> <span class="o">.</span> <span class="s">"#ff8f6d"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-alt-other</span> <span class="o">.</span> <span class="s">"#ff6f9d"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-faint</span> <span class="o">.</span> <span class="s">"#ffa0a0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-alt-faint</span> <span class="o">.</span> <span class="s">"#f5aa80"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-alt-other-faint</span> <span class="o">.</span> <span class="s">"#ff9fbf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green</span> <span class="o">.</span> <span class="s">"#51ca5c"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-alt</span> <span class="o">.</span> <span class="s">"#71ca3c"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-alt-other</span> <span class="o">.</span> <span class="s">"#51ca9c"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-faint</span> <span class="o">.</span> <span class="s">"#78bf78"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-alt-faint</span> <span class="o">.</span> <span class="s">"#99b56f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-alt-other-faint</span> <span class="o">.</span> <span class="s">"#88bf99"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow</span> <span class="o">.</span> <span class="s">"#f0b262"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-alt</span> <span class="o">.</span> <span class="s">"#f0e242"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-alt-other</span> <span class="o">.</span> <span class="s">"#d0a272"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-faint</span> <span class="o">.</span> <span class="s">"#d2b580"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-alt-faint</span> <span class="o">.</span> <span class="s">"#cabf77"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-alt-other-faint</span> <span class="o">.</span> <span class="s">"#d0ba95"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue</span> <span class="o">.</span> <span class="s">"#778cff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-alt</span> <span class="o">.</span> <span class="s">"#8f90ff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-alt-other</span> <span class="o">.</span> <span class="s">"#8380ff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-faint</span> <span class="o">.</span> <span class="s">"#82b0ec"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-alt-faint</span> <span class="o">.</span> <span class="s">"#a0acef"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-alt-other-faint</span> <span class="o">.</span> <span class="s">"#80b2f0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta</span> <span class="o">.</span> <span class="s">"#ff70cf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-alt</span> <span class="o">.</span> <span class="s">"#ff77f0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-alt-other</span> <span class="o">.</span> <span class="s">"#ca7fff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-faint</span> <span class="o">.</span> <span class="s">"#e0b2d6"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-alt-faint</span> <span class="o">.</span> <span class="s">"#ef9fe4"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-alt-other-faint</span> <span class="o">.</span> <span class="s">"#cfa6ff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan</span> <span class="o">.</span> <span class="s">"#30cacf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-alt</span> <span class="o">.</span> <span class="s">"#60caff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-alt-other</span> <span class="o">.</span> <span class="s">"#40b79f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-faint</span> <span class="o">.</span> <span class="s">"#90c4ed"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-alt-faint</span> <span class="o">.</span> <span class="s">"#a0bfdf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-alt-other-faint</span> <span class="o">.</span> <span class="s">"#a4d0bb"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-active</span> <span class="o">.</span> <span class="s">"#ff6059"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-active</span> <span class="o">.</span> <span class="s">"#64dc64"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-active</span> <span class="o">.</span> <span class="s">"#ffac80"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-active</span> <span class="o">.</span> <span class="s">"#4fafff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-active</span> <span class="o">.</span> <span class="s">"#cf88ff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-active</span> <span class="o">.</span> <span class="s">"#50d3d0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-nuanced-bg</span> <span class="o">.</span> <span class="s">"#440a1f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">red-nuanced-fg</span> <span class="o">.</span> <span class="s">"#ffcccc"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-nuanced-bg</span> <span class="o">.</span> <span class="s">"#002904"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">green-nuanced-fg</span> <span class="o">.</span> <span class="s">"#b8e2b8"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-nuanced-bg</span> <span class="o">.</span> <span class="s">"#422000"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">yellow-nuanced-fg</span> <span class="o">.</span> <span class="s">"#dfdfb0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-nuanced-bg</span> <span class="o">.</span> <span class="s">"#1f1f5f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">blue-nuanced-fg</span> <span class="o">.</span> <span class="s">"#bfd9ff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-nuanced-bg</span> <span class="o">.</span> <span class="s">"#431641"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">magenta-nuanced-fg</span> <span class="o">.</span> <span class="s">"#e5cfef"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-nuanced-bg</span> <span class="o">.</span> <span class="s">"#042f49"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">cyan-nuanced-fg</span> <span class="o">.</span> <span class="s">"#a8e5e5"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-heading</span> <span class="o">.</span> <span class="s">"#304466"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-heading</span> <span class="o">.</span> <span class="s">"#dae7ff"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-added</span> <span class="o">.</span> <span class="s">"#0a383a"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-added</span> <span class="o">.</span> <span class="s">"#94ba94"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-changed</span> <span class="o">.</span> <span class="s">"#2a2000"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-changed</span> <span class="o">.</span> <span class="s">"#b0ba9f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-removed</span> <span class="o">.</span> <span class="s">"#50163f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-removed</span> <span class="o">.</span> <span class="s">"#c6adaa"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-refine-added</span> <span class="o">.</span> <span class="s">"#006a46"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-refine-added</span> <span class="o">.</span> <span class="s">"#e0f6e0"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-refine-changed</span> <span class="o">.</span> <span class="s">"#585800"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-refine-changed</span> <span class="o">.</span> <span class="s">"#ffffcc"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-refine-removed</span> <span class="o">.</span> <span class="s">"#952838"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-refine-removed</span> <span class="o">.</span> <span class="s">"#ffd9eb"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-focus-added</span> <span class="o">.</span> <span class="s">"#1d4c3f"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-focus-added</span> <span class="o">.</span> <span class="s">"#b4dfb4"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-focus-changed</span> <span class="o">.</span> <span class="s">"#424200"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-focus-changed</span> <span class="o">.</span> <span class="s">"#d0daaf"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-diff-focus-removed</span> <span class="o">.</span> <span class="s">"#6f0f39"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">fg-diff-focus-removed</span> <span class="o">.</span> <span class="s">"#eebdba"</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<h2>The basics of the configuration</h2>
+
+<p>In terms of properly sequencing the individual snippets of code in the
+user’s configuration, we would have this order:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">require</span> <span class="ss">'modus-themes</span><span class="p">)</span>
+
+<span class="c1">;; User options here:</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">modus-themes-italic-constructs</span> <span class="no">t</span>
+      <span class="nv">modus-themes-bold-constructs</span> <span class="no">t</span>
+      <span class="c1">;; All other user options here</span>
+      <span class="p">)</span>
+
+<span class="c1">;; Overrides here:</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">modus-themes-operandi-color-overrides</span>
+      <span class="o">'</span><span class="p">((</span><span class="nv">bg-main</span> <span class="o">.</span> <span class="s">"#fff0f2"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-dim</span> <span class="o">.</span> <span class="s">"#fbe6ef"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-alt</span> <span class="o">.</span> <span class="s">"#f5dae6"</span><span class="p">)</span>
+        <span class="c1">;; more colours for `modus-operandi'...</span>
+        <span class="p">)</span>
+      <span class="nv">modus-themes-vivendi-color-overrides</span>
+      <span class="o">'</span><span class="p">((</span><span class="nv">bg-main</span> <span class="o">.</span> <span class="s">"#25152a"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-dim</span> <span class="o">.</span> <span class="s">"#2a1930"</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">bg-alt</span> <span class="o">.</span> <span class="s">"#382443"</span><span class="p">)</span>
+        <span class="c1">;; more colours for `modus-vivendi'...</span>
+        <span class="p">))</span>
+
+<span class="c1">;; Load the theme files before enabling a theme (else you might get an</span>
+<span class="c1">;; error depending on your setup).</span>
+<span class="p">(</span><span class="nv">modus-themes-load-themes</span><span class="p">)</span>
+
+<span class="c1">;; Load the theme of your preference:</span>
+<span class="p">(</span><span class="nv">modus-themes-load-operandi</span><span class="p">)</span> <span class="c1">; OR (modus-themes-load-vivendi)</span>
+
+<span class="c1">;; Optionally set the `modus-themes-toggle' to a key binding:</span>
+<span class="p">(</span><span class="nv">define-key</span> <span class="nv">global-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"&lt;f5&gt;"</span><span class="p">)</span> <span class="nf">#'</span><span class="nv">modus-themes-toggle</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Notice that in the above block the overrides are set unconditionally.
+If we want the aforementioned minor mode, we just do this instead:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">require</span> <span class="ss">'modus-themes</span><span class="p">)</span>
+
+<span class="c1">;; User options here:</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">modus-themes-italic-constructs</span> <span class="no">t</span>
+      <span class="nv">modus-themes-bold-constructs</span> <span class="no">t</span>
+      <span class="c1">;; All other user options here</span>
+      <span class="p">)</span>
+
+<span class="c1">;; Overrides here:</span>
+<span class="p">(</span><span class="nv">define-minor-mode</span> <span class="nv">my-modus-themes-overrides</span>
+  <span class="s">"Toggle overrides."</span>
+  <span class="ss">:init-value</span> <span class="no">nil</span>
+  <span class="ss">:global</span> <span class="no">t</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">modus-themes-operandi-color-overrides</span>
+        <span class="o">'</span><span class="p">((</span><span class="nv">bg-main</span> <span class="o">.</span> <span class="s">"#fff0f2"</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">bg-dim</span> <span class="o">.</span> <span class="s">"#fbe6ef"</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">bg-alt</span> <span class="o">.</span> <span class="s">"#f5dae6"</span><span class="p">)</span>
+          <span class="c1">;; more colours for `modus-operandi'...</span>
+          <span class="p">)</span>
+        <span class="nv">modus-themes-vivendi-color-overrides</span>
+        <span class="o">'</span><span class="p">((</span><span class="nv">bg-main</span> <span class="o">.</span> <span class="s">"#25152a"</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">bg-dim</span> <span class="o">.</span> <span class="s">"#2a1930"</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">bg-alt</span> <span class="o">.</span> <span class="s">"#382443"</span><span class="p">)</span>
+          <span class="c1">;; more colours for `modus-vivendi'...</span>
+          <span class="p">))</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">modus-themes-operandi-color-overrides</span> <span class="no">nil</span>
+        <span class="nv">modus-themes-vivendi-color-overrides</span> <span class="no">nil</span><span class="p">))</span>
+
+<span class="c1">;; Load the theme files before enabling a theme (else you might get an</span>
+<span class="c1">;; error depending on your setup).</span>
+<span class="p">(</span><span class="nv">modus-themes-load-themes</span><span class="p">)</span>
+
+<span class="c1">;; Load the theme of your preference:</span>
+<span class="p">(</span><span class="nv">modus-themes-load-operandi</span><span class="p">)</span> <span class="c1">; OR (modus-themes-load-vivendi)</span>
+
+<span class="c1">;; Optionally set the `modus-themes-toggle' to a key binding:</span>
+<span class="p">(</span><span class="nv">define-key</span> <span class="nv">global-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"&lt;f5&gt;"</span><span class="p">)</span> <span class="nf">#'</span><span class="nv">modus-themes-toggle</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Now the minor mode is declared but it does not run at startup.  We would
+need to manually enable it with <code class="language-plaintext highlighter-rouge">M-x</code> (or by assigning it to a key
+binding).</p>
+
+<p>Though we can enable the minor mode right before loading the theme.  In
+the above snippet, replace:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">modus-themes-load-operandi</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>With:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">my-modus-themes-overrides</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">modus-themes-load-operandi</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2>The complete annotated setup from my dotemacs</h2>
+
+<p>The upside of the overrides is that we retain the rest of the Modus
+themes’ functionality, including all their user options and concomitant
+advance configuration mechanisms (as explained in the manual’s numerous
+do-it-yourself sections).  In my setup, I do not enable the minor mode
+at startup.  I do it via <code class="language-plaintext highlighter-rouge">M-x</code>.  Though you can tweak things as I
+explained above.  And if something remains unclear, you are welcome to
+<a href="https://protesilaos.com/contact">contact me</a>.</p>
+
+<p>What follows is a slightly tweaked variant of <a href="https://git.sr.ht/~protesilaos/dotfiles/tree/master/item/emacs/.emacs.d/prot-emacs-modules/prot-emacs-theme.el">my own
+setup</a>.
+Note that I periodically change the user options for testing purposes,
+so what is recorded herein is not necessarily my number one preference.
+Also be aware that the minor mode with the overrides is called
+<code class="language-plaintext highlighter-rouge">modus-themes-summertime</code>:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">;;; The Modus themes</span>
+
+<span class="c1">;; These are built into Emacs 28 or higher, though I use the package for</span>
+<span class="c1">;; my development purposes (I need to make sure it always builds cleanly</span>
+<span class="c1">;; and works properly).</span>
+
+<span class="c1">;; Read their manual with Emacs' Info reader, or visit:</span>
+<span class="c1">;; &lt;https://protesilaos.com/emacs/modus-themes&gt;.</span>
+<span class="p">(</span><span class="nb">require</span> <span class="ss">'modus-themes</span><span class="p">)</span>
+
+<span class="c1">;; Add all your customizations prior to loading the themes</span>
+<span class="c1">;;</span>
+<span class="c1">;; NOTE: these are not my preferences!  I am always testing various</span>
+<span class="c1">;; configurations.  Though I still like what I have here.</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">modus-themes-italic-constructs</span> <span class="no">t</span>
+      <span class="nv">modus-themes-bold-constructs</span> <span class="no">t</span>
+      <span class="nv">modus-themes-mixed-fonts</span> <span class="no">t</span>
+      <span class="nv">modus-themes-subtle-line-numbers</span> <span class="no">t</span>
+      <span class="nv">modus-themes-intense-mouseovers</span> <span class="no">nil</span>
+      <span class="nv">modus-themes-deuteranopia</span> <span class="no">nil</span>
+      <span class="nv">modus-themes-tabs-accented</span> <span class="no">nil</span>
+      <span class="nv">modus-themes-variable-pitch-ui</span> <span class="no">t</span>
+      <span class="nv">modus-themes-inhibit-reload</span> <span class="no">t</span> <span class="c1">; only applies to `customize-set-variable' and related</span>
+
+      <span class="nv">modus-themes-fringes</span> <span class="no">nil</span> <span class="c1">; {nil,'subtle,'intense}</span>
+
+      <span class="c1">;; Options for `modus-themes-lang-checkers' are either nil (the</span>
+      <span class="c1">;; default), or a list of properties that may include any of those</span>
+      <span class="c1">;; symbols: `straight-underline', `text-also', `background',</span>
+      <span class="c1">;; `intense' OR `faint'.</span>
+      <span class="nv">modus-themes-lang-checkers</span> <span class="no">nil</span>
+
+      <span class="c1">;; Options for `modus-themes-mode-line' are either nil, or a list</span>
+      <span class="c1">;; that can combine any of `3d' OR `moody', `borderless',</span>
+      <span class="c1">;; `accented', a natural number for extra padding (or a cons cell</span>
+      <span class="c1">;; of padding and NATNUM), and a floating point for the height of</span>
+      <span class="c1">;; the text relative to the base font size (or a cons cell of</span>
+      <span class="c1">;; height and FLOAT)</span>
+      <span class="nv">modus-themes-mode-line</span> <span class="o">'</span><span class="p">(</span><span class="nv">accented</span><span class="p">)</span>
+
+      <span class="c1">;; Options for `modus-themes-markup' are either nil, or a list</span>
+      <span class="c1">;; that can combine any of `bold', `italic', `background',</span>
+      <span class="c1">;; `intense'.</span>
+      <span class="nv">modus-themes-markup</span> <span class="no">nil</span>
+
+      <span class="c1">;; Options for `modus-themes-syntax' are either nil (the default),</span>
+      <span class="c1">;; or a list of properties that may include any of those symbols:</span>
+      <span class="c1">;; `faint', `yellow-comments', `green-strings', `alt-syntax'</span>
+      <span class="nv">modus-themes-syntax</span> <span class="no">nil</span>
+
+      <span class="c1">;; Options for `modus-themes-hl-line' are either nil (the default),</span>
+      <span class="c1">;; or a list of properties that may include any of those symbols:</span>
+      <span class="c1">;; `accented', `underline', `intense'</span>
+      <span class="nv">modus-themes-hl-line</span> <span class="no">nil</span>
+
+      <span class="c1">;; Options for `modus-themes-paren-match' are either nil (the</span>
+      <span class="c1">;; default), or a list of properties that may include any of those</span>
+      <span class="c1">;; symbols: `bold', `intense', `underline'</span>
+      <span class="nv">modus-themes-paren-match</span> <span class="o">'</span><span class="p">(</span><span class="nv">bold</span><span class="p">)</span>
+
+      <span class="c1">;; Options for `modus-themes-links' are either nil (the default),</span>
+      <span class="c1">;; or a list of properties that may include any of those symbols:</span>
+      <span class="c1">;; `neutral-underline' OR `no-underline', `faint' OR `no-color',</span>
+      <span class="c1">;; `bold', `italic', `background'</span>
+      <span class="nv">modus-themes-links</span> <span class="o">'</span><span class="p">(</span><span class="nv">neutral-underline</span><span class="p">)</span>
+
+      <span class="c1">;; Options for `modus-themes-box-buttons' are either nil (the</span>
+      <span class="c1">;; default), or a list that can combine any of `flat',</span>
+      <span class="c1">;; `accented', `faint', `variable-pitch', `underline',</span>
+      <span class="c1">;; `all-buttons', the symbol of any font weight as listed in</span>
+      <span class="c1">;; `modus-themes-weights', and a floating point number</span>
+      <span class="c1">;; (e.g. 0.9) for the height of the button's text.</span>
+      <span class="nv">modus-themes-box-buttons</span> <span class="no">nil</span>
+
+      <span class="c1">;; Options for `modus-themes-prompts' are either nil (the</span>
+      <span class="c1">;; default), or a list of properties that may include any of those</span>
+      <span class="c1">;; symbols: `background', `bold', `gray', `intense', `italic'</span>
+      <span class="nv">modus-themes-prompts</span> <span class="no">nil</span>
+
+      <span class="c1">;; The `modus-themes-completions' is an alist that reads three</span>
+      <span class="c1">;; keys: `matches', `selection', `popup'.  Each accepts a nil</span>
+      <span class="c1">;; value (or empty list) or a list of properties that can include</span>
+      <span class="c1">;; any of the following (for WEIGHT read further below):</span>
+      <span class="c1">;;</span>
+      <span class="c1">;; `matches' - `background', `intense', `underline', `italic', WEIGHT</span>
+      <span class="c1">;; `selection' - `accented', `intense', `underline', `italic', `text-also', WEIGHT</span>
+      <span class="c1">;; `popup' - same as `selected'</span>
+      <span class="c1">;; `t' - applies to any key not explicitly referenced (check docs)</span>
+      <span class="c1">;;</span>
+      <span class="c1">;; WEIGHT is a symbol such as `semibold', `light', or anything</span>
+      <span class="c1">;; covered in `modus-themes-weights'.  Bold is used in the absence</span>
+      <span class="c1">;; of an explicit WEIGHT.</span>
+      <span class="nv">modus-themes-completions</span>
+      <span class="o">'</span><span class="p">((</span><span class="nv">matches</span> <span class="o">.</span> <span class="p">(</span><span class="nv">semibold</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">selection</span> <span class="o">.</span> <span class="p">(</span><span class="nv">extrabold</span> <span class="nv">accented</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">popup</span> <span class="o">.</span> <span class="p">(</span><span class="nv">extrabold</span> <span class="nv">accented</span><span class="p">)))</span>
+
+      <span class="nv">modus-themes-mail-citations</span> <span class="no">nil</span> <span class="c1">; {nil,'intense,'faint,'monochrome}</span>
+
+      <span class="c1">;; Options for `modus-themes-region' are either nil (the default),</span>
+      <span class="c1">;; or a list of properties that may include any of those symbols:</span>
+      <span class="c1">;; `no-extend', `bg-only', `accented'</span>
+      <span class="nv">modus-themes-region</span> <span class="o">'</span><span class="p">(</span><span class="nv">accented</span> <span class="nv">no-extend</span><span class="p">)</span>
+
+      <span class="c1">;; Options for `modus-themes-diffs': nil, 'desaturated, 'bg-only</span>
+      <span class="nv">modus-themes-diffs</span> <span class="no">nil</span>
+
+      <span class="nv">modus-themes-org-blocks</span> <span class="ss">'gray-background</span> <span class="c1">; {nil,'gray-background,'tinted-background}</span>
+
+      <span class="nv">modus-themes-org-agenda</span> <span class="c1">; this is an alist: read the manual or its doc string</span>
+      <span class="o">'</span><span class="p">((</span><span class="nv">header-block</span> <span class="o">.</span> <span class="p">(</span><span class="nv">variable-pitch</span> <span class="nv">light</span> <span class="mf">1.6</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">header-date</span> <span class="o">.</span> <span class="p">(</span><span class="nv">underline-today</span> <span class="nv">grayscale</span> <span class="nv">workaholic</span> <span class="mf">1.2</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">event</span> <span class="o">.</span> <span class="p">(</span><span class="nv">accented</span> <span class="nv">italic</span> <span class="nv">varied</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">scheduled</span> <span class="o">.</span> <span class="nv">rainbow</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">habit</span> <span class="o">.</span> <span class="nv">simplified</span><span class="p">))</span>
+
+      <span class="c1">;; The `modus-themes-headings' is an alist with lots of possible</span>
+      <span class="c1">;; combinations, include per-heading-level tweaks: read the</span>
+      <span class="c1">;; manual or its doc string</span>
+      <span class="nv">modus-themes-headings</span>
+      <span class="o">'</span><span class="p">((</span><span class="mi">0</span> <span class="o">.</span> <span class="p">(</span><span class="nv">variable-pitch</span> <span class="nv">light</span> <span class="p">(</span><span class="nv">height</span> <span class="mf">2.2</span><span class="p">)))</span>
+        <span class="p">(</span><span class="mi">1</span> <span class="o">.</span> <span class="p">(</span><span class="nv">rainbow</span> <span class="nv">variable-pitch</span> <span class="nv">light</span> <span class="p">(</span><span class="nv">height</span> <span class="mf">1.6</span><span class="p">)))</span>
+        <span class="p">(</span><span class="mi">2</span> <span class="o">.</span> <span class="p">(</span><span class="nv">rainbow</span> <span class="nv">variable-pitch</span> <span class="nv">light</span> <span class="p">(</span><span class="nv">height</span> <span class="mf">1.4</span><span class="p">)))</span>
+        <span class="p">(</span><span class="mi">3</span> <span class="o">.</span> <span class="p">(</span><span class="nv">rainbow</span> <span class="nv">variable-pitch</span> <span class="nv">regular</span> <span class="p">(</span><span class="nv">height</span> <span class="mf">1.3</span><span class="p">)))</span>
+        <span class="p">(</span><span class="mi">4</span> <span class="o">.</span> <span class="p">(</span><span class="nv">rainbow</span> <span class="nv">regular</span> <span class="p">(</span><span class="nv">height</span> <span class="mf">1.2</span><span class="p">)))</span>
+        <span class="p">(</span><span class="mi">5</span> <span class="o">.</span> <span class="p">(</span><span class="nv">rainbow</span> <span class="p">(</span><span class="nv">height</span> <span class="mf">1.1</span><span class="p">)))</span>
+        <span class="p">(</span><span class="no">t</span> <span class="o">.</span> <span class="p">(</span><span class="nv">variable-pitch</span> <span class="nv">extrabold</span><span class="p">))))</span>
+
+<span class="c1">;; Load the theme files before enabling a theme (else you get an error).</span>
+<span class="p">(</span><span class="nv">modus-themes-load-themes</span><span class="p">)</span>
+
+<span class="c1">;; Load the theme of your preference:</span>
+<span class="p">(</span><span class="nv">modus-themes-load-operandi</span><span class="p">)</span> <span class="c1">; OR (modus-themes-load-vivendi)</span>
+
+<span class="c1">;; Optionally set the `modus-themes-toggle' to a key binding:</span>
+<span class="p">(</span><span class="nv">define-key</span> <span class="nv">global-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"&lt;f5&gt;"</span><span class="p">)</span> <span class="nf">#'</span><span class="nv">modus-themes-toggle</span><span class="p">)</span>
+
+<span class="c1">;;;; Modus themes "Summertime"</span>
+
+<span class="c1">;; Read the relevant blog post:</span>
+<span class="c1">;; &lt;https://protesilaos.com/codelog/2022-07-26-modus-themes-color-override-demo/&gt;</span>
+
+<span class="c1">;; Thanks to user "Summer Emacs" for (i) suggesting the name</span>
+<span class="c1">;; "summertime", (ii) testing variants of this in her setup, and (iii)</span>
+<span class="c1">;; sending me feedback on possible tweaks and refinements.  All errors</span>
+<span class="c1">;; are my own.  (This information is shared with permission.)</span>
+<span class="p">(</span><span class="nv">define-minor-mode</span> <span class="nv">modus-themes-summertime</span>
+  <span class="s">"Refashion the Modus themes by overriding their colors.
+
+This is a complete technology demonstration to show how to
+manually override the colors of the Modus themes.  I have taken
+good care of those overrides to make them work as a fully fledged
+color scheme that is compatible with all user options of the
+Modus themes.
+
+These overrides are usable by those who (i) like something more
+fancy than the comparatively austere looks of the Modus themes,
+and (ii) can cope with a lower contrast ratio.
+
+The overrides are set up as a minor mode, so that the user can
+activate the effect on demand.  Those who want to load the
+overrides at all times can either add them directly to their
+configuration or enable `modus-themes-summertime' BEFORE loading
+either of the Modus themes (if the overrides are evaluated after
+the theme, the theme must be reloaded).
+
+Remember that all changes to theme-related variables require a
+reload of the theme to take effect (the Modus themes have lots of
+user options, apart from those overrides).
+
+The `modus-themes-summertime' IS NOT an official extension to the
+Modus themes and DOES NOT comply with its lofty accessibility
+standards.  It is included in the official manual as guidance for
+those who want to make use of the color overriding facility we
+provide."</span>
+  <span class="ss">:init-value</span> <span class="no">nil</span>
+  <span class="ss">:global</span> <span class="no">t</span>
+  <span class="p">(</span><span class="k">if</span> <span class="nv">modus-themes-summertime</span>
+      <span class="p">(</span><span class="k">setq</span> <span class="nv">modus-themes-operandi-color-overrides</span>
+            <span class="o">'</span><span class="p">((</span><span class="nv">bg-main</span> <span class="o">.</span> <span class="s">"#fff0f2"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-dim</span> <span class="o">.</span> <span class="s">"#fbe6ef"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-alt</span> <span class="o">.</span> <span class="s">"#f5dae6"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-hl-line</span> <span class="o">.</span> <span class="s">"#fad8e3"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-active</span> <span class="o">.</span> <span class="s">"#efcadf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-inactive</span> <span class="o">.</span> <span class="s">"#f3ddef"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-active-accent</span> <span class="o">.</span> <span class="s">"#ffbbef"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-region</span> <span class="o">.</span> <span class="s">"#dfc5d1"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-region-accent</span> <span class="o">.</span> <span class="s">"#efbfef"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-region-accent-subtle</span> <span class="o">.</span> <span class="s">"#ffd6ef"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-header</span> <span class="o">.</span> <span class="s">"#edd3e0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-tab-active</span> <span class="o">.</span> <span class="s">"#ffeff2"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-tab-inactive</span> <span class="o">.</span> <span class="s">"#f8d3ef"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-tab-inactive-accent</span> <span class="o">.</span> <span class="s">"#ffd9f5"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-tab-inactive-alt</span> <span class="o">.</span> <span class="s">"#e5c0d5"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-tab-inactive-alt-accent</span> <span class="o">.</span> <span class="s">"#f3cce0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-main</span> <span class="o">.</span> <span class="s">"#543f78"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-dim</span> <span class="o">.</span> <span class="s">"#5f476f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-alt</span> <span class="o">.</span> <span class="s">"#7f6f99"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-unfocused</span> <span class="o">.</span> <span class="s">"#8f6f9f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-active</span> <span class="o">.</span> <span class="s">"#563068"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-inactive</span> <span class="o">.</span> <span class="s">"#8a5698"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-docstring</span> <span class="o">.</span> <span class="s">"#5f5fa7"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-comment-yellow</span> <span class="o">.</span> <span class="s">"#a9534f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-escape-char-construct</span> <span class="o">.</span> <span class="s">"#8b207f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-escape-char-backslash</span> <span class="o">.</span> <span class="s">"#a06d00"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-cold</span> <span class="o">.</span> <span class="s">"#d3e0f4"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-faint-cold</span> <span class="o">.</span> <span class="s">"#e0efff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-mild</span> <span class="o">.</span> <span class="s">"#c4ede0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-faint-mild</span> <span class="o">.</span> <span class="s">"#e0f0ea"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-warm</span> <span class="o">.</span> <span class="s">"#efd0c4"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-faint-warm</span> <span class="o">.</span> <span class="s">"#ffe4da"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-calm</span> <span class="o">.</span> <span class="s">"#f0d3ea"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-faint-calm</span> <span class="o">.</span> <span class="s">"#fadff9"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-special-cold</span> <span class="o">.</span> <span class="s">"#405fb8"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-special-mild</span> <span class="o">.</span> <span class="s">"#407f74"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-special-warm</span> <span class="o">.</span> <span class="s">"#9d6f4f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-special-calm</span> <span class="o">.</span> <span class="s">"#af509f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-completion</span> <span class="o">.</span> <span class="s">"#ffc5e5"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-completion-subtle</span> <span class="o">.</span> <span class="s">"#f7cfef"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red</span> <span class="o">.</span> <span class="s">"#ed2f44"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-alt</span> <span class="o">.</span> <span class="s">"#e0403d"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-alt-other</span> <span class="o">.</span> <span class="s">"#e04059"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-faint</span> <span class="o">.</span> <span class="s">"#ed4f44"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-alt-faint</span> <span class="o">.</span> <span class="s">"#e0603d"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-alt-other-faint</span> <span class="o">.</span> <span class="s">"#e06059"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green</span> <span class="o">.</span> <span class="s">"#217a3c"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-alt</span> <span class="o">.</span> <span class="s">"#417a1c"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-alt-other</span> <span class="o">.</span> <span class="s">"#006f3c"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-faint</span> <span class="o">.</span> <span class="s">"#318a4c"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-alt-faint</span> <span class="o">.</span> <span class="s">"#518a2c"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-alt-other-faint</span> <span class="o">.</span> <span class="s">"#20885c"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow</span> <span class="o">.</span> <span class="s">"#b06202"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-alt</span> <span class="o">.</span> <span class="s">"#a95642"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-alt-other</span> <span class="o">.</span> <span class="s">"#a06f42"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-faint</span> <span class="o">.</span> <span class="s">"#b07232"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-alt-faint</span> <span class="o">.</span> <span class="s">"#a96642"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-alt-other-faint</span> <span class="o">.</span> <span class="s">"#a08042"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue</span> <span class="o">.</span> <span class="s">"#275ccf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-alt</span> <span class="o">.</span> <span class="s">"#475cc0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-alt-other</span> <span class="o">.</span> <span class="s">"#3340ef"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-faint</span> <span class="o">.</span> <span class="s">"#476ce0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-alt-faint</span> <span class="o">.</span> <span class="s">"#575ccf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-alt-other-faint</span> <span class="o">.</span> <span class="s">"#3f60d7"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta</span> <span class="o">.</span> <span class="s">"#bf317f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-alt</span> <span class="o">.</span> <span class="s">"#d033c0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-alt-other</span> <span class="o">.</span> <span class="s">"#844fe4"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-faint</span> <span class="o">.</span> <span class="s">"#bf517f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-alt-faint</span> <span class="o">.</span> <span class="s">"#d053c0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-alt-other-faint</span> <span class="o">.</span> <span class="s">"#846fe4"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan</span> <span class="o">.</span> <span class="s">"#007a9f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-alt</span> <span class="o">.</span> <span class="s">"#3f709f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-alt-other</span> <span class="o">.</span> <span class="s">"#107f7f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-faint</span> <span class="o">.</span> <span class="s">"#108aaf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-alt-faint</span> <span class="o">.</span> <span class="s">"#3f80af"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-alt-other-faint</span> <span class="o">.</span> <span class="s">"#3088af"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-active</span> <span class="o">.</span> <span class="s">"#cd2f44"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-active</span> <span class="o">.</span> <span class="s">"#116a6c"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-active</span> <span class="o">.</span> <span class="s">"#993602"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-active</span> <span class="o">.</span> <span class="s">"#475ccf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-active</span> <span class="o">.</span> <span class="s">"#7f2ccf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-active</span> <span class="o">.</span> <span class="s">"#007a8f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-nuanced-bg</span> <span class="o">.</span> <span class="s">"#ffdbd0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-nuanced-fg</span> <span class="o">.</span> <span class="s">"#ed6f74"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-nuanced-bg</span> <span class="o">.</span> <span class="s">"#dcf0dd"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-nuanced-fg</span> <span class="o">.</span> <span class="s">"#3f9a4c"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-nuanced-bg</span> <span class="o">.</span> <span class="s">"#fff3aa"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-nuanced-fg</span> <span class="o">.</span> <span class="s">"#b47232"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-nuanced-bg</span> <span class="o">.</span> <span class="s">"#e3e3ff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-nuanced-fg</span> <span class="o">.</span> <span class="s">"#201f6f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-nuanced-bg</span> <span class="o">.</span> <span class="s">"#fdd0ff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-nuanced-fg</span> <span class="o">.</span> <span class="s">"#c0527f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-nuanced-bg</span> <span class="o">.</span> <span class="s">"#dbefff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-nuanced-fg</span> <span class="o">.</span> <span class="s">"#0f3f60"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-heading</span> <span class="o">.</span> <span class="s">"#b7cfe0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-heading</span> <span class="o">.</span> <span class="s">"#041645"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-added</span> <span class="o">.</span> <span class="s">"#d6f0d6"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-added</span> <span class="o">.</span> <span class="s">"#004520"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-changed</span> <span class="o">.</span> <span class="s">"#fcefcf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-changed</span> <span class="o">.</span> <span class="s">"#524200"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-removed</span> <span class="o">.</span> <span class="s">"#ffe0ef"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-removed</span> <span class="o">.</span> <span class="s">"#891626"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-refine-added</span> <span class="o">.</span> <span class="s">"#84cfa4"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-refine-added</span> <span class="o">.</span> <span class="s">"#002a00"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-refine-changed</span> <span class="o">.</span> <span class="s">"#cccf8f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-refine-changed</span> <span class="o">.</span> <span class="s">"#302010"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-refine-removed</span> <span class="o">.</span> <span class="s">"#da92b0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-refine-removed</span> <span class="o">.</span> <span class="s">"#500010"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-focus-added</span> <span class="o">.</span> <span class="s">"#a6e5c6"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-focus-added</span> <span class="o">.</span> <span class="s">"#002c00"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-focus-changed</span> <span class="o">.</span> <span class="s">"#ecdfbf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-focus-changed</span> <span class="o">.</span> <span class="s">"#392900"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-focus-removed</span> <span class="o">.</span> <span class="s">"#efbbcf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-focus-removed</span> <span class="o">.</span> <span class="s">"#5a0010"</span><span class="p">))</span>
+            <span class="nv">modus-themes-vivendi-color-overrides</span>
+            <span class="o">'</span><span class="p">((</span><span class="nv">bg-main</span> <span class="o">.</span> <span class="s">"#25152a"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-dim</span> <span class="o">.</span> <span class="s">"#2a1930"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-alt</span> <span class="o">.</span> <span class="s">"#382443"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-hl-line</span> <span class="o">.</span> <span class="s">"#332650"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-active</span> <span class="o">.</span> <span class="s">"#463358"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-inactive</span> <span class="o">.</span> <span class="s">"#2d1f3a"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-active-accent</span> <span class="o">.</span> <span class="s">"#50308f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-region</span> <span class="o">.</span> <span class="s">"#5d4a67"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-region-accent</span> <span class="o">.</span> <span class="s">"#60509f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-region-accent-subtle</span> <span class="o">.</span> <span class="s">"#3f285f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-header</span> <span class="o">.</span> <span class="s">"#3a2543"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-tab-active</span> <span class="o">.</span> <span class="s">"#26162f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-tab-inactive</span> <span class="o">.</span> <span class="s">"#362647"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-tab-inactive-accent</span> <span class="o">.</span> <span class="s">"#36265a"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-tab-inactive-alt</span> <span class="o">.</span> <span class="s">"#3e2f5a"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-tab-inactive-alt-accent</span> <span class="o">.</span> <span class="s">"#3e2f6f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-main</span> <span class="o">.</span> <span class="s">"#debfe0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-dim</span> <span class="o">.</span> <span class="s">"#d0b0da"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-alt</span> <span class="o">.</span> <span class="s">"#ae85af"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-unfocused</span> <span class="o">.</span> <span class="s">"#8e7f9f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-active</span> <span class="o">.</span> <span class="s">"#cfbfef"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-inactive</span> <span class="o">.</span> <span class="s">"#b0a0c0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-docstring</span> <span class="o">.</span> <span class="s">"#c8d9f7"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-comment-yellow</span> <span class="o">.</span> <span class="s">"#cf9a70"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-escape-char-construct</span> <span class="o">.</span> <span class="s">"#ff75aa"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-escape-char-backslash</span> <span class="o">.</span> <span class="s">"#dbab40"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-cold</span> <span class="o">.</span> <span class="s">"#2a3f58"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-faint-cold</span> <span class="o">.</span> <span class="s">"#1e283f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-mild</span> <span class="o">.</span> <span class="s">"#0f3f31"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-faint-mild</span> <span class="o">.</span> <span class="s">"#0f281f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-warm</span> <span class="o">.</span> <span class="s">"#44331f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-faint-warm</span> <span class="o">.</span> <span class="s">"#372213"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-calm</span> <span class="o">.</span> <span class="s">"#4a314f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-special-faint-calm</span> <span class="o">.</span> <span class="s">"#3a223f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-special-cold</span> <span class="o">.</span> <span class="s">"#c0b0ff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-special-mild</span> <span class="o">.</span> <span class="s">"#bfe0cf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-special-warm</span> <span class="o">.</span> <span class="s">"#edc0a6"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-special-calm</span> <span class="o">.</span> <span class="s">"#ff9fdf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-completion</span> <span class="o">.</span> <span class="s">"#502d70"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-completion-subtle</span> <span class="o">.</span> <span class="s">"#451d65"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red</span> <span class="o">.</span> <span class="s">"#ff5f6f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-alt</span> <span class="o">.</span> <span class="s">"#ff8f6d"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-alt-other</span> <span class="o">.</span> <span class="s">"#ff6f9d"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-faint</span> <span class="o">.</span> <span class="s">"#ffa0a0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-alt-faint</span> <span class="o">.</span> <span class="s">"#f5aa80"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-alt-other-faint</span> <span class="o">.</span> <span class="s">"#ff9fbf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green</span> <span class="o">.</span> <span class="s">"#51ca5c"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-alt</span> <span class="o">.</span> <span class="s">"#71ca3c"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-alt-other</span> <span class="o">.</span> <span class="s">"#51ca9c"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-faint</span> <span class="o">.</span> <span class="s">"#78bf78"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-alt-faint</span> <span class="o">.</span> <span class="s">"#99b56f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-alt-other-faint</span> <span class="o">.</span> <span class="s">"#88bf99"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow</span> <span class="o">.</span> <span class="s">"#f0b262"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-alt</span> <span class="o">.</span> <span class="s">"#f0e242"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-alt-other</span> <span class="o">.</span> <span class="s">"#d0a272"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-faint</span> <span class="o">.</span> <span class="s">"#d2b580"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-alt-faint</span> <span class="o">.</span> <span class="s">"#cabf77"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-alt-other-faint</span> <span class="o">.</span> <span class="s">"#d0ba95"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue</span> <span class="o">.</span> <span class="s">"#778cff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-alt</span> <span class="o">.</span> <span class="s">"#8f90ff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-alt-other</span> <span class="o">.</span> <span class="s">"#8380ff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-faint</span> <span class="o">.</span> <span class="s">"#82b0ec"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-alt-faint</span> <span class="o">.</span> <span class="s">"#a0acef"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-alt-other-faint</span> <span class="o">.</span> <span class="s">"#80b2f0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta</span> <span class="o">.</span> <span class="s">"#ff70cf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-alt</span> <span class="o">.</span> <span class="s">"#ff77f0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-alt-other</span> <span class="o">.</span> <span class="s">"#ca7fff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-faint</span> <span class="o">.</span> <span class="s">"#e0b2d6"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-alt-faint</span> <span class="o">.</span> <span class="s">"#ef9fe4"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-alt-other-faint</span> <span class="o">.</span> <span class="s">"#cfa6ff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan</span> <span class="o">.</span> <span class="s">"#30cacf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-alt</span> <span class="o">.</span> <span class="s">"#60caff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-alt-other</span> <span class="o">.</span> <span class="s">"#40b79f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-faint</span> <span class="o">.</span> <span class="s">"#90c4ed"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-alt-faint</span> <span class="o">.</span> <span class="s">"#a0bfdf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-alt-other-faint</span> <span class="o">.</span> <span class="s">"#a4d0bb"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-active</span> <span class="o">.</span> <span class="s">"#ff6059"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-active</span> <span class="o">.</span> <span class="s">"#64dc64"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-active</span> <span class="o">.</span> <span class="s">"#ffac80"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-active</span> <span class="o">.</span> <span class="s">"#4fafff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-active</span> <span class="o">.</span> <span class="s">"#cf88ff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-active</span> <span class="o">.</span> <span class="s">"#50d3d0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-nuanced-bg</span> <span class="o">.</span> <span class="s">"#440a1f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">red-nuanced-fg</span> <span class="o">.</span> <span class="s">"#ffcccc"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-nuanced-bg</span> <span class="o">.</span> <span class="s">"#002904"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">green-nuanced-fg</span> <span class="o">.</span> <span class="s">"#b8e2b8"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-nuanced-bg</span> <span class="o">.</span> <span class="s">"#422000"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">yellow-nuanced-fg</span> <span class="o">.</span> <span class="s">"#dfdfb0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-nuanced-bg</span> <span class="o">.</span> <span class="s">"#1f1f5f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">blue-nuanced-fg</span> <span class="o">.</span> <span class="s">"#bfd9ff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-nuanced-bg</span> <span class="o">.</span> <span class="s">"#431641"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">magenta-nuanced-fg</span> <span class="o">.</span> <span class="s">"#e5cfef"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-nuanced-bg</span> <span class="o">.</span> <span class="s">"#042f49"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">cyan-nuanced-fg</span> <span class="o">.</span> <span class="s">"#a8e5e5"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-heading</span> <span class="o">.</span> <span class="s">"#304466"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-heading</span> <span class="o">.</span> <span class="s">"#dae7ff"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-added</span> <span class="o">.</span> <span class="s">"#0a383a"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-added</span> <span class="o">.</span> <span class="s">"#94ba94"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-changed</span> <span class="o">.</span> <span class="s">"#2a2000"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-changed</span> <span class="o">.</span> <span class="s">"#b0ba9f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-removed</span> <span class="o">.</span> <span class="s">"#50163f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-removed</span> <span class="o">.</span> <span class="s">"#c6adaa"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-refine-added</span> <span class="o">.</span> <span class="s">"#006a46"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-refine-added</span> <span class="o">.</span> <span class="s">"#e0f6e0"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-refine-changed</span> <span class="o">.</span> <span class="s">"#585800"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-refine-changed</span> <span class="o">.</span> <span class="s">"#ffffcc"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-refine-removed</span> <span class="o">.</span> <span class="s">"#952838"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-refine-removed</span> <span class="o">.</span> <span class="s">"#ffd9eb"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-focus-added</span> <span class="o">.</span> <span class="s">"#1d4c3f"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-focus-added</span> <span class="o">.</span> <span class="s">"#b4dfb4"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-focus-changed</span> <span class="o">.</span> <span class="s">"#424200"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-focus-changed</span> <span class="o">.</span> <span class="s">"#d0daaf"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">bg-diff-focus-removed</span> <span class="o">.</span> <span class="s">"#6f0f39"</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">fg-diff-focus-removed</span> <span class="o">.</span> <span class="s">"#eebdba"</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">modus-themes-operandi-color-overrides</span> <span class="no">nil</span>
+          <span class="nv">modus-themes-vivendi-color-overrides</span> <span class="no">nil</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<h2>How I actually load the theme on GNOME 42</h2>
+
+<p>I put this separately as it is irrelevant for many setups out there:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">;; A simple check to load the desired theme at startup based on what</span>
+<span class="c1">;; the global preference for GNOME is.  If such preference is not</span>
+<span class="c1">;; registered, it just loads `modus-operandi'.  Check my dotfiles for</span>
+<span class="c1">;; the shell script called "delight", which handles system-wide theme</span>
+<span class="c1">;; switching (as I bind the `modus-themes-toggle' to &lt;f5&gt;, delight is</span>
+<span class="c1">;; bound to s-&lt;f5&gt; in the desktop's own custom key bindings).</span>
+<span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">string-match-p</span>
+     <span class="s">"dark"</span>
+     <span class="p">(</span><span class="nv">shell-command-to-string</span> <span class="s">"gsettings get org.gnome.desktop.interface color-scheme"</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">modus-themes-load-vivendi</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">modus-themes-load-operandi</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2>Special thanks</h2>
+
+<p>Thanks to user “Summer Emacs” for (i) suggesting the name “summertime”,
+(ii) testing variants of this in her setup, and (iii) sending me
+feedback on possible tweaks and refinements.  All errors are my own.</p>
+
+<p>The idea for this project came from an exchange where Summer discovered
+an old theme of mine (from my pre-Emacs days) and asked if I had
+anything like it for Emacs.  Well, here it is!</p>
+
+<p>[ This information is shared with permission. ]</p>
+
+<p>I will include “summertime” in the manual of the Modus themes.  This is
+not a standalone theme and does not conform with the high accessibility
+standards of the default colour palettes.  It simply shows how far we
+can go by leveraging the user options at our disposal.</p>
+
+<p>If you do use this, please let me know what you think.</p>

@@ -1,0 +1,114 @@
+<p>Do you miss all the easy-to-use <code class="language-plaintext highlighter-rouge">:set</code> commands from Vim? You know,
+<code class="language-plaintext highlighter-rouge">:set wrap</code>, <code class="language-plaintext highlighter-rouge">:set number</code>, <code class="language-plaintext highlighter-rouge">:set colorcolumn</code>, <code class="language-plaintext highlighter-rouge">:set expandtab</code>, etc.</p>
+
+<h2 id="narcissistic-rant">Narcissistic rant</h2>
+
+<p>Even though the <a href="https://github.com/emacs-evil/evil">Evil</a> project itself doesn’t claim any such
+title, urban legends say that Evil is the best Vim emulator ever
+implemented. Naturally, my expectations were high. And yet, I was
+blown away. Evil does everything perfectly (or at least well enough to
+fool me) - modes, macros, window management, plugins, colon commands
+(although not all of them are implemented - I am looking at you
+<code class="language-plaintext highlighter-rouge">:retab</code>).</p>
+
+<p>For me, the only major letdown was missing support for <code class="language-plaintext highlighter-rouge">:set</code>
+options such as <code class="language-plaintext highlighter-rouge">:set wrap</code>, <code class="language-plaintext highlighter-rouge">:set number</code>, and so on.
+Of course, Emacs has its own commands for achieving the same behavior. My issue
+is simply the non-existing<code class="language-plaintext highlighter-rouge">:set</code> command and, therefore, inability to use the
+options that I already know.</p>
+
+<h2 id="introducing-evil-set-option">Introducing evil-set-option</h2>
+
+<p>For this reason, I created <a href="https://github.com/FrostyX/evil-set-option">evil-set-option</a>.</p>
+
+<div class="text-center img">
+  <img alt="" class="gifplayer" src="https://frostyx.cz/files/img/evil-set-option/evil-set-option.png" />
+  <p>Click, it's a gif!</p>
+</div>
+
+<h2 id="installation">Installation</h2>
+
+<p>Use Quelpa (or
+any package manager that you prefer) to install the package.</p>
+
+<div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">use-package</span> <span class="nv">evil-set-option</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:quelpa</span> <span class="p">(</span><span class="nv">evil-set-option</span>
+           <span class="ss">:fetcher</span> <span class="nv">github</span>
+           <span class="ss">:repo</span> <span class="s">"FrostyX/evil-set-option"</span>
+           <span class="ss">:branch</span> <span class="s">"main"</span><span class="p">)</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="nv">evil-set-option-mode</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>And now you can run your favorite <code class="language-plaintext highlighter-rouge">:set</code> commands.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:set wrap
+:set number
+:set colorcolumn=80
+</code></pre></div></div>
+
+<h2 id="supported-options">Supported options</h2>
+
+<p>Currently, only a dozen of options that seemed to be the most
+popular, are supported. Vim comes with <a href="http://vimdoc.sourceforge.net/htmldoc/quickref.html#option-list">hundreds of
+options</a>, and for understandable reasons, I wasn’t going
+to implement all of them within the first release. Please <a href="https://github.com/FrostyX/evil-set-option/issues">let me
+know</a> what are your favorite options that we simply must have.</p>
+
+<p>The list of all currently supported options <a href="https://github.com/FrostyX/evil-set-option/blob/main/options.org">can be found
+here</a>.</p>
+
+<h2 id="custom-option-behavior">Custom option behavior</h2>
+
+<p>Sometimes the default implementation of an option might not be
+applicable. You might want to use a different mode that suits your build more,
+you might run an older version of Emacs, that doesn’t support some modes,
+etc. In such cases, you can override the default implementation.</p>
+
+<div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">;; The default implementation for `:set number' uses</span>
+<span class="c1">;; `display-line-numbers-mode' which is available since Emacs 26.</span>
+<span class="c1">;; See https://www.emacswiki.org/emacs/LineNumbers</span>
+<span class="c1">;; You can override it to use `linum-mode' instead</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">evil-set-option-number</span> <span class="p">(</span><span class="nv">value</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">linum-mode</span> <span class="p">(</span><span class="k">if</span> <span class="nv">value</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<h2 id="future-plans">Future plans</h2>
+
+<p>I have a bigger picture in mind. The <code class="language-plaintext highlighter-rouge">evil-set-option</code> package won’t
+get
+bloated with another functionality apart from supporting more
+and more options. My plan is to create a new package called
+<code class="language-plaintext highlighter-rouge">evil-vimrc</code> that will provide the ability to parse a <code class="language-plaintext highlighter-rouge">.vimrc</code> file -
+although very naively. <a href="https://learnvimscriptthehardway.stevelosh.com/">VimL</a> is a full-featured scripting
+language and it would require executing the config file code to parse
+the options accurately. I don’t think that would be time worth
+spending. A dummy implementation that parses all <code class="language-plaintext highlighter-rouge">set</code> statements is
+still going to be useful in many cases.</p>
+
+<p>The hypothetical usage will look like this</p>
+
+<div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">evil-vimrc-load</span> <span class="s">"~/.vimrc"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And the <code class="language-plaintext highlighter-rouge">~/.vimrc</code> as expected.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set nocompatible
+set nowrap
+set title
+set expandtab
+</code></pre></div></div>
+
+<p>Or alternativelly, defining the <code class="language-plaintext highlighter-rouge">.vimrc</code> configuration within Emacs
+Lisp.</p>
+
+<div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">evil-vimrc</span>
+ <span class="p">(</span><span class="ss">:set</span> <span class="nv">nocompatible</span><span class="p">)</span>
+ <span class="p">(</span><span class="ss">:set</span> <span class="nv">nowrap</span><span class="p">)</span>
+ <span class="p">(</span><span class="ss">:set</span> <span class="nv">title</span><span class="p">)</span>
+ <span class="p">(</span><span class="ss">:set</span> <span class="nv">expandtab</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Stay tuned.</p>

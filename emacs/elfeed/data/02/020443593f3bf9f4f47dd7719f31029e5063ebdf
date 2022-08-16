@@ -1,0 +1,36 @@
+<p>I can make a safe assumption that 90% of the people reading this blog know how to use grep, at least on a basic level. But what about those of us who don’t? Here’s a quick look into grep and grep in Emacs specifically. Before we dive in there’s a bit of a realization I want to expend on in the footnotes though<sup id="fnref:1"><a class="footnote-ref" href="https://helpdeskheadesk.net/tags/emacs/index.xml#fn:1">1</a></sup>.</p>
+<p>Back? Good.</p>
+<p>The classic scenario: use <a href="https://en.wikipedia.org/wiki/Dired">Dired</a> to get into a directory, and then use grep and its various siblings to search for a text pattern in all the files in that directory.</p>
+<p><code>M-x grep</code> will automatically call <code>grep --color -nH --null -e</code>. This works with the syntax like so: <code>grep --color -nH --null -e "&lt;pattern to match&gt;" &lt;file pattern&gt;</code>.</p>
+<p>For example, I can search for “burger” in a folder with old org files that are no longer indexed in org-agenda<sup id="fnref:2"><a class="footnote-ref" href="https://helpdeskheadesk.net/tags/emacs/index.xml#fn:2">2</a></sup> by calling grep and using it like so: <code>grep --color -nH --null -e "burger" *.org</code>. This will give me a list of all the files along with a blurb of text (showing the results in context) with the word burger highlighted.</p>
+<p>This command also works for two terms, in the form of term1 or term2, like so: <code>grep --color -nH -e "burger" -e "restaurant" *org</code>. It will show us burger <em>or</em> restaurant, but not burger <em>and</em> restaurant. So if I want to search for restaurants that served me with a juicy burger some years back, I’m out of luck: grep will bring up <em>all</em> occurrences of restaurants <em>and /all</em> occurrences of burger.</p>
+<p>In shell, we can pipe one grep into another: <code>grep burger *.org | grep restaurant</code> is all that’s needed to give us basic results. In Emacs, however, we can’t pipe grep like we do in shell<sup id="fnref:3"><a class="footnote-ref" href="https://helpdeskheadesk.net/tags/emacs/index.xml#fn:3">3</a></sup>. We can call shell in Emacs (with <code>M-!</code>) and execute this in the folder we’re in, or just run Shell from inside Emacs, but there are quicker ways.</p>
+<p><a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Other-Repeating-Search.html">Occur</a> (<code>M-s O</code>)<sup id="fnref:4"><a class="footnote-ref" href="https://helpdeskheadesk.net/tags/emacs/index.xml#fn:4">4</a></sup> will search for regex strings in the active buffer on the screen by default. This means that if you just preformed a grep search and got results for one term, I can use Occur on the results for the second term.</p>
+<p>To use the example above, I will first call <code>grep --color -nH --null -e "restaurant" *.org</code>, and then use Occur on the results to look for “burger” (without the quotations). Since I use <a href="https://github.com/abo-abo/swiper">Swiper</a>, part of Abo-abo’s must-have Ivy package, I could run a simple search (<code>C-s</code>) on <em>those</em> results and apply another filter, like “black bean<sup id="fnref:5"><a class="footnote-ref" href="https://helpdeskheadesk.net/tags/emacs/index.xml#fn:5">5</a></sup>” because I barely eat any meat burgers anymore. I rarely need to apply a third filter like, and if I ever need to apply a fourth, it’s probably better to just change my search tragedy.</p>
+<p>This post and much of what I’ve learned about grep in Emacs is thanks to the awesome folks over at Mastodon. Check the original thread <a href="https://mastodon.technology/web/@jtr/108747226227273383">here</a>.</p>
+<h2 id="comments">Comments?</h2>
+<p>Reply to this post on <a href="https://mastodon.technology/web/@jtr/108764730925665677">Mastodon</a>,<a href="https://twitter.com/james119847/status/1555177769721544704">Twitter</a>, or you can always email me: taonaw&lt;at&gt;protonmail&lt;dot&gt;ch (for GPG, click the lock icon on the navbar to the left).</p>
+<h2 id="footnotes">Footnotes</h2>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn:1">
+<p>After going over this post, I realize it starts somewhere in the middle. There are people who don’t know what grep is, and, lacking the right questions to find information about it, they will have hard time learning about this command. Consider, for example, a person who’s coming from their Mac’s spotlight feature which indexes everything for them. It’s a stretch enough for them to use the terminal, but even then, what are they actually looking for? The terms “Words” and “text” are so rudimentary to us that they might omit searching for those. A user who’s new to Linux might search for “how to find stuff in Linux” or “how to find documents” or “how to find what I wrote” before they search for “how to find text in Linux,” which is still a bit of a stretch.</p>
+<p>The Emacs manual throws this question back at the user:
+“<em>Just as you can run a compiler from Emacs and then visit the lines where there were compilation errors, you can also run grep and then visit the lines on which matches were found. This works by treating the matches reported by grep as if they were “errors."</em>” What does that even mean?</p>
+<p>I look at my post now, and I think, I know this today, I know what to ask today, how would I know to ask this not even 5 years ago? Where do I even start? <a class="footnote-backref" href="https://helpdeskheadesk.net/tags/emacs/index.xml#fnref:1">↩︎</a></p>
+</li>
+<li id="fn:2">
+<p>For those who don’t use org-mode: org-mode comes with a powerful built-in “search engine”, the agenda. It loads a list of folder and files when Emacs starts, so you can execute various function on them like scheduling tasks or assign tags. The <a href="https://orgmode.org/manual/Agenda-Dispatcher.html">agenda dispatcher</a> comes with powerful search options that let you search by date, keyword, tags, etc. <a class="footnote-backref" href="https://helpdeskheadesk.net/tags/emacs/index.xml#fnref:2">↩︎</a></p>
+</li>
+<li id="fn:3">
+<p>I’m still learning more about this, and I’m not sure why, but I think it’s because the <code>|</code> character is not a special character in Emacs, so grep grabs it literally and looks for the pipe character in the text. <a class="footnote-backref" href="https://helpdeskheadesk.net/tags/emacs/index.xml#fnref:3">↩︎</a></p>
+</li>
+<li id="fn:4">
+<p>Occur has its on various siblings in Emacs and can be largely used in the same exact way as grep, though there are differences. It’s worth taking a look if you’re not familiar with it. <a class="footnote-backref" href="https://helpdeskheadesk.net/tags/emacs/index.xml#fnref:4">↩︎</a></p>
+</li>
+<li id="fn:5">
+<p>This double space is not a mistake. In Swiper search, double space is how you ask to look for space. <a class="footnote-backref" href="https://helpdeskheadesk.net/tags/emacs/index.xml#fnref:5">↩︎</a></p>
+</li>
+</ol>
+</section>

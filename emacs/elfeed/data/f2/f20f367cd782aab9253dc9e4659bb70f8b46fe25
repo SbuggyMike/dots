@@ -1,0 +1,15 @@
+ 
+<p>
+
+Cory Doctorow explains how the rootkit that attacks treacherous
+computing is a <a href="https://pluralistic.net/2022/07/28/descartes-was-an-optimist/#uh-oh">disaster for "security"</a> in the usual sense.
+<p>
+It means that machines with the WHAT? can now have additional <a href="https://www.gnu.org/proprietary/proprietary-back-doors.html">back doors</a> 
+other than the one that Microsoft designed into Windows.
+<p>
+However, since WHAT is what ensures we can't free our machines from
+Microsoft's control, the same vulnerability that this rootkit uses
+might give us a way to turn off treacherous computing and/or install
+our own free boot software.
+
+ 

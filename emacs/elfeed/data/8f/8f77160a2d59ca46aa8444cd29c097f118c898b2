@@ -1,0 +1,24 @@
+<p>The <a href="https://www.johndcook.com/blog/2022/08/02/org-babel-vs-jupyter/">previous post</a> discussed how to use org-mode as a notebook. You can have blocks of code and blocks of results, analogous to cells in a Jupyter notebook. The code and the results export as obvious blocks when you export the org file to another format, such as LaTeX or HTML. And that’s fine for a notebook.</p>
+<p>Now suppose you want to do something more subtle. You want to splice in the result of a computed value without being obvious about it. Maybe you want to compute a value rather than directly enter it so that the document will remain consistent. Maybe you have a template and you want to set the parameters of the template at the top of the file.</p>
+<p>Web development languages like PHP do this well. You can write a PHP file that is essentially an HTML file with pieces of code spliced in. You do this my inserting</p>
+<pre>    &lt;?php … ?&gt;</pre>
+<p>into the HTML code, and when the page is rendered the code between the <code>&lt;?php</code> and <code>?&gt;</code> tags is replaced with the result of executing the code. We’d like to do something analogous in org-mode with org-babel. (org-babel is the subsystem of org-mode that interacts with code.)</p>
+<p>Here’s an org-mode example that sets <code>length</code> and <code>width</code> as variables at the top of a file and multiplies them later in the body of the file to get area.</p>
+<p>We define our variables as follows. The block is marked <code>:exports none</code> because we do not want to display the code or the values. We just want the code to run when we export the file.</p>
+<pre>    #+begin_src python :session :exports none
+    length, width = 7, 13
+    #+end_src
+</pre>
+<p>The following <em>almost</em> does what we want [1].</p>
+<pre>    Area equals src_python[:session]{length*width}.</pre>
+<p>This renders as</p>
+<p style="padding-left: 40px;">Area equals <code>91</code>.</p>
+<p>if we export our org file to HTML The number 91 is typeset differently than the words before it. This would be more obvious if the computed value were a string rather than a number.</p>
+<p>Org-mode is wrapping <code>&lt;code&gt;</code> tags around the computed result. If we were to export the org file to LaTeX it would wrap the result with <code>\texttt{}</code>. This is because, by default, the output of a computation is displayed as computer output, which is conventionally set in a monospace font like Courier. That’s fine in a technical document when we <em>want</em> to make it obvious that a calculation is a calculation, but typically not in a business context. You wouldn’t want, for example, to generate a letter that starts</p>
+<p style="padding-left: 40px;">Dear <code>Michael</code>,</p>
+<p>with Michael’s name set in Courier, announcing that this is a form letter.</p>
+<p>The fix is to add <code>:results raw</code> to the header session, the part in square brackets between <code>src_python</code> and the Python code.</p>
+<pre>    Area equals src_python[:session :results raw]{length*width}.</pre>
+<p>Now the calculation result is reported “raw”, i.e. without any special markup surrounding it.</p>
+<p style="text-align: center;">***</p>
+<p>[1] In this example I’m using Python, and so I used the function <code>src_python</code>. org-babel supports dozens of languages, and each has its <code>src_&lt;language&gt;</code> counterpart.</p>The post <a href="https://www.johndcook.com/blog/2022/08/03/inline-org-babel/">Inline computed content in org-mode</a> first appeared on <a href="https://www.johndcook.com/blog">John D. Cook</a>.

@@ -1,0 +1,152 @@
+<p><a href="https://github.com/Wilfred/difftastic">difftastic</a> is a structural diff tool
+that compares files based on their syntax.  So for example, if you
+conditionalize some statement, the diff would only show the addition of one
+<code>if</code> with its condition instead of showing one line added (the <code>if (condition)</code>) and the line with the statement being removed and re-added
+(because of indentation changes).  In many cases, such structural diffs
+transport the meaning of a change much better than the typical line-based
+diffs.</p>
+<p>Of course, that comes with a price: difftastic has to understand the language's
+syntax (it currently supports <a href="https://difftastic.wilfred.me.uk/languages_supported.html">these
+languages</a>) and
+computing a structural diff is a quite expensive operation.  Also, there are
+certain kinds of changes where a line-based diff with changed-word highlighting
+gives better results, namely when the changed syntactic unit is a large blob
+with no sub-structure, e.g., a docstring or a comment.</p>
+<p><a href="https://git-scm.com/">Git</a> allows to use an external diff tool in many
+commands by setting the environment variable <code>GIT_EXTERNAL_DIFF=&lt;tool&gt;</code> and in
+the following I make use of that for being able to use difftastic for <code>git show</code> and <code>git diff</code> when operating on a git repository from inside Emacs using
+<a href="https://magit.vc/">Magit</a>.  Because the aforementioned downsides, I want that
+as opt-in behavior, i.e., separate commands.  Also, Magit has some assumptions
+on how a git diff looks like which are not met by difftastic, e.g., difftastic
+prints line numbers and generates side-by-side diffs for changes which are not
+plain additions or deletions.</p>
+<p>So here we go.  Let's first define a helper function which sets
+<code>GIT_EXTERNAL_DIFF</code> to <code>difft</code> (the difftastic binary), runs the given git
+command in a new process asynchronously, and pops up a buffer with the result
+once the process finished.</p>
+<pre style="background-color: #2b303b;"><span style="color: #c0c5ce;">(</span><span style="color: #b48ead;">defun </span><span style="color: #8fa1b3;">th</span><span style="color: #c0c5ce;">/magit--</span><span style="color: #b48ead;">with</span><span style="color: #c0c5ce;">-difftastic (buffer command)
+</span><span style="color: #c0c5ce;">  "</span><span style="color: #a3be8c;">Run COMMAND with GIT_EXTERNAL_DIFF=difft then show result in BUFFER.</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">  (</span><span style="color: #b48ead;">let </span><span style="color: #c0c5ce;">((process-environment
+</span><span style="color: #c0c5ce;">         (</span><span style="color: #96b5b4;">cons </span><span style="color: #c0c5ce;">(concat "</span><span style="color: #a3be8c;">GIT_EXTERNAL_DIFF=difft --width=</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">                       (number-</span><span style="color: #b48ead;">to</span><span style="color: #c0c5ce;">-</span><span style="color: #96b5b4;">string </span><span style="color: #c0c5ce;">(frame-width)))
+</span><span style="color: #c0c5ce;">               process-environment)))
+</span><span style="color: #c0c5ce;">    </span><span style="color: #65737e;">;; Clear the result buffer (we might regenerate a diff, e.g., for
+</span><span style="color: #c0c5ce;">    </span><span style="color: #65737e;">;; the current changes in our working directory).
+</span><span style="color: #c0c5ce;">    (</span><span style="color: #b48ead;">with</span><span style="color: #c0c5ce;">-current-buffer buffer
+</span><span style="color: #c0c5ce;">      (</span><span style="color: #96b5b4;">setq</span><span style="color: #c0c5ce;"> buffer-</span><span style="color: #96b5b4;">read</span><span style="color: #c0c5ce;">-only </span><span style="color: #d08770;">nil</span><span style="color: #c0c5ce;">)
+</span><span style="color: #c0c5ce;">      (erase-buffer))
+</span><span style="color: #c0c5ce;">    </span><span style="color: #65737e;">;; Now spawn a process calling the git COMMAND.
+</span><span style="color: #c0c5ce;">    (make-process
+</span><span style="color: #c0c5ce;">     :name (buffer-name buffer)
+</span><span style="color: #c0c5ce;">     :buffer buffer
+</span><span style="color: #c0c5ce;">     :command command
+</span><span style="color: #c0c5ce;">     </span><span style="color: #65737e;">;; Don't query for running processes when emacs is quit.
+</span><span style="color: #c0c5ce;">     :noquery </span><span style="color: #d08770;">t
+</span><span style="color: #c0c5ce;">     </span><span style="color: #65737e;">;; Show the result buffer once the process has finished.
+</span><span style="color: #c0c5ce;">     :sentinel (</span><span style="color: #96b5b4;">lambda </span><span style="color: #c0c5ce;">(proc event)
+</span><span style="color: #c0c5ce;">                 (</span><span style="color: #b48ead;">when </span><span style="color: #c0c5ce;">(eq (process-status proc) 'exit)
+</span><span style="color: #c0c5ce;">                   (</span><span style="color: #b48ead;">with</span><span style="color: #c0c5ce;">-current-buffer (process-buffer proc)
+</span><span style="color: #c0c5ce;">                     (goto-</span><span style="color: #96b5b4;">char </span><span style="color: #c0c5ce;">(point-min))
+</span><span style="color: #c0c5ce;">                     (ansi-color-</span><span style="color: #96b5b4;">apply</span><span style="color: #c0c5ce;">-on-region (point-min) (point-max))
+</span><span style="color: #c0c5ce;">                     (</span><span style="color: #96b5b4;">setq</span><span style="color: #c0c5ce;"> buffer-</span><span style="color: #96b5b4;">read</span><span style="color: #c0c5ce;">-only </span><span style="color: #d08770;">t</span><span style="color: #c0c5ce;">)
+</span><span style="color: #c0c5ce;">                     (view-mode)
+</span><span style="color: #c0c5ce;">                     (end-of-line)
+</span><span style="color: #c0c5ce;">                     </span><span style="color: #65737e;">;; difftastic diffs are usually 2-column side-by-side,
+</span><span style="color: #c0c5ce;">                     </span><span style="color: #65737e;">;; so ensure our window is wide enough.
+</span><span style="color: #c0c5ce;">                     (</span><span style="color: #b48ead;">let </span><span style="color: #c0c5ce;">((width (current-column)))
+</span><span style="color: #c0c5ce;">                       (</span><span style="color: #b48ead;">while </span><span style="color: #c0c5ce;">(</span><span style="color: #96b5b4;">zerop </span><span style="color: #c0c5ce;">(forward-line </span><span style="color: #d08770;">1</span><span style="color: #c0c5ce;">))
+</span><span style="color: #c0c5ce;">                         (end-of-line)
+</span><span style="color: #c0c5ce;">                         (</span><span style="color: #96b5b4;">setq</span><span style="color: #c0c5ce;"> width (max (current-column) width)))
+</span><span style="color: #c0c5ce;">                       </span><span style="color: #65737e;">;; Add column size of fringes
+</span><span style="color: #c0c5ce;">                       (</span><span style="color: #96b5b4;">setq</span><span style="color: #c0c5ce;"> width (+ width
+</span><span style="color: #c0c5ce;">                                      (fringe-columns 'left)
+</span><span style="color: #c0c5ce;">                                      (fringe-columns 'right)))
+</span><span style="color: #c0c5ce;">                       (goto-</span><span style="color: #96b5b4;">char </span><span style="color: #c0c5ce;">(point-min))
+</span><span style="color: #c0c5ce;">                       (</span><span style="color: #96b5b4;">pop</span><span style="color: #c0c5ce;">-</span><span style="color: #b48ead;">to</span><span style="color: #c0c5ce;">-buffer
+</span><span style="color: #c0c5ce;">                        (current-buffer)
+</span><span style="color: #c0c5ce;">                        `(</span><span style="color: #65737e;">;; If the buffer is that wide that splitting the frame in
+</span><span style="color: #c0c5ce;">                          </span><span style="color: #65737e;">;; two side-by-side windows would result in less than
+</span><span style="color: #c0c5ce;">                          </span><span style="color: #65737e;">;; 80 columns left, ensure it's shown at the bottom.
+</span><span style="color: #c0c5ce;">                          ,(</span><span style="color: #b48ead;">when </span><span style="color: #c0c5ce;">(&gt; </span><span style="color: #d08770;">80 </span><span style="color: #c0c5ce;">(- (frame-width) width))
+</span><span style="color: #c0c5ce;">                             </span><span style="color: #d08770;">#'display-buffer-at-bottom</span><span style="color: #c0c5ce;">)
+</span><span style="color: #c0c5ce;">                          (window-width
+</span><span style="color: #c0c5ce;">                           . ,(min width (frame-width))))))))))))
+</span></pre>
+<p>The crucial parts of that helper function are that we "wash" the result using
+<code>ansi-color-apply-on-region</code> so that the difftastic highlighting using shell
+escape codes is transformed to emacs faces.  Also, the needed width of the
+possibly wide side-by-side difftastic diff is computed and tried to be
+accommodated for.</p>
+<p>Next, let's define our first command basically doing a <code>git show</code> for some
+revision which defaults to the commit or branch at point or queries the user if
+there's none.</p>
+<pre style="background-color: #2b303b;"><span style="color: #c0c5ce;">(</span><span style="color: #b48ead;">defun </span><span style="color: #8fa1b3;">th</span><span style="color: #c0c5ce;">/magit-show-</span><span style="color: #b48ead;">with</span><span style="color: #c0c5ce;">-difftastic (rev)
+</span><span style="color: #c0c5ce;">  "</span><span style="color: #a3be8c;">Show the result of </span><span style="color: #96b5b4;">\"</span><span style="color: #a3be8c;">git show REV</span><span style="color: #96b5b4;">\"</span><span style="color: #a3be8c;"> with GIT_EXTERNAL_DIFF=difft.</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">  (interactive
+</span><span style="color: #c0c5ce;">   (</span><span style="color: #96b5b4;">list </span><span style="color: #c0c5ce;">(or
+</span><span style="color: #c0c5ce;">          </span><span style="color: #65737e;">;; If REV is given, just use it.
+</span><span style="color: #c0c5ce;">          (</span><span style="color: #b48ead;">when </span><span style="color: #c0c5ce;">(</span><span style="color: #96b5b4;">boundp</span><span style="color: #c0c5ce;"> 'rev) rev)
+</span><span style="color: #c0c5ce;">          </span><span style="color: #65737e;">;; If not invoked with prefix arg, try to guess the REV from
+</span><span style="color: #c0c5ce;">          </span><span style="color: #65737e;">;; point's position.
+</span><span style="color: #c0c5ce;">          (and (not current-prefix-arg)
+</span><span style="color: #c0c5ce;">               (or (magit-thing-at-point 'git-revision </span><span style="color: #d08770;">t</span><span style="color: #c0c5ce;">)
+</span><span style="color: #c0c5ce;">                   (magit-branch-or-commit-at-point)))
+</span><span style="color: #c0c5ce;">          </span><span style="color: #65737e;">;; Otherwise, query the user.
+</span><span style="color: #c0c5ce;">          (magit-</span><span style="color: #96b5b4;">read</span><span style="color: #c0c5ce;">-branch-or-commit "</span><span style="color: #a3be8c;">Revision</span><span style="color: #c0c5ce;">"))))
+</span><span style="color: #c0c5ce;">  (</span><span style="color: #b48ead;">if </span><span style="color: #c0c5ce;">(not rev)
+</span><span style="color: #c0c5ce;">      (</span><span style="color: #96b5b4;">error </span><span style="color: #c0c5ce;">"</span><span style="color: #a3be8c;">No revision specified</span><span style="color: #c0c5ce;">")
+</span><span style="color: #c0c5ce;">    (th/magit--</span><span style="color: #b48ead;">with</span><span style="color: #c0c5ce;">-difftastic
+</span><span style="color: #c0c5ce;">     (</span><span style="color: #96b5b4;">get</span><span style="color: #c0c5ce;">-buffer-create (concat "</span><span style="color: #a3be8c;">*git show difftastic </span><span style="color: #c0c5ce;">" rev "</span><span style="color: #a3be8c;">*</span><span style="color: #c0c5ce;">"))
+</span><span style="color: #c0c5ce;">     (</span><span style="color: #96b5b4;">list </span><span style="color: #c0c5ce;">"</span><span style="color: #a3be8c;">git</span><span style="color: #c0c5ce;">" "</span><span style="color: #a3be8c;">--no-pager</span><span style="color: #c0c5ce;">" "</span><span style="color: #a3be8c;">show</span><span style="color: #c0c5ce;">" "</span><span style="color: #a3be8c;">--ext-diff</span><span style="color: #c0c5ce;">" rev))))
+</span></pre>
+<p>And here the second command which basically does a <code>git diff</code>.  It tries to
+guess what one wants to diff, e.g., when point is on the <strong>Staged changes</strong>
+section in a magit buffer, it will run <code>git diff --cached</code> to show a diff of
+all staged changes.  If no context can be guessed, it'll query the user for a
+range or commit for diffing.</p>
+<pre style="background-color: #2b303b;"><span style="color: #c0c5ce;">(</span><span style="color: #b48ead;">defun </span><span style="color: #8fa1b3;">th</span><span style="color: #c0c5ce;">/magit-diff-</span><span style="color: #b48ead;">with</span><span style="color: #c0c5ce;">-difftastic (arg)
+</span><span style="color: #c0c5ce;">  "</span><span style="color: #a3be8c;">Show the result of </span><span style="color: #96b5b4;">\"</span><span style="color: #a3be8c;">git diff ARG</span><span style="color: #96b5b4;">\"</span><span style="color: #a3be8c;"> with GIT_EXTERNAL_DIFF=difft.</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">  (interactive
+</span><span style="color: #c0c5ce;">   (</span><span style="color: #96b5b4;">list </span><span style="color: #c0c5ce;">(or
+</span><span style="color: #c0c5ce;">          </span><span style="color: #65737e;">;; If RANGE is given, just use it.
+</span><span style="color: #c0c5ce;">          (</span><span style="color: #b48ead;">when </span><span style="color: #c0c5ce;">(</span><span style="color: #96b5b4;">boundp</span><span style="color: #c0c5ce;"> 'range) range)
+</span><span style="color: #c0c5ce;">          </span><span style="color: #65737e;">;; If prefix arg is given, query the user.
+</span><span style="color: #c0c5ce;">          (and current-prefix-arg
+</span><span style="color: #c0c5ce;">               (magit-diff-</span><span style="color: #96b5b4;">read</span><span style="color: #c0c5ce;">-range-or-commit "</span><span style="color: #a3be8c;">Range</span><span style="color: #c0c5ce;">"))
+</span><span style="color: #c0c5ce;">          </span><span style="color: #65737e;">;; Otherwise, auto-guess based on position of point, e.g., based on
+</span><span style="color: #c0c5ce;">          </span><span style="color: #65737e;">;; if we are in the Staged or Unstaged section.
+</span><span style="color: #c0c5ce;">          (pcase (magit-diff--dwim)
+</span><span style="color: #c0c5ce;">            ('unmerged (</span><span style="color: #96b5b4;">error </span><span style="color: #c0c5ce;">"</span><span style="color: #a3be8c;">unmerged is not yet implemented</span><span style="color: #c0c5ce;">"))
+</span><span style="color: #c0c5ce;">            ('unstaged </span><span style="color: #d08770;">nil</span><span style="color: #c0c5ce;">)
+</span><span style="color: #c0c5ce;">            ('staged "</span><span style="color: #a3be8c;">--cached</span><span style="color: #c0c5ce;">")
+</span><span style="color: #c0c5ce;">            (`(stash . ,value) (</span><span style="color: #96b5b4;">error </span><span style="color: #c0c5ce;">"</span><span style="color: #a3be8c;">stash is not yet implemented</span><span style="color: #c0c5ce;">"))
+</span><span style="color: #c0c5ce;">            (`(commit . ,value) (</span><span style="color: #96b5b4;">format </span><span style="color: #c0c5ce;">"</span><span style="color: #a3be8c;">%s^..%s</span><span style="color: #c0c5ce;">" value value))
+</span><span style="color: #c0c5ce;">            ((and range (pred </span><span style="color: #96b5b4;">stringp</span><span style="color: #c0c5ce;">)) range)
+</span><span style="color: #c0c5ce;">            (_ (magit-diff-</span><span style="color: #96b5b4;">read</span><span style="color: #c0c5ce;">-range-or-commit "</span><span style="color: #a3be8c;">Range/Commit</span><span style="color: #c0c5ce;">"))))))
+</span><span style="color: #c0c5ce;">  (</span><span style="color: #b48ead;">let </span><span style="color: #c0c5ce;">((name (concat "</span><span style="color: #a3be8c;">*git diff difftastic</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">                      (</span><span style="color: #b48ead;">if</span><span style="color: #c0c5ce;"> arg (concat " " arg) "")
+</span><span style="color: #c0c5ce;">                      "</span><span style="color: #a3be8c;">*</span><span style="color: #c0c5ce;">")))
+</span><span style="color: #c0c5ce;">    (th/magit--</span><span style="color: #b48ead;">with</span><span style="color: #c0c5ce;">-difftastic
+</span><span style="color: #c0c5ce;">     (</span><span style="color: #96b5b4;">get</span><span style="color: #c0c5ce;">-buffer-create name)
+</span><span style="color: #c0c5ce;">     `("</span><span style="color: #a3be8c;">git</span><span style="color: #c0c5ce;">" "</span><span style="color: #a3be8c;">--no-pager</span><span style="color: #c0c5ce;">" "</span><span style="color: #a3be8c;">diff</span><span style="color: #c0c5ce;">" "</span><span style="color: #a3be8c;">--ext-diff</span><span style="color: #c0c5ce;">" ,@(</span><span style="color: #b48ead;">when</span><span style="color: #c0c5ce;"> arg (</span><span style="color: #96b5b4;">list</span><span style="color: #c0c5ce;"> arg))))))
+</span></pre>
+<p>What's left is integrating these two new commands in Magit.  For that purpose,
+I've created a new <a href="https://github.com/magit/transient">transient</a> prefix for
+my personal commands.</p>
+<pre style="background-color: #2b303b;"><span style="color: #c0c5ce;">(transient-define-prefix th/magit-aux-commands ()
+</span><span style="color: #c0c5ce;">  "</span><span style="color: #a3be8c;">My personal auxiliary magit commands.</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">  ["</span><span style="color: #a3be8c;">Auxiliary commands</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">   ("</span><span style="color: #a3be8c;">d</span><span style="color: #c0c5ce;">" "</span><span style="color: #a3be8c;">Difftastic Diff (dwim)</span><span style="color: #c0c5ce;">" th/magit-diff-</span><span style="color: #b48ead;">with</span><span style="color: #c0c5ce;">-difftastic)
+</span><span style="color: #c0c5ce;">   ("</span><span style="color: #a3be8c;">s</span><span style="color: #c0c5ce;">" "</span><span style="color: #a3be8c;">Difftastic Show</span><span style="color: #c0c5ce;">" th/magit-show-</span><span style="color: #b48ead;">with</span><span style="color: #c0c5ce;">-difftastic)])
+</span></pre>
+<p>I want my personal commands transient to be bound to <code>#</code> and be shown in the
+Magit dispatch transient (which is bound to <code>?</code> in Magit status buffers and
+<code>C-x M-g</code> in any Magit enabled buffer) after the Run (<code>!</code>) transient.</p>
+<pre style="background-color: #2b303b;"><span style="color: #c0c5ce;">(transient-</span><span style="color: #96b5b4;">append</span><span style="color: #c0c5ce;">-suffix 'magit-dispatch "</span><span style="color: #a3be8c;">!</span><span style="color: #c0c5ce;">"
+</span><span style="color: #c0c5ce;">  '("</span><span style="color: #a3be8c;">#</span><span style="color: #c0c5ce;">" "</span><span style="color: #a3be8c;">My Magit Cmds</span><span style="color: #c0c5ce;">" th/magit-aux-commands))
+</span><span style="color: #c0c5ce;">
+</span><span style="color: #c0c5ce;">(define-key magit-status-mode-</span><span style="color: #96b5b4;">map </span><span style="color: #c0c5ce;">(kbd "</span><span style="color: #a3be8c;">#</span><span style="color: #c0c5ce;">") </span><span style="color: #d08770;">#'th/magit-aux-commands</span><span style="color: #c0c5ce;">)
+</span></pre>
+<p>And that's it!</p>
+<p>Finally, here's a screenshot showing how it looks like:</p>
+<img alt="Screenshot of Magit showing a difftastic diff" src="https://tsdh.org/difftastic-in-magit-screenshot.png" title="Magit showing a difftastic diff" width="760px" />
