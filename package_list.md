@@ -64,6 +64,7 @@
 ### Terminal/Utilities
 
 - xfce4-terminal
+- st (yay)
 - tmux (config file)
 - htop
 - neofetch
