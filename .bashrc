@@ -16,8 +16,11 @@ PS1='[\u@\h \W]\$ '
 
 alias ddg="w3m duckduckgo.com"
 alias killemacs="ps -e | grep 'emacs' | awk '{print $1}' | xargs kill -9"
+alias mu="if [[ -d /mnt/musix/ ]]; then cd /mnt/musix; else printf 'No music folder found'; fi"
 alias p="sudo pacman -Syu"
+alias reload="source ~/.bashrc"
 alias stop="systemctl suspend"
+alias weath="curl wttr.in"
 alias y="yay -Syu"
 alias z="zathura"
 

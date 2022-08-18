@@ -21,7 +21,7 @@ set ignorecase
 set smartcase
 set cursorline
 set guifont=Inconsolata\ 23
-set tw=0
+set tw=80
 set autoread " so that I can do edits on one laptop and they will load in another
 " load plugins
 packloadall
@@ -50,11 +50,10 @@ vnoremap <leader>" <esc>`<i"<esc>`>a"
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " easily reload vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
+" latex-related commands
 " easily open filetype plugin 
-nnoremap <leader>en :vsplit ~/.vim/ftplugin/nroff.vim<cr>
 nnoremap <leader>et :vsplit ~/.vim/ftplugin/tex.vim<cr>
 " reload plugins
-nnoremap <leader>sn :source ~/.vim/ftplugin/nroff.vim<cr>
 nnoremap <leader>st :source ~/.vim/ftplugin/tex.vim<cr>
 " list buffers
 nnoremap <leader>? :ls<cr>
@@ -77,6 +76,7 @@ iabbrev owuld would
 iabbrev oculd could
 iabbrev beyind beyond
 iabbrev whcih which
+iabbrev hwich which
 iabbrev ie i.e.,
 iabbrev eg e.g.,
 iabbrev nb n.b.
@@ -106,6 +106,11 @@ iabbrev c0ns contracts
 iabbrev C0ns Contracts
 iabbrev c0l contractual
 iabbrev C0l Contractual
+iabbrev c0t court
+iabbrev C0t Court
+iabbrev c0ts courts
+iabbrev C0ts Courts
+iabbrev c0l contractual
 iabbrev 3st estoppel
 iabbrev 3St Estoppel
 iabbrev r3g regulation

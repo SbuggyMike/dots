@@ -154,6 +154,7 @@
 - zathura-pdf-mupdf
 - zathura-djvu
 - okular (alternative to zathura, perhaps preferable due to highlighting ability)
+- mupdf (still doesn't allow for highlighting, but otherwise works extremely well)
 
 ### Games
 
