@@ -19,8 +19,13 @@ set relativenumber
 set spell
 set ignorecase
 set smartcase
+set cursorline
 set guifont=Inconsolata\ 23
+set tw=80
 set autoread " so that I can do edits on one laptop and they will load in another
+" load plugins
+packloadall
+silent! helptags ALL
 colorscheme koehler
 filetype plugin on
 syntax enable
@@ -31,11 +36,13 @@ autocmd BufLeave *.ms write
 noremap - ddp 
 " move a line up 
 noremap _ ddkkp
-" in insert mode, place (groff/tex) single quotes around a word
+" auto-correct most recently misspelled word
+inoremap <leader>; <esc>[sz=1
+" in insert mode, place (Groff/Tex) single quotes around a word
 inoremap <leader>' <esc>viw<esc>a'<esc>bi`<esc>ela
 " in insert mode, place double quotes around a word
 inoremap <leader>" <esc>viw<esc>a"<esc>bi"<esc>ela
-" in visual mode, place (groff/tex) single around a selection
+" in visual mode, place (groff/Tex) single around a selection
 vnoremap <leader>' <esc>`<i`<esc>`>a'
 " in visual mode, place double quotes around a selection
 vnoremap <leader>" <esc>`<i"<esc>`>a"
@@ -43,11 +50,10 @@ vnoremap <leader>" <esc>`<i"<esc>`>a"
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " easily reload vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
+" latex-related commands
 " easily open filetype plugin 
-nnoremap <leader>en :vsplit ~/.vim/ftplugin/nroff.vim<cr>
 nnoremap <leader>et :vsplit ~/.vim/ftplugin/tex.vim<cr>
 " reload plugins
-nnoremap <leader>sn :source ~/.vim/ftplugin/nroff.vim<cr>
 nnoremap <leader>st :source ~/.vim/ftplugin/tex.vim<cr>
 " list buffers
 nnoremap <leader>? :ls<cr>
@@ -57,6 +63,7 @@ nnoremap <leader># :w<bar>bwipeout<cr>
 noremap <leader>> :w<bar>bnext<cr>
 noremap <leader>< :w<bar>bprevious<cr>
 " correct typos - particularly law words and names
+iabbrev na an
 iabbrev waht what
 iabbrev tehn then
 iabbrev hte the
@@ -67,31 +74,51 @@ iabbrev taht that
 iabbrev atht that
 iabbrev owuld would
 iabbrev oculd could
+iabbrev beyind beyond
+iabbrev whcih which
+iabbrev hwich which
 iabbrev ie i.e.,
 iabbrev eg e.g.,
 iabbrev nb n.b.
 iabbrev Nb N.b.
 iabbrev wrt with regard to
 iabbrev w/ with
+iabbrev c1rcs circumstances
 " citations
+iabbrev CoA Court of Appeal
 iabbrev ewhc EWHC
 iabbrev ewca EWCA
+iabbrev HoL House of Lords
 iabbrev ukpc UKPC
 iabbrev uksc UKSC
 iabbrev oplr OPLR
 iabbrev plr PLR
 iabbrev pc Privy Council
+iabbrev SC Supreme Court
 iabbrev ukhl UKHL
 iabbrev lj LJ
 iabbrev vc V-C
 iabbrev j J
 " general law vocabulary
+iabbrev c0m company
+iabbrev c0ms companies
+iabbrev C0m Company
+iabbrev C0ms Companies
 iabbrev c0n contract
 iabbrev C0n Contract
 iabbrev c0ns contracts
 iabbrev C0ns Contracts
 iabbrev c0l contractual
 iabbrev C0l Contractual
+iabbrev c0t court
+iabbrev C0t Court
+iabbrev c0ts courts
+iabbrev C0ts Courts
+iabbrev c0l contractual
+iabbrev d0c document
+iabbrev D0c Document
+iabbrev d0x documents
+iabbrev D0c Documents
 iabbrev 3st estoppel
 iabbrev 3St Estoppel
 iabbrev r3g regulation
@@ -155,8 +182,13 @@ iabbrev tpr the Pensions Regulator
 iabbrev Tpr The Pensions Regulator
 iabbrev tpo the Pensions Ombudsman
 iabbrev Tpo The Pensions Ombudsman
+iabbrev 0ms Ombudsman
 iabbrev ppf PPF
 iabbrev Ppf Pension Protection Fund
 " admin words
+iabbrev n0 number
+iabbrev n0s numbers
+iabbrev N0 Number
+iabbrev N0s Numbers
 iabbrev steph Stephen
 iabbrev sjh SJH
