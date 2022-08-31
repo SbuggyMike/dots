@@ -37,11 +37,20 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# adjust brightness
+bindsym XF86MonBrightnessUp exec light -A 2
+bindsym XF86MonBrightnessDown exec light -U 2
+
+# screenshots
+bindsym Print exec maim -s | xclip -selection clipboard -t image/png
+bindsym shift+Print exec maim ~/pix/$(date +%s).png
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec st
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -179,4 +188,9 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
-exec --no-startup-id-dropbox start
+
+exec --no-startup-id twmnd
+exec --no-startup-id emacs --daemon
+exec --no-startup-id i3-msg 'workspace 3; exec thunderbird; workspace 4'
+exec --no-startup-id i3-msg 'workspace 4; exec firefox; workspace 5'
+exec --no-startup-id i3-msg 'workspace 5; exec pavucontrol; workspace 2'

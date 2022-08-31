@@ -110,7 +110,9 @@
 
 - feh
 - gimp
-- scrot (screenshot programme)
+- maim (screenshot programme --- seems to have replaced scrot)
+- xclip (has many other uses, but I particularly use for the screenshot
+  programme)
 
 ### File syncing
 
