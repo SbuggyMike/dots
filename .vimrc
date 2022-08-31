@@ -23,6 +23,7 @@ set cursorline
 set guifont=Inconsolata\ 23
 set tw=80
 set autoread " so that I can do edits on one laptop and they will load in another
+set hidden " allows movement between buffers without writing
 " load plugins
 packloadall
 silent! helptags ALL
@@ -118,7 +119,7 @@ iabbrev c0l contractual
 iabbrev d0c document
 iabbrev D0c Document
 iabbrev d0x documents
-iabbrev D0c Documents
+iabbrev D0x Documents
 iabbrev 3st estoppel
 iabbrev 3St Estoppel
 iabbrev r3g regulation
