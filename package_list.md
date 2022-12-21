@@ -34,7 +34,7 @@
 
 #### User
 
-- useradd -m -G wheel video telemachus (video for laptop)
+- useradd -m -G wheel,video telemachus (video for laptop)
 - passwd telemachus 
 - visudo
 
@@ -45,7 +45,7 @@
 ### Pacstrap
 
 - base
-- base-devel (fakeroot etc)
+- base-devel (fakeroot etc - doesn't seem essential)
 - linux
 - linux-firmware (esp. for wifi drivers)
 - grub
@@ -58,13 +58,14 @@
 - intel-ucode
 - man-db
 - man-pages
+- texinfo
 - dhcpcd (enable as service)
 - sudo
 
 ### Terminal/Utilities
 
 - xfce4-terminal
-- st (yay)
+- st (yay) / alacritty
 - tmux (config file)
 - htop
 - neofetch
@@ -81,6 +82,7 @@
 - lightdm-gtk-greeter
 - nvidia (check graphics card via 'lspci -k | grep -A 2 -E "(VGA|3D)"')
 - xorg-xrandr
+- arandr
 - libnotify (to send notifications)
 - twmn (yay) (notification daemon for tiling window managers, necessary for emacs noifications)
 
@@ -122,7 +124,7 @@
 - yay (clone from aur)
 - rsync
 - syncthing
-  enable a user systemd unit
+  systemctl enable --user --now syncthing
 
 ### File editing
 
