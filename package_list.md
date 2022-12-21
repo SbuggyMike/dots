@@ -4,17 +4,19 @@
 
 ### Install
 
+- pacman -Sy archlinux-keyring (may eliminate need to refresh keys later)
 - loadkeys uk
 - iwctl --passphrase jack4jack station wlan0 connect chicken3
-- timedatectl set-ntp true
+- timedatectl status (earlier guide suggested set-ntp true)
 - check if uefi or bios
 - formatting disks
 - make filesystems (remember fat 32 for boot)
-- mount & swapon 
+- mount & swapon (mkdir for additional mount points)
 - edit /etc/pacman.d/mirrorlist 
 - pacman-keys --refresh-keys (if install is relatively old)
 > N.b. this takes fucking ages
-- pacstrap /mnt
+- pacstrap -K /mnt
+- mount any unmodified disks
 - genfstab -U /mnt >> /mnt/etc/fstab
 - arch-chroot /mnt /bin/bash
 - ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
@@ -24,7 +26,7 @@
 - echo "LANG=en_GB.UTF-8" >> /etc/locale.conf
 - echo "KEYMAP=uk" >> /etc/vconsole.conf
 - echo "ilium" >> /etc/hostname
-- vim /etc/hosts
+- vim /etc/hosts (new version omits this step)
 - passwd (root password)
 - grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB 
 - grub-mkconfig -o /boot/grub/grub.cfg
@@ -122,7 +124,7 @@
 - git
   git config --global credential.helper store
 - yay (clone from aur)
-- rsync
+- rsync (dependency of syncthing)
 - syncthing
   systemctl enable --user --now syncthing
 
