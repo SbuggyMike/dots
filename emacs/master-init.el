@@ -88,7 +88,7 @@
 
 (global-auto-revert-mode t)
 (global-visual-line-mode t)
-(add-hook 'text-mode 'flyspell-mode)
+(add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'org-indent-mode)
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE" "KILL")))
