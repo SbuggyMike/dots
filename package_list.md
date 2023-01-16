@@ -71,6 +71,7 @@
 - tmux (config file)
 - htop
 - neofetch
+- upower (battery info)
 
 ### Graphics
 

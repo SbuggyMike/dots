@@ -60,7 +60,7 @@
      "https://www.ft.com/world/uk?format=rss"
      "https://www.reddit.com/r/chess.rss"
      "https://www.reddit.com/r/classicalmusic.rss"))
-     (setq elfeed-db-directory "~/repos/dots/emacs/elfeed")
+     (setq elfeed-db-directory "~/dots/emacs/elfeed")
   :bind (("C-c r" . 'elfeed)))
 
 
@@ -90,6 +90,8 @@
 (global-visual-line-mode t)
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'org-indent-mode)
+(add-hook 'text-mode-hook 'abbrev-mode)
+(add-hook 'org-mode-hook 'abbrev-mode)
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE" "KILL")))
 
@@ -101,7 +103,7 @@
 
 (setq org-agenda-files (list "~/life_org/todo.org" "~/life_org/gtd.org" "~/life_org/habits_gtd.org"))
 
-
+(setq abbrev-file-name "~/dots/emacs/abbreviations")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -109,10 +111,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("3199be8536de4a8300eaf9ce6d864a35aa802088c0925e944e2b74a574c68fd0" default))
+   '("3ab376acffab6b4e79ae2b6e0a1cce3fa21dbac0027f0ff0dfef02b5c838dba9" "3199be8536de4a8300eaf9ce6d864a35aa802088c0925e944e2b74a574c68fd0" default))
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(emms magit evil use-package-hydra ivy use-package modus-themes))
+   '(emms magit use-package-hydra ivy use-package modus-themes))
  '(safe-local-variable-values '((git-commit-major-mode . git-commit-elisp-text-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -120,4 +122,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(put 'narrow-to-region 'disabled nil)
+
