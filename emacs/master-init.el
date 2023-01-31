@@ -18,6 +18,20 @@
 (tooltip-mode -1)
 (menu-bar-mode -1)
 
+;; diminish
+(use-package diminish
+  :config 
+    (diminish 'flyspell-mode)
+    (diminish 'abbrev-mode)
+    (diminish 'visual-line-mode)
+    (diminish 'helm-mode))
+
+(use-package org-alert
+  :config
+  (setq org-alert-interval 150
+	org-alert-notify-cutoff 5
+	org-alter-notify-after-event-cutoff 10))
+
 (use-package modus-themes)
 (load-theme 'modus-vivendi)
 
@@ -38,6 +52,20 @@
   (setq helm-M-x-fuzzy-match t
 	helm-semantic-fuzzy-match t
 	helm-imenu-fuzzy-match t))
+
+;; projectile
+(use-package projectile
+  :diminish
+  :config (projectile-mode)
+  :custom ((projectile-completion-system 'helm))
+  :bind-keymap ("C-c p" . projectile-command-map))
+
+;; which key
+(use-package which-key
+  :diminish
+  :config 
+    (which-key-mode)
+    (setq which-key-idle-delay 0.5))
 
 (use-package elfeed
   :init
@@ -100,10 +128,21 @@
 (global-set-key (kbd "C-c e") 'eww)
 (global-set-key (kbd "C-c l") 'org-clock-in-last)
 (global-set-key (kbd "C-c t") 'eshell)
+(global-set-key (kbd "C-x B") (find-file "~/life_org/scratch_gtd.org"))
+
+					; complete brackets
+(electric-pair-mode 1)
+(setq electric-pair-preserve-balance nil) 
 
 (setq org-agenda-files (list "~/life_org/todo.org" "~/life_org/gtd.org" "~/life_org/habits_gtd.org"))
 
 (setq abbrev-file-name "~/dots/emacs/abbreviations")
+
+;; delete selected text when you start typing
+(delete-selection-mode)
+
+;; yes or no
+(fset 'yes-or-no-p 'y-or-n-p)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -111,10 +150,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("3ab376acffab6b4e79ae2b6e0a1cce3fa21dbac0027f0ff0dfef02b5c838dba9" "3199be8536de4a8300eaf9ce6d864a35aa802088c0925e944e2b74a574c68fd0" default))
+   '("5fdc0f5fea841aff2ef6a75e3af0ce4b84389f42e57a93edc3320ac15337dc10" "3ab376acffab6b4e79ae2b6e0a1cce3fa21dbac0027f0ff0dfef02b5c838dba9" "3199be8536de4a8300eaf9ce6d864a35aa802088c0925e944e2b74a574c68fd0" default))
  '(ispell-dictionary nil)
+ '(org-agenda-files
+   '("/home/hector/life_org/scratch_gtd.org" "/home/hector/life_org/todo.org" "/home/hector/life_org/gtd.org" "/home/hector/life_org/habits_gtd.org"))
  '(package-selected-packages
-   '(emms magit use-package-hydra ivy use-package modus-themes))
+   '(org-alert which-key projectile diminish emms magit use-package-hydra ivy use-package modus-themes))
  '(safe-local-variable-values '((git-commit-major-mode . git-commit-elisp-text-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -123,3 +164,4 @@
  ;; If there is more than one, they won't work right.
  )
 
+(put 'narrow-to-region 'disabled nil)
