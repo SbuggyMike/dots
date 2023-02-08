@@ -132,7 +132,8 @@
 
 					; complete brackets
 (electric-pair-mode 1)
-(setq electric-pair-preserve-balance nil) 
+(setq electric-pair-preserve-balance nil)
+(electric-quote-mode)
 
 (setq org-agenda-files (list "~/life_org/todo.org" "~/life_org/gtd.org" "~/life_org/habits_gtd.org"))
 
@@ -153,7 +154,7 @@
    '("5fdc0f5fea841aff2ef6a75e3af0ce4b84389f42e57a93edc3320ac15337dc10" "3ab376acffab6b4e79ae2b6e0a1cce3fa21dbac0027f0ff0dfef02b5c838dba9" "3199be8536de4a8300eaf9ce6d864a35aa802088c0925e944e2b74a574c68fd0" default))
  '(ispell-dictionary nil)
  '(org-agenda-files
-   '("/home/hector/life_org/scratch_gtd.org" "/home/hector/life_org/todo.org" "/home/hector/life_org/gtd.org" "/home/hector/life_org/habits_gtd.org"))
+   '("~/life_org/scratch_gtd.org" "~/life_org/scratch_gtd.org" "~/life_org/todo.org" "~/life_org/gtd.org" "~/life_org/habits_gtd.org"))
  '(package-selected-packages
    '(org-alert which-key projectile diminish emms magit use-package-hydra ivy use-package modus-themes))
  '(safe-local-variable-values '((git-commit-major-mode . git-commit-elisp-text-mode))))
