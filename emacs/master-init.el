@@ -32,6 +32,12 @@
 	org-alert-notify-cutoff 5
 	org-alter-notify-after-event-cutoff 10))
 
+
+(use-package pdf-tools
+  :config (pdf-tools-install))
+
+(define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward-regexp)
+
 (use-package modus-themes)
 (load-theme 'modus-vivendi)
 
@@ -151,12 +157,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("5fdc0f5fea841aff2ef6a75e3af0ce4b84389f42e57a93edc3320ac15337dc10" "3ab376acffab6b4e79ae2b6e0a1cce3fa21dbac0027f0ff0dfef02b5c838dba9" "3199be8536de4a8300eaf9ce6d864a35aa802088c0925e944e2b74a574c68fd0" default))
+   '("dde643b0efb339c0de5645a2bc2e8b4176976d5298065b8e6ca45bc4ddf188b7" "5fdc0f5fea841aff2ef6a75e3af0ce4b84389f42e57a93edc3320ac15337dc10" "3ab376acffab6b4e79ae2b6e0a1cce3fa21dbac0027f0ff0dfef02b5c838dba9" "3199be8536de4a8300eaf9ce6d864a35aa802088c0925e944e2b74a574c68fd0" default))
  '(ispell-dictionary nil)
  '(org-agenda-files
    '("~/life_org/scratch_gtd.org" "~/life_org/scratch_gtd.org" "~/life_org/todo.org" "~/life_org/gtd.org" "~/life_org/habits_gtd.org"))
  '(package-selected-packages
-   '(org-alert which-key projectile diminish emms magit use-package-hydra ivy use-package modus-themes))
+   '(pdf-tools org-alert which-key projectile diminish emms magit use-package-hydra ivy use-package modus-themes))
  '(safe-local-variable-values '((git-commit-major-mode . git-commit-elisp-text-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
