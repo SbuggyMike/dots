@@ -135,6 +135,7 @@
 - latex-mk (for emacs? not sure this is necessary)
 - ghostscript (for groff and doc-view in emacs)
 - ispell
+- hunspell and hunspell-en_gb
 - libreoffice-fresh
 - biber
 - imagemagick
