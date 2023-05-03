@@ -1,0 +1,51 @@
+<p>One of the Emacs packages I do not seem to get used to is Marginalia.<sup id="fnref:1"><a class="footnote" href="https://manueluberti.eu/feed.xml#fn:1" rel="footnote">1</a></sup> There
+is nothing wrong with it and since Daniel Mendler is involved the ELisp
+underneath is great. However, to me it’s just too much information where I
+rarely want it. When I need that sort of documentation it’s always a quick key
+binding away.</p>
+
+<p>Given the author it should not come as a surprise that Marginalia works rather
+smoothly with Vertico.<sup id="fnref:2"><a class="footnote" href="https://manueluberti.eu/feed.xml#fn:2" rel="footnote">2</a></sup> In fact, it works so well that I only see a “problem”
+when I use it <em>without</em> Marginalia. Months ago I reported this minor glitch to
+Daniel,<sup id="fnref:3"><a class="footnote" href="https://manueluberti.eu/feed.xml#fn:3" rel="footnote">3</a></sup> but to cut a long story short, at the end of the current selected
+item <code class="language-plaintext highlighter-rouge">vertico--format-candidate</code> adds a newline escape sequence to which the
+<code class="language-plaintext highlighter-rouge">vertico-current</code> face is applied as well.</p>
+
+<p>I know, it’s a minor thing that should not stop me from using Vertico. Still, it
+can be fixed quite easily. I suggested an advice in the aforementioned report,
+but since <code class="language-plaintext highlighter-rouge">vertico--format-candidate</code> is implemented as a <code class="language-plaintext highlighter-rouge">cl-defgeneric</code> I can
+do better:</p>
+
+<div class="language-emacs-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="ss">'vertico</span>
+  <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'vertico-current</span> <span class="no">nil</span> <span class="ss">:extend</span> <span class="no">nil</span><span class="p">)</span>
+  
+  <span class="p">(</span><span class="nv">cl-defmethod</span> <span class="nv">vertico--format-candidate</span> <span class="p">(</span><span class="nv">cnd</span> <span class="nv">pref</span> <span class="nv">suf</span> <span class="nv">idx</span> <span class="nv">_start</span><span class="p">)</span>
+    <span class="s">"Format CND given PREF, SUF, and IDX."</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">cnd</span> <span class="p">(</span><span class="nv">vertico--display-string</span> <span class="p">(</span><span class="nv">concat</span> <span class="nv">pref</span> <span class="nv">cnd</span> <span class="nv">suf</span> <span class="s">"\n"</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">=</span> <span class="nv">idx</span> <span class="nv">vertico--index</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">add-face-text-property</span> <span class="mi">0</span> <span class="p">(</span><span class="nb">1-</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">cnd</span><span class="p">))</span> <span class="ss">'vertico-current</span> <span class="ss">'append</span> <span class="nv">cnd</span><span class="p">))</span>
+    <span class="nv">cnd</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Beside ensuring that <code class="language-plaintext highlighter-rouge">vertico-current</code> does not extend beyond the selected
+candidate, I use the lovely named <code class="language-plaintext highlighter-rouge">1-</code> function to avoid applying this face to
+<code class="language-plaintext highlighter-rouge">\n</code> as well.</p>
+
+<p>Note that something like <code class="language-plaintext highlighter-rouge">fido-vertical-mode</code> does not need a hack like this.
+Yet I simply cannot resist tinkering with my favourite packages.</p>
+
+<hr />
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>See: <a href="https://github.com/minad/marginalia">Marginalia</a>. <a class="reversefootnote" href="https://manueluberti.eu/feed.xml#fnref:1">↩</a></p>
+    </li>
+    <li id="fn:2">
+      <p>See: <a href="https://github.com/minad">Vertico</a>. <a class="reversefootnote" href="https://manueluberti.eu/feed.xml#fnref:2">↩</a></p>
+    </li>
+    <li id="fn:3">
+      <p>See: <a href="https://github.com/minad/vertico/issues/269">vertico#269</a>. <a class="reversefootnote" href="https://manueluberti.eu/feed.xml#fnref:3">↩</a></p>
+    </li>
+  </ol>
+</div>

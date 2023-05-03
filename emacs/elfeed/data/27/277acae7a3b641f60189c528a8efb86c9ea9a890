@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-6">
+    <figure><img src="https://emacs.dyerdwelling.family/emacs/20230406200632-emacs--Cursor-Blinking-Rate.jpg" width="100%" />
+</figure>
+<p>Sometimes I can find a blinking cursor distracting and somewhat expectant!, so currently I am favouring a solid non blinking cursor while still being able to easily locate my cursor using <code>hl-line-mode</code></p>
+<p>I have tried <strong>beacon</strong> and <strong>pulsar</strong> in the past but have found that a simple line highlight nicely serves my purpose.</p>
+<p>This however led to a weird issue at work with my emacs setup and although I am not quite sure why it is happening (although I have my theories) I have found a workaround.</p>
+<p>As at home I am always tinkering with my emacs init file and I think at some point I decided to turn off cursor blinking.  This coincided with a new virtual machine setup and hence a new emacs install.  At that point I started to notice that sometimes the emacs window wouldn’t refresh until I either gave it some keyboard input or strangely I just wiggled my mouse :)</p>
+<p>I could reproduce this issue by restarting emacs from a clean start (cleaning out buffers and the desktop file) and switching immediately to a permanent register pointing to a file.  Also I would notice that sometimes when I <code>dired-jump</code>’d I would have to tap a key to get the emacs window to refresh.</p>
+</div>
+  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-6">
+    <p>After a period of trial and error I narrowed the culprit down to :</p>
+<div class="highlight"><pre tabindex="0"><code class="language-elisp"><span style="display: flex;"><span>(blink-cursor-mode <span style="color: #ae81ff;">-1</span>)
+</span></span></code></pre></div><p>When I turned on a blinking cursor there would be no such emacs refreshing issue.</p>
+<p>I came up with a theory that in a setup involving VM Machines/X11/linux window manager/compositor/emacs/host graphics driver/and so on, there may be a graphical optimization that requires a specific event to occur for an emacs window to refresh. It’s possible that the reason everything works smoothly with a blinking cursor is because the cursor is constantly disappearing and reappearing, which triggers a refresh event.</p>
+<p>So…. the question is how do I preserve a non blinking cursor and still get an emacs window to consistently refresh?, well I dug into the blinking cursor options and set the following:</p>
+<div class="highlight"><pre tabindex="0"><code class="language-elisp"><span style="display: flex;"><span>(blink-cursor-mode <span style="color: #ae81ff;">1</span>)
+</span></span><span style="display: flex;"><span>(setq blink-cursor-interval <span style="color: #ae81ff;">0.001</span>)
+</span></span><span style="display: flex;"><span>(setq blink-cursor-blinks <span style="color: #ae81ff;">1</span>)
+</span></span></code></pre></div><p>A single initial blink of the cursor would trigger a reliable display refresh but would be imperceptible to the human eye thus providing a perceived non blinking cursor!</p>
+<p>Oh and a final thing, has anyone noticed that by default an emacs cursor blinks but 10 times and then stops?, I’ve got to say it was only when I was digging around the blink-cursor variables and actively scrutinising the cursor blink behaviour that I noticed.  I had assumed that it just kept blinking forever!</p>
+</div>
+</div>

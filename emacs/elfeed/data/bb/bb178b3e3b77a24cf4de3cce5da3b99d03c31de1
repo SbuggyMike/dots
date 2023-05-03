@@ -1,0 +1,13 @@
+<p>The <a href="https://archlinux.org/packages/extra/x86_64/php/">php</a> packages have been updated to the latest version 8.2. In
+addition to this, a new set of <a href="https://archlinux.org/packages/extra/x86_64/php-legacy/">php-legacy</a> packages have been
+introduced. These will follow the oldest but still <a href="https://www.php.net/supported-versions.php">actively supported
+PHP</a> branch. This enables users to install the latest version but also
+introduces the option to use third party applications that might rely
+on an older version. Both branches will be kept up to date following
+our rolling release model. <code>php</code> and <code>php-legacy</code> can be installed at the
+same time as the latter uses a <code>-legacy</code> suffix for its binaries and
+configuration files.</p>
+<p>In addition to this, the <a href="https://archlinux.org/news/php-80-and-php-7-legacy-packages-are-available/">php7</a> packages have been removed as they
+reached end of life. The <code>imap</code> extension will no longer be provided as
+it relies on the <code>c-client</code> library which has been abandoned for many
+years.</p>

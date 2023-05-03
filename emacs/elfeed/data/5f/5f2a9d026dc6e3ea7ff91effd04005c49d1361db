@@ -1,0 +1,35 @@
+<p>One of my Emacs’ favourite features is Eshell. However recently I wanted to create a function, that
+automatically toggles eshell, like vscode, and gives priority to the project root (if in project).
+This little code snippet does exactly that:</p>
+<div class="highlight"><pre tabindex="0"><code class="language-emacs-lisp"><span style="display: flex;"><span>(defun binary-eshell/toggle-eshell ()
+</span></span><span style="display: flex;"><span>  (interactive)
+</span></span><span style="display: flex;"><span>  (let ((eshell-buffer-name (binary-eshell/eshell-buffer-name)))
+</span></span><span style="display: flex;"><span>    (if (binary-eshell/eshell-toggled-p)
+</span></span><span style="display: flex;"><span>        (delete-windows-on eshell-buffer-name)
+</span></span><span style="display: flex;"><span>      (progn
+</span></span><span style="display: flex;"><span>        (split-window-below)
+</span></span><span style="display: flex;"><span>        (if (project-current)
+</span></span><span style="display: flex;"><span>            (let ((default-directory (project-root (project-current))))
+</span></span><span style="display: flex;"><span>              (eshell)))
+</span></span><span style="display: flex;"><span>        (eshell)))))
+</span></span><span style="display: flex;"><span>
+</span></span><span style="display: flex;"><span>(defun binary-eshell/eshell-toggled-p ()
+</span></span><span style="display: flex;"><span>  <span style="color: #e6db74;">"Checks if eshell is toggled."</span>
+</span></span><span style="display: flex;"><span>  (let ((eshell-buffer-name (binary-eshell/eshell-buffer-name))
+</span></span><span style="display: flex;"><span>        (result))
+</span></span><span style="display: flex;"><span>    (dolist (element (<span style="color: #a6e22e;">window-list</span>) result)
+</span></span><span style="display: flex;"><span>      (if (string= eshell-buffer-name (<span style="color: #a6e22e;">buffer-name</span> (<span style="color: #a6e22e;">window-buffer</span> element)))
+</span></span><span style="display: flex;"><span>          (setq result <span style="color: #66d9ef;">t</span>)))
+</span></span><span style="display: flex;"><span>    result))
+</span></span><span style="display: flex;"><span>
+</span></span><span style="display: flex;"><span>(defun binary-eshell/eshell-buffer-name ()
+</span></span><span style="display: flex;"><span>  <span style="color: #e6db74;">"Returns the name of the eshell buffer. It works on the basis of the following rule:
+</span></span></span><span style="display: flex;"><span><span style="color: #e6db74;">If the current buffer is part of a project, then name it on the basis of the project,
+</span></span></span><span style="display: flex;"><span><span style="color: #e6db74;">else name it on the basis of default-directory."</span>
+</span></span><span style="display: flex;"><span>  (let ((eshell-buffer-name))
+</span></span><span style="display: flex;"><span>    (if (project-current)
+</span></span><span style="display: flex;"><span>        (setq eshell-buffer-name
+</span></span><span style="display: flex;"><span>              (<span style="color: #a6e22e;">concat</span> <span style="color: #e6db74;">"*eshell-"</span> (project-name (project-current)) <span style="color: #e6db74;">"*"</span>))
+</span></span><span style="display: flex;"><span>      (setq eshell-buffer-name (<span style="color: #a6e22e;">concat</span> <span style="color: #e6db74;">"*eshell-"</span> default-directory <span style="color: #e6db74;">"*"</span>)))))
+</span></span></code></pre></div><p>Call binary-eshell/toggle-eshell and voila! It opens an eshell window, for you to work on!
+With this, I have hopefully shown you how you can incorporate eshell even more into your workflow.</p>

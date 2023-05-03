@@ -1,0 +1,23 @@
+ 
+<p>
+People who want to rent an apartment, in Australia, are almost forced
+to use invasive data-collection sites.  The users of the sites are
+<a href="https://www.theguardian.com/australia-news/2023/apr/18/most-australian-renters-think-third-party-applications-require-too-much-private-data-choice-survey-finds">unhappy with the data they collect</a>,
+and some of them are manipulative
+too.
+<p>
+I expect similar abusive practices exist in the US.  They may have
+started in the US.  So many other Internet abuses did.
+<p>
+There is a danger concern that the site will implement housing bias.
+If their developers get the idea to use trained neural nets to
+evaluate would-be renters, they are likely to learn whatever sorts of
+biases landlords have. 
+<p>
+I confidently predict that the site insists on
+<a href="https://gnu.org/philosophy/javascript-trap.html">running nonfree</a>
+software on the user's site.  The users are not complaining about
+this, but they would if they were wise.
+
+
+ 

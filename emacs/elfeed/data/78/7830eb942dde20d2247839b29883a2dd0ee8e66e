@@ -1,0 +1,45 @@
+ 
+<p>
+At least two art-generating online dis-services have
+<a href="https://theintercept.com/2023/04/22/ai-art-abortion-censorship/">banned the word
+"abortion"</a>.
+ One of them directly threatens users who try to generate
+drawings on that topic.
+   This form of censorship seems to reject many other words, including
+words for reproductive anatomy and for birth control products.
+<p>
+This form of censorship demonstrates the injustice of SaaSS (Service
+as a Software Substitute).  The user simply wants to run a particular
+program, but
+<a href="https://gnu.org/philosophy/who-does-that-server-really-serve.html">that program has never been released</a>,
+so the only way to run it is to connect to someone else's server which will run it for
+the user.  This is basically similar in injustice to a nonfree program,
+   but worse: the server operator can control who is allowed to use
+the program (by requiring each user to make an account), snoop on all
+the data the user provides to the server, and can even demand data
+from the user for purposes of profiling or subsequent manipulation.
+<p>
+If the same program were released as nonfree software, that would not
+respect the user's freedom either.  For instance, it could contain
+arbitrary censorship rules.  However, unless it has a
+<a href="https://gnu.org/malware/proprietary-back-doors.html">back door</a>
+(which is not unheard of),
+  the developer could not remotely add more censorship to a copy that
+a user has already installed.
+<p>
+Nonfree software and SaaSS are two unjust ways of making a program
+available for use.  The only just way is to release it as free software.
+<p>
+As for the other characteristics of some drawings that disappointed
+some users for representing stereotypes, or the male gaze, different
+users might have different preferences about those things.  One user
+might have different preferences on different occasions.
+<p>
+These programs can't think about those preferences, because they are
+not a form of intelligence and have no understanding of anything, last
+of all what an image might mean to a human looking at it.
+<p>
+To make such distinctions requires a human artist.
+
+<p>
+ 

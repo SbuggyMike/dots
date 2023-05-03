@@ -66,6 +66,10 @@
   :custom ((projectile-completion-system 'helm))
   :bind-keymap ("C-c p" . projectile-command-map))
 
+;; try
+(use-package try
+  :commands try)
+
 ;; which key
 (use-package which-key
   :diminish
@@ -120,6 +124,12 @@
     ("s-m x" . 'emms-add-playlist-file)
     ("s-m e" . 'emms)))
 
+(use-package gptel
+  :config
+  (setq gptel-api-key "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")
+  :bind
+  ("C-c j" . 'gptel ))
+
 (global-auto-revert-mode t)
 (global-visual-line-mode t)
 (add-hook 'text-mode-hook 'flyspell-mode)
@@ -140,6 +150,15 @@
 (electric-pair-mode 1)
 (setq electric-pair-preserve-balance nil)
 (electric-quote-mode)
+
+(defun copy-init-to-master ()
+  "Copy ~/.emacs.d/init.el to ~/dots/emacs/master-init.el."
+  (copy-file "~/.emacs.d/init.el" "~/dots/emacs/master-init.el" t))
+
+(add-hook 'after-save-hook
+          'copy-init-to-master
+          nil
+          t)
 
 (setq org-agenda-files (list "~/life_org/todo.org" "~/life_org/gtd.org" "~/life_org/habits_gtd.org"))
 
@@ -167,12 +186,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("dde643b0efb339c0de5645a2bc2e8b4176976d5298065b8e6ca45bc4ddf188b7" "5fdc0f5fea841aff2ef6a75e3af0ce4b84389f42e57a93edc3320ac15337dc10" "3ab376acffab6b4e79ae2b6e0a1cce3fa21dbac0027f0ff0dfef02b5c838dba9" "3199be8536de4a8300eaf9ce6d864a35aa802088c0925e944e2b74a574c68fd0" default))
+   '("eb7cd622a0916358a6ef6305e661c6abfad4decb4a7c12e73d6df871b8a195f8" "dde643b0efb339c0de5645a2bc2e8b4176976d5298065b8e6ca45bc4ddf188b7" "5fdc0f5fea841aff2ef6a75e3af0ce4b84389f42e57a93edc3320ac15337dc10" "3ab376acffab6b4e79ae2b6e0a1cce3fa21dbac0027f0ff0dfef02b5c838dba9" "3199be8536de4a8300eaf9ce6d864a35aa802088c0925e944e2b74a574c68fd0" default))
  '(ispell-dictionary nil)
- '(org-agenda-files
-   '("/home/telemachus/life_org/gtd.org" "/home/telemachus/life_org/scratch_gtd.org" "/home/telemachus/life_org/scratch_gtd.org" "/home/telemachus/life_org/todo.org" "/home/telemachus/life_org/habits_gtd.org"))
+ '(org-agenda-files '("~/life_org/daily_tasks.org"))
  '(package-selected-packages
-   '(pdf-tools org-alert which-key projectile diminish emms magit use-package-hydra ivy use-package modus-themes))
+   '(gptel try pdf-tools org-alert which-key projectile diminish emms magit use-package-hydra ivy use-package modus-themes))
  '(safe-local-variable-values '((git-commit-major-mode . git-commit-elisp-text-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -182,3 +200,4 @@
  )
 
 (put 'narrow-to-region 'disabled nil)
+(put 'downcase-region 'disabled nil)

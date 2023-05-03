@@ -1,0 +1,24 @@
+ 
+<p>
+
+This is a request for a small technical project for someone who knows
+Javascript.
+<p>
+Boston public transit has changed its web site, mbta.com, so that it
+is impossible to access bus schedules without running nonfree
+software.  It used to have a "PDF Schedule" button with which you
+could download a bus line's schedule.  But that no longer works.
+<p>
+For instance, the page for bus line 1, mbta.com/schedules/1/line, has
+a button "Get schedules", but without enabling Javascript that gives
+an error.
+<p>
+Can someone please develop a script or method to access these PDF
+files?  It could be a simple shell script that uses wget, grep and awk,
+or simple Javascript program if you can tell me how to run it.
+Please give it clear comments so I can understand what it does,
+and if it is more than 8 lines or so put a free license on it.
+<p>
+I will appreciate your work every time I look at a bus schedule.
+
+ 

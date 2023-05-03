@@ -1,0 +1,58 @@
+<p>A majority of emacs users are absolute die-hard fans of org mode, and wouldn’t be able to live without it. And it makes sense too, it’s a tool that you can use in whatever workflow you prefer, which is really powerful. However as a relatively new emacs users (only 2 years!), I couldn’t really get org mode. I never felt satisfied when using it, as for me it seemed like an old technology, especially for a person who’s used to the web apps, which have a totally different UI .</p>
+<p>However, I recently spent some time to prettify org mode, and I must say, it makes <em>all the difference</em> in the world! Here’s a comparision of my old and new config:</p>
+<p><img alt="" src="http://binarydigitz01.gitlab.io/ox-hugo/Initial_Config.png" /><img alt="" src="http://binarydigitz01.gitlab.io/ox-hugo/Final_config.png" /></p>
+<p>As you can see, the second one looks much better, and more comparable to modern note taking apps. As for me, it makes all the difference in the world. And it took me only 30 minutes to make these changes!</p>
+<h2 id="the-changes">The changes</h2>
+<h3 id="centred-text">Centred text</h3>
+<p>I have used <a href="https://github.com/rnkn/olivetti">olivetti mode</a> to centre the text. This makes a huge impact on writing, as almost all prose and text you read are centred. For me this was easily the one with the most impact. All you have to do is add a hook:</p>
+<pre tabindex="0"><code class="language-nil">(use-package olivetti
+:hook (org-mode . olivetti-mode))
+</code></pre><p>Make sure to turn off line numbers mode if you’re using it, as that makes olivtti mode pretty ugly in my opinion, plus it’s absolutely useless for org mode.</p>
+<h3 id="font">Font</h3>
+<p>Believe it or not, changing to a variable pitch font also had a pretty significant impact. At first I did not think this would make much of an impact, as I thought I was used to monospaced font as a programmer, but turns out that was a lie. If you use a good variable pitch face, it looks really good. Right now i’m using EtBook font, which actually looks really nice! Here’s the relevant font config:</p>
+<div class="highlight"><pre tabindex="0"><code class="language-emacs-lisp"><span style="display: flex;"><span><span style="color: #75715e;">;; This part has been copied and slightly modified from</span>
+</span></span><span style="display: flex;"><span><span style="color: #75715e;">;; https://zzamboni.org/post/beautifying-org-mode-in-emacs/</span>
+</span></span><span style="display: flex;"><span>
+</span></span><span style="display: flex;"><span>(let* ((variable-tuple
+</span></span><span style="display: flex;"><span>        (cond ((<span style="color: #a6e22e;">x-list-fonts</span> <span style="color: #e6db74;">"ETBembo"</span>) <span style="color: #f92672;">'</span>(:font <span style="color: #e6db74;">"ETBembo"</span>))))
+</span></span><span style="display: flex;"><span>       (headline           <span style="color: #f92672;">`</span>(:weight bold)))
+</span></span><span style="display: flex;"><span>
+</span></span><span style="display: flex;"><span>  (custom-theme-set-faces
+</span></span><span style="display: flex;"><span>   <span style="color: #e6db74;">'user</span>
+</span></span><span style="display: flex;"><span>   <span style="color: #f92672;">`</span>(org-level-8 ((<span style="color: #66d9ef;">t</span> (<span style="color: #f92672;">,@</span>headline <span style="color: #f92672;">,@</span>variable-tuple))))
+</span></span><span style="display: flex;"><span>   <span style="color: #f92672;">`</span>(org-level-7 ((<span style="color: #66d9ef;">t</span> (<span style="color: #f92672;">,@</span>headline <span style="color: #f92672;">,@</span>variable-tuple))))
+</span></span><span style="display: flex;"><span>   <span style="color: #f92672;">`</span>(org-level-6 ((<span style="color: #66d9ef;">t</span> (<span style="color: #f92672;">,@</span>headline <span style="color: #f92672;">,@</span>variable-tuple))))
+</span></span><span style="display: flex;"><span>   <span style="color: #f92672;">`</span>(org-level-5 ((<span style="color: #66d9ef;">t</span> (<span style="color: #f92672;">,@</span>headline <span style="color: #f92672;">,@</span>variable-tuple))))
+</span></span><span style="display: flex;"><span>   <span style="color: #f92672;">`</span>(org-level-4 ((<span style="color: #66d9ef;">t</span> (<span style="color: #f92672;">,@</span>headline <span style="color: #f92672;">,@</span>variable-tuple :height <span style="color: #ae81ff;">1.1</span>))))
+</span></span><span style="display: flex;"><span>   <span style="color: #f92672;">`</span>(org-level-3 ((<span style="color: #66d9ef;">t</span> (<span style="color: #f92672;">,@</span>headline <span style="color: #f92672;">,@</span>variable-tuple :height <span style="color: #ae81ff;">1.25</span>))))
+</span></span><span style="display: flex;"><span>   <span style="color: #f92672;">`</span>(org-level-2 ((<span style="color: #66d9ef;">t</span> (<span style="color: #f92672;">,@</span>headline <span style="color: #f92672;">,@</span>variable-tuple :height <span style="color: #ae81ff;">1.5</span>))))
+</span></span><span style="display: flex;"><span>   <span style="color: #f92672;">`</span>(org-level-1 ((<span style="color: #66d9ef;">t</span> (<span style="color: #f92672;">,@</span>headline <span style="color: #f92672;">,@</span>variable-tuple :height <span style="color: #ae81ff;">1.75</span>))))
+</span></span><span style="display: flex;"><span>   <span style="color: #f92672;">`</span>(org-document-title ((<span style="color: #66d9ef;">t</span> (<span style="color: #f92672;">,@</span>headline <span style="color: #f92672;">,@</span>variable-tuple :height <span style="color: #ae81ff;">2.0</span> :underline <span style="color: #66d9ef;">nil</span>))))))
+</span></span></code></pre></div><p>The cond statement checks whether ETBombo is installed on my system. The relevant portion for variable pitch mode:</p>
+<div class="highlight"><pre tabindex="0"><code class="language-emacs-lisp"><span style="display: flex;"><span>(custom-theme-set-faces
+</span></span><span style="display: flex;"><span> <span style="color: #e6db74;">'user</span>
+</span></span><span style="display: flex;"><span> <span style="color: #f92672;">'</span>(variable-pitch ((<span style="color: #66d9ef;">t</span> (:family <span style="color: #e6db74;">"ETBembo"</span> :height <span style="color: #ae81ff;">170</span> :weight thin))))
+</span></span><span style="display: flex;"><span> <span style="color: #f92672;">'</span>(fixed-pitch ((<span style="color: #66d9ef;">t</span> ( :family <span style="color: #e6db74;">"Fira Code Nerd Font"</span> :height <span style="color: #ae81ff;">130</span>)))))
+</span></span></code></pre></div><p>Now the problem with variable pitch mode is that it makes all text variable pitched, which includes tables and code blocks, which is something you absolutely do not want. To fix that, include this code in your configuration:</p>
+<div class="highlight"><pre tabindex="0"><code class="language-emacs-lisp"><span style="display: flex;"><span>  <span style="color: #75715e;">;; Copied from stackoverflow, this retains colors for org src blocks and tables, while making them monospaced</span>
+</span></span><span style="display: flex;"><span>(defun my-adjoin-to-list-or-symbol (element list-or-symbol)
+</span></span><span style="display: flex;"><span>  (let ((<span style="color: #a6e22e;">list</span> (if (not (<span style="color: #a6e22e;">listp</span> list-or-symbol))
+</span></span><span style="display: flex;"><span>                  (<span style="color: #a6e22e;">list</span> list-or-symbol)
+</span></span><span style="display: flex;"><span>                list-or-symbol)))
+</span></span><span style="display: flex;"><span>    (require <span style="color: #e6db74;">'cl-lib</span>)
+</span></span><span style="display: flex;"><span>    (cl-adjoin element <span style="color: #a6e22e;">list</span>)))
+</span></span><span style="display: flex;"><span>
+</span></span><span style="display: flex;"><span>(eval-after-load <span style="color: #e6db74;">"org"</span>
+</span></span><span style="display: flex;"><span>  <span style="color: #f92672;">'</span>(<span style="color: #a6e22e;">mapc</span>
+</span></span><span style="display: flex;"><span>    (lambda (face)
+</span></span><span style="display: flex;"><span>      (set-face-attribute
+</span></span><span style="display: flex;"><span>       face <span style="color: #66d9ef;">nil</span>
+</span></span><span style="display: flex;"><span>       :inherit
+</span></span><span style="display: flex;"><span>       (my-adjoin-to-list-or-symbol
+</span></span><span style="display: flex;"><span>        <span style="color: #e6db74;">'fixed-pitch</span>
+</span></span><span style="display: flex;"><span>        (face-attribute face :inherit))))
+</span></span><span style="display: flex;"><span>    (<span style="color: #a6e22e;">list</span> <span style="color: #e6db74;">'org-code</span> <span style="color: #e6db74;">'org-block</span> <span style="color: #e6db74;">'org-table</span>)))
+</span></span></code></pre></div><p>The above code has been copied from <a href="https://stackoverflow.com/questions/3758139/variable-pitch-for-org-mode-fixed-pitch-for-tables">here</a>.</p>
+<p>The colors for headings are provided by my theme, which is ef-summer from ef-themes by Protesilaos.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>As you can see, configuring org mode is quite a hassle, especially setting up faces. My config is almost entirely copy pasted from other users, but hey, what can you expect from a 2 year user? The point of this post was to quickly help a person get started with org mode, and to demonstrate some common hurdles that any new emacs user will probably have if they use vanilla emacs.</p>

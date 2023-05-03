@@ -1,0 +1,21 @@
+<p>Today I tried to define a function that prompts the user for multiple
+arguments in a single function call.</p>
+
+<p>I knew I need to use the <code class="language-plaintext highlighter-rouge">interactive</code> form. But when I read the  <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Using-Interactive.html"><code class="language-plaintext highlighter-rouge">interactive</code>
+form documentation</a>,
+it is a bit hard to read without code examples.</p>
+
+<p>So I tried to tinker with it by trying this function:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">defun</span> <span class="nv">test-fn</span> <span class="p">(</span><span class="nv">arg1</span> <span class="nv">arg2</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">interactive</span> <span class="s">"sEnter arg1: \nsEnter arg2: "</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">message</span> <span class="s">"arg1: %s, arg2: %s"</span> <span class="nv">arg1</span> <span class="nv">arg2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>And it works as expected. The trick is to separate the prompts with a newline <code class="language-plaintext highlighter-rouge">\n</code>.</p>
+
+<p>This way, it defines a function an interactively-callable command that accepts
+multiple prompts in one function.</p>
+
+<p>If you are curious about what "s" code does, take a look at <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Interactive-Codes.html">this
+page</a>.</p>

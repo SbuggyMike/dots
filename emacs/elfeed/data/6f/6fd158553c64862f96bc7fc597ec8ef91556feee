@@ -1,0 +1,4 @@
+When I first learned Vite, I found its official slogan, "frontend tooling" and "development environment", to be extremely vague.
+Granted, I also find it hard to describe satisfactorily — “Super-fast dev server + sensible defaults for Rollup” might be a little more descriptive, but might not reflect the project's vision.
+So, what is Vite? The Getting Started page says it best:
+Vite […] is a build tool that aims to provide a faster and leaner development experience for modern web projects.

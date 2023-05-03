@@ -1,0 +1,72 @@
+<div class="content" id="content">
+
+ <div class="outline-2" id="outline-container-ob-swiftui-updates">
+ <h2 id="ob-swiftui-updates"> <span class="timestamp-wrapper"> <span class="timestamp">20 April 2023</span></span> ob-swiftui updates</h2>
+ <div class="outline-text-2" id="text-ob-swiftui-updates">
+ <p>
+While  <a href="https://indieweb.social/@xenodium/110227186721704189">experimenting with delegating Markdown</a> blocks to  <a href="https://orgmode.org/worg/org-contrib/babel/">Org babel</a> in Emacs  <a href="https://github.com/xenodium/chatgpt-shell">chatgpt-shell</a>, I resurrected  <a href="https://github.com/xenodium/ob-swiftui">ob-swiftui</a>. A package I had written to execute and render SwiftUI blocks in org babel.
+</p>
+
+ <p>
+ <a href="https://github.com/xenodium/ob-swiftui">ob-swiftui</a> has two modes of rendering SwiftUI blocks:  <code>:results window</code>, which runs outside of Emacs in a native window and  <code>:results file</code>, which renders and saves to a file. The latter can be viewed directly from Emacs.
+</p>
+
+ <p>
+ <code>:results file</code> was a little clunky. That is, it hardcoded dimensions I had to manually modify if the canvas wasn't big enough. It was also a little slow.
+</p>
+
+ <p>
+The clunkyness really came through with my chatgpt-shell experiments, so I took a closer look and made a few changes to remove hardcoding and speeds things up.
+</p>
+
+ <p>
+The results ain't too shabby.
+</p>
+
+
+ <div class="figure" id="org150a951">
+ <p> <img alt="file-render.gif" src="https://xenodium.com/images/ob-swiftui-updates/file-render.gif" width="80%" /></p>
+</div>
+
+ <p>
+Another tiny improvement is that if you'd like to compose a more complex layout made of multiple custom views,  <code>ob-swiftui</code> now looks for a  <code>ContentView</code> as that root view by default. Specifying another root view was already possible but it had to be explicitly requested via  <code>:view</code> param.
+</p>
+
+ <p>
+You can now omit the  <code>:view</code> param if you name the root view  <code>ContentView</code>:
+</p>
+
+ <div class="org-src-container">
+ <pre class="src src-org">#+begin_src swiftui
+  struct ContentView: View {
+    var body: some View {
+        TopView()
+        BottomView()
+    }
+  }
+
+  struct TopView: View {
+    var body: some View {
+      Text("Top text")
+    }
+  }
+
+  struct BottomView: View {
+    var body: some View {
+      Text("Bottom text")
+    }
+  }
+#+end_src
+</pre>
+</div>
+
+ <p>
+The improvements have been pushed to  <a href="https://github.com/xenodium/ob-swiftui">ob-swiftui</a> and will soon be picked up on  <a href="https://melpa.org/#/ob-swiftui">melpa</a>.
+</p>
+
+ <p>
+Edit: Added ContentView details.
+</p>
+</div>
+</div>
+</div>

@@ -1,0 +1,8 @@
+<p>James Dyer has a useful short post on <a href="https://www.emacs.dyerdwelling.family/emacs/20230308203648-emacs--indexing-my-emacs-init-file/">indexing his init.el file</a>. His scheme is simple. His <code>init.el</code> is broken into sections each of which starts with</p>
+<pre class="example" id="org94083d7">;;
+;; -&gt; Section-name
+;;
+</pre>
+<p>Then he used <code>occur</code> to generate the actual index. Rather than call <code>occur</code> each time with the need to provide the regex, he wrote a 4-line function that does it for him. He doesn’t say whether he bound it to a key sequence but that, of course, is trivial.</p>
+<p>One of the commenters suggested using <code>imenu</code>. That’s would have the advantage of having the results show up in the echo area rather than a separate buffer but it’s not clear that that’s the right thing. You might want to visit more than one section, in which case having a (semi) persistent index is a win.</p>
+<p>Regardless, using <code>imenu</code> instead would be an easy change, especially if you’re using <code>counsel-imenu</code>. For simplicity, though, it would be hard to beat Dyer’s short function using <code>occur</code>. The nice thing is that with either solution you don’t need to install anything (other than a short function): everything you need is already there.</p>

@@ -1,0 +1,16 @@
+<p>Bozhidar Batsov over at <a href="https://emacsredux.com">Emacs Redux</a> has a nice post on <a href="https://emacsredux.com/blog/2023/04/11/looking-up-words-in-a-dictionary/">looking up words in a dictionary with Emacs</a>. The post is about the <a href="https://github.com/myrkr/dictionary-el">dictionary.el</a> package that’s built into Emacs as of version 28. Dictionary is a package for talking to a dictionary server and provides a way to look up words in any of several dictionaries.</p>
+<p>In Batsov’s case he only interested in being able to lookup the word at point so he’s bound <code>dictionary-lookup-definition</code> to <kbd>Ctrl</kbd>+<kbd>c</kbd> <kbd>l</kbd> to easily look up a word but the package can do a lot more as a glance at its GitHub page shows.</p>
+<p>I prefer to use abo-abo’s <a href="https://github.com/abo-abo/define-word">define-word</a> package for routine word lookups because it lists the results in the echo area rather than opening another buffer. I <i>do</i> use <code>dictionary.el</code>, though, for <a href="https://irreal.org/blog/?p=10824">access to Webster’s 1913 dictionary</a>. It’s really convenient because you don’t have to install anything to use it.</p>
+<p>As Batsov explains, you can have local a local dictionary server and dictionaries or you can use the online <code>dict.org</code>. Since I virtually always have connectivity<sup><a class="footref" href="http://irreal.org/blog/?tag=emacs&amp;feed=rss2#fn.1" id="fnr.1">1</a></sup>, I just use <code>dict.org</code> but the choice is up to you. You can also use any other dictionary server—local or remote—that you have access to.</p>
+<p>If you use Emacs for more than just editing code, the ability to quickly and easily look up the definition of a word is a real benefit. And, as I said, it’s already there waiting to be used.</p>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes:</h2>
+<div id="text-footnotes">
+<div class="footdef"><sup><a class="footnum" href="http://irreal.org/blog/?tag=emacs&amp;feed=rss2#fnr.1" id="fn.1">1</a></sup><p></p>
+<div class="footpara">
+<p class="footpara">
+Yesterday notwithstanding.</p>
+</div>
+</div>
+</div>
+</div>

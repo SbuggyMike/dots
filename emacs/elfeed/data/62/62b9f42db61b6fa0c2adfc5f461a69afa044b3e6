@@ -1,0 +1,6 @@
+
+<p>I just saw the map of spacex’s thousands of satellites in orbit and it got me wondering how they can keep them from being hacked.<p>If you have a web server you can do lots of things to help - blocking or whitelisting IPs. Rate limiting password attempts. 2FA etc, but also you can have physical access if things really go wrong.<p>How are these remote systems kept secure? How do you prevent someone just constantly brute forcing the password? Or doing a denial of service attack on them?<p>Presumably someone (Russia) has tried this given the use of Starlink in Ukraine.<p>Just very curious how this task is approached.</p>
+<hr>
+<p>Comments URL: <a href="https://news.ycombinator.com/item?id=35750585">https://news.ycombinator.com/item?id=35750585</a></p>
+<p>Points: 14</p>
+<p># Comments: 2</p>

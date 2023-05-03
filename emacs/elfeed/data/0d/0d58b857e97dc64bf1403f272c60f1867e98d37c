@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-6">
+    <p>After implementing my simple occur indexing in my last post :</p>
+<p><a href="https://emacs.dyerdwelling.family/emacs/20230308203648-emacs--indexing-my-emacs-init-file/">Indexing My Emacs Init File</a></p>
+<p>A suggestion was made to put this into an <code>imenu</code>.</p>
+<p>I thought that was rather a good idea and it would also give me the opportunity to explore <code>imenu</code></p>
+<p>I came up with the following to add to the emacs init file :</p>
+<div class="highlight"><pre tabindex="0"><code class="language-elisp"><span style="display: flex;"><span>(add-hook <span style="color: #e6db74;">'emacs-lisp-mode-hook</span>
+</span></span><span style="display: flex;"><span> (lambda ()
+</span></span><span style="display: flex;"><span>  (setq imenu-sort-function <span style="color: #e6db74;">'imenu--sort-by-name</span>)
+</span></span><span style="display: flex;"><span>  (setq imenu-generic-expression
+</span></span><span style="display: flex;"><span> <span style="color: #f92672;">'</span>(
+</span></span><span style="display: flex;"><span>	(<span style="color: #66d9ef;">nil</span> <span style="color: #e6db74;">"^;;[[:space:]]+-&gt; \\(.*\\)$"</span> <span style="color: #ae81ff;">1</span>)
+</span></span><span style="display: flex;"><span>	(<span style="color: #e6db74;">"defun"</span> <span style="color: #e6db74;">"^.*([[:space:]]*defun[[:space:]]+\\([[:word:]-/]+\\)"</span> <span style="color: #ae81ff;">1</span>)
+</span></span><span style="display: flex;"><span>	(<span style="color: #e6db74;">"use-package"</span> <span style="color: #e6db74;">"^.*([[:space:]]*use-package[[:space:]]+\\([[:word:]-]+\\)"</span> <span style="color: #ae81ff;">1</span>)
+</span></span><span style="display: flex;"><span>	)
+</span></span><span style="display: flex;"><span> )
+</span></span><span style="display: flex;"><span>  (imenu-add-menubar-index)))
+</span></span></code></pre></div><p>which produces the following:</p>
+<img alt="20230414111409-emacs--indexing-emacs-init.jpg" src="https://emacs.dyerdwelling.family/emacs/20230414111409-emacs--indexing-emacs-init.jpg" width="100%" />
+</div>
+  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-6">
+    <p>I thought for good measure I would also add in some menus for <code>defuns</code> and <code>use-package</code> declarations (just for fun!) with my main defined sections forming the top level due to the MENU-TITLE being set to nil in the <code>imenu-generic-expression</code> variable.</p>
+<p>This implementation has the added benefit of integrating nicely into the local completion system.  For example I use <code>vertico</code> and running <code>imenu</code> calls up the defined sections in the mini-buffer and as an extra benefit running <code>consult-imenu</code> does its consult thing to quickly step through the sections or of course to complete.  As I have defined section names for <code>defun</code> and <code>use-package</code> the completion search can search on these too to quickly narrow things down.</p>
+<p>I had never looked into <code>imenu</code> before and it was quite an interesting learning experience and in fact I went all the way to defining my own <code>imenu-create-index-function</code> where I can create my own alist index in any way I want to, that was until I found a more simple method!</p>
+</div>
+</div>

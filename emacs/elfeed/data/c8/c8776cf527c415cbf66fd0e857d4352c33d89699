@@ -1,0 +1,4 @@
+As the popularity of zig cc, more developers may realize Zig is not only a programming language, but also a toolchain to help maintaining C/C++/Zig project.
+Today I want to discuss one vital part of this toolchain: Zig's build system, build.zig the first non-trivial Zig program for newcomers.
+Note: This post is based on Zig 0.11.0-dev.2560+602029bb2.
+Step When we initialize project scaffold via zig init-exe, it will generate build.zig with detailed comments to help us understand what it does.

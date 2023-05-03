@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-6">
+    <figure><img src="https://emacs.dyerdwelling.family/emacs/20230226200456-emacs--Improvements-Pure-Paragraph-Fill.jpg" width="300px" />
+</figure>
+<p>Now I have been using my paragraph refilling function for a little while, see:</p>
+<p><a href="https://emacs.dyerdwelling.family/emacs/20230214201355-emacs--my-pure-paragraph-refill/">my/pure-paragraph-refill</a></p>
+<blockquote>
+<p><strong>Description:</strong> To purely refill simple paragraph text in a multi facetted file (for example org) to a desired fill-column by focussing on a very simple paragraph redefinition</p>
+</blockquote>
+
+<blockquote>
+<p><strong>Use Example:</strong> When switching to a new fill-column to enable a quick refactoring of existing org files and to ignore everything that shouldn’t be refilled.  This is especially prevalent in an org file where the drawers / headers / source blocks e.t.c should be exempt from a purely textual refill</p>
+</blockquote>
+</div>
+  <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 pb-6">
+    <p>I think I can improve this function a little by focussing more on filling a user selected region.  My old routine would start at <code>point-min</code> and format all paragraphs while <code>(not (eobp)</code> thus refactoring the whole file.</p>
+<p>Now I probably don’t always want to do this but if I focus on region formatting I still have the option of selecting the whole file with <code>mark-whole-buffer</code> and can give the user the ability to select which part of the file they would like to refill.</p>
+<p>and now I might as well rebind the emacs default of <code>M-q</code> <code>fill-paragraph</code> to:</p>
+<div class="highlight"><pre tabindex="0"><code class="language-elisp"><span style="display: flex;"><span>(bind-key* (kbd <span style="color: #e6db74;">"M-q"</span>) <span style="color: #e6db74;">'my/pure-paragraph-refill</span>)
+</span></span></code></pre></div><p>which gives me more flexibility than <code>fill-paragraph</code> to not just justify with a universal argument but potentially to also remove hard newlines or to any column width.</p>
+<div class="highlight"><pre tabindex="0"><code class="language-elisp"><span style="display: flex;"><span>(defun my/pure-paragraph-refill-now ()
+</span></span><span style="display: flex;"><span> (ignore-errors
+</span></span><span style="display: flex;"><span>  (if (<span style="color: #a6e22e;">&gt;</span> arg <span style="color: #ae81ff;">1</span>) <span style="color: #75715e;">;; if C-u has been activated</span>
+</span></span><span style="display: flex;"><span> (cond ((<span style="color: #a6e22e;">=</span> arg <span style="color: #ae81ff;">4</span>)
+</span></span><span style="display: flex;"><span>        (org-fill-paragraph arg)) <span style="color: #75715e;">;; C-u</span>
+</span></span><span style="display: flex;"><span>  ((<span style="color: #a6e22e;">=</span> arg <span style="color: #ae81ff;">16</span>)
+</span></span><span style="display: flex;"><span>   (let ((fill-column <span style="color: #ae81ff;">9999</span>))
+</span></span><span style="display: flex;"><span>    (org-fill-paragraph))) <span style="color: #75715e;">;; C-u C-u</span>
+</span></span><span style="display: flex;"><span>  (<span style="color: #66d9ef;">t</span>
+</span></span><span style="display: flex;"><span>   (let ((fill-column arg))
+</span></span><span style="display: flex;"><span>    (org-fill-paragraph)))) <span style="color: #75715e;">;; C-u &lt;num&gt;</span>
+</span></span><span style="display: flex;"><span> (org-fill-paragraph)
+</span></span><span style="display: flex;"><span> )
+</span></span><span style="display: flex;"><span>  )
+</span></span><span style="display: flex;"><span> )
+</span></span><span style="display: flex;"><span>
+</span></span><span style="display: flex;"><span>(defun my/pure-paragraph-refill (arg)
+</span></span><span style="display: flex;"><span> (interactive <span style="color: #e6db74;">"p"</span>)
+</span></span><span style="display: flex;"><span> (save-excursion
+</span></span><span style="display: flex;"><span>  (let ((paragraph-start <span style="color: #e6db74;">"^[-\\\"[:word:]]"</span>)
+</span></span><span style="display: flex;"><span>      (paragraph-separate <span style="color: #e6db74;">"^[-\\\"[:word:]]"</span>))
+</span></span><span style="display: flex;"><span> (if (region-active-p)
+</span></span><span style="display: flex;"><span>  (let ((sta (<span style="color: #a6e22e;">copy-marker</span> (<span style="color: #a6e22e;">region-beginning</span>) <span style="color: #66d9ef;">t</span>))
+</span></span><span style="display: flex;"><span>        (end (<span style="color: #a6e22e;">copy-marker</span> (<span style="color: #a6e22e;">region-end</span>) <span style="color: #66d9ef;">t</span>)))
+</span></span><span style="display: flex;"><span>   (progn
+</span></span><span style="display: flex;"><span>    (<span style="color: #a6e22e;">goto-char</span> sta)
+</span></span><span style="display: flex;"><span>    (while (<span style="color: #a6e22e;">&lt;</span> (<span style="color: #a6e22e;">point</span>) end)
+</span></span><span style="display: flex;"><span>     (my/pure-paragraph-refill-now)
+</span></span><span style="display: flex;"><span>     (forward-paragraph)
+</span></span><span style="display: flex;"><span>     )
+</span></span><span style="display: flex;"><span>    )
+</span></span><span style="display: flex;"><span>   )
+</span></span><span style="display: flex;"><span>  (my/pure-paragraph-refill-now)
+</span></span><span style="display: flex;"><span>  )
+</span></span><span style="display: flex;"><span> )
+</span></span><span style="display: flex;"><span>  )
+</span></span><span style="display: flex;"><span> )
+</span></span></code></pre></div></div>
+</div>

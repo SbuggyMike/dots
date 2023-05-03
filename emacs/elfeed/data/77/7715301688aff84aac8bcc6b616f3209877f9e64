@@ -1,0 +1,21 @@
+<p>Just a quickie on a quickie from Grant Rettke. The quickie is an example from Rettke on <a href="https://www.wisdomandwonder.com/emacs/13972/org-mode-table-data-%e2%87%92-code-%e2%87%92-results">how to import and use a table in an Org code block using shell</a>. The secret is that the table entries get passed in as arguments to the command specified in the shell block.</p>
+<p>That’s good to know but Rettke’s example raised two questions for me. The first is what would happen if the table data had more than a single column. The answer is that it does just what you’d think it should. I reran Rettke’s example with the table</p>
+<pre class="example" id="org24d89dd">#+name: data
+| 1 | a |
+| 2 | b |
+| 3 | c |
+| 4 | d |
+</pre>
+<p>and got the results</p>
+<pre class="example" id="org2982773">#+RESULTS: code
+#+begin_EXAMPLE
+1	a
+2	b
+3	c
+4	d
+#+end_EXAMPLE
+</pre>
+<p>The second question was how he got his results wrapped with the <code>#+begin_EXAMPLE</code>, <code>#+end_EXAMPLE</code> delimiters. I thought that maybe he put the <code>#+RESULT: code</code> in between those delimiters but that didn’t work. The only way I could see to do it was to use the <code>:wrap</code> keyword in the header arguments:</p>
+<pre class="example" id="org849feb4">#+begin_src sh :var arg=data :results output :wrap EXAMPLE
+</pre>
+<p>Perhaps Rettke will drop by and share his secrets with us. In the meantime, if you want to deal with a table in a shell code block, this is how to do it.</p>
