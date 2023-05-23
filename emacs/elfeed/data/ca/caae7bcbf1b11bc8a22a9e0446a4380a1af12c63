@@ -1,0 +1,38 @@
+<div class="content" id="content">
+
+ <div class="outline-2" id="outline-container-chatgpt-shell-siblings-now-on-melpa-also">
+ <h2 id="chatgpt-shell-siblings-now-on-melpa-also"> <span class="timestamp-wrapper"> <span class="timestamp">01 May 2023</span></span> chatgpt-shell siblings now on MELPA also</h2>
+ <div class="outline-text-2" id="text-chatgpt-shell-siblings-now-on-melpa-also">
+ <p>
+In  <a href="https://xenodium.com/chatgpt-shell-available-on-melpa/">chatgpt-shell updates</a>, I highlighted  <code>dall-e-shell</code> (a DALL-E Emacs shell),  <code>ob-chatgpt-shell</code> (ChatGPT org babel support), and  <code>ob-dall-e-shell</code> (DALL-E org babel support) were initially excluded from the  <a href="https://github.com/xenodium/chatgpt-shell">chatgpt-shell</a> MELPA submission while I worked out their split.
+</p>
+
+ <p>
+That's now sorted and the packages are available on MELPA.
+</p>
+
+
+ <div class="figure" id="org0ead1d7">
+ <p> <img alt="melpa-siblings.jpg" src="https://xenodium.com/images/chatgpt-shell-siblings-now-on-melpa-also/melpa-siblings.jpg" width="70%" /></p>
+</div>
+
+ <p>
+Here's  <code>ob-chatgpt-shell</code> and  <code>ob-dall-e-shell</code> in action.
+</p>
+
+
+ <div class="figure" id="orgc1c2975">
+ <p> <img alt="babel.png" src="https://xenodium.com/images/chatgpt-shell-available-on-melpa/babel.png" width="70%" /></p>
+</div>
+
+ <p>
+Here's  <code>dall-e-shell</code>.
+</p>
+
+
+ <div class="figure" id="org952f9c4">
+ <p> <img alt="dalle.png" src="https://xenodium.com/images/chatgpt-shell-available-on-melpa/dalle.png" width="70%" /></p>
+</div>
+</div>
+</div>
+</div>

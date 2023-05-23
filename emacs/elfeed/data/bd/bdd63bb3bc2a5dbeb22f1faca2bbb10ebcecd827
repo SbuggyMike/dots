@@ -1,0 +1,30 @@
+<p>I’m trying to get used to Doom Emacs and one issue I have is that LSP (in my case Eglot) starts automatically
+when I open up a php project.</p>
+
+<p>I don’t really like it because sometimes I open php files that I don’t need autocompletion for
+and I don’t want to remember that there is Eglot process now running that I have to stop to save some resources of my laptop.</p>
+
+<p>It happens because I have defined <code class="language-plaintext highlighter-rouge">php</code> module in <code class="language-plaintext highlighter-rouge">init.el</code> as <code class="language-plaintext highlighter-rouge">(php +lsp)</code>.
+The reason I have it defined like this is because I need LSP.
+I just don’t want to start it automatically every time I open a php file.</p>
+
+<p>I like how easy it is in Doom to inspect the module implementation so I went to Doom’s <code class="language-plaintext highlighter-rouge">modules/lang/php/config.el</code> and I found
+that there is no flag that can force LSP to not start automatically.</p>
+
+<p>What it has though is this line:</p>
+
+<div class="language-emacs-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'php-mode-local-vars-hook</span> <span class="nf">#'</span><span class="nv">lsp!</span> <span class="ss">'append</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>It looks to me like something that starts the LSP automatically. It looks like this mostly because everything else looks pretty much unrelated to LSP.</p>
+
+<p>Since there is no flag, let’s solve it in our own config by directly removing that <code class="language-plaintext highlighter-rouge">lsp!</code> piece from that variable:</p>
+
+<div class="language-emacs-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">after!</span> <span class="nv">php-mode</span>
+  <span class="p">(</span><span class="nv">remove-hook</span> <span class="ss">'php-mode-local-vars-hook</span> <span class="nf">#'</span><span class="nv">lsp!</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>This will remove that <code class="language-plaintext highlighter-rouge">lsp!</code> piece from <code class="language-plaintext highlighter-rouge">php-mode-local-vars-hook</code> and now LSP won’t start automatically.</p>
+
+<p>It would make sense probably to add such a flag so users can easily turn off the auto-LSP but at the same time solution to this
+is just one line so maybe it wouldn’t make sense to add it.</p>

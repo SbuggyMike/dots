@@ -1,0 +1,4 @@
+Just a quick one today!
+I am finding occur extremely useful, from building an index from my emacs init file to searching through org headers to generally just having my isearch all there in a single window.
+However I would rather the cursor would jump to the *Occur* buffer when invoked as it just feels a little more natural, so I added the following:
+(advice-add 'isearch-occur :after '(lambda (origin &amp;rest args) (isearch-exit) (select-window (get-buffer-window "*Occur*")) (goto-char (point-min)) ))

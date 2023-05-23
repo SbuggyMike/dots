@@ -1,0 +1,1 @@
+Svelte doesn't currently have top level await, meaning that in a server-side rendering context, it is impossible to, say, wait a fetch to finish before sending it to the client. There is the #await block, but I want the wait to happen on the server. (I don't care about the full page load taking a little longer as my use case is easily cacheable and already cached on Cloudflare.)

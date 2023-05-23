@@ -1,0 +1,50 @@
+<h3><span style="font-size: small;">June 28 update: using <code>\#1</code> instead of <code>(string-to-number \1)</code></span></h3>
+<p>A reader on <a href="https://www.reddit.com/r/emacs/comments/o8x709/smarter_search_and_replace_already_builtin/">reddit</a> mentionned that the manual also had the "<code>\#d</code>" construct to replace the often used <code>(string-to-number \d)</code> function.</p>
+<p>That regex-replace improvement was mentionned in Stevve Yegge's <a href="https://steve-yegge.blogspot.com/2006/06/">emacs 22</a> introduction, back in 2006.</p>
+<p>Last but not least, I noticed that the whole post was originally written with <code>(string-as-number ...)</code> when the correct function name is <code>(string-to-number ...)</code></p>
+
+<hr />
+
+<p>Not strictly related to translation but here is what's happening...</p>
+<p>I've resumed studies last year, trying to finish an MA in Japan Studies I started 25 years ago.</p>
+<p>For the first year, I only have to write a 30ish pages dissertation on my subject (representation of women in kendo magazines in Japan) and I decided to go the <em>emacs + org-mode</em> way, with the easy export to ODF function that's packaged with the thing.</p>
+<p>So I decided to write each chapter in a different org file, and send them one by one to my director. But then, for the final delivery I needed to put all that in one big file and was faced with the fact that all my footnotes would need to be re-indexed manually because each file had notes starting at <code>1</code>...</p>
+<p>I usually use BBedit for any serious regex work. Mostly because the interface is clearer than emacs, and the regexp feels more modern (<code>\d</code> vs <code>[:digit:]</code>)</p>
+<p>But one thing you can't do in BBEdit is to send commands to the replace string. For ex, in my case, add <code>21</code> to the matching number, which seems pretty trivial, when you think of it, but doing that will involve other technologies, like using perl or some other command line thing.</p>
+<p>In emacs, however, everything can be interpreted as an expression, hence you can insert code wherever you want and get the result from that code right in the document.</p>
+<p>The org-mode footnotes all look like <code>[fn:12]</code>, where "<code>12</code>" is the note number that I need to replace with an incremented number. Since there are no instances of <code>fn:\d+</code> without the brackets that are not footnotes, I figured I could just be searching for that string:</p>
+<p><code>fn:\([:digit:]+\)</code></p>
+<p>Notice that in emacs, "<code>(</code>" and "<code>)</code>" need to be escaped, also I could have used the <code>[0-9]</code> class.</p>
+<p>In BBedit I'd just need:</p>
+<p><code>fn:(\d+)</code></p>
+<p>And now I need to replace that with the expression that will add <code>21</code> to the number.</p>
+<p>In BBEdit, I'd be stuck here. I just can't add anything to a match. In emacs, I can replace the match with that:</p>
+<p><code>fn:\,(+ 21 (string-to-number \1))</code></p>
+<p>The emacs lisp expression is "<code>(+ 21 (string-to-number \1))</code>", which means "convert the <code>\1</code> match that is a string into its numerical value and add <code>21</code> to it".</p>
+<p>But, wasn't <code>\1</code> supposed to match <code>[0-9]+</code>, which is a number? Well, yes, but really it's just digits, hence strings, that have no numerical value whatsoever, so first, we need the expression to convert them to a numerical value before adding <code>21</code> to them.</p>
+<p>Now, the trick is to have the expression be handled as an operation and not as an arbitrary string, and that's where the "<code>\,</code>" prefix comes into play.</p>
+<p>"<code>\,</code>" tells the replace engine that the string that follows must be interpreted as an emacs lisp expression and not as a mere string. With it, the regexp replaces properly adds <code>21</code> to my note numbers, and I get two dozen footnotes updated in one fell swoop...</p>
+<p>I love BBEdit and its people, but emacs is really a gift that keeps on giving.</p>
+<hr />
+<h2><span style="font-size: small;">Here are some handy references:</span></h2>
+<dl>
+  <dt>the emacs <code>regexp-replace</code> function</dt>
+  <dd><a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Regexp-Replace.html" target="blank">Regexp Replacement</a></dd>
+  <dt>the emacs regexp syntax</dt>
+  <dd><a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Regexps.html" target="blank">Syntax of Regular Expressions</a></dd>
+  <dt>the emacs-lisp <code>string-to-number</code> function</dt>
+  <dd><a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/String-Conversion.html" target="blank">Conversion of Characters and Strings</a></dd>
+</dl>
+<h2><span style="font-size: small;">And here is a really super short introduction to lisp syntax</span></h2>
+<p>There is no real need to have a very deep understanding of emacs lisp to use this <code>regexp-replace</code> function. Just remember that a lisp expression generally looks like this:</p>
+<p><code>(operator operands)</code></p>
+<p>Where the <code>operator</code> is a generally a function, like <code>+</code> or <code>string-to-number</code> above, and the <code>operands</code> can be any expression that is accepted by the <code>operator</code>. So, here:</p>
+<p><code>(+ 21 (string-to-number \1))</code></p>
+<p>means:</p>
+<p><code>add 21</code> to the result of the expression <code>(string-to-number \1)</code></p>
+<p>with (string-to-number \1) meaning:</p>
+<p><code>convert the string matched by \1 to its numeric value</code></p>
+<p>Obviously, if <code>\1</code> is not a string, the conversion will fail and the addition won't work. And without that conversion, if we had just added <code>\1</code> as a string, the addition that expects numbers as operands would have failed.</p>
+<p>I just realized that this is my first emacs lisp related post ever ! I'd like to thank that person I met in Tokyo about 15 years ago who showed me the way. It's an egg that definitely took some time to hatch...</p><div class="blogger-post-footer"><hr />
+<a href="http://mac4translators.blogspot.com/2008/02/mac-for-translators-mailing-list.html">Mac for Translators, the discussion group...</a>
+<hr /></div>

@@ -41,6 +41,9 @@
 (use-package modus-themes)
 (load-theme 'modus-vivendi)
 
+; allow for graphical navigation of windows
+(windmove-default-keybindings)
+
 (use-package helm
   :init
   (setq completion-styles '(flex))
@@ -172,7 +175,11 @@
 ;         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
 
 
+; load abbreviation file
 (setq abbrev-file-name "~/dots/emacs/abbreviations")
+
+; load macros file
+(load-file "~/dots/emacs/macros.el")
 
 ;; delete selected text when you start typing
 (delete-selection-mode)
@@ -186,9 +193,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("eb7cd622a0916358a6ef6305e661c6abfad4decb4a7c12e73d6df871b8a195f8" "dde643b0efb339c0de5645a2bc2e8b4176976d5298065b8e6ca45bc4ddf188b7" "5fdc0f5fea841aff2ef6a75e3af0ce4b84389f42e57a93edc3320ac15337dc10" "3ab376acffab6b4e79ae2b6e0a1cce3fa21dbac0027f0ff0dfef02b5c838dba9" "3199be8536de4a8300eaf9ce6d864a35aa802088c0925e944e2b74a574c68fd0" default))
+   '("75e027e3ab2892c5c1f152e3d9fae03718f75bee50d259040e56e7e7672a4872" "eb7cd622a0916358a6ef6305e661c6abfad4decb4a7c12e73d6df871b8a195f8" "dde643b0efb339c0de5645a2bc2e8b4176976d5298065b8e6ca45bc4ddf188b7" "5fdc0f5fea841aff2ef6a75e3af0ce4b84389f42e57a93edc3320ac15337dc10" "3ab376acffab6b4e79ae2b6e0a1cce3fa21dbac0027f0ff0dfef02b5c838dba9" "3199be8536de4a8300eaf9ce6d864a35aa802088c0925e944e2b74a574c68fd0" default))
  '(ispell-dictionary nil)
- '(org-agenda-files '("~/life_org/daily_tasks.org"))
  '(package-selected-packages
    '(gptel try pdf-tools org-alert which-key projectile diminish emms magit use-package-hydra ivy use-package modus-themes))
  '(safe-local-variable-values '((git-commit-major-mode . git-commit-elisp-text-mode))))

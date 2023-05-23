@@ -1,0 +1,140 @@
+<ul class="org-ul">
+<li>Upcoming events:
+<ul class="org-ul">
+<li>EmacsATX: Emacs Social <a href="https://www.meetup.com/emacsatx/events/291143201/">https://www.meetup.com/emacsatx/events/291143201/</a> Wed May 3 1630 America/Vancouver - 1830 America/Chicago - 1930 America/Toronto - 2330 Etc/GMT – Thu May 4 0130 Europe/Berlin - 0500 Asia/Kolkata - 0730 Asia/Singapore</li>
+<li>Emacs Paris (virtual, in French) <a href="https://www.emacs-doctor.com/emacs-paris-user-group/">https://www.emacs-doctor.com/emacs-paris-user-group/</a> Thu May 4 0830 America/Vancouver - 1030 America/Chicago - 1130 America/Toronto - 1530 Etc/GMT - 1730 Europe/Berlin - 2100 Asia/Kolkata - 2330 Asia/Singapore</li>
+<li>M-x Research (contact them for password): TBA <a href="https://m-x-research.github.io/">https://m-x-research.github.io/</a> Fri May 5 0800 America/Vancouver - 1000 America/Chicago - 1100 America/Toronto - 1500 Etc/GMT - 1700 Europe/Berlin - 2030 Asia/Kolkata - 2300 Asia/Singapore</li>
+<li>Mastering Emacs book club <a href="https://susam.net/maze/meet/mastering-emacs/">https://susam.net/maze/meet/mastering-emacs/</a> Fri May 5 1200 America/Vancouver - 1400 America/Chicago - 1500 America/Toronto - 1900 Etc/GMT - 2100 Europe/Berlin – Sat May 6 0030 Asia/Kolkata - 0300 Asia/Singapore</li>
+<li>Mastering Emacs book club <a href="https://susam.net/maze/meet/mastering-emacs/">https://susam.net/maze/meet/mastering-emacs/</a> Sat May 6 0200 America/Vancouver - 0400 America/Chicago - 0500 America/Toronto - 0900 Etc/GMT - 1100 Europe/Berlin - 1430 Asia/Kolkata - 1700 Asia/Singapore</li>
+<li>Mastering Emacs book club <a href="https://susam.net/maze/meet/mastering-emacs/">https://susam.net/maze/meet/mastering-emacs/</a> Sun May 7 0200 America/Vancouver - 0400 America/Chicago - 0500 America/Toronto - 0900 Etc/GMT - 1100 Europe/Berlin - 1430 Asia/Kolkata - 1700 Asia/Singapore</li>
+<li>Emacs.si (in person): Emacs.si meetup #5 2023 (v zivo) <a href="https://dogodki.kompot.si/events/c1ecfef6-f7c4-4df2-99ef-4a7fd78c8cd6">https://dogodki.kompot.si/events/c1ecfef6-f7c4-4df2-99ef-4a7fd78c8cd6</a> Wed May 10 2000 CET</li>
+<li>Atelier Emacs Montpellier (in person) <a href="https://lebib.org/date/atelier-emacs">https://lebib.org/date/atelier-emacs</a> Fri May 12 1800 Europe/Paris</li>
+<li>EmacsSF (in person): coffee.el: calm and civilized, actually <a href="https://www.meetup.com/emacs-sf/events/293234996/">https://www.meetup.com/emacs-sf/events/293234996/</a> Sat May 13 1100 America/Los_Angeles</li>
+</ul></li>
+<li>Emacs configuration:
+<ul class="org-ul">
+<li><a href="https://francopasut.netlify.app/post/emacs_portable_use-package_straight/">D.V.F.P.: Emacs, portable configurazione with "use-package" and "straight"</a></li>
+<li><a href="https://rossabaker.com/configs/emacs/">Ross A. Baker's Emacs config</a></li>
+<li><a href="https://github.com/benthamite/dotfiles/blob/master/emacs/config.org">Pablo’s Emacs config</a></li>
+<li><a href="https://www.reddit.com/r/emacs/comments/1333621/wrote_a_custom_modeline_with_some_help_from/">Wrote a custom mode-line with some help from chatgpt. Shaved some time off init time by removing doom-modeline.</a></li>
+<li><a href="https://github.com/kborling/emacs-config">kborling's Emacs config</a></li>
+<li><a href="https://github.com/kchanqvq/.emacs.d">My emacs config, with README.org index generated from init.el</a> (<a href="https://www.reddit.com/r/emacs/comments/13045x0/my_emacs_config_with_readmeorg_index_generated/">Reddit</a>)</li>
+<li><a href="https://www.youtube.com/live/hoP4I9ounyQ?feature=share">Leaving Doom Emacs For GNU Emacs?</a></li>
+</ul></li>
+<li>Emacs Lisp:
+<ul class="org-ul">
+<li><a href="https://emacstil.com/til/2023/04/27/how-to-define-an-interactive-function-with-multiple-prompts/">Emacs TIL: How to define an interactive function with multiple prompts</a></li>
+</ul></li>
+<li>Appearance:
+<ul class="org-ul">
+<li><a href="https://www.reddit.com/r/emacs/comments/134k63v/pair_programming_code_snippet_what_i_use_to_pair/">Pair Programming Code Snippet (what I use to pair program)</a></li>
+<li><a href="https://tony-zorman.com/images/emacs-potpourri/pixel-scroll-precision-mode.mp4">[mp4] Pixel Scroll Precision Mode</a></li>
+<li><a href="https://emacs.dyerdwelling.family/emacs/20230406200632-emacs--cursor-blinking-rate/">James Dyer: Cursor Blinking Rate</a></li>
+<li><a href="https://github.com/rainstormstudio/nerd-icons.el">nerd-icons.el: A Library for Nerd Font icons</a></li>
+<li><a href="https://github.com/rougier/nano-dialog">nano-dialog: Emacs native dialog box</a></li>
+<li><a href="https://www.reddit.com/r/emacs/comments/12y8tz6/hima_a_minimal_light_theme_with_pretty_colors/">Hima - A minimal light theme with pretty colors</a></li>
+</ul></li>
+<li>Navigation:
+<ul class="org-ul">
+<li><a href="https://blog.jmthornton.net/p/emacs-project-override">Overriding project.el project root in Emacs</a></li>
+<li><a href="https://macowners.club/posts/custom-functions-5-navigation/">Aimé Bertrand: Custom functions No. 5 - Navigation</a></li>
+</ul></li>
+<li>Writing:
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=6-zdJenPcmc">LaTeX previews in emacs</a> (03:22)</li>
+<li><a href="https://www.reddit.com/r/emacs/comments/12ysu9l/emacspowerthesaurus_040_is_out/">emacs-powerthesaurus 0.4.0 is out</a></li>
+</ul></li>
+<li>Org Mode:
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=ucuiyL7Q27E">Emacs + Orgmode synergy</a> (05:28)</li>
+<li><a href="https://www.youtube.com/watch?v=dzd1ZV3Zm3U">MAXIMUM FOCUS | Org Mode Deep Work Log Updated and Improved! (Based On Feedback)</a> (06:00)</li>
+<li><a href="https://www.wisdomandwonder.com/emacs/13972/org-mode-table-data-%e2%87%92-code-%e2%87%92-results">Grant Rettke: Org mode: Table Data -&gt; Code -&gt; Results</a> (<a href="https://irreal.org/blog/?p=11321">Irreal</a>)</li>
+<li><a href="https://taonaw-blog.netlify.app/2022-03-13/">Org ID, Org Attach &amp; Better Folder Names · The Art of Not Asking Why</a></li>
+<li><a href="http://xenodium.com/generating-elisp-org-docs">Alvaro Ramirez: Generating elisp org docs</a></li>
+<li><a href="https://macadie.info/2023/04/20/alternatives-to-org-that-i-will-not-be-using/">Alternatives to Org (that I will not be using) – MacAdie Web Blog</a> (<a href="https://irreal.org/blog/?p=11317">Irreal</a>)</li>
+<li>Import, export, and integration:
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=LS0JMOdQw-s">Emacs | How To Create Beautiful HTML Documents With Org Mode</a> (28:05)</li>
+<li><a href="https://github.com/novoid/postprocess_Org-mode_iCal_export">postprocess_Org-mode_iCal_export: Adding reminder alarms (defined as Org-mode tags) to your iCalendar export file</a></li>
+<li><a href="https://github.com/punchagan/zulip-helpers.el">zulip-helpers.el: Some helpers to post from my org-mode file to Zulip</a></li>
+<li><a href="https://osiux.com/2023-03-06-how-to-automate-graphviz-generate-image-from-dot-file-using-alpine-org2blog.html">How To automate GraphViz generate image from dot file using alpine</a></li>
+<li><a href="https://github.com/novoid/exchange2org">exchange2org: Connects to your Exchange server and extracts data in Org-mode format</a></li>
+<li><a href="https://www.youtube.com/watch?v=HaiqWMG78WA">Org-mode - Change beamer colours</a> (07:15)</li>
+</ul></li>
+</ul></li>
+<li>Coding:
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=JmmTUIahB1U">Emacs, Pyright &amp; Eglot make an excellent Python IDE</a> (11:04, <a href="https://www.reddit.com/r/emacs/comments/131ovtw/emacs_pyright_eglot_make_an_excellent_python_ide/">Reddit</a>)</li>
+<li><a href="https://lifeofpenguin.blogspot.com/2023/04/gnu-emacs-as-lightweight-ide-assembly.html">GNU Emacs as a lightweight IDE - Assembly</a> (<a href="https://www.reddit.com/r/emacs/comments/12zcop7/gnu_emacs_as_a_lightweight_ide_assembly/">Reddit</a>) - CEDET</li>
+<li><a href="https://www.youtube.com/watch?v=W5_mEolJ_Bs">emacs lispy meow clojure programming screencast</a> (01:31:24)</li>
+<li><a href="https://macroexpand.net/pages/git-related.html">Git commits as a way to find related files</a></li>
+</ul></li>
+<li>Mail, news, and chat:
+<ul class="org-ul">
+<li><a href="https://mike.puddingtime.org/posts/2023-04-17-succumbed-to-mu-dot/">Succumbed to mu</a></li>
+<li><a href="https://mike.puddingtime.org/posts/2023-04-20-quick-mu4e-notes/">Quick mu4e notes</a></li>
+<li><a href="https://irreal.org/blog/?p=11323">Irreal: Fixing Mu4e Forcing Opening In Full Frame</a></li>
+</ul></li>
+<li>Doom Emacs:
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=h0oWdOrjjHQ">سری ویدیو های Emacs | نصب و راه اندازی doom emacs</a> (05:57)</li>
+</ul></li>
+<li>AI:
+<ul class="org-ul">
+<li><a href="http://xenodium.com/chatgpt-shell-available-on-melpa">chatgpt-shell on MELPA + feature rundown</a> (<a href="https://www.reddit.com/r/emacs/comments/12ydzp5/chatgptshell_on_melpa_feature_rundown/">Reddit</a>)</li>
+<li><a href="http://xenodium.com/chatgpt-shell-siblings-now-on-melpa-also">chatgpt-shell siblings now on MELPA too</a> (<a href="https://www.reddit.com/r/emacs/comments/134iqn8/chatgptshell_siblings_now_on_melpa_too/">Reddit</a>)</li>
+<li><a href="https://v.redd.it/xjyjiwjmphwa1">ChatGPT inline insertion in latest chatgpt-shell (C-u chatgpt-shell-prompt)</a> (<a href="https://www.reddit.com/r/orgmode/comments/1316klb/chatgpt_inline_insertion_in_latest_chatgptshell/">Reddit</a>)</li>
+</ul></li>
+<li>Community:
+<ul class="org-ul">
+<li><a href="https://www.reddit.com/r/emacs/comments/12zaqju/weekly_tips_tricks_c_thread/">Weekly Tips, Tricks, &amp;c. Thread</a></li>
+<li><a href="https://www.reddit.com/r/emacs/comments/12xha1k/how_to_lock_myself_out_of_my_config/">How to lock myself out of my config?</a></li>
+<li><a href="https://www.youtube.com/watch?v=w8KCrpqOsrc">The Principles of System Crafting - System Crafters Live!</a> (02:04:35)</li>
+</ul></li>
+<li>Other:
+<ul class="org-ul">
+<li><a href="https://www.reddit.com/r/emacs/comments/1342xh4/ann_svgbatteryindicator/">[ANN] svg-battery-indicator</a></li>
+<li><a href="https://www.reddit.com/r/emacs/comments/12xs2e8/new_package_sayregionel/">New Package: say-region.el</a></li>
+<li><a href="https://xenodium.com/recordscreenshot-windows-the-lazy-way/">Recording and screenshotting windows: the lazy way</a> (<a href="https://irreal.org/blog/?p=11315">Irreal</a>) - Mac</li>
+<li><a href="https://www.reddit.com/r/emacs/comments/131354i/guide_compile_your_own_emacs_to_make_it_really/">[Guide] Compile your own Emacs to make it really really fast, on Windows</a></li>
+<li><a href="https://www.reddit.com/r/emacs/comments/131qmkk/custombuilt_emacs_vs_prebuilt_emacs_benchmarks/">Custom-built Emacs vs Pre-built Emacs benchmarks (v30.0.50) and current Emacs performance on Windows</a></li>
+<li><a href="https://www.reddit.com/r/emacs/comments/12xbt17/if_youre_having_trouble_getting_emacs29_to_run/">If you're having trouble getting Emacs-29 to run under SystemD in Fedora….</a></li>
+<li><a href="https://hackaday.com/2023/04/22/build-your-own-bootable-emacs-environment/">Build Your Own Bootable Emacs Environment</a></li>
+<li><a href="https://github.com/Restif1975/bel-compiler">Restif1975/bel-compiler: A Bel compiler to Emacs Lisp bytecode</a></li>
+</ul></li>
+<li>Emacs development:
+<ul class="org-ul">
+<li>emacs-devel:
+<ul class="org-ul">
+<li><a href="https://lists.gnu.org/archive/html/emacs-devel/2023-04/msg00777.html">Copy and paste from Emacs 29 to Thunderbird doesn’t work</a></li>
+<li><a href="https://lists.gnu.org/archive/html/emacs-devel/2023-04/msg00684.html">Continued discussion of CVEs</a></li>
+<li><a href="https://lists.gnu.org/archive/html/emacs-devel/2023-04/msg00772.html">Discussion of package.el and stability of core packages</a></li>
+</ul></li>
+<li><a href="https://git.savannah.gnu.org/cgit/emacs.git/commit/etc/NEWS?id=022f50ebe616e04bb34487a26d529ca08954d287">New command 'tramp-cleanup-some-buffers'</a></li>
+<li><a href="https://git.savannah.gnu.org/cgit/emacs.git/commit/etc/NEWS?id=c7fc4c811923725b961cfbf7e6a2051ae08c1eea">eww: Provide completions for bookmarks and suggested URIs.</a></li>
+<li><a href="https://git.savannah.gnu.org/cgit/emacs.git/commit/etc/NEWS?id=df6cc4d33b63880a270297ac321a0ae338274cd7">eww: Enable completion in URL/keyword prompt.</a></li>
+</ul></li>
+<li>New packages:
+<ul class="org-ul">
+<li><a href="https://melpa.org/#/async-job-queue" target="_blank">async-job-queue</a>: Dispatch queue of async jobs to a fixed number of slots (MELPA)</li>
+<li><a href="https://melpa.org/#/bbww" target="_blank">bbww</a>: Improved word-jumping functions (MELPA)</li>
+<li><a href="https://melpa.org/#/bind" target="_blank">bind</a>: Bind commands to keys (MELPA)</li>
+<li><a href="https://melpa.org/#/bitpack" target="_blank">bitpack</a>: Bit packing functions (MELPA)</li>
+<li><a href="https://melpa.org/#/blackjack" target="_blank">blackjack</a>: The game of Blackjack (MELPA)</li>
+<li><a href="https://melpa.org/#/dall-e-shell" target="_blank">dall-e-shell</a>: Interaction mode for DALL-E (MELPA)</li>
+<li><a href="https://melpa.org/#/hima-theme" target="_blank">hima-theme</a>: A minimal theme with pretty colors (MELPA)</li>
+<li><a href="https://melpa.org/#/nerd-icons-completion" target="_blank">nerd-icons-completion</a>: Add icons to completion candidates (MELPA)</li>
+<li><a href="https://melpa.org/#/ob-chatgpt-shell" target="_blank">ob-chatgpt-shell</a>: Org babel functions for ChatGPT evaluation (MELPA)</li>
+<li><a href="https://melpa.org/#/ob-dall-e-shell" target="_blank">ob-dall-e-shell</a>: Org babel functions for DALL-E evaluation (MELPA)</li>
+<li><a href="https://melpa.org/#/org-assistant" target="_blank">org-assistant</a>: Org babel extension for Chat Assistant APIs (MELPA)</li>
+<li><a href="https://melpa.org/#/org-change" target="_blank">org-change</a>: Annotate changes in org-mode files (MELPA)</li>
+<li><a href="https://melpa.org/#/projection" target="_blank">projection</a>: Project specific compilation commands (MELPA)</li>
+<li><a href="https://melpa.org/#/rewriting-pcase" target="_blank">rewriting-pcase</a>: Support for rewriting sexps in source code (MELPA)</li>
+<li><a href="https://melpa.org/#/treemacs-nerd-icons" target="_blank">treemacs-nerd-icons</a>: Emacs Nerd Font Icons theme for treemacs (MELPA)</li>
+<li><a href="https://melpa.org/#/typst-mode" target="_blank">typst-mode</a>: A major mode for working with Typst typesetting system (MELPA)</li>
+</ul></li>
+</ul>
+
+<p>
+Links from <a href="https://www.reddit.com/r/emacs">reddit.com/r/emacs</a>, <a href="https://www.reddit.com/r/orgmode">r/orgmode</a>, <a href="https://www.reddit.com/r/spacemacs">r/spacemacs</a>, <a href="https://www.reddit.com/r/planetemacs">r/planetemacs</a>, <a href="https://hn.algolia.com/?query=emacs&amp;sort=byDate&amp;prefix&amp;page=0&amp;dateRange=all&amp;type=story">Hacker News</a>, <a href="https://lobste.rs/search?q=emacs&amp;what=stories&amp;order=newest">lobste.rs</a>, <a href="https://lemmy.ml/c/emacs">lemmy</a>, <a href="https://planet.emacslife.com">planet.emacslife.com</a>, <a href="https://www.youtube.com/playlist?list=PL4th0AZixyREOtvxDpdxC9oMuX7Ar7Sdt">YouTube</a>, <a href="http://git.savannah.gnu.org/cgit/emacs.git/log/etc/NEWS">the Emacs NEWS file</a>, <a href="https://emacslife.com/calendar/">Emacs Calendar</a>, and <a href="http://lists.gnu.org/archive/html/emacs-devel/2023-05">emacs-devel</a>. Thanks to Andrés Ramírez for emacs-devel links. Do you have an Emacs-related link or announcement? Please e-mail me at <a href="mailto:sacha@sachachua.com">sacha@sachachua.com</a>. Thank you!
+</p>

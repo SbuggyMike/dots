@@ -1,0 +1,29 @@
+<h2>Peeling Back the Curtain of Some Blogging Wizardy</h2>
+        <p>In <a href="https://irreal.org/blog/?p=11340">Completing Org Links</a>, the author mentioned the following: “I try never to link to something more than once in a single post.”</p>
+<p>And I agree!</p>
+<p>In a single <em>blog</em> post, I like all of my article’s <code>A-tags</code> to have unique <code>href</code> attributes.<span class="sidenote-number"><small class="side"> 
+See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"></a><a>: The Anchor element - HTML: HyperText Markup Language</a>
+</small></span>
+  And I also like to use semantic <span><span><a href="https://en.wikipedia.org/wiki/HTML">Hypertext Markup Language</a></span> (<abbr title="Hypertext Markup Language">HTML</abbr> <small><a class="ref" href="https://takeonrules.com/site-map/glossary/#abbr-dfn-HTML" rel="tag opener" title="Other site-wide references of “Hypertext Markup Language”">📖</a></small>)</span>, such as the <code>CITE-tag</code><span class="sidenote-number"><small class="side"> 
+See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite"><cite>: The Citation element - HTML: HyperText Markup Language</cite></a>
+</small></span>
+  or the <code>ABBR-tag</code>.<span class="sidenote-number"><small class="side"> 
+See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr"><abbr>: The Abbreviation element - HTML: HyperText Markup Language</abbr></a>
+</small></span>
+</p>
+<p>In my Org-Mode writing, I frequently link to existing Denote documents.  Some of those documents do not have a public <span><span><a href="https://en.wikipedia.org/wiki/URL">Uniform Resource Locator</a></span> (<abbr title="Uniform Resource Locator">URL</abbr> <small><a class="ref" href="https://takeonrules.com/site-map/glossary/#abbr-dfn-URL" rel="tag opener" title="Other site-wide references of “Uniform Resource Locator”">📖</a></small>)</span> and others do.  During the export from Org-Mode to Hugo, via Ox-Hugo, linked documents that have public <abbr title="Uniform Resource Locators">URLs</abbr> will be written up as Hugo shortcodes.  And linked documents without public <abbr title="Uniform Resource Locators">URLs</abbr> will be rendered as plain text.</p>
+<p>The shortcode logic<span class="sidenote-number"><small class="side"> 
+<a href="https://github.com/jeremyf/takeonrules-hugo-theme/blob/a400789e543ad29ea3bfad20f110d9388549b560/layouts/shortcodes/glossary.html">See glossary.html shortcode</a> for implementation details.
+</small></span>
+ ensures that each page does not have duplicate <code>A-tags</code>.  And in the case of abbreviations, the short code ensures that the first time I render the abbreviation, it renders  as: <code>Full Term (Abbreviation)</code> then the next time as <code>Abbreviation</code>; always using the correct <code>ABBR</code> tag and corresponding <code>title</code> attribute.</p>
+<p>I also have date links<span class="sidenote-number"><small class="side"> 
+<a href="https://github.com/jeremyf/dotemacs/blob/3de5c1e49582e1cb48e353a1730be7a9bedce336/emacs.d/jf-denote.el#L553-L557">Here I add “date” to the org-link-set-parameters</a>
+</small></span>
+, which export as <code>TIME-tags</code>.<span class="sidenote-number"><small class="side"> 
+See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time"><time>: The (Date) Time element - HTML: HyperText Markup Language</time></a>
+</small></span>
+  And someday, I might get around to writing a function to find the nodes that reference a date’s same year, year/month, and year/month/day.</p>
+<p>Another advantage of multiple links in my Org-Mode is that when I shuffle my notes to different files, the backlink utility of Denote and Org-Roam will pick up these new documents</p>
+<p>All of this means that my Org-Mode document is littered with links, but on export the resulting to my blog, things become tidier.</p>
+<p>So yes, don’t repeat links in blog posts; that’s just a lot of clutter.  But for <span><span><a href="https://en.wikipedia.org/wiki/Personal_knowledge_management">Personal Knowledge Management</a></span> (<abbr title="Personal Knowledge Management">PKM</abbr> <small><a class="ref" href="https://takeonrules.com/site-map/glossary/#abbr-dfn-PKM" rel="tag opener" title="Other site-wide references of “Personal Knowledge Management”">📖</a></small>)</span>, spamming the links helps me ensure that I’m able to find when and where I mention things.</p>
+<p>Which is another reason I have an extensive <a href="https://takeonrules.com/site-map/glossary/">Glossary of Terms for Take on Rules</a>.  All in service of helping me find things.</p>

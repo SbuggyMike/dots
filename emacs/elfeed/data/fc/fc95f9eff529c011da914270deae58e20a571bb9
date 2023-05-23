@@ -1,0 +1,24 @@
+<p>This is a relatively quick one, again on the topic of tiling window managers.</p>
+
+<p>Previous on this blog:</p>
+
+<ol>
+  <li><a href="https://chainsawriot.com/postmannheim/2023/03/13/stumpwm.html">On StumpWM, AwesomeWM, and xmonad</a></li>
+  <li><a href="https://chainsawriot.com/postmannheim/2023/05/01/sway.html">On Sway(WM)</a></li>
+</ol>
+
+<p>In the previous post on Sway, I wrote:</p>
+
+<blockquote>
+  <p>An added benefit of Sway is that it is a Wayland compositor (not X11). So far, I am quite happy with Sway. Let’s see how long this happiness can hold.</p>
+</blockquote>
+
+<p>Okay, exactly a week. And the fact that Sway being a Wayland compositor to me and at this time point is not a benefit. Being pure Wayland now (May 2023) is not a good time point because there are still many applications still run in X. Firefox runs fine in Wayland. My vanilla Gnome Terminal runs fine in Wayland. The problems are Spotify and most importantly, emacs. And yes, there is a emulation layer called XWayland. It runs fine for a short time. But if an XWayland application runs for too long, on my machine it goes like this:</p>
+
+<center><img src="https://chainsawriot.com/assets/wayland_die.png" width="900" /></center>
+
+<p>If I am lucky, I can kill it. If I am not lucky, my machine go nuts and reboot randomly. In short, extremely annoying. There are many non-X replacements for Spotify (psst, ncspot etc.). It is not a big issue actually. The main issue is emacs. The upcoming emacs 29 has a pgtk (Pure GTK) branch and a pure GTK emacs is fully Wayland compatible. But I can’t get it run stably on my Ubuntu 22.04 LTS machine, either compiling it from source or using the snap package. The running emacs quits randomly. Again, super annoying.</p>
+
+<p>So, I need to make the switch again. And this time, given the time invested in Sway, I go for its older sister <a href="https://i3wm.org/">i3</a>, which is still an X-based system. As Sway is a i3-compatible WM, the transition to i3 is almost painless. Basically, the only difference is to change all <code class="language-plaintext highlighter-rouge">swaymsg</code> to <code class="language-plaintext highlighter-rouge">i3-msg</code>. Also, the management of output devices (monitors) is managed by the very familiar <code class="language-plaintext highlighter-rouge">xrandr</code>.</p>
+
+<p>I decided that this is my last choice, at least for this year. If it is problematic like the ones I have tried so far (StumpWM, AwesomeWM, xmonad, Sway), I will not switch to another tiling window manager but go back to the regular GNOME. And actually, maybe something like <a href="https://github.com/pop-os/shell">Pop shell</a> is enough.</p>

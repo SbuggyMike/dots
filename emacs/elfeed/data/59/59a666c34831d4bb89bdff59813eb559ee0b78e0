@@ -1,0 +1,113 @@
+<h2>Leveraging cape and org-element-map</h2>
+        <p>I write a lot of things using Org-Mode.  One function I have wanted is auto-completion of links that already exist in the current Org-Mode buffer.<span class="sidenote-number"><small class="side"> 
+I have created custom links for abbreviations, epigraphs, dates, and glossary of terms.
+</small></span>
+</p>
+<p><time datetime="2023-05-06">Last night</time> I spent a bit of time writing that function.  I remembered Org-Roam’s completion functions, so I started there for inspiration.</p>
+<h2 id="writing-some-emacs-lisp">Writing Some Emacs Lisp</h2>
+<p>I looked to <a href="https://github.com/org-roam/org-roam/blob/5c06471c3a11348342719fd9011486455adeb701/org-roam-node.el#L778-L793">org-roam-complete-link-at-point</a> for inspiration.  I need a function that returns the text of the links.  Along with the text, I would need the <code>raw-link</code>.</p>
+<p>Below is <code>jf/org-links-with-text</code>, the function I wrote.<span class="sidenote-number"><small class="side"> 
+Here’s the link to <a href="https://github.com/jeremyf/dotemacs/blob/675f3a7c432963a16b47e4b348b85991d2fdbbef/emacs.d/jf-org-mode.el#L87-L114">jf/org-links-with-text</a>.
+</small></span>
+</p>
+<ins class="update margin" datetime="2023-05-07"><small><em><strong><time datetime="2023-05-07">May 7, 2023</time> update:</strong></em></small> 
+<p><small><time datetime="2023-05-07">This afternoon</time> I updated the <code>jf/org-links-with-text</code> to handle links without labels/text.</small></p>
+</ins>
+
+<pre><code class="language-emacs-lisp">(defun jf/org-links-with-text (&amp;optional given-link)
+  "Return the `distinct-' `org-mode' links in the
+ `current-buffer'.
+
+Each element of the list will be a `propertize' string where the
+string value is the text of the link and the \"link\" property
+will be the :raw-link.
+
+When provided a GIVEN-LINK stop processing when we encounter the
+first matching link."
+
+
+  (let ((links
+	 (org-element-map
+	     (org-element-parse-buffer)
+	     'link
+	   (lambda (link)
+	     (when-let* ((left (org-element-property :contents-begin link))
+			 (right (org-element-property :contents-end link)))
+	       (let ((returning
+		      (propertize
+		       (buffer-substring-no-properties left right)
+		       'link (org-element-property :raw-link link))))
+		 (if given-link
+		     (when (string= given-link returning)
+		       returning)
+		   returning))))
+	   nil
+	   given-link)))
+    ;; Ensure that we have a distinct list.
+    (if (listp links)
+	(-distinct links)
+      (list links))))
+</code></pre>
+<p>The above loops through all <code>link</code> elements.  Assembling a propertized string with each link it encounters.  When provided a <code>given-link</code> it halts processing on the first match.  And then returns a list of the matches.<span class="sidenote-number"><small class="side"> 
+I reference <a href="https://orgmode.org/worg/dev/org-element-api.html">Org Element API</a> when writing the function.
+</small></span>
+</p>
+<p>Here are some examples of the propertized string section of the code:</p>
+<ul>
+<li>Given <code>[[https://orgmode.org][Org-Mode]]</code> then return the string <code>Org-Mode</code> with a <code>'link</code> property of <code>https://orgmode.org</code>.</li>
+<li>Given <code>[[denote:20230506T202945][Title of Note]]</code> then return the string <code>Title of Note</code> with a <code>'link</code> property of <code>denote:20230506T202945</code>.</li>
+</ul>
+<p>In other words, the <code>CAPF</code> function I’m developing will handle all Org-Mode style links.</p>
+<p>With that function, I turned to the inspiration of the <a href="https://github.com/org-roam/org-roam/blob/5c06471c3a11348342719fd9011486455adeb701/org-roam-node.el#L778-L793">org-roam-complete-link-at-point</a>.  Below is the function I wrote.<span class="sidenote-number"><small class="side"> 
+Here’s the link to <a href="https://github.com/jeremyf/dotemacs/blob/675f3a7c432963a16b47e4b348b85991d2fdbbef/emacs.d/jf-org-mode.el#L62-L85">jf/org-capf-links</a>.
+</small></span>
+</p>
+<pre><code class="language-emacs-lisp">;; Cribbed from `org-roam' org-roam-complete-link-at-point
+(defun jf/org-capf-links ()
+  "Complete links."
+  (when (and (thing-at-point 'symbol)
+          (not (org-in-src-block-p))
+          (not (save-match-data (org-in-regexp org-link-any-re))))
+    ;; We want the symbol so that links such performing completion on
+    ;; "org-mode" will look for links with the text of org-mode and
+    ;; then replace the text "org-mode" with the returned link.
+    (let ((bounds (bounds-of-thing-at-point 'symbol)))
+      (list (car bounds) (cdr bounds)
+        ;; Call without parameters, getting a links (filtered by CAPF
+        ;; magic)
+        (jf/org-links-with-text)
+        :exit-function
+        (lambda (text _status)
+          ;; We want the properties of that link.  In the case of one
+          ;; match, the provided text will have the 'link property.
+          ;; However if the
+          (let ((link (car (jf/org-links-with-text text))))
+            (delete-char (- (length text)))
+            (insert "[[" (get-text-property 0 'link link) "]"
+                    "[" text "]]")))
+        ;; Proceed with the next completion function if the returned
+        ;; titles do not match. This allows the default Org capfs or
+        ;; custom capfs of lower priority to run.
+        :exclusive 'no))))
+</code></pre>
+<p>The above <code>jf/org-capf-links</code> function has three significant parts:</p>
+<p>The <code>(when (and…</code> section guards running in a context where things might get confusing.</p>
+<p>The <code>(bounds-of-thing-at-point 'symbol)</code> section checks the current item; I could use either <code>'symbol</code> or <code>'word</code>; but <code>'symbol</code> means I can complete or links that have dashes.</p>
+<p>The <code>:exit-function</code>, and this is where I spent significant time.  In my first round of testing, I had a simple Org-Mode buffer that had one link.  When I called the <span><span>Completion at Point Function</span> (<abbr title="Completion at Point Function">CaPF</abbr> <small><a class="ref" href="https://takeonrules.com/site-map/glossary/#abbr-dfn-CAPF" rel="tag opener" title="Other site-wide references of “Completion at Point Function”">📖</a></small>)</span> function (via <kbd>TAB</kbd>) the <code>lambda</code>’s <code>text</code> parameter would have the propertized value.</p>
+<p>However, when I had multiple candidates, and selected one, the <code>lambda</code>’s <code>text</code> parameter would not have the propertized value.  Hence, I had to go and find again the property.</p>
+<p>Last, I wire this into my Org-Mode.<span class="sidenote-number"><small class="side"> 
+To test the functions prior, I had already done this.
+</small></span>
+  I use the Corfu and Cape packages.  Below is the configuration for my Org-Mode <abbr title="Completion at Point Functions">CaPFs</abbr>:</p>
+<pre><code class="language-emacs-lisp">  (defun jf/org-capf ()
+    "The `completion-at-point-functions' I envision using for `org-mode'."
+    (setq-local completion-at-point-functions
+      (list (cape-super-capf
+              #'jf/org-capf-links
+              #'tempel-expand
+              #'cape-file))))
+(add-hook ‘org-mode-hook #’jf/org-capf)
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>Given that I write between one thousand and four thousand words per day in Org-Mode and I do a lot of linking to code, glossaries, and external sites, I felt it worth the time and energy to write up a <abbr title="Completion at Point Function">CaPF</abbr> that could help reduce context shifting.</p>
+<p>Now, when I write, I can use my <kbd>TAB</kbd> completion to provide link candidates to insert.</p>

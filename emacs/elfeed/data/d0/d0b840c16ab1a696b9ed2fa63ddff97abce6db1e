@@ -1,0 +1,39 @@
+<p>
+There’s so much discourse around the new class of “large language models” (henceforth “LLM”s) going around that I feel compelled to write my thoughts out.
+</p>
+
+<p>
+To begin, there’s this persistent problem with our language around these things.
+It’s far too easy for people to talk about these language models “thinking” this or “recognizing” that; manners of speaking that imply agency when I don’t really think that it’s warranted.
+If an LLM gives the correct answer in response to a query, it’s important to recognize that what you’re seeing is not an intelligent agent getting the query, parsing out the meaning of it, and arriving at the answer, but simply continuing the text in a way that comports with what it’s been trained on.
+That is, the “answers” – really, we should say “continuations” – are a matter of statistical correlation; there’s no semantics here, and only syntax on the level of brute-force matching.
+This is why it makes me feel like I’m losing my mind when seeing people use these things for searching or otherwise getting factual information.
+The <i>only</i> thing that these systems do – can do – is generate <i>plausible</i> continuations of text.
+</p>
+
+<p>
+Some people may argue that, for all we know, this is essentially how humans work.
+That’s debatable, but in any case, a key distinction is that humans generally can metacognate to the extent that we know when we don’t know something.
+LLMs, on the other hand, will just keep going, try to generate an answer which – because they are pretty good at manipulating language and have huge data-sets to draw on – is generally fairly plausible, grammatical, confident, and wrong.
+As Noam Chomsky has pointed out, one of the problems with these LLMs is that they’re <i>too</i> “powerful”, in the sense that they are capable of “reasoning” from incoherent premises.
+This is a problem, because it means that they will always generate feasible-looking some output, even if the “correct” answer is “that question is ill-formed”.
+</p>
+
+<p>
+I will admit to feeling fairly melancholy when I first read about how these things can transform programming.
+I actually really enjoy the practice of programming and I would be sad to have it be so devalued that it wouldn’t be a viable career.
+However, when I actually tried using these things for programming work, I rapidly became much less concerned.
+From what I’ve seen, the LLMs can only really provide answers for the most trivial of tasks – every time I’ve tried using them for something non-trivial, they’ve given code that was simply non-functional.
+It looks like what it is – the first few StackOverflow results for similar questions (only “similar”, because of course if the answer was actually that easy to find, I would already have had it), mushed together, made syntactically valid, but often calling non-existent libraries, and when it actually runs just doesn’t perform the task it was supposed to.
+To date, I’ve yet to have it give me either correct code or to tell me (correctly) that what I was trying to do wasn’t possible.
+</p>
+
+<p>
+If people could just stick to using these things for manipulating language – “turn these bullet points into a prose paragraph” sort of thing – then I think that would be fine.
+It does what it’s actually good for, it’s easy to verify that the output is what you want.
+When people start using it to find meaning though – summarizing reports, translating text, writing code – things start to get dicey.
+You have to be so careful to ensure that it’s not making up output that happens to resemble what the true output should be that it hardly seems worthwhile to me.
+If you had an assistant that got things right, say 80% of the time, but the other 20%, instead of telling you it forgot or can’t perform the task, just made something up, that would hardly seem like an assistant worth having around – you’d have to spend more time verifying their work than they would actually save you.
+As humans we’re not used to dealing with entities that are such perfectly confident bullshitters that I fear many people will be far too easily misled.
+Anyone that’s studied human factors design knows that having a system that is <i>often</i> right but still requires a human operator to pay very close attention for infrequent errors is a recipe for rapid complacency with potentially disastrous consequences.
+</p>

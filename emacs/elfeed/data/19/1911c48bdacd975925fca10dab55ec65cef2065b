@@ -1,0 +1,7 @@
+
+<p>Hi HN,
+Excuse me if the formatting sucks, this is a first time post.<p>I want to introduce to you vrfd.info. A place where you can openly view and influence the reputation of any Ethereum address. Think of it as Yelp but for Eth.<p>Addresses are classified as either verified or flagged on-chain through soulbound NFTs. A type of NFT that has no trade value as it cannot be sold. Once minted, it is stuck to the given address. The metadata of the NFT contains either information to verify the address with, this could be a social account for example. Or in the case of flagged addresses, the metadata contains proof of wrong-doing.<p>Users can search the classification status of any address on the web app. Additionally, users can apply to either verify or report an address, provided proof. In the case of reports, users stand a chance to be rewarded. Finally, users can up or down vote other addresses.<p>I made this tool after suffering one to many scam without having an open source library where addresses can be reported or their credentials verified.<p>It's still a bit clunky, but the core concept works fully integrated on the Testnet. I'm shipping a big update this week to make it more responsive.<p>Thanks for taking the time to read this. Please give me any feedback as I am looking to improve everywhere I can.</p>
+<hr>
+<p>Comments URL: <a href="https://news.ycombinator.com/item?id=35832486">https://news.ycombinator.com/item?id=35832486</a></p>
+<p>Points: 26</p>
+<p># Comments: 9</p>

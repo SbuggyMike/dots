@@ -1,0 +1,23 @@
+<p>Charles Choi has an application, <a href="http://yummymelon.com/captee/">Captee</a>, in the Mac App store that’s a generalization of my <a href="http://irreal.org/blog/?p=3696">jcs-get-link</a> function. My function inserts an Org link to the currently active page in Safari. I use it constantly when writing blog posts. It may seem like a simple thing but it saves me a huge amount of time.</p>
+<p>It’s pretty simple but it uses Apple Script so it only works on the Mac. Here it is:</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">jcs-retrieve-url</span> ()
+  <span style="color: #8b2252;">"Retrieve the URL of the current Safari page as a string."</span>
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">(org-trim (shell-command-to-string</span>
+  <span style="color: #b22222;">;;   </span><span style="color: #b22222;">"osascript -e 'tell application \"Safari\" to return URL of document 1'")))</span>
+  (do-applescript <span style="color: #8b2252;">"tell application \"Safari\" to return URL of document 1"</span>))
+
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">jcs-get-link</span> (hostp)
+  <span style="color: #8b2252;">"Retrieve URL from current Safari page and prompt for description.</span>
+<span style="color: #8b2252;">With the universal argument, return a link to the host only.</span>
+<span style="color: #8b2252;">Insert an Org link at point."</span>
+  (<span style="color: #a020f0;">interactive</span> <span style="color: #8b2252;">"P"</span>)
+  (<span style="color: #a020f0;">let*</span> ((link (read-from-minibuffer <span style="color: #8b2252;">"Link Description: "</span>))
+         (result (jcs-retrieve-url))
+         (urlobj (url-generic-parse-url result))
+         (host (concat (url-type urlobj) <span style="color: #8b2252;">"://"</span> (url-host urlobj))))
+    (insert (format <span style="color: #8b2252;">"[[%s][%s]]"</span> (<span style="color: #a020f0;">if</span> hostp host (org-trim result)) link))))
+</pre>
+</div>
+<p>It would be easy to change this to work with any browser on the Mac.</p>
+<p>Choi’s solution is a generalization because it works with any application that supports the Mac Share menu. It can also generate either Org or Markdown markup. For non-Emacs use, it puts the result in the clipboard but inserts it directly into the buffer if you’re using Emacs. On the other hand, you have to switch focus to the application to use the share menu whereas with <code>jcs-get-link</code> you don’t have to leave the comfort of Emacs. If you’re looking for an easy way to insert Org or Markdown links, take a look at Captee.</p>

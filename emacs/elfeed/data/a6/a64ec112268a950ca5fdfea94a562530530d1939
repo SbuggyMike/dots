@@ -1,0 +1,27 @@
+ 
+<p>
+The Tories want to ban communication systems that use end-to-end
+encryption.  They've announced their decision that "safety", supposedly
+to be achieved by monitoring everyone's communications, outweighs privacy,
+so digital systems that maintai8n our privacy against state surveillance
+will be banned.
+<p>
+Paradoxically, what may 
+<a href="https://www.theguardian.com/technology/2023/may/08/whatsapp-could-disappear-uk-over-privacy-concerns-ministers-told">defend us is WhatsApp.</a>
+<p>
+The WhatsApp application is nonfree software -- users can't tell what
+it really does, let alone fix anything malicious or merely broken that
+may be in it.  So many nonfree programs are malware that we shouldn't
+suppose any of them is honest.  The nonfree WhatsApp App could send
+all the user's private nessages, in plain text form, to whoever
+Meta/Facebook wishes, whether that be the Chinese government, the UK
+government, the US government, or Meta itself.
+<p>
+We can't have free software packages that do communication with
+end-to-end encryption if communication systens with end-to-end
+encryption are prohibited.  Paradoxically, a proporietary app which is
+not fit to trust may protect our right to have systems which can be
+worthy of our trust.
+
+<p>
+ 

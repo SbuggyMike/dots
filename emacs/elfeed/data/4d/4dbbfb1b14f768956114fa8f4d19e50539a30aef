@@ -1,0 +1,39 @@
+<p>At least in Doom Emacs the default keybindings for evil-mc are really cumbersome, here’s a Hydra that makes things much easier:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="p">(</span><span class="nv">defhydra</span> <span class="nv">my-mc-hydra</span> <span class="p">(</span><span class="ss">:color</span> <span class="nv">pink</span>
+                       <span class="ss">:hint</span> <span class="no">nil</span>
+                       <span class="ss">:pre</span> <span class="p">(</span><span class="nv">evil-mc-pause-cursors</span><span class="p">))</span>
+  <span class="s">"
+^Match^            ^Line-wise^           ^Manual^
+^^^^^^----------------------------------------------------
+_Z_: match all     _J_: make &amp; go down   _z_: toggle here
+_m_: make &amp; next   _K_: make &amp; go up     _r_: remove last
+_M_: make &amp; prev   ^ ^                   _R_: remove all
+_n_: skip &amp; next   ^ ^                   _p_: pause/resume
+_N_: skip &amp; prev
+
+Current pattern: %`evil-mc-pattern
+
+"</span>
+  <span class="p">(</span><span class="s">"Z"</span> <span class="nf">#'</span><span class="nv">evil-mc-make-all-cursors</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">"m"</span> <span class="nf">#'</span><span class="nv">evil-mc-make-and-goto-next-match</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">"M"</span> <span class="nf">#'</span><span class="nv">evil-mc-make-and-goto-prev-match</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">"n"</span> <span class="nf">#'</span><span class="nv">evil-mc-skip-and-goto-next-match</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">"N"</span> <span class="nf">#'</span><span class="nv">evil-mc-skip-and-goto-prev-match</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">"J"</span> <span class="nf">#'</span><span class="nv">evil-mc-make-cursor-move-next-line</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">"K"</span> <span class="nf">#'</span><span class="nv">evil-mc-make-cursor-move-prev-line</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">"z"</span> <span class="nf">#'</span><span class="nv">+multiple-cursors/evil-mc-toggle-cursor-here</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">"r"</span> <span class="nf">#'</span><span class="nv">+multiple-cursors/evil-mc-undo-cursor</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">"R"</span> <span class="nf">#'</span><span class="nv">evil-mc-undo-all-cursors</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">"p"</span> <span class="nf">#'</span><span class="nv">+multiple-cursors/evil-mc-toggle-cursors</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">"q"</span> <span class="nf">#'</span><span class="nv">evil-mc-resume-cursors</span> <span class="s">"quit"</span> <span class="ss">:color</span> <span class="nv">blue</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">"&lt;escape&gt;"</span> <span class="nf">#'</span><span class="nv">evil-mc-resume-cursors</span> <span class="s">"quit"</span> <span class="ss">:color</span> <span class="nv">blue</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Here’s how I map it in Doom:</p>
+
+<div class="language-elisp highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="p">(</span><span class="nv">map!</span>
+ <span class="p">(</span><span class="ss">:when</span> <span class="p">(</span><span class="nv">featurep!</span> <span class="ss">:editor</span> <span class="nv">multiple-cursors</span><span class="p">)</span>
+  <span class="ss">:prefix</span> <span class="s">"g"</span>
+  <span class="ss">:nv</span> <span class="s">"z"</span> <span class="nf">#'</span><span class="nv">my-mc-hydra/body</span><span class="p">))</span>
+</code></pre></div></div>

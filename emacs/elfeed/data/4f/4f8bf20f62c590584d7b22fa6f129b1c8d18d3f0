@@ -1,0 +1,137 @@
+<ul class="org-ul">
+<li>Emacs 29:
+<ul class="org-ul">
+<li><a href="https://www.reddit.com/r/emacs/comments/13hc64s/emacs_29091_pretest_2_for_291_is_out/">Emacs 29.0.91 (Pretest #2 for 29.1) is out</a> (<a href="https://irreal.org/blog/?p=11360">Irreal</a>)</li>
+</ul></li>
+<li>Help wanted:
+<ul class="org-ul">
+<li><a href="https://lists.gnu.org/archive/html/emacs-devel/2023-05/msg00242.html">Anyone want to help bring url.el up to date, maybe based on plz?</a></li>
+</ul></li>
+<li>Upcoming events:
+<ul class="org-ul">
+<li>M-x Research (contact them for password): Show and Tell! <a href="https://m-x-research.github.io/">https://m-x-research.github.io/</a> Wed May 17 0800 America/Vancouver - 1000 America/Chicago - 1100 America/Toronto - 1500 Etc/GMT - 1700 Europe/Berlin - 2030 Asia/Kolkata - 2300 Asia/Singapore</li>
+<li>Mastering Emacs book club <a href="https://susam.net/maze/meet/mastering-emacs/">https://susam.net/maze/meet/mastering-emacs/</a> Fri May 19 1200 America/Vancouver - 1400 America/Chicago - 1500 America/Toronto - 1900 Etc/GMT - 2100 Europe/Berlin – Sat May 20 0030 Asia/Kolkata - 0300 Asia/Singapore</li>
+<li>Mastering Emacs book club <a href="https://susam.net/maze/meet/mastering-emacs/">https://susam.net/maze/meet/mastering-emacs/</a> Sat May 20 0200 America/Vancouver - 0400 America/Chicago - 0500 America/Toronto - 0900 Etc/GMT - 1100 Europe/Berlin - 1430 Asia/Kolkata - 1700 Asia/Singapore</li>
+<li>Mastering Emacs book club <a href="https://susam.net/maze/meet/mastering-emacs/">https://susam.net/maze/meet/mastering-emacs/</a> Sun May 21 0200 America/Vancouver - 0400 America/Chicago - 0500 America/Toronto - 0900 Etc/GMT - 1100 Europe/Berlin - 1430 Asia/Kolkata - 1700 Asia/Singapore</li>
+<li>Emacs APAC (virtual) <a href="https://emacs-apac.gitlab.io/">https://emacs-apac.gitlab.io/</a> Sat May 27 0130 America/Vancouver - 0330 America/Chicago - 0430 America/Toronto - 0830 Etc/GMT - 1030 Europe/Berlin - 1400 Asia/Kolkata - 1630 Asia/Singapore</li>
+</ul></li>
+<li>Emacs configuration:
+<ul class="org-ul">
+<li><a href="https://www.reddit.com/r/emacs/comments/13caudx/if_you_like_straight_you_should_try_elpaca/">If you like Straight, you should try Elpaca</a></li>
+<li><a href="https://github.com/meedstrom/deianira">deianira: Give every Emacs key sequence prefix the power to persist</a></li>
+<li><a href="https://emacsair.me/2023/05/10/transient-0.4">Jonas Bernoulli: Transient 0.4 released</a> - continuing to look for donations</li>
+<li><a href="https://github.com/kwpav/dotfiles/blob/master/emacs.org#org-babel">dotfiles/emacs.org at master · kwpav/dotfiles · GitHub</a></li>
+<li><a href="https://github.com/djgoku/dot-files/tree/main/emacs">djgoku's Emacs Config</a></li>
+<li><a href="https://github.com/garyo/emacs-config">garyo's Emacs Config</a></li>
+<li><a href="https://github.com/ChanderG/dotfiles/blob/master/emacs.org">ChanderG's Emacs Config</a></li>
+<li><a href="https://www.reddit.com/r/emacs/comments/13gmp5e/my_emacs_config_d/">My Emacs Config :D</a></li>
+<li><a href="https://code.rosaelefanten.org/dotfiles/dir?type=tree&amp;ci=tip">.dotfiles: Top-level Files of tip</a></li>
+</ul></li>
+<li>Appearance:
+<ul class="org-ul">
+<li><a href="https://git.sr.ht/~pkal/face-shift">face-shift - Shift the color of certain faces in Emacs</a></li>
+<li><a href="https://www.youtube.com/watch?v=EJaIUhPuY7E">Changing the region colour for Vanilla Emacs</a> (02:39)</li>
+</ul></li>
+<li>Navigation:
+<ul class="org-ul">
+<li><a href="https://github.com/joaotavora/breadcrumb">joaotavora/breadcrumb: Emacs headerline indication of where you are in a large project</a> (<a href="https://www.reddit.com/r/emacs/comments/13fsiuf/joaotavorabreadcrumb_emacs_headerline_indication/">Reddit</a>)</li>
+<li><a href="https://www.emacs.dyerdwelling.family/emacs/20230503211610-emacs--isearch-occur-advice-window-focus/">James Dyer: Initial focus in Occur Buffer</a></li>
+<li><a href="https://www.youtube.com/watch?v=cSzj8dLS9Iw&amp;feature=youtu.be">Emacs Meta Dot And CTRL C CTRL D Are Super Useful 2023_05_07_22:48:48</a></li>
+</ul></li>
+<li>Dired:
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=-wa17HkM8XE">Emacs package nerd-icons-dired</a> (02:02)</li>
+</ul></li>
+<li>Org Mode:
+<ul class="org-ul">
+<li><a href="https://mbork.pl/2023-05-13_Dieting_with_Org_mode">Marcin Borkowski: Dieting with Org mode</a></li>
+<li><a href="https://www.youtube.com/watch?v=EGLZCFgk5zE">Org mode | Refile this under "Totally awesome, dude."</a> (07:56)</li>
+<li><a href="https://www.reddit.com/r/emacs/comments/13e2ze3/request_for_feedback_on_package_documentation/">Request for feedback on package documentation (org-gtd 3.0, pre-release)</a></li>
+<li><a href="https://takeonrules.com/2023/05/08/the-why-of-linking-to-a-resource-multiple-times/">Jeremy Friesen: The Why of Linking to a Resource Multiple Times</a></li>
+<li><a href="https://www.youtube.com/watch?v=LgMlNQf61gM">Emacs | Org id will change how you see things</a> (10:38)</li>
+<li>Import, export, and integration:
+<ul class="org-ul">
+<li><a href="https://youtu.be/44XH1nJKsVQ">Converting an Excel spreadsheet into an org-table</a> (<a href="https://www.reddit.com/r/emacs/comments/13cln7y/converting_an_excel_spreadsheet_into_an_orgtable/">Reddit</a>)</li>
+<li><a href="https://jeffkreeftmeijer.com/ox-html-markdown-style-footnotes/">ox-html-markdown-style-footnotes: Markdown-style footnotes for ox-html.el</a></li>
+<li><a href="https://emacsnotes.wordpress.com/2023/05/13/producing-formal-indian-style-letters-using-org-mode-and-opendocument-exporter/">How to produce formal Indian-style Letters using Org-mode and OpenDocument exporter</a></li>
+<li id="[[&lt;a href="><a href="https://www.kengrimes.com/ox-hugo-tutorial/">https://www.kengrimes.com/ox-hugo-tutorial/</a>][Ken Grimes"&gt;Using ox-hugo To Build Websites with Emacs]] (2018)</li>
+<li><a href="https://github.com/karthink/org-src-context">org-src-context: LSP support for Org source buffers.</a></li>
+<li><a href="https://www.youtube.com/watch?v=atKDa510qaM">How I Crafted the New Website with Org Publish - System Crafters Live!</a> (02:04:40)</li>
+</ul></li>
+<li>Org development:
+<ul class="org-ul">
+<li><a href="https://git.savannah.gnu.org/cgit/emacs/org-mode.git/commit/etc/ORG-NEWS?id=fe74a3ed2d81704e9e1caae0b6e1be2e0eefc3f2">org-crypt-decrypt-entry: Apply initial visibility upon decryption</a></li>
+<li><a href="https://git.savannah.gnu.org/cgit/emacs/org-mode.git/commit/etc/ORG-NEWS?id=9d06e7bf80056a3fb8ae68a86883e2b3c6746553">ox.el: Add more customizable `org-export-dispatch' options</a></li>
+</ul></li>
+</ul></li>
+<li>Completion:
+<ul class="org-ul">
+<li><a href="https://github.com/xFA25E/abbrev-hook">abbrev-hook: Define hooks for abbrevs in Emacs</a></li>
+<li><a href="https://www.youtube.com/watch?v=d5MyOy70lwg&amp;feature=youtu.be">Emacs Company Mode Is Bloody Good 2023_05_10_03:44:57</a></li>
+</ul></li>
+<li>Coding:
+<ul class="org-ul">
+<li><a href="https://github.com/joaotavora/sly-stepper">sly-stepper: A portable Common Lisp stepper interface</a></li>
+<li><a href="https://gluer.org/blog/2023/using-go-on-gnu-emacs-29-or-later/">Using Go on GNU Emacs 29 or later</a></li>
+<li><a href="https://github.com/vkazanov/quakec-mode/">GitHub - vkazanov/quakec-mode: Emacs major mode for QuakeC development</a> (<a href="https://www.reddit.com/r/emacs/comments/13gbpkn/github_vkazanovquakecmode_emacs_major_mode_for/">Reddit</a>)</li>
+<li><a href="https://gitlab.com/peterhoeg/prometheus-mode">Peter Hoeg / prometheus-mode · GitLab</a> (<a href="https://www.reddit.com/r/emacs/comments/13df0ue/emacs_and_prometheus_new_mode/">Reddit</a>)</li>
+<li><a href="https://github.com/burakbayramli/emacs-jupyter">burakbayramli/emacs-jupyter: emacs plug-in to run python code inside tex or markdown buffer</a> (<a href="https://www.reddit.com/r/emacs/comments/13dk5uv/running_python_jupyter_notebooks_in_markdown/">Reddit</a>)</li>
+<li><a href="https://www.youtube.com/watch?v=SNx1Ab2oqw8">emacs tree-sitter set up and installing grammars</a> (01:13:25)</li>
+</ul></li>
+<li>Math:
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=ibv2e2o8ov8">Basic introduction to Emacs Calc</a> (07:10)</li>
+</ul></li>
+<li>Mail, news, and chat:
+<ul class="org-ul">
+<li><a href="https://github.com/alphapapa/ement.el/releases/tag/v0.9">Ement.el v0.9 released (a Matrix client for Emacs)</a> (<a href="https://www.reddit.com/r/emacs/comments/13h4c7w/ementel_v09_released_a_matrix_client_for_emacs/">Reddit</a>)</li>
+<li><a href="https://github.com/djcb/mu/issues/75">Thread-folding has been merged into mu4e</a></li>
+</ul></li>
+<li>AI:
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=fvBDxiFPG6I&amp;feature=youtu.be">Turn Emacs into your personal AI assistant with org-ai</a></li>
+</ul></li>
+<li>Community:
+<ul class="org-ul">
+<li><a href="https://www.reddit.com/r/emacs/comments/13dk54r/weekly_tips_tricks_c_thread/">Weekly Tips, Tricks, &amp;c. Thread</a></li>
+<li><a href="https://macadie.info/2023/05/09/2023-05-austin-emacs-meetup/">Eric MacAdie: 2023-05 Austin Emacs Meetup</a></li>
+<li><a href="https://www.youtube.com/watch?app=desktop&amp;v=cxoE2FhOIgI&amp;amp;feature=youtu.be">Why I Prefer Emacs Over VSCode and vim</a> (<a href="https://www.reddit.com/r/planetemacs/comments/13gjq38/why_i_prefer_emacs_over_vscode_and_vim/">Reddit</a>)</li>
+<li><a href="https://www.reddit.com/r/emacs/comments/13e5xw0/weve_launched_attribution_based_economics/">We've launched Attribution Based Economics</a></li>
+<li><a href="https://lists.gnu.org/archive/html/emacs-devel/2023-05/msg00330.html">emacs-devel discussion: Names are not descriptions; descriptions are not names</a></li>
+</ul></li>
+<li>Other:
+<ul class="org-ul">
+<li><a href="https://github.com/hckiang/emacs-jyutping">hckiang/emacs-jyutping: An Emacs Quail input method for Cantonese language.</a> (2020)</li>
+<li><a href="https://francopasut.netlify.app/post/vimdiff-ediff/">D.V.F.P.: Notes on resolving differences between two documents with the built-in resources of Vim and Emacs</a> (<a href="https://irreal.org/blog/?p=11347">Irreal</a>)</li>
+<li><a href="https://www.reddit.com/r/emacs/comments/13ejqj5/bash_scripts_i_use_daily_currently_for_nonemacs/">bash scripts i use daily currently (for non-emacs terminal)</a></li>
+<li><a href="https://www.reddit.com/r/emacs/comments/13chck7/fyi_github_ci_for_mirroredforked_emacs/">FYI: Github CI for mirrored/forked Emacs' feature/android branch.</a></li>
+<li><a href="https://zck.org/nix-development-shells">Zachary Kanfer: Nix Development Shells</a></li>
+</ul></li>
+<li>Emacs development:
+<ul class="org-ul">
+<li>emacs-devel:
+<ul class="org-ul">
+<li><a href="https://lists.gnu.org/archive/html/emacs-devel/2023-05/msg00268.html">Divergence of vhdl-mode development</a></li>
+<li><a href="https://lists.gnu.org/archive/html/emacs-devel/2023-05/msg00257.html">Explanation of why you shouldn't signal errors from a process sentinel</a></li>
+</ul></li>
+<li><a href="https://lists.gnu.org/archive/html/help-gnu-emacs/2023-05/msg00099.html">How msys2/mingw-packages provides clang-built Emacs 28.x binary packages</a></li>
+<li><a href="https://git.savannah.gnu.org/cgit/emacs.git/commit/etc/NEWS?id=9f856e4cd095c24cf4e6cadbc04efaf533e59f37">Use `mutate-constant` as warning identifier</a></li>
+<li><a href="https://git.savannah.gnu.org/cgit/emacs.git/commit/etc/NEWS?id=bfc07100d28d0f687da0a1dd5fdfa42a92a93f88">Byte-compiler warning about mutation of constant values</a></li>
+<li><a href="https://git.savannah.gnu.org/cgit/emacs.git/commit/etc/NEWS?id=f24ea84f430d5ae6fd3fa5373610551f62ce25be">Add safe-local-variable-directories variable.</a></li>
+</ul></li>
+<li>New packages:
+<ul class="org-ul">
+<li><a href="https://melpa.org/#/awk-yasnippets" target="_blank">awk-yasnippets</a>: Yasnippets for AWK (MELPA)</li>
+<li><a href="https://melpa.org/#/champagne" target="_blank">champagne</a>: Graphical countdowns (MELPA)</li>
+<li><a href="https://melpa.org/#/esmond-theme" target="_blank">esmond-theme</a>: Esmond dark theme (MELPA)</li>
+<li><a href="https://melpa.org/#/lab" target="_blank">lab</a>: An interface for GitLab (MELPA)</li>
+<li><a href="https://melpa.org/#/projection-multi" target="_blank">projection-multi</a>: Projection integration for `compile-multi' (MELPA)</li>
+<li><a href="https://melpa.org/#/repl-driven-development" target="_blank">repl-driven-development</a>: Send arbitrary code to a REPL in the background (MELPA)</li>
+<li><a href="https://elpa.gnu.org/packages/urgrep.html" target="_blank">urgrep</a>: Universal recursive grep (GNU ELPA)</li>
+<li><a href="https://elpa.gnu.org/packages/url-http-oauth.html" target="_blank">url-http-oauth</a>: OAuth 2.0 for URL library (GNU ELPA)</li>
+</ul></li>
+</ul>
+
+<p>
+Links from <a href="https://www.reddit.com/r/emacs">reddit.com/r/emacs</a>, <a href="https://www.reddit.com/r/orgmode">r/orgmode</a>, <a href="https://www.reddit.com/r/spacemacs">r/spacemacs</a>, <a href="https://www.reddit.com/r/planetemacs">r/planetemacs</a>, <a href="https://hn.algolia.com/?query=emacs&amp;sort=byDate&amp;prefix&amp;page=0&amp;dateRange=all&amp;type=story">Hacker News</a>, <a href="https://lobste.rs/search?q=emacs&amp;what=stories&amp;order=newest">lobste.rs</a>, <a href="https://lemmy.ml/c/emacs">lemmy</a>, <a href="https://planet.emacslife.com">planet.emacslife.com</a>, <a href="https://www.youtube.com/playlist?list=PL4th0AZixyREOtvxDpdxC9oMuX7Ar7Sdt">YouTube</a>, <a href="http://git.savannah.gnu.org/cgit/emacs.git/log/etc/NEWS">the Emacs NEWS file</a>, <a href="https://emacslife.com/calendar/">Emacs Calendar</a>, and <a href="http://lists.gnu.org/archive/html/emacs-devel/2023-05">emacs-devel</a>. Thanks to Andrés Ramírez for emacs-devel links. Do you have an Emacs-related link or announcement? Please e-mail me at <a href="mailto:sacha@sachachua.com">sacha@sachachua.com</a>. Thank you!
+</p>

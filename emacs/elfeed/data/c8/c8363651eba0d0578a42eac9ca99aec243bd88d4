@@ -1,0 +1,17 @@
+<p>Just a quick note on how easy it is to actually navigate Doom Emacs documentation and modules.</p>
+
+<p>I initially was a little afraid that I will not be able to understand what each Doom module does
+and there always will be some hidden functionaltiy that will be hard for me to find.</p>
+
+<p>Fortunately there is M-x <code class="language-plaintext highlighter-rouge">M-x doom/help-search-headings</code> that allows me to search through
+Doom documentation. Specifically it allows me to search through org headings of the documentation.</p>
+
+<p>I can easily find a module I’m interested in, let’s say <code class="language-plaintext highlighter-rouge">lsp</code>.
+Then I’ll go there and I can see all the documentation of the module. I can see what packages will be installed and what configuration
+options available for the module (e.g. <code class="language-plaintext highlighter-rouge">+eglot</code> for <code class="language-plaintext highlighter-rouge">lsp</code>).
+Being in the <code class="language-plaintext highlighter-rouge">README.org</code> of a module I can also open <code class="language-plaintext highlighter-rouge">config.el</code> which is in the same directory and I’ll be able to inspect
+all the Elisp that module will add into my Emacs.</p>
+
+<p>If you’d like to search not just headings but everything then <code class="language-plaintext highlighter-rouge">M-x doom/help-search</code> is your friend.</p>
+
+<p>I start to like Doom more and more every day.</p>

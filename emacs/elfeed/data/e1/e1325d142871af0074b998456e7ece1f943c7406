@@ -1,0 +1,6 @@
+
+<p>Over the last decade I've built a number of different digital asset managers (mostly media files) that met the needs of my companies at the time. It is an area I enjoy working in. A month ago, when asked what was next for me, I jokingly said I would build another DAM.<p>Then on Saturday, two weeks ago, I learnt that Imgur was going to delete all anonymous & NSFW files on the 15th of May. It was pointed out that this would mean broken links in communities that had relied on Imgur. By the Sunday I had decided that I would build another DAM, initially with the intent of avoiding Imgur link rot.<p>It was challenging to find time to spend on this, the project was put together over about 8 evenings. It still has rough patches, this is an early MVP (a Michael Seibel "brick").<p>I have many ideas of where to take this project, but for now it only does one thing: backup Imgur files and produce new links that are easy to swap out for old soon-to-be-deleted Imgur links.</p>
+<hr>
+<p>Comments URL: <a href="https://news.ycombinator.com/item?id=35835971">https://news.ycombinator.com/item?id=35835971</a></p>
+<p>Points: 40</p>
+<p># Comments: 20</p>

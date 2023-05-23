@@ -1,0 +1,16 @@
+<p>This Friday morning (2023-05-19) the Git packaging migration will start until Sunday (2023-05-21). The Arch Linux packaging team will not be able to update packages in any of the repositories during this period.</p>
+<p>Notification when the migration starts, and when it is completed, will be published on the <code>[arch-dev-public]</code> mailing list.</p>
+<h2>How does this impact Arch Linux users?</h2>
+<p>The <code>[testing]</code> repository will be split into <code>[core-testing]</code> and <code>[extra-testing]</code>, the <code>[staging]</code> repository will be split into <code>[core-staging]</code> and <code>[extra-staging]</code>. The <code>[community]</code> repository will be merged into <code>[extra]</code> and will therefore be empty after the migration.</p>
+<p>All affected repositories will be provided as empty repositories for a transition period after the migration. For regular users, this means that everything works as before.</p>
+<p><strong>Note:</strong> After the migration is done, users that have the testing repositories enabled need to include the new repositories (<code>[core-testing]</code> and <code>[extra-testing]</code> instead of <code>[testing]</code>) in their <code>pacman.conf</code> before updating their system.</p>
+<p>Other changes:</p>
+<ul>
+<li><a href="https://archlinux.org/svn/">SVN access</a> is discontinued and will dissappear.</li>
+<li>The svn2git mirror will no longer be updated.</li>
+<li><code>asp</code>, which relies on the svn2git mirror, will stop working. It is replaced by <a href="https://man.archlinux.org/man/pkgctl-repo-clone.1.en"><code>pkgctl repo clone</code></a>.</li>
+</ul>
+<h2>How does this impact Arch Linux tier 1 mirrors?</h2>
+<p>During the migration rsync and HTTP access will be shut down. We will send an email notification to arch-mirrors once everything has been finished.</p>
+<h2>How does this impact Arch Linux packagers?</h2>
+<p>Packagers will not be able to patch and update their packages. The internal Tier 0 mirror is also going to be disabled for the duration of this migration.</p>

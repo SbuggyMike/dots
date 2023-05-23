@@ -1,0 +1,181 @@
+<p><em>After the exciting news from the <a href="https://2023.clojure-conj.org/">Clojure/conj</a> that
+<a href="https://www.datomic.com/">Datomic</a> is now free, I was excited to get home and upgrade and
+access newer features and high-availability. Herein are notes from
+how that upgrade process went that I help will be helpful to anyone
+else upgrading, including difficulties I had running the official
+Datomic AMIs.</em></p>
+<aside class="toc">
+<h2>Table of Contents</h2>
+<nav id="TableOfContents">
+<ol>
+<li><a href="https://camdez.com/index.xml#peer-library">Peer Library</a></li>
+<li><a href="https://camdez.com/index.xml#transactors-on-aws">Transactors (on AWS)</a></li>
+<li><a href="https://camdez.com/index.xml#wrap-up">Wrap-Up</a></li>
+</ol>
+</nav>
+</aside>
+<p>The system I was running was using the very old Datomic On-Prem
+0.9.5544 version. Your mileage may vary upgrading from different
+versions, but I was impressed that the large version jump didn’t seem
+to cause any issues.</p>
+<p>Disclaimer: This post is for informational purposes only; I can’t
+guarantee these details are correct / harmless for your configuration,
+and disclaim any responsibility for damage they may cause. I’m only
+detailing my personal experience in hopes the notes will be helpful
+for others.</p>
+<p>First, before doing anything to your setup, <strong>make sure you have a
+current backup of your database</strong> (<a href="https://docs.datomic.com/pro/operation/backup.html">instructions here</a>). I
+didn’t run into any issues that required me to restore a backup, but
+<em>safety first</em>.</p>
+<h2 id="peer-library">Peer Library</h2>
+<p>Upgrading the peer library was quite trivial and pleasant. Peer
+libraries are backwards compatible past version 0.9.4532 (released
+2014-02-07). You need only pull the latest version of the peer
+library into your project via your <code>deps.edn</code> (or <code>project.clj</code>) file,
+and the peer should have no trouble interacting with your existing
+transactor(s).</p>
+<p>N.B. the Maven artifact ID has changed in this release as the library
+is now available via public sources (i.e. <a href="https://central.sonatype.com/artifact/com.datomic/peer/">Maven
+Central</a>):</p>
+<div class="highlight"><pre tabindex="0"><code class="language-clj"><span style="display: flex;"><span>com.datomic/peer {<span style="color: #e6db74;">:mvn/version</span> <span style="color: #e6db74;">"1.0.6726"</span>}
+</span></span></code></pre></div><p>With this change, you can now remove configuration of the
+<code>my.datomic.com</code> Maven repository from your <code>deps.edn</code> or
+<code>~.m2/settings.xml</code> files (if you don’t use those repositories for
+other dependencies). You may also have Datomic download credentials
+configured in your CI environment that you can now remove.</p>
+<h2 id="transactors-on-aws">Transactors (on AWS)</h2>
+<p>Upgrading my transactor was where I ran into some trouble, and where I
+expect these notes to be most helpful.</p>
+<p>I’m assuming you’re now running updated (v1.0.6726) peers, but
+transactors should also be backwards compatible back to version
+0.9.4532, so you’re likely safe either way. That said, I haven’t
+tested that configuration.</p>
+<p>Upgraded transactors can run alongside older transactors, even if you
+were previously running a version of Datomic that did not support
+<a href="https://docs.datomic.com/pro/operation/ha.html">“high availability”</a> (i.e. multiple transactors), so my
+recommended approach here is to spin up a new CloudFormation stack
+with one or more upgraded transactors alongside your existing
+CloudFormation stack running the old transactor(s). The new
+transactor(s) will not be used until the old transactor(s) have failed
+to communicate a heartbeat to storage, so nothing will immediately
+change with respect to your transactions when the new stack starts
+running.</p>
+<p>If you have existing <code>cf.properties</code> and <code>transactor.properties</code>
+files, you can simply update these and use the <code>bin/datomic create-cf-template</code> command to generate a new <code>cf.json</code> file. I found
+<a href="https://engineering.collbox.co/post/updating-datomic-on-prem-running-on-aws/">my old notes on updating Datomic</a> to be very
+helpful in navigating this process.</p>
+<p>Specifically, update:</p>
+<ul>
+<li><code>cf.properties</code>
+<ul>
+<li><code>datomic-version</code> to <code>1.0.6726</code></li>
+<li><code>aws-autoscaling-group-size</code>: if you were previously limited by
+your license to running a single transactor, you may now want to
+increase this value to <code>2</code> to take advantage of high availability.</li>
+</ul>
+</li>
+<li><code>transactor.properties</code>
+<ul>
+<li><code>license-key</code>: you can now remove this value entirely. Leaving it
+in doesn’t hurt anything either.</li>
+<li><code>aws-cloudwatch-dimension-value</code>: you may consider using a new
+name here; I found this helpful in ensuring my new transactors
+were running properly. I assume below that you have used a new
+dimension name.</li>
+</ul>
+</li>
+</ul>
+<p>With this approach, your existing AWS IAM Roles and SecurityGroups
+will be used for the new transactor EC2 instances, so all of the
+access restrictions and capabilities should remain the same as before.</p>
+<p>Now you’re ready to generate your new CloudFormation configuration:</p>
+<div class="highlight"><pre tabindex="0"><code class="language-sh"><span style="display: flex;"><span>bin/datomic create-cf-template my-transactor.properties my-cf.properties my-cf.json
+</span></span></code></pre></div><p><em>Make sure you’re running this command from the directory where you’ve
+downloaded and unpacked the 1.0.6727 version of Datomic.</em></p>
+<p>At this point, you <em>should</em> be able to use the newly generated
+<code>my-cf.json</code> file to run your new transactor stack—but this was not
+the case for me; my transactors kept restarting shortly after launch,
+and it took several hours of work to make sense of what was going on
+and create a solution.</p>
+<p>By my read, the official Datomic AMIs are running Java 8, whereas
+<a href="https://forum.datomic.com/t/release-notice-datomic-on-prem-after-march-31st-2023-on-prem-releases-will-no-longer-support-running-on-java-8/2193">Datomic requires Java 11</a> since 2023-03-31.
+Specifically, <code>java -version</code> reported <code>openjdk version "1.8.0_362"</code>
+in the <code>ami-cca215b4</code> AMI that <code>bin/datomic</code> injected into my
+<code>cf.json</code> for the <code>us-west-2</code> region.</p>
+<p>Short of building your own AMI, you can fix this issue by upgrading
+<code>java</code> via the <code>UserData</code> script embedded in the <code>cf.json</code> file.</p>
+<p>Add the five lines between the blank lines here to your <code>cf.json</code> file
+(the blank lines are not necessary and only added for clarity):</p>
+<pre tabindex="0"><code> {"Fn::Join":
+["=", ["export DATOMIC_VERSION", {"Ref":"DatomicVersion"}]]},
+"curl -LO https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.tar.gz",
+"tar -xvzf amazon-corretto-11-x64-linux-jdk.tar.gz -C /usr/lib/jvm/",
+"JVM_DIR=`ls -d /usr/lib/jvm/amazon-corretto-*-linux-x64/bin`",
+"alternatives --install /usr/bin/java java $JVM_DIR/java 20000 --slave /usr/bin/javac javac $JVM_DIR/javac",
+"alternatives --set java $JVM_DIR/java",
+"cd \/datomic", "cat &lt;&lt;EOF &gt;aws.properties",
+</code></pre><p>Now that you have a corrected <code>cf.json</code> file, you can spin up the
+CloudFormation stack with:</p>
+<div class="highlight"><pre tabindex="0"><code class="language-sh"><span style="display: flex;"><span>bin/datomic create-cf-stack us-west-2 DatomicTransactors my-cf.json
+</span></span></code></pre></div><p>Make sure to…</p>
+<ul>
+<li>Replace <code>us-west-2</code> with your preferred AWS region.</li>
+<li>Replace <code>DatomicTransactors</code> with the name you’d like to use for
+your CloudFormation stack. You’ll need to use a different name from
+your pre-existing CloudFormation stack.</li>
+</ul>
+<p>If you now open CloudFormation on the AWS Management Console, you’ll
+see your new stack, which will be created very quickly. Navigate to
+EC2 &gt; Instances, and you should see your new transactor instance(s)
+spinning up. The <code>Name</code> field will match the name you set for the
+CloudFormation stack.</p>
+<p>Wait a few minutes for the <code>Instance state</code> to change to <code>Running</code> and
+for the <code>Status check</code> field to say checks have passed.</p>
+<p>Now navigate to CloudWatch &gt; Metrics &gt; All Metrics, select <code>Datomic</code>,
+then <code>Transactor</code>. If you used a new name for
+<code>aws-cloudwatch-dimension-value</code>, as suggested above, the presence of
+metrics with this new dimension name means the transactor(s) are
+running and reporting metrics.</p>
+<p>At this point you’re ready to make one of your new transactors be the
+primary transactor. All you need to do is knock your old transactors
+offline briefly and the (still) running transactor(s) will take over.
+Obviously you’ll want to do this at a time when it is OK (or <em>most</em>
+OK) for your database to have downtime in case something goes wrong;
+that said, if things are configured properly, it shouldn’t take more
+than a few seconds before the peers start communicating with the new
+transactor(s).</p>
+<p>If you were previously only running one transactor, simply go back to
+the EC2 &gt; Instances page, select the old transactor, click <code>Instance state</code> and <code>Reboot instance</code>. After a few seconds, you can confirm
+that things are working properly by triggering a transaction from any
+application you have talking to the database and / or by going back to
+CloudWatch and checking the <code>RemotePeers</code> metric for the new
+transactor dimension—this metric represents the number of peers
+which are currently connected to the transactor(s).</p>
+<p>If something has gone wrong, simply go to the CloudFormation page and
+delete the new transactor stack. The old transactor(s) will take over
+again after rebooting when there are no other transactors running.</p>
+<p>To continue the wind down of the old transactors, or if you were
+running multiple transactors to begin with, go to EC2 &gt; Autoscaling &gt;
+Autoscaling Groups, select the old transactor group, click <code>Edit</code> on
+<code>Group details</code>, and change the <code>Desired capacity</code> and <code>Minimum capacity</code> (both) to 0. This will result in your old transactor(s)
+instances being terminated. You can watch this process play out on
+the EC2 &gt; Instances page. Rebuilding these instances from scratch
+will take longer than rebooting an instance, so the reboot approach is
+preferable.</p>
+<p>Once the old transactor instances are terminated, assuming everything
+is functioning properly, the only thing left to do is clean up:</p>
+<p>Open the CloudFormation page and select the old transactor stack. If
+you’re cautious, you may want to download the JSON configuration for
+the old stack just in case you need to restore it.</p>
+<p>When you’re ready, use the <code>Delete</code> button to delete the stack.
+You’re no longer running any instances, so you’re just removing the
+(now unused) launch configuration and autoscaling group.</p>
+<p>Last but not least, you may want to commit your new <code>cf.properties</code>,
+<code>transactor.properties</code>, and <code>cf.json</code> files to revision control to
+make sure you don’t lose them.</p>
+<h2 id="wrap-up">Wrap-Up</h2>
+<p><em>You’re done! Enjoy Datomic v1.0.6727!</em></p>
+<p>Many thanks to the fine people at Nubank for making Datomic free! I’m
+optimistic that this change will increase adoption of Datomic and make
+it a more viable option for hobby projects where the cost of Datomic
+may have previously made it untenable.</p>

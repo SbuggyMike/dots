@@ -1,0 +1,11 @@
+<p>One of the little known but great features of macOS is their support of Emacs keybindings. Although most people don’t know it, this support comes in two parts. The first is that some of the common Emacs bindings such as <kbd>Ctrl</kbd>+<kbd>a</kbd>, <kbd>Meta</kbd>+<kbd>b</kbd>, and similar motion commands are defined by default and work in all macOS apps.</p>
+<p>Less well known is that macOS allows you to install your own bindings for all their editing commands. In particular, you can install many of the common Emacs editing commands so that you can leverage your Emacs muscle memory with all the apps on your Mac.</p>
+<p>I write about this periodically—last time <a href="https://irreal.org/blog/?p=10883">here</a>—when I see an Emacs user discover macOS’s rudimentary support for Emacs motion commands. But this post is not one of my periodic reminders. Rather, it about a missing binding and how easy it is to edit the extended bindings.</p>
+<p>For as long as I can remember, I have used both <kbd>Ctrl</kbd>+<kbd>Delete</kbd> and <kbd>Meta</kbd>+<kbd>Delete</kbd> to delete the previous word in the manner <a href="https://irreal.org/blog/?p=10414">recommended by Steve Yegge</a>. Most of the time, it’s more convenient to use <kbd>Ctrl</kbd>+<kbd>Delete</kbd> for this but, sadly, that’s not supported by the <code>DefaultKeyBinding.dict</code> that I recommended.</p>
+<p>Happily, it’s easy to add the desired binding. Here’s the new entry:</p>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #8b2252;">"^\U007F"</span>   = <span style="color: #8b2252;">"deleteWordBackward:"</span>;            <span style="color: #b22222;">/* </span><span style="color: #b22222;">C-DEL        Delete word backward</span><span style="color: #b22222;"> */</span>
+</pre>
+</div>
+<p>Just add it to <code>DefaultKeyBinding.dict</code> and restart macOS to have it take effect. Pay particular attention to the punctuation after <code>deleteWordBackward</code>. It’s fussy and easy to get wrong.</p>
+<p>This is a small thing and maybe nobody but me cares but it has made my life a little bit easier. As usual with these things, I wonder why it took me so long.</p>

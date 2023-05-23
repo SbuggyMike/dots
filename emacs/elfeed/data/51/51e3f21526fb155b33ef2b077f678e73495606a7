@@ -1,0 +1,15 @@
+<p>My name is jcs and I’m an addict. A hopeless addict. Yesterday, in my post about fixing mu4e’s new behavior of opening in full frame mode, I mentioned that upgrading to mu 1.10.3 broke Emacs to the point that it wouldn’t load. I was very uncomfortable until I got things working again.</p>
+<p>Today (Sunday) is my day to update my Emacs packages. Afterwards, I always bounce Emacs to make sure there are no consistencies. For the second day in a row Emacs wouldn’t start correctly. This time, at least, Emacs started but it aborted reading <code>init.el</code> so none of my packages loaded and Emacs was essentially useless to me.</p>
+<p>Even though the breakage was less severe than the first episode, my reaction was more violent. I didn’t hyperventilate, exactly, but I was upset and may have uttered some family-unfriendly words. It was then that I realized—to channel <a href="https://www.youtube.com/watch?v=jhOn4oPn3Bw">Olivia Newton-John</a>—that I am hopelessly addicted<sup><a class="footref" href="http://irreal.org/blog/?tag=emacs&amp;feed=rss2#fn.1" id="fnr.1">1</a></sup> to Emacs. When it breaks, all I can think of is “how am I going to get any work done?” That’s a little silly: although I’ve lost my edge, I can still use Vim or—in a pinch—even ed. Still, I feel helpless without Emacs and everything else stops while I figure out how to get it running again.</p>
+<p>In short: I’m seriously addicted to Emacs. And I don’t want to kick the habit.</p>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes:</h2>
+<div id="text-footnotes">
+<div class="footdef"><sup><a class="footnum" href="http://irreal.org/blog/?tag=emacs&amp;feed=rss2#fnr.1" id="fn.1">1</a></sup><p></p>
+<div class="footpara">
+<p class="footpara">
+Devoted/Addicted: it’s all the same to us Emacs addicts.</p>
+</div>
+</div>
+</div>
+</div>

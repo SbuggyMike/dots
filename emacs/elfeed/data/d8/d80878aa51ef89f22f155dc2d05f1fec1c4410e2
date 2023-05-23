@@ -1,0 +1,170 @@
+<details class="toc-inpage d-print-none " open="open">
+Table of Contents
+<nav id="TableOfContents">
+<ul>
+<li><a href="https://francopasut.netlify.app/tag/emacs/index.xml#what-are-we-talking-about">What are we talking about?</a></li>
+<li><a href="https://francopasut.netlify.app/tag/emacs/index.xml#the-test-documents">The test documents.</a></li>
+<li><a href="https://francopasut.netlify.app/tag/emacs/index.xml#vim-and-the-vimdiff-function">Vim and the <code>vimdiff</code> function.</a></li>
+<li><a href="https://francopasut.netlify.app/tag/emacs/index.xml#the-vimdiff-interface">The “vimdiff” interface.</a></li>
+<li><a href="https://francopasut.netlify.app/tag/emacs/index.xml#emacs-and-the-ediff-function">Emacs and the “ediff” function.</a></li>
+<li><a href="https://francopasut.netlify.app/tag/emacs/index.xml#how-do-you-use-ediff">How do you use <em>ediff</em>?</a></li>
+<li><a href="https://francopasut.netlify.app/tag/emacs/index.xml#the-ediff-interface">The “ediff” Interface.</a></li>
+<li><a href="https://francopasut.netlify.app/tag/emacs/index.xml#summary-table">Summary table.</a></li>
+</ul>
+</nav>
+</details>
+<h2 id="what-are-we-talking-about">What are we talking about?</h2>
+<p>In this article, I report my practical experience on how to use the built-in resources of Vim and Emacs to resolve and undo differences between two documents.</p>
+<p>In fact, I’ve occasionally updated two documents in such a “messy” way that I could no longer remember which updates to keep on one and the other.</p>
+<p>Both Vim and Emacs offer very simple and effective built-in tools for checking and resolving such differences.</p>
+<p>All operations were performed in a GNU/Linux environment, specifically Ubuntu and Arch.</p>
+<p>I do not mention any additional plugins in the article, although they exist, and I do not address the issue of version control with <code>git</code>.</p>
+<p>There is no “merit opinion” on the two writing systems, just a concise exposition of their respective methods.</p>
+<h2 id="the-test-documents">The test documents.</h2>
+<p>For the operations, I used two very simple documents with partially different content between them.</p>
+<ul>
+<li><em>test1.txt</em></li>
+</ul>
+<blockquote>
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+<br />
+Aenean massa.
+<br />
+Cum sociis natoque penatibus et</p>
+</blockquote>
+<ul>
+<li><em>test2.txt</em></li>
+</ul>
+<blockquote>
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+<br />
+Aenean commodo ligula eget dolor.
+<br />
+Aenean massa.</p>
+</blockquote>
+<h2 id="vim-and-the-vimdiff-function">Vim and the <code>vimdiff</code> function.</h2>
+<p>The <code>vimdiff</code> command is a utility that is installed with text editor <em>Vim</em>.</p>
+<p>The easiest way to launch the utility is from the command line.</p>
+<p>Using the names of the two documents above, the command is as follows: <code>$ vimdiff test1.txt test2.txt</code>.</p>
+<p>The function, however, can also be run starting from an already open document (suppose <em>test1.txt</em>) with one of the following commands:</p>
+<ul>
+<li><code>:diffsplit test2.txt</code> to get the horizontal split.</li>
+<li><code>:vert diffsplit test2.txt</code> to have the vertical split.</li>
+</ul>
+<p>The differences between the documents being compared are highlighted in different colors so that it is easy to identify the elements that do not match, as in the following image:</p>
+<p>
+</p><figure>
+<div class="d-flex justify-content-center">
+<div class="w-100"><img alt="vim vimdiff" height="157" src="https://francopasut.netlify.app/media/vim_vimdiff-frame_hu2b7588dd0c1b16735edc713847f85441_31259_5fa87a6faa658c9664873bbc4c72fd16.webp" width="760" /></div>
+</div></figure>
+<p></p>
+<p>You can then use Vim’s commands to move between different sections of the file, merge the different versions, or decide which version to keep.</p>
+<p>The essential commands are as follows:</p>
+<ul>
+<li><code>dp</code> aka <code>diffput</code> to bring back the version the cursor is in from the other document being compared.</li>
+<li><code>do</code> aka <code>diffget</code>: (“or” is the mnemonic for “<em>obtain</em>”) to carry over the version of the other document being compared to the one in which the cursor is located.</li>
+<li><code>]c</code> to jump to the next point of difference.</li>
+<li><code>[c</code> to jump to the previous point of difference.</li>
+</ul>
+<h2 id="the-vimdiff-interface">The “vimdiff” interface.</h2>
+<p>The command-line version of <em>Vim</em> does not offer any visual, “menu” type help on the commands to use.</p>
+<p>So one either has to know the commands by heart or use Vim’s built-in help functions with <code>:help vimdiff</code>.</p>
+<p>In contrast, <em>GVim</em>, i.e., the graphical mode version of Vim, offers concise menu support consisting of:</p>
+<ol>
+<li>Menu item “<em>File</em>” - sub-item “<em>Split Diff With…</em>” to enable comparison between an already loaded document and one to be loaded.</li>
+<li>Menu item “<em>Tools</em>”, subitem “<em>Diff</em>”, options “<em>Update</em>” / “<em>Get Block</em>” (equivalent to <code>do</code>) / “<em>Put Block</em>”, (equivalent to <code>dp</code>).</li>
+</ol>
+<p>Below are the two screens described above:</p>
+<p>
+</p><figure>
+<div class="d-flex justify-content-center">
+<div class="w-100"><img alt="gvim file diff" height="386" src="https://francopasut.netlify.app/media/gvim_file_diff-frame_huc89b4befc2f28fcdc7b934b2d15e3090_46959_c53317d7b086cad7c6f62493a805bea5.webp" width="384" /></div>
+</div></figure>
+<p></p>
+<p>
+</p><figure>
+<div class="d-flex justify-content-center">
+<div class="w-100"><img alt="gvim tools diff" height="419" src="https://francopasut.netlify.app/media/gvim_tools_diff-frame_hu972cd1d623b880feec394cea7555a365_61735_c99b06e2b69280ea7535ea0669d57264.webp" width="516" /></div>
+</div></figure>
+<p></p>
+<h2 id="emacs-and-the-ediff-function">Emacs and the “ediff” function.</h2>
+<p>Emacs, to compare and merge two or more documents, has a built-in function called <em>ediff</em>.</p>
+<p>As with <em>vimdiff</em>, differences between files are highlighted in different colors to make it easier to identify items that do not match.</p>
+<p>Also <em>ediff</em> offers a number of conflict management tools, such as the ability to merge the different versions, decide which version to keep, or even directly edit the file contents.</p>
+<h2 id="how-do-you-use-ediff">How do you use <em>ediff</em>?</h2>
+<p>Basically:</p>
+<ul>
+<li>I open Emacs</li>
+<li>I launch <code>ediff</code> with <code>M-x ediff</code>.</li>
+<li>I follow the directions by loading <em>test1.txt</em> as document <em>A</em> and <em>test2.txt</em> as document <em>B</em></li>
+<li>The following screen appears:</li>
+</ul>
+<p>
+</p><figure>
+<div class="d-flex justify-content-center">
+<div class="w-100"><img alt="emacs ediff test" height="476" src="https://francopasut.netlify.app/media/emacs_ediff_test-frame_hu36e5591d8834e78af713d7342ac18b9a_40326_c0e880b3d1698bb520876af74245160b.webp" width="760" /></div>
+</div></figure>
+<p></p>
+<p>At this point in the “Ediff Panel” (see next section for further explanation of the Panel) I press:</p>
+<ul>
+<li><code>n</code> or <code>p</code> to jump to the next (“next”) or previous (“previous”) difference</li>
+<li><code>a</code> to apply the line from document A to document B making them, therefore, equal or</li>
+<li><code>b</code> to apply the line from document B to document A making them, therefore, equal.</li>
+</ul>
+<p>And so on until the comparison is complete.</p>
+<p>Having reached this point, simply save the documents and close.</p>
+<h2 id="the-ediff-interface">The “ediff” Interface.</h2>
+<p><em>Ediff</em> is based on the <code>diff</code> function found in Unix and derived operating systems.</p>
+<p>In the various GNU/Linux distributions and in macOS, the function is normally preinstalled and, therefore, poses no problem of use.</p>
+<p>In MS Windows, however, this function is not present and it is, therefore, necessary to provide it with separate installation (not the subject of this article).</p>
+<p>The <em>help</em> function of <em>ediff</em>, which appears immediately after loading the two documents to be compared, also serves as a real <em>control panel</em> (“Ediff Control Panel”) from which operations are performed on the documents being compared.</p>
+<p>It is necessary to use a window external to the compared documents since Emacs is not modal, like Vim, and, therefore, every keystroke directly in the documents results in their modification.</p>
+<p>The <em>help</em> can be opened or minimized with the <code>?</code> key.</p>
+<p>Here are the “Control Panel” and “Menu” screens in Emacs:</p>
+<p>
+</p><figure>
+<div class="d-flex justify-content-center">
+<div class="w-100"><img alt="ediff help" height="366" src="https://francopasut.netlify.app/media/ediff-help-frame_hu5dc8f6730e7bbe77a063d8fa08d551dd_77726_271b8284dcb4ab33fc63cf9cae2159fe.webp" width="760" /></div>
+</div></figure>
+<p></p>
+<p>
+</p><figure>
+<div class="d-flex justify-content-center">
+<div class="w-100"><img alt="ediff menu" height="585" src="https://francopasut.netlify.app/media/ediff-menu-frame_hue3854e10aae744c204a9c65dbe7823cc_133663_cd6c685816680654231cc7e05dd79793.webp" width="760" /></div>
+</div></figure>
+<p></p>
+<h2 id="summary-table">Summary table.</h2>
+<p>Here is a simple summary table of essential commands for the two writing systems:</p>
+
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th style="text-align: center;">Vim</th>
+<th style="text-align: center;">Emacs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jump to next</td>
+<td style="text-align: center;"><code>]c</code></td>
+<td style="text-align: center;"><code>n</code></td>
+</tr>
+<tr>
+<td>Skip to previous</td>
+<td style="text-align: center;"><code>]c</code></td>
+<td style="text-align: center;"><code>p</code></td>
+</tr>
+<tr>
+<td>Export changes from this document to the other</td>
+<td style="text-align: center;"><code>dp</code></td>
+<td style="text-align: center;"><code>a</code></td>
+</tr>
+<tr>
+<td>Import changes from the other document to this one</td>
+<td style="text-align: center;"><code>dg</code></td>
+<td style="text-align: center;"><code>b</code></td>
+</tr>
+</tbody>
+</table>
+<p>Thank you for your attention</p>

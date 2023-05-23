@@ -1,0 +1,12 @@
+<p>A couple of weeks ago, I upgraded my mail client, <a href="https://github.com/djcb/mu">Mu/Mu4e</a>, to version 1.10.2 with <a href="https://brew.sh/2023/02/16/homebrew-4.0.0/">Homebrew</a>. It has some nice features but it also insisted on opening mu4e in full-frame mode, wiping out whatever window configuration I had. That was definitely not something I wanted. I did a quick scan of the documentation to see if there was some new configuration variable controlling this behavior but I didn’t find anything. Then I asked DuckDuckGo but either my search-foo was inadequate or there was nothing relevant.</p>
+<p>This seemed like a breaking change to me so I thought maybe it was an error and perhaps a point release was available that fixed it. I checked with Brew and, sure enough, there was a 1.10.3 release so I upgraded. That didn’t help at all. In fact, Emacs wouldn’t even load. That was due to a library incompatibility and I had to recompile Emacs to get back to where I was.</p>
+<p>My next plan was to run mu4e in a separate frame. That worked okay but made my Emacs navigation a little fussy. Finally, in desperation, I made another run at DuckDuckGo. Either my search-foo had magically improved or new information had materialized but I found this <a href="https://github.com/djcb/mu/issues/2382">GitHub PR</a>.</p>
+<p>The TL;DR is that you can fix the problem by adding</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(add-to-list 'display-buffer-alist
+             `(,(regexp-quote mu4e-main-buffer-name)
+               display-buffer-same-window))
+</pre>
+</div>
+<p>to your configuration.</p>
+<p>If, like me, you don’t want mu4e trampling your window configuration, just add the above to your <code>init.el</code>.</p>

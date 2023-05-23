@@ -1,0 +1,181 @@
+<hr />
+<h2 id="toc">Table of contents</h2>
+<ol>
+	<li>Free software = build your software yourself <a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#fs1"> → </a></li>
+	<li>Required dependencies for building emacs on macOS <a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#deps1"> → </a></li>
+	<li>Extra dependencies that will add features to your emacs <a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#deps2"> → </a></li>
+	<li>8 lines of instructions <a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#8l"> → </a></li>
+	<li>emacs documentation <a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#docs"> → </a></li>
+	<li>To use emacs from the command line <a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#cl"> → </a></li>
+	<li>Updating the code requires 2 instructions <a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#updates"> → </a></li>
+	<li>Free Software = you can write code and contribute <a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#fs2"> → </a></li>
+	<li>References <a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#refs"> → </a></li>
+	</ol>
+
+<hr />
+
+<h2 id="fs1">This is <em>Free Software</em>!</h2>
+
+<p>Lots of people seem to wonder, "what is the best emacs for macOS"?</p>
+
+<p>Their criteria for "best" being not always clear, the answer I systematically give is: "Clone the repository and build it yourself. This is <em><a href="https://www.gnu.org/philosophy/free-sw.html">free software</a></em>!"</p>
+
+<p>Since I always forget the dependencies and the steps, this page is a memo for myself, and for curious people who want to try themselves.</p>
+
+<p><strong>Note</strong>: I am not a programmer. I just follow instructions. There is nothing magic in the 8 instruction lines that follow. Before, or after you've cloned emacs, you can read the <code><a href="https://git.savannah.gnu.org/cgit/emacs.git/tree/INSTALL.REPO">INSTALL.REPO</a></code> file where basically everything I write here is found, along with the <code><a href="https://git.savannah.gnu.org/cgit/emacs.git/tree/README">README</a></code> and the <code><a href="https://git.savannah.gnu.org/cgit/emacs.git/tree/INSTALL">INSTALL</a></code> files where you'll find additional or redundant information. It's basically all there. I am not making this up.</p>
+<p class="toc"><a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#toc"> ToC </a></p>
+
+<h2 id="deps1">Required dependencies</h2>
+<p>The dependencies below are the minimum emacs requires, and you can find them by running <code>./autogen.sh</code> first and then <code>./configure</code> yourself <em>before</em> using brew to install them: the two scripts will just choke every time they don't find the required libraries.</p>
+
+<p>What I did to come up with that list is just add dependencies until the scripts ran their course without error.</p>
+
+<p>If this is your first "development" attempt, you will need the XCode command line tools, basically because you'll need <code>gcc</code> and <code>git</code> for the whole process.</p>
+
+<p><code>brew</code> will prompt you about that during its install process, and even if that does not happen, the first time you run <code>git</code>, for example to clone emacs, macOS will tell you that you need to install them and prompt you with a nice dialog.</p>
+
+<p>The required dependencies are the following:</p>
+<ul>
+	<li><code><a href="https://www.gnu.org/software/autoconf/" title="Autoconf">Autoconf</a></code><br />
+	"Autoconf is an extensible package of M4 macros that produce shell scripts to automatically configure software source code packages."</li>
+	<li><code><a href="https://www.gnu.org/software/texinfo/" title="texinfo">texinfo</a></code><br />
+	"Texinfo is the official documentation format of the GNU project."</li>
+	<li><code><a href="https://mailutils.org" title="mailutils">GNU Mailutils</a></code><br />
+	"Mailutils is a swiss army knife of electronic mail handling. It offers a rich set of utilities and daemons for processing e-mail."</li>
+	<li><code><a href="https://gnutls.org" title="gnutls">GnuTLS</a></code><br />
+	"GnuTLS is a secure communications library implementing the SSL, TLS and DTLS protocols and technologies around them."</li>
+</ul>
+<p class="toc"><a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#toc"> ToC </a></p>
+
+<h2 id="deps2">Extra dependencies</h2>
+
+<p>I sent the link to this article to the <code>emacs-devel</code> mailing list for verification and Pankaj Jangid was nice enough to tell me about his own experiences and suggested a list of non-required but recommended packages that emacs would notice during the configuration process. Alan Third, the ns-port maintainer, also chimed in to indicate that some of Pankaj proposed libraries were in fact ignored since the image types they correspond to are handled by macOS proper.</p>
+
+<p>The recomended dependencies are the following:</p>
+<ul>
+	<li><code><a href="https://github.com/GNOME/librsvg" title="librsvg">librsvg</a></code><br />
+	"This is librsvg - A small library to render Scalable Vector Graphics (SVG), associated with the GNOME Project."</li>
+	<li><code><a href="https://github.com/winlibs/libxpm" title="libxpm">libxpm</a></code><br />
+	"X11 pixmap library"</li>
+	<li><code><a href="https://www.littlecms.com/tags/lcms2/" title="lcms2">lcms2</a></code><br />
+	"Little CMS intends to be a small-footprint color management engine, with special focus on accuracy and performance."</li>
+	<li><code><a href="https://digip.org/jansson/" title="jansson">jansson</a></code><br />
+	"Jansson is a C library for encoding, decoding and manipulating JSON data."</li>
+</ul>
+
+<p>If you want to install the above recommended dependencies, you'll need to add a <code>brew install</code> instruction as shown below.</p>
+<p class="toc"><a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#toc"> ToC </a></p>
+
+<h2 id="8l">The instructions</h2>
+<pre># install brew
+# URL: https://brew.sh
+<code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code>
+
+# install required dependencies
+# or jump to "configure, etc." below and install them one by one
+<code>brew install autoconf texinfo gnutls mailutils</code>
+
+# install recommended dependencies, but only after you've checked what they do by following the links above...
+<code>brew install librsvg libxpm lcms2 jansson</code>
+
+# clone emacs
+# URL: https://savannah.gnu.org/projects/emacs
+<code>git clone -b master git://git.sv.gnu.org/emacs.git</code>
+
+# configure, build and install emacs
+<code>cd emacs
+./autogen.sh
+./configure
+make install
+</code>
+</pre>
+
+<p>Et voilà! <code>Emacs.app</code> now resides in <code>emacs/nextstep/Emacs.app</code>.</p>
+<p class="toc"><a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#toc"> ToC </a></p>
+
+<h2 id="docs">Documentation</h2>
+
+<p>I don't suppose you'd want to install emacs from scratch without knowing how to use it, but if that's the case, and that's totally OK, emacs comes with thousands of pages of manuals that are just a <code>ctrl-h i</code> away.</p>
+
+<p>That shortcut means hit the <code>control</code> key, hold it pressed, hit the <code>h</code> key, release both, and hit the <code>i</code> key. That shortcut calls the <code>info</code> function, which bring up the list of manuals included in emacs.</p>
+
+<p>You can also start a tutorial with <code>ctrl-h t</code>, which means hit the <code>control</code> key, hold it pressed, hit the <code>h</code> key, release both, and hit the <code>t</code> key. That shortcut calls the <code>help-with-tutorial</code> function.
+
+</p><p>The manuals are online, if you feel more confortable reading in a web browser: <a href="https://www.gnu.org/software/emacs/manual/" title="all the emacs related manuals">GNU Emacs Manuals Online</a></p>
+<p class="toc"><a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#toc"> ToC </a></p>
+
+<h2 id="cl">A few extra settings</h2>
+
+<p>If you need to use <code>emacs</code> from the command line you may need to update your <code>.profile</code> file with aliases like this:</p>
+  
+<pre><code>alias emacs='path/to/emacs/nextstep/Emacs.app/Contents/MacOS/Emacs'
+alias emacsclient='path/to/emacs/nextstep/Emacs.app/Contents/MacOS/bin/emacsclient'
+alias ctags='path/to/emacs/nextstep/Emacs.app/Contents/MacOS/bin/ctags'
+alias ebrowse='path/to/emacs/nextstep/Emacs.app/Contents/MacOS/bin/ebrowse'
+alias etags='path/to/emacs/nextstep/Emacs.app/Contents/MacOS/bin/etags'
+</code>
+</pre>
+
+<p>and that's basically it.</p>
+<p class="toc"><a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#toc"> ToC </a></p>
+
+<h2 id="updates">Updating the thing</h2>
+
+<p>The first time you build emacs, along with installing all the dependencies, etc. might take some time, maybe a good 30 minutes, maybe more. But then, you end up with a configuration where you just need to update the code once in a while, and <code>make install</code> the thing again to have the latest version running.</p>
+
+<p>Basically, all is needed is to run this:</p>
+
+<pre># inside the cloned emacs directory
+# update the code
+<code>git pull</code>
+
+# build and install the new version
+<code>make install</code>
+</pre>
+
+<p>And the next time to start emacs, you run the lastest <code>master</code> branch code.</p>
+<p class="toc"><a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#toc"> ToC </a></p>
+
+<h2 id="fs2">This it <em>Free Software</em>! 2</h2>
+
+<p>The whole point of <em>Free Software</em> is that is gives you the tools necessary to understand what is going on, to learn how to do things yourself and to control your environement.</p>
+
+<p>So, yes, emacs is free software, and now you're all set to play with the code and do your own thing, that will eventually lead to first contribute small things, and then bigger and bigger things to emacs proper.</p>
+
+<p>For that, you just need to create your own development branch and code there:</p>
+  
+<pre># inside the cloned emacs directory
+# update the code, just to have the latest one
+<code>git pull</code>
+
+# create your development/test branch, for example "myEmacs"
+<code>git checkout -b myEmacs</code>
+
+# open that new branch in Finder
+<code>open .</code>
+</pre>
+
+<p>Everything you do there will never impact the <code>master</code> branch from which you have built emacs. You can always <code>git checkout master</code> back to go back to a clean slate (<code>git</code> will eventually ask you to <code>git stash</code> away your modifications before switching to <code>master</code>, so just follow the instructions).</p>
+<p class="toc"><a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#toc"> ToC </a></p>
+
+<h2 id="refs">References</h2>
+
+<p>Now, you may want to know a bit more about Emacs Lisp, about <code>git</code>, about how to contribute to emacs, so here are some references:</p>
+
+<ul>
+  <li>The "Introduction to Programming in Emacs Lisp" is the entry point for Emacs Lisp development. It is available from inside emacs (type <code>ctrl-h i</code> to find the list of manuals available right at your finger tips) and also online: <br />
+    <a href="https://www.gnu.org/software/emacs/manual/eintr.html" title="your first steps in Emacs Lisp"></a>An Introduction to Programming in Emacs Lisp</li>
+  <li><code>git</code> comes with excellent documentation, and a free book too: <br />
+    <a href="https://git-scm.com/doc" title="the git documentation">Git Documentation</a></li>
+  <li>If you want to practice your Emacs Lisp skills, the "Exercism" site has a track for you: <br />
+    <a href="https://exercism.org/tracks/emacs-lisp" title="emacs lisp on exercism">Emacs Lisp on Exercism</a></li>
+  <li>You will quickly find that you need to have a good Emacs Lisp reference to go further. emacs provides you with an excellent reference for pretty much everything you need to know, here again, just a <code>ctrl-h i</code> away, but it is also online: <br />
+    <a href="https://www.gnu.org/software/emacs/manual/elisp.html" title="the emacs lisp reference, online"></a>GNU Emacs Lisp Reference Manual</li>
+  <li>If you need general help, there is a <code>help-gnu-emacs</code> list and for development help there is the <code>emacs-devel</code> list, along with a lot of other emacs related lists, hosted on the emacs development site: <br />
+    <a href="https://savannah.gnu.org/mail/?group=emacs" title="emacs related mailing lists">emacs - Mailing Lists</a></li>
+  <li>And here is a tutorial about the procedure to follow if you want to propose your code for inclusion into emacs, by Colin Woodbury: <br />
+    <a href="https://www.fosskers.ca/en/blog/contributing-to-emacs" title="contribution procedure tutorial">Contributing to Emacs</a></li>
+</ul>
+<p class="toc"><a href="https://mac4translators.blogspot.com/feeds/posts/default/-/Emacs#toc"> ToC </a></p><p></p><div class="blogger-post-footer"><hr />
+<a href="http://mac4translators.blogspot.com/2008/02/mac-for-translators-mailing-list.html">Mac for Translators, the discussion group...</a>
+<hr /></div>

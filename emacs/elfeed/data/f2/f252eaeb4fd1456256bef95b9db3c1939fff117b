@@ -1,0 +1,21 @@
+ 
+<p>
+
+Legal advice received by the European Commission suggests that the
+<a href="https://www.theguardian.com/world/2023/may/08/eu-lawyers-plan-to-scan-private-messages-child-abuse-may-be-unlawful-chat-controls-regulation">"chat control" censorship plan is illegal</a>.
+<p>
+The plan assumes that an encrypted communication service _includes_
+nonfree software to run on your machine to send and receive messages.
+That implies that the service can make that software snoop on your
+communications before it encrypts them.
+<p>
+That design, where the service imposes specific software on users,
+is fundamentally unjust and insecure, precisely because the service
+imposes nonfree software on users and users can never rationally trust
+such software.
+<p>
+In effect, the "chat control" plan demonstrates that we were right.  A
+service that makes users run nonfree software to talk with it is
+inherently insecure and untrustworthy.
+
+ 
