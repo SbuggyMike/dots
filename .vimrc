@@ -14,6 +14,7 @@ runtime! archlinux.vim
 " and configure vim to your own liking!
 " do not load defaults if ~/.vimrc is missing
 "let skip_defaults_vim=1
+set wildmenu
 set number
 set relativenumber
 set spell
@@ -21,7 +22,7 @@ set ignorecase
 set smartcase
 set cursorline
 set guifont=Inconsolata\ 23
-set tw=80
+set tw=0
 set autoread " so that I can do edits on one laptop and they will load in another
 set hidden " allows movement between buffers without writing
 " load plugins
