@@ -180,6 +180,8 @@ iabbrev oPs occupational pension scheme
 iabbrev oPss occupational pension schemes
 iabbrev Ops Occupational Pension Scheme
 iabbrev Opss Occupational Pension Schemes
+iabbrev tr1b tribunal
+iabbrev Tr1b Tribunal
 iabbrev tpr the Pensions Regulator
 iabbrev Tpr The Pensions Regulator
 iabbrev tpo the Pensions Ombudsman
