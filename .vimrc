@@ -196,3 +196,27 @@ iabbrev N0 Number
 iabbrev N0s Numbers
 iabbrev steph Stephen
 iabbrev sjh SJH
+
+" Enable autosave every 5 minutes
+autocmd BufWritePost * silent! wall
+
+function! AutoSave()
+    if &modified
+        write
+    endif
+endfunction
+
+augroup AutoSaveGroup
+    autocmd!
+    autocmd CursorHold,CursorHoldI * call AutoSave()
+    autocmd CursorHold,CursorHoldI * if !exists('g:auto_save_timer') | let g:auto_save_timer = 0 | endif
+    autocmd CursorHold,CursorHoldI * if g:auto_save_timer > 300 | call AutoSave() | let g:auto_save_timer = 0 | endif
+    autocmd CursorHold,CursorHoldI * let g:auto_save_timer += 1
+augroup END
+
+" Allow for keyboard shortcuts to increase font size in gVim
+if has("gui_running")
+  noremap <C-+> :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0) + 1', '')<CR>
+  noremap <C--> :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0) - 1', '')<CR>
+endif
+
