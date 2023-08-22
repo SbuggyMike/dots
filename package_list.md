@@ -133,6 +133,7 @@
 
 - texlive-most
 - latex-mk (for emacs? not sure this is necessary)
+  This is now in latex-binextra
 - ghostscript (for groff and doc-view in emacs)
 - ispell (for emacs)
 - hunspell and hunspell-en_gb (for libreoffice?)
