@@ -83,7 +83,7 @@
 (setq org-capture-templates
              '(("t" "Todo"  entry
                (file "~/life_org/todo.org")
-               "* TODO %?" :empty-lines 1)
+               "* TODO %?")
 	     ("b" "Adverbs" entry
               (file+headline "~/life_org/german.org" "Adverbs")
               "* Adverb :drill:\n%^{German}\n** Back\n%^{English}\n")
@@ -177,17 +177,20 @@
          :immediate-finish t
          :unnarrowed t)))
 
+;; set specific browser to open links
+(setq browse-url-browser-function 'browse-url-firefox)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
-   '("~/life_org/annual.org" "/home/telemachus/life_org/habits_gtd.org"))
+   '("/home/telemachus/life_org/todo.org" "/home/telemachus/life_org/annual.org" "/home/telemachus/life_org/habits_gtd.org"))
  '(org-modules
    '(ol-bbdb ol-bibtex ol-docview ol-doi ol-eww ol-gnus org-habit ol-info ol-irc ol-mhe ol-rmail ol-w3m))
  '(package-selected-packages
-   '(org-drill org-capture org-roam zenburn-theme which-key try projectile pdf-tools magit ivy-rich helpful diminish counsel)))
+   '(ace-window org-drill org-capture org-roam zenburn-theme which-key try projectile pdf-tools magit ivy-rich helpful diminish counsel)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
