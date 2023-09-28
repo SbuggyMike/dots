@@ -164,6 +164,7 @@
 - zathura-djvu
 - okular (alternative to zathura, perhaps preferable due to highlighting ability)
 - mupdf (still doesn't allow for highlighting, but otherwise works extremely well)
+- zip (for making ODT files from org documents)
 
 ### Games
 
