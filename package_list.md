@@ -153,6 +153,7 @@
 - pdf-tools
 - slime
 - evil-mode
+- gnuplot (for drawing graphs - install gnuplot mode)
 
 ### Files
 
@@ -175,6 +176,8 @@
 ### Printing
 
 - cups (enable service)
+- avahi
+-mss-mdns
 - hplip (hp printer drivers)
 
 ### Multimedia

@@ -133,9 +133,10 @@
 
 - texlive-most
 - latex-mk (for emacs? not sure this is necessary)
+  This is now in latex-binextra
 - ghostscript (for groff and doc-view in emacs)
-- ispell
-- hunspell and hunspell-en_gb
+- ispell (for emacs)
+- hunspell and hunspell-en_gb (for libreoffice?)
 - libreoffice-fresh
 - biber
 - imagemagick
@@ -149,9 +150,10 @@
 #### vanilla
 
 - smudge
-- pdf!-tools
+- pdf-tools
 - slime
 - evil-mode
+- gnuplot (for drawing graphs - install gnuplot mode)
 
 ### Files
 
@@ -163,6 +165,7 @@
 - zathura-djvu
 - okular (alternative to zathura, perhaps preferable due to highlighting ability)
 - mupdf (still doesn't allow for highlighting, but otherwise works extremely well)
+- zip (for making ODT files from org documents)
 
 ### Games
 
@@ -173,6 +176,8 @@
 ### Printing
 
 - cups (enable service)
+- avahi
+-mss-mdns
 - hplip (hp printer drivers)
 
 ### Multimedia
@@ -203,6 +208,12 @@
 - qbittorrent
 - thunderbird
 - zoom (yay)
+
+## Virtualbox
+
+- virtualbox
+- virtualbox-host-modules-arch
+- vritualbox-guest-iso
 
 ### Misc
 
