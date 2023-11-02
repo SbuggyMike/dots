@@ -209,7 +209,22 @@
 - thunderbird
 - zoom (yay)
 
+## Virtualbox
+
+- virtualbox
+- virtualbox-host-modules-arch
+- vritualbox-guest-iso
+
 ### Misc
 
 - xfce4-screenshooter
 
+# Kali
+
+pimpmykali (github)
+
+# AI
+
+- pipx
+- pipx install langchain
+- pipx install openapi --include-deps
