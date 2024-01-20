@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+int main(){
+  int array[0 1 2 3 4];
+  int target;
+  int c = array[5]
+
+  printf("%d\n", c)
+
+  return 0; 
+}
