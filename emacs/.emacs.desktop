@@ -1,0 +1,199 @@
+;; -*- mode: emacs-lisp; lexical-binding:t; coding: utf-8-emacs; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Tue Apr 16 14:27:07 2024
+;; Desktop file format version 208
+;; Emacs version 29.3
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (26142 31915 284274 246000) (desktop . "208") "telemachus@ogygia" nil nil ((((minibuffer . t) (undecorated) (override-redirect) (font . "-ADBO-Source Code Pro-regular-normal-normal-*-12-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 0) (child-frame-border-width) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars) (foreground-color . "black") (background-color . "white") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 1) (tab-bar-lines . 0) (tool-bar-lines . 1) (title) (wait-for-wm . t) (tool-bar-position . top) (inhibit-double-buffering) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 16) (scroll-bar-height . 16) (alpha) (alpha-background) (no-focus-on-map) (no-accept-focus) (fullscreen) (visibility . t) (use-frame-synchronization) (skip-taskbar) (z-group) (display-type . color) (background-mode . light) (cursor-color . "black") (font-parameter) (sticky) (shaded) (environment) (last-focus-update . t) (dnd-root-window-position) (frameset--id . "1FD7-EF02-C4F2-1CB4") (frameset--mini t . t) (modeline . t) (unsplittable) (icon-name) (display . ":0") (explicit-name) (height . 60) (width . 269) (left . 3840) (top . 0)) ((min-height . 4) (min-width . 20) (min-height-ignore . 2) (min-width-ignore . 14) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 64) (min-pixel-width . 140) (min-pixel-height-ignore . 32) (min-pixel-width-ignore . 98) (min-pixel-height-safe . 16) (min-pixel-width-safe . 28)) hc (pixel-width . 1916) (pixel-height . 957) (total-width . 274) (total-height . 60) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 957) (pixel-height . 957) (total-width . 137) (total-height . 60) (normal-height . 1.0) (normal-width . 0.5) (buffer "daily.org" (selected . t) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 3 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 27309) (start . 26268)) (prev-buffers ("notes.md" 26728 28705) ("indicative_questions.org" 1 3577) ("*scratch*" 1 188) ("civ" 1 3262) ("CIVIL-01-2223-CPR  KEY PROVISIONS.pdf" 1 1) ("*info*<2>" 2811 4254))) (leaf (last . t) (pixel-width . 959) (pixel-height . 957) (total-width . 137) (total-height . 60) (normal-height . 1.0) (normal-width . 0.5) (buffer "*scratch*" (selected) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 3 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 248) (start . 248)))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '(#("Part 36" 0 7 (isearch-case-fold-search nil isearch-regexp-function nil)) #("Stat" 0 4 (isearch-case-fold-search nil isearch-regexp-function nil)) #("Judgm" 0 5 (isearch-case-fold-search nil isearch-regexp-function nil)) #("Evidence" 0 8 (isearch-case-fold-search nil isearch-regexp-function nil)) #("track" 0 5 (isearch-case-fold-search t isearch-regexp-function nil)) #("stay" 0 4 (isearch-case-fold-search t isearch-regexp-function nil)) #("Additional Cl" 0 13 (isearch-case-fold-search nil isearch-regexp-function nil)) #("BSB" 0 3 (isearch-case-fold-search nil isearch-regexp-function nil)) #("Anony" 0 5 (isearch-case-fold-search nil isearch-regexp-function nil)) #("Priv" 0 4 (isearch-case-fold-search nil isearch-regexp-function nil)) #("CEF" 0 3 (isearch-case-fold-search nil isearch-regexp-function nil)) #("Arbi" 0 4 (isearch-case-fold-search nil isearch-regexp-function nil)) #("is app" 0 6 (isearch-case-fold-search t isearch-regexp-function nil)) #("PreA" 0 4 (isearch-case-fold-search nil isearch-regexp-function nil)) #("21" 0 2 (isearch-case-fold-search t isearch-regexp-function nil)) #("Appendix E" 0 10 (isearch-case-fold-search nil isearch-regexp-function nil))))
+(setq regexp-search-ring '(#("^Rule 6" 0 7 (isearch-case-fold-search nil)) #("^10" 0 3 (isearch-case-fold-search t)) #("^5" 0 2 (isearch-case-fold-search t)) #("^8" 0 2 (isearch-case-fold-search t)) #("^6" 0 2 (isearch-case-fold-search t)) #("^4#]" 0 4 (isearch-case-fold-search t)) #("c" 0 1 (isearch-case-fold-search t))))
+(setq register-alist nil)
+(setq file-name-history '("~/dots/emacs/" "~/life_org/daily.org" "~/bvs/civ/indicative_questions.org" "~/bvs/civ/notes.md" "~/bvs/civ/" "~/" "~/bvs/civ/white_book_extracts/total_syllabus.txt" "~/life_org/todo.org" "~/bvs/civ/CIVIL-03-2324-DatesTimeLimits.docx" "~/bvs/civ/white_book_extracts/chancery_guide.md" "~/bvs/civ/indicative_questions.org" "~/bvs/civ" "~/bvs/civ/white_book_extracts/" "~/bvs/civ/" "~/life_org/pupillage/radcliffe" "/storage/boox/Reference/" "~/bvs/cle/" "~/life_org/pupillage/radcliffe" "~/life_org/pupillage/5sb/" "~/life_org/pupillage/xxiv/" "~/bvs/civ" "/storage/boox/Reference/" "~/life_org/pupillage/" "~/life_org/pupillage/radcliffe/" "~/bvs/" "~/misc_law/fru/tracey/" "~/bvs/civ" "~/bvs/" "~/dots/emacs/init_apr_2024.el" "~/.emacs.d/init.el" "~/misc_law/fru/bell/" "~/bvs/crim" "~/bvs/crim/" "~/Downloads/" "~/life_org/daily.org"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 208
+  "/home/telemachus/life_org/daily.org"
+  "daily.org"
+  'org-mode
+  '(font-lock-mode abbrev-mode visual-line-mode)
+  27309
+  '(1 nil)
+  nil
+  nil
+  '((buffer-display-time 26142 31909 343501 150000) (buffer-file-coding-system . utf-8-unix) (truncate-lines))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/telemachus/bvs/civ/notes.md"
+  "notes.md"
+  'markdown-mode
+  '(font-lock-mode eldoc-mode abbrev-mode visual-line-mode)
+  28705
+  '(5780 nil)
+  nil
+  nil
+  '((tab-width . 4) (buffer-display-time 26142 24209 723298 704000) (buffer-file-coding-system . utf-8-unix) (truncate-lines))
+  '((mark-ring (37234 12911 31872 28945 1242 36672 1020 1020 36289 36434 37597 36672 1242 28945 12911 28705))))
+
+(desktop-create-buffer 208
+  "/home/telemachus/bvs/civ/indicative_questions.org"
+  "indicative_questions.org"
+  'org-mode
+  '(abbrev-mode font-lock-mode visual-line-mode)
+  3577
+  '(3183 nil)
+  nil
+  nil
+  '((buffer-display-time 26142 22006 550914 792000) (buffer-file-coding-system . utf-8-unix) (truncate-lines))
+  '((mark-ring (3183 3416 1727 3183 3580 3407 3407 47 3407 3407 3407 3295 3183 3580 3295 3581))))
+
+(desktop-create-buffer 208
+  nil
+  "civ"
+  'dired-mode
+  '(font-lock-mode)
+  3262
+  '(3569 nil)
+  t
+  '("/home/telemachus/bvs/civ/")
+  '((buffer-display-time 26142 13452 81805 297000))
+  '((mark-ring (3473 208))))
+
+(desktop-create-buffer 208
+  "/home/telemachus/bvs/civ/BT Civil Litigation - Updated Syllabus - 2023-2024 .pdf"
+  "BT Civil Litigation - Updated Syllabus - 2023-2024 .pdf"
+  'doc-view-mode
+  '(font-lock-mode)
+  1
+  '(1 nil)
+  t
+  '((page . 5) (slice))
+  '((buffer-display-time 26142 15128 545465 674000) (buffer-file-coding-system . no-conversion))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/telemachus/bvs/civ/CIVIL-01-2223-CPR  KEY PROVISIONS.pdf"
+  "CIVIL-01-2223-CPR  KEY PROVISIONS.pdf"
+  'doc-view-mode
+  '(font-lock-mode)
+  1
+  '(nil nil)
+  t
+  '((page . 1) (slice))
+  '((buffer-display-time 26142 12672 424780 342000) (buffer-file-coding-system . no-conversion))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  nil
+  "*info*<2>"
+  'Info-mode
+  '(isearch-fold-quotes-mode font-lock-mode)
+  4254
+  '(nil nil)
+  t
+  '("dir" "Top" ((history ("/usr/share/info/emacs" "Top" 1129))))
+  '((tab-width . 8) (buffer-display-time 26141 47556 614784 101000) (buffer-file-coding-system . utf-8-unix) (case-fold-search . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/telemachus/bvs/civ/white_book_extracts/chancery_guide.md"
+  "chancery_guide.md"
+  'markdown-mode
+  '(abbrev-mode eldoc-mode font-lock-mode visual-line-mode)
+  70938
+  '(70552 nil)
+  nil
+  nil
+  '((tab-width . 4) (buffer-display-time 26141 47297 547718 691000) (buffer-file-coding-system . utf-8-unix) (truncate-lines))
+  '((mark-ring (70552 70552 62286 61572 60484 54569 51176 48926 47442 45518 43666 41698 40759 39411 35975 70938))))
+
+(desktop-create-buffer 208
+  "/home/telemachus/life_org/todo.org"
+  "todo.org"
+  'org-mode
+  '(abbrev-mode font-lock-mode visual-line-mode)
+  29219
+  '(1 nil)
+  nil
+  nil
+  '((buffer-display-time 26141 34980 590554 669000) (buffer-file-coding-system . undecided-unix) (truncate-lines . t))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/telemachus/bvs/civ/white_book_extracts/total_syllabus.txt"
+  "total_syllabus.txt"
+  'text-mode
+  '(abbrev-mode font-lock-mode visual-line-mode)
+  8541
+  '(1 nil)
+  nil
+  nil
+  '((buffer-display-time 26141 34974 663370 251000) (buffer-file-coding-system . utf-8-unix) (truncate-lines))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/telemachus/bvs/civ/CIVIL-03-2324-DatesTimeLimits.docx"
+  "CIVIL-03-2324-DatesTimeLimits.docx"
+  'doc-view-mode
+  '(font-lock-mode)
+  1
+  '(nil nil)
+  t
+  '((page . 1) (slice))
+  '((buffer-display-time 26141 34376 262174 326000) (buffer-file-coding-system . no-conversion))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/telemachus/.emacs.d/init.el"
+  "init.el"
+  'emacs-lisp-mode
+  '(flyspell-mode eldoc-mode font-lock-mode)
+  66
+  '(37 nil)
+  nil
+  nil
+  '((buffer-display-time 26141 28784 46604 552000) (buffer-file-coding-system . prefer-utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  nil
+  "*info*"
+  'Info-mode
+  '(isearch-fold-quotes-mode font-lock-mode)
+  115855
+  '(91322 nil)
+  t
+  '("/usr/share/info/org" "Advanced features" ((history ("/usr/share/info/org" "Formula syntax for Calc" 91892) ("/usr/share/info/org" "Formula syntax for Lisp" 97258) ("/usr/share/info/org" "Formula syntax for Calc" 91322) ("/usr/share/info/org" "References" 83923) ("/usr/share/info/org" "Formula syntax for Calc" 92684) ("/usr/share/info/org" "Formula syntax for Calc" 92854) ("/usr/share/info/org" "Formula syntax for Lisp" 98622) ("/usr/share/info/org" "Formula syntax for Calc" 91322) ("/usr/share/info/org" "References" 86474) ("/usr/share/info/org" "The Spreadsheet" 83140) ("/usr/share/info/org" "Formula syntax for Calc" 92640) ("/usr/share/info/org" "Formula syntax for Calc" 91892) ("/usr/share/info/org" "Formula syntax for Lisp" 98527) ("/usr/share/info/org" "Formula syntax for Calc" 95500) ("/usr/share/info/org" "References" 91114) ("/usr/share/info/org" "Formula syntax for Calc" 91322) ("/usr/share/info/org" "Formula syntax for Lisp" 97258) ("/usr/share/info/org" "Durations and time values" 99458) ("/usr/share/info/org" "Field and range formulas" 100789) ("/usr/share/info/org" "Column formulas" 103163) ("/usr/share/info/org" "Lookup functions" 105229) ("/usr/share/info/org" "Editing and debugging formulas" 107153) ("/usr/share/info/org" "Updating the table" 112670) ("/usr/share/info/org" "Editing and debugging formulas" 107153) ("/usr/share/info/org" "Lookup functions" 105229) ("/usr/share/info/org" "Column formulas" 103163) ("/usr/share/info/org" "The Spreadsheet" 83489) ("/usr/share/info/org" "Formula syntax for Lisp" 97258) ("/usr/share/info/org" "The Spreadsheet" 83276) ("/usr/share/info/org" "Orgtbl Mode" 81646) ("/usr/share/info/org" "Column Groups" 80114) ("/usr/share/info/org" "Column Width and Alignment" 76899) ("/usr/share/info/org" "Built-in Table Editor" 75539) ("/usr/share/info/org" "Tables" 65988) ("/usr/share/info/org" "Top" 932) ("dir" "Top" 4254) ("/usr/share/info/emacs" "Top" 1129))))
+  '((tab-width . 8) (buffer-display-time 26141 28429 589048 285000) (buffer-file-coding-system . utf-8-unix) (case-fold-search . t))
+  '((mark-ring (91322 98622 115855))))
+
+(desktop-create-buffer 208
+  "/home/telemachus/bvs/civ/CIVIL-01-2324-BSBQIndication.pdf"
+  "CIVIL-01-2324-BSBQIndication.pdf"
+  'doc-view-mode
+  '(font-lock-mode)
+  1
+  '(nil nil)
+  t
+  '((page . 1) (slice))
+  '((buffer-display-time 26141 47538 796652 620000) (buffer-file-coding-system . no-conversion))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/telemachus/bvs/civ/BT-Civil-Litigation-Updated-Syllabus-2022-2023-4-July-2022.pdf"
+  "BT-Civil-Litigation-Updated-Syllabus-2022-2023-4-July-2022.pdf"
+  'doc-view-mode
+  '(font-lock-mode)
+  1
+  '(nil nil)
+  t
+  '((page . 1) (slice))
+  '((buffer-display-time 26142 12650 813698 883000) (buffer-file-coding-system . no-conversion))
+  '((mark-ring nil)))
+
