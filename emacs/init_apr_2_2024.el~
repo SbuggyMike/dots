@@ -1,0 +1,46 @@
+(tool-bar-mode -1)
+; answer questions in a quicker way
+(fset 'yes-or-no-p 'y-or-n-p)
+
+; make lines by wrapping lines only where there is whitespace
+(word-wrap-whitespace-mode)
+
+; complete quotes and parantheses
+(electric-pair-mode)
+(electric-quote-mode)
+
+; add all the hooks
+(add-hook 'text-mode-hook 'abbrev-mode)
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'text-mode-hook 'visual-line-mode)
+(setq org-list-allow-alphabetical t)
+; autocorrect for programming
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+(setq abbrev-file-name "~/dots/emacs/abbreviations")
+
+; projectile for searching projects
+(projectile-mode 1)
+(keymap-set projectile-mode-map "C-c p" 'projectile-command-map)
+
+; get rid of the fucking bell
+(setq visible-bell 1)
+
+(ivy-mode 1)
+
+(keymap-global-set "C-c w" 'count-words)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   '("/home/telemachus/life_org/daily.org" "/home/telemachus/life_org/todo.org" "/home/telemachus/life_org/annual.org" "/home/telemachus/life_org/habits_gtd.org"))
+ '(package-selected-packages '(ivy projectile markdown-mode)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
