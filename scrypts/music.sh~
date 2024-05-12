@@ -1,0 +1,28 @@
+#! /bin/bash
+
+if lsblk | grep '/mnt' > /dev/null
+then
+    cd /mnt/
+    if [[ -d ./musix ]]
+    then
+	cd musix
+    elif [[ -d ./music ]]
+    then
+	cd music
+    else
+	echo "No music folder found!"
+	exit
+    fi
+else
+    echo "No music device mounted!"
+    exit
+fi
+
+if (( $# == 1 ))
+then
+    find -type d -iname "*$1"
+else
+    echo "Wrong number of arguments"
+fi
+
+	
