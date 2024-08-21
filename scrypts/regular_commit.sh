@@ -7,13 +7,13 @@ cp ~/.vimrc ~/dots/
 DATE=$(date)
 
 # List of repositories
-REPOS=("~/phd_law" "~/misc_law" "~/life_org" "/storage/spare_home/bvs" "~/dots" "~/roam" "/storage/spare_home/hustle")
+REPOS=("phd_law" "misc_law" "life_org" "bvs" "dots" "roam" "hustle")
 
 # Loop over each repository
 for REPO in "${REPOS[@]}"
 do
     # Navigate to the repository
-    cd $REPO
+    cd ~/$REPO
     echo "Changed to" $(pwd)
 
     # Add any new files
