@@ -7,7 +7,7 @@ cp ~/.vimrc ~/dots/
 DATE=$(date)
 
 # List of repositories
-REPOS=("~/phd_law" "~/misc_law" "~/life_org" "/storage/spare_home/bvs" "~/dots" "~/roam" "/storage/spare_home/hustle")
+REPOS=("/home/telemachus/phd_law" "/home/telemachus/misc_law" "/home/telemachus/life_org" "/storage/spare_home/bvs" "/home/telemachus/dots" "/home/telemachus/roam" "/storage/spare_home/hustle")
 
 # Loop over each repository
 for REPO in "${REPOS[@]}"
