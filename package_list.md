@@ -1,4 +1,4 @@
-1# PACKACGE LIST
+# PACKACGE LIST
 
 ## Installation
 
@@ -10,9 +10,9 @@
 - timedatectl status (earlier guide suggested set-ntp true)
 - check if uefi or bios
 - formatting disks
-- make filesystems (remember fat 32 for boot)
+- make filesystems (remember fat 32 for boot with efi, none for bios)
 - mount & swapon (mkdir for additional mount points)
-- edit /etc/pacman.d/mirrorlist 
+- edit /etc/pacman.d/mirrorlist (doesn’t seem to be necessary now)
 - pacman-keys --refresh-keys (if install is relatively old)
 > N.b. this takes fucking ages
 - pacstrap -K /mnt
@@ -29,6 +29,7 @@
 - vim /etc/hosts (new version omits this step)
 - passwd (root password)
 - grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB 
+> grub-install --target=i386-pc /dev/sdX for BIOS machines
 - grub-mkconfig -o /boot/grub/grub.cfg
 - N.b. the fucking around you have to do with fstab &c if you mount /usr separately
 
@@ -39,8 +40,6 @@
 - useradd -m -G wheel,video telemachus (video for laptop)
 - passwd telemachus 
 - visudo
-
-
 
 ## Packages
 
@@ -127,7 +126,10 @@
 - yay (clone from aur)
 - rsync (dependency of syncthing)
 - syncthing
-  systemctl enable --user --now syncthing
+> systemctl enable --user --now syncthing
+- openssh
+> systemctl enable --now sshd
+> in /etc/ssh/sshd_config: set PermitRootLogin to ’yes’
 
 ### File editing
 
@@ -177,7 +179,7 @@
 
 - cups (enable service)
 - avahi
--mss-mdns
+- mss-mdns
 - hplip (hp printer drivers)
 
 ### Multimedia
@@ -187,6 +189,10 @@
 - yt-dt
 - python3-pip
 - spotify
+- navidrome (through a docker)
+- shntools (to split flac image files into single tracks)
+- cuetools (for adding information to single tracks from a cue file once split)
+- flac (for converting too flac; necessary for shnsplit)
 
 #### Dvds
 
@@ -218,6 +224,7 @@
 ### Misc
 
 - xfce4-screenshooter
+- docker (systemctl --enable --now docker) docker-compose
 
 # Kali
 
