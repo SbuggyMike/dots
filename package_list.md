@@ -71,6 +71,8 @@
 - htop
 - neofetch
 - upower (battery info)
+- dash (faster shell)
+> sudo ln -sf dash /bin/sh
 
 ### Graphics
 

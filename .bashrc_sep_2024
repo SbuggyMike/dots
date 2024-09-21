@@ -1,0 +1,17 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias grep='grep --color'
+alias stop="systemctl suspend"
+
+set -o vi
+
+PS1='\[$(tput setaf 2)\][\u@\h \W]\$\[$(tput sgr0)\] '
+
+# allow command completion for the following commands
+complete -c man which sudo
