@@ -1,4 +1,4 @@
-# PACKACGE LIST
+# PACKAGE LIST
 
 ## Installation
 
@@ -222,6 +222,13 @@
 - virtualbox
 - virtualbox-host-modules-arch
 - vritualbox-guest-iso
+
+### Programming
+
+- sdl2
+> for graphical windows; compile with -lSDL2 option
+- sdl2_ttf
+> for text on graphical windows; compile with -lSDL2_ttf option
 
 ### Misc
 
