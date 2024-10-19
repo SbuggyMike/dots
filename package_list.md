@@ -150,6 +150,7 @@
 ### emacs
 
 - emacs-common-non-dfsg
+- clang (for company backend)
 
 #### vanilla
 
