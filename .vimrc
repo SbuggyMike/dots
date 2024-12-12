@@ -16,7 +16,6 @@ runtime! archlinux.vim
 "let skip_defaults_vim=1
 set wildmenu
 set number
-set relativenumber
 set spell
 set ignorecase
 set smartcase
