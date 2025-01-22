@@ -32,6 +32,8 @@
 > grub-install --target=i386-pc /dev/sdX for BIOS machines
 - grub-mkconfig -o /boot/grub/grub.cfg
 - N.b. the fucking around you have to do with fstab &c if you mount /usr separately
+- ntp (time sync?)
+> systemctl enable ntpd
 
 ### Setup
 
