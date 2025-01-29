@@ -88,6 +88,7 @@
 - lightdm-gtk-greeter
 - nvidia (check graphics card via 'lspci -k | grep -A 2 -E "(VGA|3D)"')
 - xorg-xrandr
+> if screens don't work, try xrandr --output SCREEN --auto
 - arandr
 - libnotify (to send notifications)
 - twmn (yay) (notification daemon for tiling window managers, necessary for emacs noifications)
