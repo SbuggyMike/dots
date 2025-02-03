@@ -12,6 +12,7 @@ pacman -Q (list all packages)
 pacman -Qe (list all pacakages which you have downloaded yourself)
 > this doesn't seem to be exactly correct
 pacman -Qdt (list redundant dependencies)
+yay -Ps (list recent changes, biggest downloaded packages)
 
 # Remove Cache
 

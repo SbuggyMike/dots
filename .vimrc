@@ -86,7 +86,7 @@ augroup END
 
 " Allow for keyboard shortcuts to increase font size in gVim
 if has("gui_running")
-  noremap <C-+> :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0) + 1', '')<CR>
-  noremap <C--> :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0) - 1', '')<CR>
+  noremap <C-+> :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0) + 1', ')<CR>
+  noremap <C--> :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0) - 1', ')<CR>
 endif
 
