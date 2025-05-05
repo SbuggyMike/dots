@@ -9,6 +9,8 @@ else
 	working_dir=$start
 fi
 
+cd $working_dir
+
 for i in $(ls -1)
 do
 	if [[ -d $i ]]

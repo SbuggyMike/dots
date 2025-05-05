@@ -1,0 +1,4 @@
+[87be9465-8992-466d-bdd3-2b53d543e3cb]
+protocol=vnc
+host=ogygia
+uri=vnc://ogygia:5900

@@ -5,6 +5,7 @@
 ### Install
 
 - pacman -Sy archlinux-keyring (may eliminate need to refresh keys later)
+- pacman-contrib (checkupdates is very useful)
 - loadkeys uk
 - iwctl --passphrase jack4jack station wlan0 connect chicken3
 - timedatectl status (earlier guide suggested set-ntp true)
@@ -86,17 +87,21 @@
 - lightdm
 > systemctl enable lightdm
 - lightdm-gtk-greeter
+- ly (lighter than lightdm)
 - nvidia (check graphics card via 'lspci -k | grep -A 2 -E "(VGA|3D)"')
 - xorg-xrandr
 > if screens don't work, try xrandr --output SCREEN --auto
+- picom - compositor
 - arandr
+- ttf-awesome-font-5
 - libnotify (to send notifications)
 - twmn (yay) (notification daemon for tiling window managers, necessary for emacs noifications)
 
 #### i3
 
 - i3-wm (config)
-- i3status
+- polybar
+- i3status (not as good)
 - dmenu
 - light (to adjust brightness via keys - add user to 'video' group)
 
