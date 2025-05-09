@@ -2,24 +2,24 @@
 
 name=$(date +%b_%y)
 
-if [[ -d /home/$USER/.config  && -d /home/$USER/dots/configs ]]
+if [[ -d /home/hector/.config  && -d /home/hector/dots/configs ]]
 then
-  cd /home/$USER/dots/configs &&
+  cd /home/hector/dots/configs &&
   mkdir $name &&
-  cp -r /home/$USER/.config/* /home/$USER/dots/configs/$name
+  cp -r /home/hector/.config/* /home/hector/dots/configs/$name
 fi
 
-if [[ -f /home/$USER/.bashrc && -d /home/$USER/dots/bashrc ]]
+if [[ -f /home/hector/.bashrc && -d /home/hector/dots/bashrc ]]
 then
-  cp ~/.bashrc /home/$USER/dots/bashrc/$name
+  cp /home/hector/.bashrc /home/hector/dots/bashrc/$name
 fi
 
-if [[ -f /home/$USER/.xinitrc && -d /home/$USER/dots/xinitrc ]]
+if [[ -f /home/hector/.xinitrc && -d /home/hector/dots/xinitrc ]]
 then
-  cp ~/.xinitrc /home/$USER/dots/xinitrc/$name
+  cp /home/hector/.xinitrc /home/hector/dots/xinitrc/$name
 fi
 
-echo $(date) ": Copied config files" >> /home/$USER/dots/log
+echo $(date) ": Copied config files" >> /home/hector/dots/log
 
 
 

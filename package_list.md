@@ -5,14 +5,13 @@
 ### Install
 
 - pacman -Sy archlinux-keyring (may eliminate need to refresh keys later)
-- pacman-contrib (checkupdates is very useful)
 - loadkeys uk
 - iwctl --passphrase jack4jack station wlan0 connect chicken3
 - timedatectl status (earlier guide suggested set-ntp true)
 - check if uefi or bios
 - formatting disks
-- make filesystems (remember fat 32 for boot with efi, none for bios)
-- mount & swapon (mkdir for additional mount points)
+- make filesystems (remember fat 32 for boot with efi, none for bios) (btrfs needs subvolumes, not partitions)
+- mount & swapon (mkdir for additional mount points) (mount boot partition at /mnt/boot/efi for efi)
 - edit /etc/pacman.d/mirrorlist (doesn’t seem to be necessary now)
 - pacman-keys --refresh-keys (if install is relatively old)
 > N.b. this takes fucking ages
@@ -29,7 +28,7 @@
 - echo "ilium" >> /etc/hostname
 - vim /etc/hosts (new version omits this step)
 - passwd (root password)
-- grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB 
+- grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB 
 > grub-install --target=i386-pc /dev/sdX for BIOS machines
 - grub-mkconfig -o /boot/grub/grub.cfg
 - N.b. the fucking around you have to do with fstab &c if you mount /usr separately
@@ -51,10 +50,13 @@
 - base
 - base-devel (fakeroot etc - doesn't seem essential)
 - linux
+> linux-zen better for desktop?
 - linux-firmware (esp. for wifi drivers)
+> linux-zen-headers
 - grub
 > os-prober (dual boot)
 - efibootmgr (for uefi)
+- pacman-contrib (checkupdates is very useful)
 - gvim (config file)
 - networkmanager
 > systemctl enable NetworkManager
@@ -65,6 +67,12 @@
 - texinfo
 - dhcpcd (enable as service)
 - sudo
+- cpupower
+> cpupower.service
+- cronie
+> systemctl enable crond.service
+> put links to scripts in /etc/cron.weekly/ or simmilar to allow anacron to use them
+- zram-generator (better swap)
 
 ### Terminal/Utilities
 
@@ -72,6 +80,7 @@
 - st (yay) / alacritty
 - tmux (config file)
 - htop
+- nvtop (nvidia monitor)
 - neofetch
 - upower (battery info)
 - dash (faster shell)
@@ -89,11 +98,13 @@
 - lightdm-gtk-greeter
 - ly (lighter than lightdm)
 - nvidia (check graphics card via 'lspci -k | grep -A 2 -E "(VGA|3D)"')
+- nvidia-dkms (if using linux zen)
+> add modules to /etc/mkinitcpio.conf nvidia nvidia_modeset nvidia_uvm nvidia_drm
 - xorg-xrandr
 > if screens don't work, try xrandr --output SCREEN --auto
 - picom - compositor
 - arandr
-- ttf-awesome-font-5
+- ttf-font-awesome-5
 - libnotify (to send notifications)
 - twmn (yay) (notification daemon for tiling window managers, necessary for emacs noifications)
 
@@ -143,7 +154,7 @@
 
 ### File editing
 
-- texlive-most
+- texlive-most (now just called texlive)
 - latex-mk (for emacs? not sure this is necessary)
   This is now in latex-binextra
 - ghostscript (for groff and doc-view in emacs)

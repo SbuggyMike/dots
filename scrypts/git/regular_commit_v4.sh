@@ -1,12 +1,12 @@
 #! /bin/bash
 
-start=$(pwd)
+# Nb all variable which would have made the script apply to any user have had to be change to allow anacron to work 
 
 if [[ $# -eq 1 ]]
 then
 	working_dir=$1
 else
-	working_dir=$start
+	working_dir="/home/hector"
 fi
 
 cd $working_dir
@@ -20,11 +20,11 @@ do
 		then
 			echo "Repository in " $i
 			git add *
-			git commit -a -m "Regular commit on  $(date +%d.%m.%Y)"
+			git commit -a -m "Regular commit by Hector on  $(date +%d.%m.%Y)"
 			git push
 		fi
     cd $working_dir
 	fi
 done
 
-echo $(date) ": Performed regular commit" >> /home/$USER/dots/log
+echo $(date) ": Performed regular commit" >> /home/hector/dots/log
