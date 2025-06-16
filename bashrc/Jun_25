@@ -1,0 +1,25 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+EDITOR=/usr/bin/nvim
+
+printf "Remember to pull and push from/to the git repository before editing a file! \n"
+
+alias ls='ls --color=auto'
+alias grep='grep --color'
+alias pacman='pacman --color=always'
+alias ed="ed -v -p'! '"
+alias stop="systemctl suspend"
+
+if [[ -f /usr/share/bash-completion ]]; then
+	. /usr/share/bash-completion
+fi
+
+
+set -o emacs
+
+PS1='\[\033[38;5;81;48;5;235m\]\u@\h: \[\033[38;5;214m\]\W \[\033[0m\]\$ '

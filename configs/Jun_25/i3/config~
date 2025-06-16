@@ -44,7 +44,6 @@ bindsym XF86MonBrightnessDown exec light -U 4
 # screenshots
 bindsym Print exec maim -s | xclip -selection clipboard -t image/png -i
 
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -192,4 +191,3 @@ bar {
         status_command i3status
 }
 
-exec --no-startup-id i3-msg 'workspace 5; exec pavucontrol; workspace 2'

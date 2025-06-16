@@ -57,7 +57,8 @@
 > os-prober (dual boot)
 - efibootmgr (for uefi)
 - pacman-contrib (checkupdates is very useful)
-- gvim (config file)
+- nvim (config file)
+> if using nvim, ln -sf /bin/nvim /bin/vim
 - networkmanager
 > systemctl enable NetworkManager
 - network-manager-applet
@@ -98,6 +99,7 @@
 - lightdm-gtk-greeter
 - ly (lighter than lightdm)
 - nvidia (check graphics card via 'lspci -k | grep -A 2 -E "(VGA|3D)"')
+> set kernel param nvidia_drm.fbdev=0
 - nvidia-dkms (if using linux zen)
 > add modules to /etc/mkinitcpio.conf nvidia nvidia_modeset nvidia_uvm nvidia_drm
 - xorg-xrandr
@@ -189,6 +191,7 @@
 - zathura-djvu
 - okular (alternative to zathura, perhaps preferable due to highlighting ability)
 - mupdf (still doesn't allow for highlighting, but otherwise works extremely well)
+- pdftk (for manipulating pdfs)
 - zip (for making ODT files from org documents)
 
 ### Games
@@ -196,6 +199,8 @@
 - pcsx2
 - zenity
 - brutal-doom (yay)
+- wine
+- dwarfs
 
 ### Printing
 
