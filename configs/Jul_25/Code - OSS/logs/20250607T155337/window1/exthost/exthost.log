@@ -1,0 +1,52 @@
+2025-06-07 15:53:41.719 [info] Extension host with pid 367460 started
+2025-06-07 15:53:41.761 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2025-06-07 15:53:41.782 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2025-06-07 15:53:41.878 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2025-06-07 15:53:42.129 [info] Eager extensions activated
+2025-06-07 15:53:42.258 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2025-06-07 15:53:42.269 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2025-06-07 15:54:02.040 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2025-06-07 22:16:41.005 [info] ExtensionService#_doActivateExtension ms-dotnettools.vscode-dotnet-runtime, startup: false, activationEvent: 'onStartupFinished'
+2025-06-07 22:22:00.504 [info] ExtensionService#_doActivateExtension vscode.npm, startup: false, activationEvent: 'onTerminalQuickFixRequest:ms-vscode.npm-command'
+2025-06-07 22:22:56.798 [info] ExtensionService#_doActivateExtension vscode.debug-server-ready, startup: false, activationEvent: 'onDebugResolve'
+2025-06-07 22:24:25.633 [info] ExtensionService#_doActivateExtension muhammad-sammy.csharp, startup: false, activationEvent: 'onLanguage:csharp'
+2025-06-07 22:38:33.282 [info] Extension host terminating: renderer closed the MessagePort
+2025-06-07 22:38:33.316 [info] Extension host with pid 367460 exiting with code 0
+2025-06-07 22:38:36.212 [info] Extension host with pid 374426 started
+2025-06-07 22:38:36.212 [info] Skipping acquiring lock for /home/hector/.config/Code - OSS/User/workspaceStorage/c1f8e4d35622856d64d96dea53ef2252.
+2025-06-07 22:38:36.214 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*'
+2025-06-07 22:38:36.250 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2025-06-07 22:38:36.351 [info] Eager extensions activated
+2025-06-07 22:38:36.357 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2025-06-07 22:38:36.366 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2025-06-07 22:38:36.412 [info] ExtensionService#_doActivateExtension ms-dotnettools.vscode-dotnet-runtime, startup: false, activationEvent: 'onStartupFinished'
+2025-06-07 22:38:40.176 [info] ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: vscode.github
+2025-06-07 22:38:40.552 [info] ExtensionService#_doActivateExtension muhammad-sammy.csharp, startup: false, activationEvent: 'workspaceContains:**/*.{csproj,csx,cake}'
+2025-06-07 22:38:44.855 [warning] DiagnosticCollection with name 'csharp' does already exist.
+2025-06-07 22:38:50.947 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2025-06-07 22:44:35.363 [info] ExtensionService#_doActivateExtension vscode.debug-server-ready, startup: false, activationEvent: 'onDebugResolve'
+2025-06-07 22:45:53.503 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:jsonc'
+2025-06-07 22:45:53.530 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2025-06-07 22:45:53.722 [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2025-06-07 22:48:43.887 [error] [muhammad-sammy.csharp] provider FAILED
+2025-06-07 22:48:43.893 [error] Error: busy
+	at pM._provideSemanticTokens (/home/hector/.vscode-oss/extensions/muhammad-sammy.csharp-2.72.27-universal/dist/extension.js:876:55486)
+	at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+	at async _r.provideDocumentSemanticTokens (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:145:138702)
+2025-06-08 23:36:56.046 [info] Extension host terminating: renderer closed the MessagePort
+2025-06-08 23:36:56.092 [info] Extension host with pid 374426 exiting with code 0
+2025-06-08 23:36:58.524 [info] Extension host with pid 384081 started
+2025-06-08 23:36:58.524 [info] Skipping acquiring lock for /home/hector/.config/Code - OSS/User/workspaceStorage/f1a750f70669347a51398276f341629b.
+2025-06-08 23:36:58.539 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*'
+2025-06-08 23:36:58.562 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2025-06-08 23:36:58.632 [info] Eager extensions activated
+2025-06-08 23:36:58.763 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2025-06-08 23:36:58.768 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2025-06-08 23:36:58.835 [info] ExtensionService#_doActivateExtension ms-dotnettools.vscode-dotnet-runtime, startup: false, activationEvent: 'onStartupFinished'
+2025-06-08 23:37:01.296 [info] ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: vscode.github
+2025-06-08 23:37:03.051 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2025-06-08 23:38:33.146 [info] ExtensionService#_doActivateExtension ms-vscode.js-debug, startup: false, activationEvent: 'onDebugInitialConfigurations'
+2025-06-08 23:38:33.382 [info] ExtensionService#_doActivateExtension muhammad-sammy.csharp, startup: false, activationEvent: 'onDebugInitialConfigurations'
+2025-06-08 23:38:42.448 [info] ExtensionService#_doActivateExtension vscode.debug-server-ready, startup: false, activationEvent: 'onDebugResolve'
+2025-06-08 23:38:48.986 [info] Extension host terminating: renderer closed the MessagePort
+2025-06-08 23:38:49.007 [info] Extension host with pid 384081 exiting with code 0

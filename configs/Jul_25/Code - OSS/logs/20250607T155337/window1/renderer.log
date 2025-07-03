@@ -1,0 +1,33 @@
+2025-06-07 15:53:40.042 [info] Started local extension host with pid 367460.
+2025-06-07 15:53:40.183 [info] Started initializing default profile extensions in extensions installation folder. file:///home/hector/.vscode-oss/extensions
+2025-06-07 15:53:40.646 [info] ComputeTargetPlatform: linux-x64
+2025-06-07 15:53:40.866 [info] ChatSessionStore: Migrating 0 chat sessions from storage service to file system
+2025-06-07 15:53:40.899 [info] Completed initializing default profile extensions in extensions installation folder. file:///home/hector/.vscode-oss/extensions
+2025-06-07 15:53:43.419 [info] [perf] Render performance baseline is 34ms
+2025-06-07 22:16:33.136 [error] SignatureVerificationInternal: Signature verification failed with 'UnhandledException' error.
+    at yh.xb (file:///usr/lib/code/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:74:64415)
+    at async yh.wb (file:///usr/lib/code/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:74:62886)
+2025-06-07 22:16:33.229 [error] Signature verification failed with 'UnhandledException' error.: SignatureVerificationInternal: Signature verification failed with 'UnhandledException' error.
+    at yh.xb (file:///usr/lib/code/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:74:64415)
+    at async yh.wb (file:///usr/lib/code/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:74:62886)
+2025-06-07 22:23:52.599 [error] SignatureVerificationInternal: Signature verification failed with 'UnhandledException' error.
+    at yh.xb (file:///usr/lib/code/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:74:64415)
+    at async yh.wb (file:///usr/lib/code/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:74:62886)
+2025-06-07 22:23:52.672 [error] Signature verification failed with 'UnhandledException' error.: SignatureVerificationInternal: Signature verification failed with 'UnhandledException' error.
+    at yh.xb (file:///usr/lib/code/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:74:64415)
+    at async yh.wb (file:///usr/lib/code/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js:74:62886)
+2025-06-07 22:24:26.054 [error] [Extension Host] (node:367460) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2025-06-07 22:38:34.608 [info] Started local extension host with pid 374426.
+2025-06-07 22:38:35.530 [info] ComputeTargetPlatform: linux-x64
+2025-06-07 22:38:35.847 [info] ChatSessionStore: Migrating 0 chat sessions from storage service to file system
+2025-06-07 22:38:37.464 [info] [perf] Render performance baseline is 36ms
+2025-06-07 22:38:41.014 [error] [Extension Host] (node:374426) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2025-06-07 22:38:46.664 [error] [Extension Host] /bin/sh: line 1: hostname: command not found
+2025-06-08 23:36:57.212 [info] Started local extension host with pid 384081.
+2025-06-08 23:36:57.288 [info] ComputeTargetPlatform: linux-x64
+2025-06-08 23:36:57.966 [info] ChatSessionStore: Migrating 0 chat sessions from storage service to file system
+2025-06-08 23:37:00.026 [info] [perf] Render performance baseline is 32ms
+2025-06-08 23:38:33.906 [error] [Extension Host] (node:384081) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)

@@ -1,0 +1,201 @@
+Starting OmniSharp server at 07/06/2025, 22:38:41
+    Target: /home/hector/progs/csharp
+
+OmniSharp server started with .NET 9.0.105
+.
+    Path: /home/hector/.vscode-oss/extensions/muhammad-sammy.csharp-2.72.27-universal/.omnisharp/1.39.12-net6.0/OmniSharp.dll
+    PID: 374511
+
+[info]: OmniSharp.Stdio.Host
+        Starting OmniSharp on Unknown 0.0 (Unknown)
+[info]: OmniSharp.Services.DotNetCliService
+        Checking the 'DOTNET_ROOT' environment variable to find a .NET SDK
+[info]: OmniSharp.Services.DotNetCliService
+        Using the 'dotnet' on the PATH.
+[info]: OmniSharp.Services.DotNetCliService
+        DotNetPath set to dotnet
+[info]: OmniSharp.MSBuild.Discovery.MSBuildLocator
+        Located 1 MSBuild instance(s)
+            1: .NET Core SDK 9.0.105 17.12.32 - "/usr/share/dotnet/sdk/9.0.105"
+[info]: OmniSharp.MSBuild.Discovery.MSBuildLocator
+        Registered MSBuild instance: .NET Core SDK 9.0.105 17.12.32 - "/usr/share/dotnet/sdk/9.0.105"
+[info]: OmniSharp.WorkspaceInitializer
+        Invoking Workspace Options Provider: OmniSharp.Roslyn.CSharp.Services.CSharpFormattingWorkspaceOptionsProvider, Order: 0
+[info]: OmniSharp.Cake.CakeProjectSystem
+        Detecting Cake files in '/home/hector/progs/csharp/'.
+[info]: OmniSharp.Cake.CakeProjectSystem
+        Did not find any Cake files
+[info]: OmniSharp.MSBuild.ProjectSystem
+        No solution files found in '/home/hector/progs/csharp/'
+[info]: OmniSharp.MSBuild.ProjectManager
+        Queue project update for '/home/hector/progs/csharp/csharp.csproj'
+[info]: OmniSharp.Script.ScriptProjectSystem
+        Detecting CSX files in '/home/hector/progs/csharp/'.
+[info]: OmniSharp.Script.ScriptProjectSystem
+        Did not find any CSX files
+[info]: OmniSharp.WorkspaceInitializer
+        Configuration finished.
+[info]: OmniSharp.Stdio.Host
+        Omnisharp server running using Stdio at location '/home/hector/progs/csharp/' on host 374426.
+[info]: OmniSharp.MSBuild.ProjectManager
+        Loading project: /home/hector/progs/csharp/csharp.csproj
+[info]: OmniSharp.MSBuild.ProjectManager
+        Successfully loaded project file '/home/hector/progs/csharp/csharp.csproj'.
+[info]: OmniSharp.MSBuild.ProjectManager
+        Adding project '/home/hector/progs/csharp/csharp.csproj'
+[info]: OmniSharp.MSBuild.ProjectManager
+        Update project: csharp
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Solution initialized -> queue all documents for code analysis. Initial document count: 1.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[fail]: OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects
+        Creating instance of code fix provider 'Microsoft.Interop.Analyzers.AddGeneratedComClassFixer' failed, error: System.IO.FileNotFoundException: Could not load file or assembly 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'. The system cannot find the file specified.
+
+File name: 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'
+   at System.ModuleHandle.ResolveType(QCallModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   at System.ModuleHandle.ResolveTypeHandle(Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   at System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   at System.Reflection.CustomAttribute.FilterCustomAttributeRecord(MetadataToken caCtorToken, MetadataImport& scope, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1& derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctorWithParameters, Boolean& isVarArg)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Reflection.CustomAttributeExtensions.GetCustomAttribute[T](MemberInfo element, Boolean inherit)
+   at OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects.<>c__DisplayClass6_0.<LoadFrom>b__2(Type x) in /home/vsts/work/1/s/src/OmniSharp.Roslyn.CSharp/Services/Refactoring/V2/CachingCodeFixProviderForProjects.cs:line 70
+[fail]: OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects
+        Creating instance of code fix provider 'Microsoft.Interop.Analyzers.AddMarshalAsToElementFixer' failed, error: System.IO.FileNotFoundException: Could not load file or assembly 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'. The system cannot find the file specified.
+
+File name: 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'
+   at System.ModuleHandle.ResolveType(QCallModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   at System.ModuleHandle.ResolveTypeHandle(Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   at System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   at System.Reflection.CustomAttribute.FilterCustomAttributeRecord(MetadataToken caCtorToken, MetadataImport& scope, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1& derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctorWithParameters, Boolean& isVarArg)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Reflection.CustomAttributeExtensions.GetCustomAttribute[T](MemberInfo element, Boolean inherit)
+   at OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects.<>c__DisplayClass6_0.<LoadFrom>b__2(Type x) in /home/vsts/work/1/s/src/OmniSharp.Roslyn.CSharp/Services/Refactoring/V2/CachingCodeFixProviderForProjects.cs:line 70
+[fail]: OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects
+        Creating instance of code fix provider 'Microsoft.Interop.Analyzers.ConvertComImportToGeneratedComInterfaceFixer' failed, error: System.IO.FileNotFoundException: Could not load file or assembly 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'. The system cannot find the file specified.
+
+File name: 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'
+   at System.ModuleHandle.ResolveType(QCallModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   at System.ModuleHandle.ResolveTypeHandle(Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   at System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   at System.Reflection.CustomAttribute.FilterCustomAttributeRecord(MetadataToken caCtorToken, MetadataImport& scope, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1& derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctorWithParameters, Boolean& isVarArg)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Reflection.CustomAttributeExtensions.GetCustomAttribute[T](MemberInfo element, Boolean inherit)
+   at OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects.<>c__DisplayClass6_0.<LoadFrom>b__2(Type x) in /home/vsts/work/1/s/src/OmniSharp.Roslyn.CSharp/Services/Refactoring/V2/CachingCodeFixProviderForProjects.cs:line 70
+[fail]: OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects
+        Creating instance of code fix provider 'Microsoft.Interop.Analyzers.AddDisableRuntimeMarshallingAttributeFixer' failed, error: System.IO.FileNotFoundException: Could not load file or assembly 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'. The system cannot find the file specified.
+
+File name: 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'
+   at System.ModuleHandle.ResolveType(QCallModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   at System.ModuleHandle.ResolveTypeHandle(Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   at System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   at System.Reflection.CustomAttribute.FilterCustomAttributeRecord(MetadataToken caCtorToken, MetadataImport& scope, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1& derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctorWithParameters, Boolean& isVarArg)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Reflection.CustomAttributeExtensions.GetCustomAttribute[T](MemberInfo element, Boolean inherit)
+   at OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects.<>c__DisplayClass6_0.<LoadFrom>b__2(Type x) in /home/vsts/work/1/s/src/OmniSharp.Roslyn.CSharp/Services/Refactoring/V2/CachingCodeFixProviderForProjects.cs:line 70
+[fail]: OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects
+        Creating instance of code fix provider 'Microsoft.Interop.Analyzers.ConvertToLibraryImportFixer' failed, error: System.IO.FileNotFoundException: Could not load file or assembly 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'. The system cannot find the file specified.
+
+File name: 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'
+   at System.ModuleHandle.ResolveType(QCallModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   at System.ModuleHandle.ResolveTypeHandle(Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   at System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   at System.Reflection.CustomAttribute.FilterCustomAttributeRecord(MetadataToken caCtorToken, MetadataImport& scope, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1& derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctorWithParameters, Boolean& isVarArg)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Reflection.CustomAttributeExtensions.GetCustomAttribute[T](MemberInfo element, Boolean inherit)
+   at OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects.<>c__DisplayClass6_0.<LoadFrom>b__2(Type x) in /home/vsts/work/1/s/src/OmniSharp.Roslyn.CSharp/Services/Refactoring/V2/CachingCodeFixProviderForProjects.cs:line 70
+[fail]: OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects
+        Creating instance of code fix provider 'Microsoft.Interop.Analyzers.CustomMarshallerAttributeFixer' failed, error: System.IO.FileNotFoundException: Could not load file or assembly 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'. The system cannot find the file specified.
+
+File name: 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'
+   at System.ModuleHandle.ResolveType(QCallModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   at System.ModuleHandle.ResolveTypeHandle(Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   at System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   at System.Reflection.CustomAttribute.FilterCustomAttributeRecord(MetadataToken caCtorToken, MetadataImport& scope, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1& derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctorWithParameters, Boolean& isVarArg)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Reflection.CustomAttributeExtensions.GetCustomAttribute[T](MemberInfo element, Boolean inherit)
+   at OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects.<>c__DisplayClass6_0.<LoadFrom>b__2(Type x) in /home/vsts/work/1/s/src/OmniSharp.Roslyn.CSharp/Services/Refactoring/V2/CachingCodeFixProviderForProjects.cs:line 70
+[fail]: OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects
+        Creating instance of code fix provider 'System.Text.RegularExpressions.Generator.UpgradeToGeneratedRegexCodeFixer' failed, error: System.IO.FileNotFoundException: Could not load file or assembly 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'. The system cannot find the file specified.
+
+File name: 'System.Composition.AttributedModel, Version=9.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'
+   at System.ModuleHandle.ResolveType(QCallModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   at System.ModuleHandle.ResolveTypeHandle(Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   at System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   at System.Reflection.CustomAttribute.FilterCustomAttributeRecord(MetadataToken caCtorToken, MetadataImport& scope, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1& derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctorWithParameters, Boolean& isVarArg)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Reflection.CustomAttributeExtensions.GetCustomAttribute[T](MemberInfo element, Boolean inherit)
+   at OmniSharp.Roslyn.CSharp.Services.Refactoring.V2.CachingCodeFixProviderForProjects.<>c__DisplayClass6_0.<LoadFrom>b__2(Type x) in /home/vsts/work/1/s/src/OmniSharp.Roslyn.CSharp/Services/Refactoring/V2/CachingCodeFixProviderForProjects.cs:line 70
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[warn]: OmniSharp.Roslyn.CSharp.Services.Navigation.FindUsagesService
+        No symbol found. File: /home/hector/progs/csharp/Program.cs, Line: 1, Column: 19.
+[warn]: OmniSharp.Roslyn.CSharp.Services.Navigation.FindUsagesService
+        No symbol found. File: /home/hector/progs/csharp/Program.cs, Line: 0, Column: 19.
+[warn]: OmniSharp.Roslyn.CSharp.Services.Navigation.FindUsagesService
+        No symbol found. File: /home/hector/progs/csharp/Program.cs, Line: 0, Column: 63.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[info]: OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers
+        Analyzer work cancelled.
+[warn]: OmniSharp.Roslyn.CSharp.Services.Navigation.FindUsagesService
+        No symbol found. File: /home/hector/progs/csharp/Program.cs, Line: 2, Column: 33.
+[warn]: OmniSharp.Roslyn.CSharp.Services.Navigation.FindUsagesService
+        No symbol found. File: /home/hector/progs/csharp/Program.cs, Line: 2, Column: 19.
+[warn]: OmniSharp.Roslyn.CSharp.Services.Navigation.FindUsagesService
+        No symbol found. File: /home/hector/progs/csharp/Program.cs, Line: 1, Column: 31.

@@ -1,0 +1,1051 @@
+07/06/2025, 22:16:41 257 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.bat for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.clojure for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.coffeescript for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.configuration-editing for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.cpp for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.csharp for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.css for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.css-language-features for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.dart for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.debug-auto-launch for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.debug-server-ready for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.diff for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.docker for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.emmet for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.extension-editing for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.fsharp for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.git for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.git-base for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.github for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.github-authentication for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.go for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.groovy for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.grunt for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.gulp for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.handlebars for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.hlsl for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.html for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.html-language-features for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.ini for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.ipynb for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.jake for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.java for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.javascript for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.json for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.json-language-features for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.julia for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.latex for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.less for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.log for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.lua for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.make for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.markdown for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.markdown-language-features for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.markdown-math for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.media-preview for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.merge-conflict for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.microsoft-authentication for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension ms-vscode.js-debug for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension ms-vscode.js-debug-companion for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension ms-vscode.vscode-js-profile-table for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.builtin-notebook-renderers for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.npm for .NET installation requests
+
+07/06/2025, 22:16:41 258 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.objective-c for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.perl for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.php for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.php-language-features for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.powershell for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.prompt for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.pug for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.python for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.r for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.razor for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.references-view for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.restructuredtext for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.ruby for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.rust for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.scss for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.search-result for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.shaderlab for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.shellscript for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.simple-browser for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.sql for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.swift for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.terminal-suggest for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-abyss for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-defaults for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-kimbie-dark for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-monokai for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-monokai-dimmed for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-quietlight for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-red for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.vscode-theme-seti for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-solarized-dark for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-solarized-light for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-tomorrow-night-blue for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.tunnel-forwarding for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.typescript for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.typescript-language-features for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.vb for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.xml for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.yaml for .NET installation requests
+
+07/06/2025, 22:16:41 259 DotnetVSCodeExtensionFound
+true
+Checking extension ms-dotnettools.vscode-dotnet-runtime for .NET installation requests
+
+07/06/2025, 22:16:57 669 GlobalAcquisitionContextMenuOpened
+The user has opened the global SDK acquisition context menu.
+
+07/06/2025, 22:16:57 675 CacheGetEvent
+Checking the cache at 2025-06-07T21:16:57.674Z
+cat /etc/os-release{"cwd":"/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist","shell":true,"encoding":"utf8","env":"HOME: /home/hector\nLANG: en_GB.UTF-8\nPATH: /sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl\nPWD: /home/hector\nSHELL: /bin/bash\nTERM: linux\nVSCODE_CLI: 1\nVSCODE_CODE_CACHE_PATH: /home/hector/.config/Code - OSS/CachedData/848b80aeb52026648a8ff9f7c45a9b0a80641e2e\nVSCODE_HANDLES_UNCAUGHT_ERRORS: true\nVSCODE_PID: 367348\nELECTRON_RUN_AS_NODE: 1\nDOTNET_CLI_UI_LANGUAGE: en-US\nDOTNET_NOLOGO: true\n"}
+undefined
+true
+
+07/06/2025, 22:16:57 675 CommandExecutionEvent
+Executing command cat /etc/os-release with options {"env":"HOME: /home/hector\nLANG: en_GB.UTF-8\nPATH: /sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl\nPWD: /home/hector\nSHELL: /bin/bash\nTERM: linux\nVSCODE_CLI: 1\nVSCODE_CODE_CACHE_PATH: /home/hector/.config/Code - OSS/CachedData/848b80aeb52026648a8ff9f7c45a9b0a80641e2e\nVSCODE_HANDLES_UNCAUGHT_ERRORS: true\nVSCODE_PID: 367348\nELECTRON_RUN_AS_NODE: 1\nDOTNET_CLI_UI_LANGUAGE: en-US\nDOTNET_NOLOGO: true\n","dotnetInstallToolCacheTtlMs":1200000,"cwd":"/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist","shell":true,"encoding":"utf8"}.
+
+07/06/2025, 22:16:57 688 CommandExecutionStatusEvent
+The command cat /etc/os-release exited:
+0.
+
+07/06/2025, 22:16:57 688 CommandExecutionStdOut
+The command cat /etc/os-release encountered stdout:
+NAME="Arch Linux"
+PRETTY_NAME="Arch Linux"
+ID=arch
+BUILD_ID=rolling
+ANSI_COLOR="38;2;23;147;209"
+HOME_URL="https://archlinux.org/"
+DOCUMENTATION_URL="https://wiki.archlinux.org/"
+SUPPORT_URL="https://bbs.archlinux.org/"
+BUG_REPORT_URL="https://gitlab.archlinux.org/groups/archlinux/-/issues"
+PRIVACY_POLICY_URL="https://terms.archlinux.org/docs/privacy-policy/"
+LOGO=archlinux-logo
+
+
+07/06/2025, 22:16:57 688 CommandExecutionStdError
+The command cat /etc/os-release encountered stderr:
+
+
+07/06/2025, 22:16:57 688 CachePutEvent
+Adding to the cache at 2025-06-07T21:16:57.688Z
+cat /etc/os-release{"cwd":"/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist","shell":true,"encoding":"utf8","env":"HOME: /home/hector\nLANG: en_GB.UTF-8\nPATH: /sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl\nPWD: /home/hector\nSHELL: /bin/bash\nTERM: linux\nVSCODE_CLI: 1\nVSCODE_CODE_CACHE_PATH: /home/hector/.config/Code - OSS/CachedData/848b80aeb52026648a8ff9f7c45a9b0a80641e2e\nVSCODE_HANDLES_UNCAUGHT_ERRORS: true\nVSCODE_PID: 367348\nELECTRON_RUN_AS_NODE: 1\nDOTNET_CLI_UI_LANGUAGE: en-US\nDOTNET_NOLOGO: true\n"}
+{"stdout":"NAME=\"Arch Linux\"\nPRETTY_NAME=\"Arch Linux\"\nID=arch\nBUILD_ID=rolling\nANSI_COLOR=\"38;2;23;147;209\"\nHOME_URL=\"https://archlinux.org/\"\nDOCUMENTATION_URL=\"https://wiki.archlinux.org/\"\nSUPPORT_URL=\"https://bbs.archlinux.org/\"\nBUG_REPORT_URL=\"https://gitlab.archlinux.org/groups/archlinux/-/issues\"\nPRIVACY_POLICY_URL=\"https://terms.archlinux.org/docs/privacy-policy/\"\nLOGO=archlinux-logo\n","stderr":"","status":"0"}
+1200000
+true
+
+07/06/2025, 22:16:57 689 DotnetAcquisitionDistroUnknownError
+We are unable to detect the distro or version of your machine
+Error
+Error: We are unable to detect the distro or version of your machine
+	at t.LinuxVersionResolver.<anonymous> (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:306465)
+	at Generator.next (<anonymous>)
+	at s (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:303221)
+	at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+notAnAcquisitionRequest-global~x64
+notAnAcquisitionRequest-global~x64
+notAnAcquisitionRequest
+x64
+true
+sdk
+
+07/06/2025, 22:16:57 691 DotnetAcquisitionDistroUnknownError
+We are unable to detect the distro or version of your machine ... does /etc/os-release exist?
+Error
+Error: We are unable to detect the distro or version of your machine ... does /etc/os-release exist?
+	at t.LinuxVersionResolver.<anonymous> (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:306760)
+	at Generator.next (<anonymous>)
+	at s (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:303221)
+	at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+notAnAcquisitionRequest-global~x64
+notAnAcquisitionRequest-global~x64
+notAnAcquisitionRequest
+x64
+true
+sdk
+
+07/06/2025, 22:16:57 692 DotnetVersionResolutionError
+Error
+An active-support version of dotnet couldn't be found. Discovered versions: []
+ Error: An active-support version of dotnet couldn't be found. Discovered versions: []
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:417637
+	at Generator.next (<anonymous>)
+	at s (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412385)
+	at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+null
+
+07/06/2025, 22:16:57 693 DotnetCommandSucceeded
+acquireStatus
+
+07/06/2025, 22:16:57 694 DotnetVersionCategorizedEvent
+true
+Recommended versions: [].
+
+07/06/2025, 22:16:57 694 DotnetVersionCategorizedEvent
+true
+Recommending version: undefined.
+
+07/06/2025, 22:17:02 954 UserManualInstallVersionChosen
+The user has chosen to install the .NET SDK version .
+
+07/06/2025, 22:17:02 954 UserManualInstallRequested
+Starting to install the .NET SDK  via a user request.
+
+07/06/2025, 22:17:02 958 DotnetAcquisitionFinalError
+Error
+No version was defined to install.
+ Error: No version was defined to install.
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:416038
+	at Generator.next (<anonymous>)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412583
+	at new Promise (<anonymous>)
+	at r (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412328)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:415922
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:58021
+	at Generator.next (<anonymous>)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:57697
+	at new Promise (<anonymous>)
+	at r (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:57442)
+	at t.callWithErrorHandling (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:57947)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:415916
+	at Generator.next (<anonymous>)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412583
+	at new Promise (<anonymous>)
+	at r (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412328)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:415643
+	at Wb.h (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:119:41524)
+	at Wb.g (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:119:40601)
+	at Wb.executeCommand (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:119:40508)
+	at Object.executeCommand (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:170:31026)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:419169
+	at Generator.next (<anonymous>)
+	at s (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412385)
+-global~x64
+-global~x64
+
+x64
+true
+sdk
+
+07/06/2025, 22:17:02 967 DotnetGlobalSDKAcquisitionError
+BadContextualRuntimeVersionError
+Error
+No version was defined to install.
+ Error: No version was defined to install.
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:416038
+	at Generator.next (<anonymous>)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412583
+	at new Promise (<anonymous>)
+	at r (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412328)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:415922
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:58021
+	at Generator.next (<anonymous>)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:57697
+	at new Promise (<anonymous>)
+	at r (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:57442)
+	at t.callWithErrorHandling (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:57947)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:415916
+	at Generator.next (<anonymous>)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412583
+	at new Promise (<anonymous>)
+	at r (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412328)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:415643
+	at Wb.h (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:119:41524)
+	at Wb.g (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:119:40601)
+	at Wb.executeCommand (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:119:40508)
+	at Object.executeCommand (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:170:31026)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:419169
+	at Generator.next (<anonymous>)
+	at s (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412385)
+-global~x64
+-global~x64
+
+x64
+true
+sdk
+
+07/06/2025, 22:18:21 233 GlobalAcquisitionContextMenuOpened
+The user has opened the global SDK acquisition context menu.
+
+07/06/2025, 22:18:21 236 CacheGetEvent
+Checking the cache at 2025-06-07T21:18:21.236Z
+cat /etc/os-release{"cwd":"/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist","shell":true,"encoding":"utf8","env":"HOME: /home/hector\nLANG: en_GB.UTF-8\nPATH: /sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl\nPWD: /home/hector\nSHELL: /bin/bash\nTERM: linux\nVSCODE_CLI: 1\nVSCODE_CODE_CACHE_PATH: /home/hector/.config/Code - OSS/CachedData/848b80aeb52026648a8ff9f7c45a9b0a80641e2e\nVSCODE_HANDLES_UNCAUGHT_ERRORS: true\nVSCODE_PID: 367348\nELECTRON_RUN_AS_NODE: 1\nDOTNET_CLI_UI_LANGUAGE: en-US\nDOTNET_NOLOGO: true\n"}
+{"stdout":"NAME=\"Arch Linux\"\nPRETTY_NAME=\"Arch Linux\"\nID=arch\nBUILD_ID=rolling\nANSI_COLOR=\"38;2;23;147;209\"\nHOME_URL=\"https://archlinux.org/\"\nDOCUMENTATION_URL=\"https://wiki.archlinux.org/\"\nSUPPORT_URL=\"https://bbs.archlinux.org/\"\nBUG_REPORT_URL=\"https://gitlab.archlinux.org/groups/archlinux/-/issues\"\nPRIVACY_POLICY_URL=\"https://terms.archlinux.org/docs/privacy-policy/\"\nLOGO=archlinux-logo\n","stderr":"","status":"0"}
+true
+
+07/06/2025, 22:18:21 237 DotnetAcquisitionDistroUnknownError
+We are unable to detect the distro or version of your machine
+Error
+Error: We are unable to detect the distro or version of your machine
+	at t.LinuxVersionResolver.<anonymous> (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:306465)
+	at Generator.next (<anonymous>)
+	at s (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:303221)
+notAnAcquisitionRequest-global~x64
+notAnAcquisitionRequest-global~x64
+notAnAcquisitionRequest
+x64
+true
+sdk
+
+07/06/2025, 22:18:21 237 DotnetAcquisitionDistroUnknownError
+We are unable to detect the distro or version of your machine ... does /etc/os-release exist?
+Error
+Error: We are unable to detect the distro or version of your machine ... does /etc/os-release exist?
+	at t.LinuxVersionResolver.<anonymous> (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:306760)
+	at Generator.next (<anonymous>)
+	at s (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:303221)
+notAnAcquisitionRequest-global~x64
+notAnAcquisitionRequest-global~x64
+notAnAcquisitionRequest
+x64
+true
+sdk
+
+07/06/2025, 22:18:21 238 DotnetVersionResolutionError
+Error
+An active-support version of dotnet couldn't be found. Discovered versions: []
+ Error: An active-support version of dotnet couldn't be found. Discovered versions: []
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:417637
+	at Generator.next (<anonymous>)
+	at s (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412385)
+null
+
+07/06/2025, 22:18:21 238 DotnetCommandSucceeded
+acquireStatus
+
+07/06/2025, 22:18:21 239 DotnetVersionCategorizedEvent
+true
+Recommended versions: [].
+
+07/06/2025, 22:18:21 239 DotnetVersionCategorizedEvent
+true
+Recommending version: undefined.
+
+07/06/2025, 22:18:35 289 UserManualInstallVersionChosen
+The user has chosen to install the .NET SDK version undefined.
+
+07/06/2025, 22:18:35 289 UserManualInstallRequested
+Starting to install the .NET SDK undefined via a user request.
+
+07/06/2025, 22:18:35 292 DotnetAcquisitionFinalError
+Error
+No version was defined to install.
+ Error: No version was defined to install.
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:416038
+	at Generator.next (<anonymous>)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412583
+	at new Promise (<anonymous>)
+	at r (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412328)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:415922
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:58021
+	at Generator.next (<anonymous>)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:57697
+	at new Promise (<anonymous>)
+	at r (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:57442)
+	at t.callWithErrorHandling (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:57947)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:415916
+	at Generator.next (<anonymous>)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412583
+	at new Promise (<anonymous>)
+	at r (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412328)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:415643
+	at Wb.h (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:119:41524)
+	at Wb.g (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:119:40601)
+	at Wb.executeCommand (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:119:40508)
+	at Object.executeCommand (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:170:31026)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:419169
+	at Generator.next (<anonymous>)
+	at s (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412385)
+undefined-global~x64
+undefined-global~x64
+
+x64
+true
+sdk
+
+07/06/2025, 22:18:35 293 DotnetGlobalSDKAcquisitionError
+BadContextualRuntimeVersionError
+Error
+No version was defined to install.
+ Error: No version was defined to install.
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:416038
+	at Generator.next (<anonymous>)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412583
+	at new Promise (<anonymous>)
+	at r (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412328)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:415922
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:58021
+	at Generator.next (<anonymous>)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:57697
+	at new Promise (<anonymous>)
+	at r (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:57442)
+	at t.callWithErrorHandling (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:57947)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:415916
+	at Generator.next (<anonymous>)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412583
+	at new Promise (<anonymous>)
+	at r (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412328)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:415643
+	at Wb.h (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:119:41524)
+	at Wb.g (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:119:40601)
+	at Wb.executeCommand (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:119:40508)
+	at Object.executeCommand (file:///usr/lib/code/out/vs/workbench/api/node/extensionHostProcess.js:170:31026)
+	at /home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:419169
+	at Generator.next (<anonymous>)
+	at s (/home/hector/.vscode-oss/extensions/ms-dotnettools.vscode-dotnet-runtime-2.3.6-universal/dist/extension.js:2:412385)
+undefined-global~x64
+undefined-global~x64
+
+x64
+true
+sdk
+
+07/06/2025, 22:24:25 183 DotnetVSCodeExtensionChange
+true
+A change was detected in the extensions. Installing .NET for new extensions.
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.bat for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.clojure for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.coffeescript for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.configuration-editing for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.cpp for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.csharp for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.css for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.css-language-features for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.dart for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.debug-auto-launch for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.debug-server-ready for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.diff for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.docker for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.emmet for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.extension-editing for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.fsharp for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.git for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.git-base for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.github for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.github-authentication for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.go for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.groovy for .NET installation requests
+
+07/06/2025, 22:24:25 184 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.grunt for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.gulp for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.handlebars for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.hlsl for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.html for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.html-language-features for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.ini for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.ipynb for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.jake for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.java for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.javascript for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.json for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.json-language-features for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.julia for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.latex for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.less for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.log for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.lua for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.make for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.markdown for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.markdown-language-features for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.markdown-math for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.media-preview for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.merge-conflict for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.microsoft-authentication for .NET installation requests
+
+07/06/2025, 22:24:25 185 DotnetVSCodeExtensionFound
+true
+Checking extension ms-vscode.js-debug for .NET installation requests
+
+07/06/2025, 22:24:25 186 DotnetVSCodeExtensionFound
+true
+Checking extension ms-vscode.js-debug-companion for .NET installation requests
+
+07/06/2025, 22:24:25 186 DotnetVSCodeExtensionFound
+true
+Checking extension ms-vscode.vscode-js-profile-table for .NET installation requests
+
+07/06/2025, 22:24:25 186 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.builtin-notebook-renderers for .NET installation requests
+
+07/06/2025, 22:24:25 186 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.npm for .NET installation requests
+
+07/06/2025, 22:24:25 186 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.objective-c for .NET installation requests
+
+07/06/2025, 22:24:25 189 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.perl for .NET installation requests
+
+07/06/2025, 22:24:25 189 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.php for .NET installation requests
+
+07/06/2025, 22:24:25 189 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.php-language-features for .NET installation requests
+
+07/06/2025, 22:24:25 189 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.powershell for .NET installation requests
+
+07/06/2025, 22:24:25 189 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.prompt for .NET installation requests
+
+07/06/2025, 22:24:25 189 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.pug for .NET installation requests
+
+07/06/2025, 22:24:25 189 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.python for .NET installation requests
+
+07/06/2025, 22:24:25 189 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.r for .NET installation requests
+
+07/06/2025, 22:24:25 189 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.razor for .NET installation requests
+
+07/06/2025, 22:24:25 189 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.references-view for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.restructuredtext for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.ruby for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.rust for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.scss for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.search-result for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.shaderlab for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.shellscript for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.simple-browser for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.sql for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.swift for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.terminal-suggest for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-abyss for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-defaults for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-kimbie-dark for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-monokai for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-monokai-dimmed for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-quietlight for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-red for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.vscode-theme-seti for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-solarized-dark for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-solarized-light for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.theme-tomorrow-night-blue for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.tunnel-forwarding for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.typescript for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.typescript-language-features for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.vb for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.xml for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension vscode.yaml for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension ms-dotnettools.vscode-dotnet-runtime for .NET installation requests
+
+07/06/2025, 22:24:25 190 DotnetVSCodeExtensionFound
+true
+Checking extension muhammad-sammy.csharp for .NET installation requests
