@@ -269,3 +269,9 @@ pimpmykali (github)
 - pipx
 - pipx install langchain
 - pipx install openapi --include-deps
+
+## Google
+
+- nodejs
+- npm
+- npx https://github.com/google-gemini/gemini-cli
