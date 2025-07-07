@@ -274,4 +274,4 @@ pimpmykali (github)
 
 - nodejs
 - npm
-- npx https://github.com/google-gemini/gemini-cli
+- npm install -g @google/gemini-cli 
