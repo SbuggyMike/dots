@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# Nb all variable which would have made the script apply to any user have had to be change to allow anacron to work 
+# Nb all variables which would have made the script apply to any user have had to be change to allow anacron to work 
 
 if [[ $# -eq 1 ]]
 then
