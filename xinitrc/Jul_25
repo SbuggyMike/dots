@@ -1,2 +1,2 @@
 #! /bin/sh
-setxkbmap -layout gb -option caps:swapescape
+setxkbmap -layout gb -option caps:ctrl_shifted_capslock
