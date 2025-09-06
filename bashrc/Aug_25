@@ -15,6 +15,15 @@ alias pacman='pacman --color=always'
 alias ed="ed -v -p'! '"
 alias stop="systemctl suspend"
 
+if [[ -d $HOME/misc_law ]]; then
+	alias m="cd $HOME/misc_law"
+fi
+
+
+if [[ -d $HOME/phd_law ]]; then
+	alias p="cd $HOME/phd_law"
+fi
+
 if ! command -v vim 2&>1 /dev/null; then
   alias vim=$EDITOR
 fi
