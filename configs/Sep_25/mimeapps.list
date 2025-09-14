@@ -1,0 +1,23 @@
+
+[Default Applications]
+application/msword=libreoffice-writer.desktop
+application/pdf=mupdf.desktop
+application/rtf=libreoffice-writer.desktop
+application/x-shellscript=nvim.desktop
+audio/mpeg=mpv.desktop
+audio/x-wav=mpv.desktop
+audio/ogg=mpv.desktop
+audio/flac=mpv.desktop
+audio/aac=mpv.desktop
+image/jpeg=feh.desktop
+image/gif=feh.desktop
+image/ping=feh.desktop
+image/bmp=feh.desktop
+image/tiff=feh.desktop
+text/markdown=nvim.desktop
+text/plain=nvim.desktop
+video/mp4=mpv.desktop
+video/x-msvideo=mpv.desktop
+video/mpeg=mpv.desktop
+video/x-matroska=mpv.desktop
+video/webm=mpv.desktop

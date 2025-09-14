@@ -1,0 +1,42 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+EDITOR=/usr/bin/nvim
+
+printf "Remember to pull and push from/to the git repository before editing a file! \n"
+
+alias ls='ls --color=auto'
+alias grep='grep --color'
+alias pacman='pacman --color=always'
+alias ed="ed -v -p'! '"
+alias stop="systemctl suspend"
+
+if [[ -d $HOME/misc_law ]]; then
+	alias m="cd $HOME/misc_law"
+fi
+
+
+if [[ -d $HOME/phd_law ]]; then
+	alias p="cd $HOME/phd_law"
+fi
+
+if ! command -v vim 2&>1 /dev/null; then
+  alias vim=$EDITOR
+fi
+
+if [[ -f /usr/share/bash-completion ]]; then
+	. /usr/share/bash-completion
+fi
+
+if [[ -d $HOME/dots/scrypts ]]; then
+  export PATH=$PATH:$HOME/dots/scrypts
+fi
+
+
+set -o emacs
+
+PS1='\[\033[38;5;81;48;5;235m\]\u@\h: \[\033[38;5;214m\]\W \[\033[0m\]\$ '
